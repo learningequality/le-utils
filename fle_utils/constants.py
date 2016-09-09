@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext_lazy as _
+from gettext import gettext as _
 
 """ Content Kind Constants """
 # constants for ContentKind
