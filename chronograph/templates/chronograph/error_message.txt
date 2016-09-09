@@ -1,5 +1,0 @@
-{{ exception|safe }}
-
-{% for line in traceback %}
-{{ line|safe }}
-{% endfor %}
