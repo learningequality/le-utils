@@ -16,7 +16,7 @@ for scheme in INSTALL_SCHEMES.values():
 setup(
     name = "fle-utils",
     version = "0.0.1",
-    author = "Learning Equality",
+    author = "Jordan Yoshihara",
     author_email = "jordan@learningequality.org",
     description = ("FLE utils and constants shared across kolibri, ricecooker and the content curation server."),
     license = "BSD",
