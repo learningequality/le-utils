@@ -112,3 +112,13 @@ preset_choices = (
     (FP_EXERCISE, _("Exercise")),
     (FP_EXERCISE_THUMBNAIL, _("Thumbnail")),
 )
+
+
+""" Format and Content Kind Mapping """
+CK_MAPPING = {
+    FF_MP4 : CK_VIDEO,
+    FF_MP3 : CK_AUDIO,
+    FF_WAV : CK_AUDIO,
+    FF_PDF : CK_DOCUMENT,
+    FF_PERSEUS : CK_EXERCISE,
+}
