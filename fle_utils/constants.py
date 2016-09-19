@@ -122,3 +122,20 @@ CK_MAPPING = {
     FF_PDF : CK_DOCUMENT,
     FF_PERSEUS : CK_EXERCISE,
 }
+
+
+
+""" Mastery Models """
+MM_DO_ALL = "do-all"
+MM_NUM_CORRECT_IN_A_ROW_10 = "num_correct_in_a_row_10"
+MM_NUM_CORRECT_IN_A_ROW_3 = "num_correct_in_a_row_3"
+MM_NUM_CORRECT_IN_A_ROW_5 = "num_correct_in_a_row_5"
+MM_SKILL_CHECK = "skill-check"
+
+MASTERY_MODELS = (
+    (MM_DO_ALL, _("Do all")),
+    (MM_NUM_CORRECT_IN_A_ROW_10, _("10 in a row")),
+    (MM_NUM_CORRECT_IN_A_ROW_3, _("3 in a row")),
+    (MM_NUM_CORRECT_IN_A_ROW_5, _("5 in a row")),
+    (MM_SKILL_CHECK, _("Skill check")),
+)
