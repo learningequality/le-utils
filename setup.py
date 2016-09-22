@@ -1,9 +1,8 @@
-import os
 from setuptools import setup
 
 
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+with open('README.md') as file:
+    long_description = file.read()
 
 
 setup(
@@ -11,7 +10,7 @@ setup(
     packages=["le_utils"],
     version="0.0.1",
     description="LE Utils and constants shared across Kolibri, Ricecooker and the Content Curation Server.",
-    long_description=read('README.md'),
+    long_description=long_description,
     license="MIT",
     url="https://github.com/learningequality/le-utils",
     downaload_url="https://github.com/learningequality/le-utils/tarball/0.0.1",
