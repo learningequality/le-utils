@@ -1,1 +1,1 @@
-FLE Utils and constants shared across Kolibri, Ricecooker and the Content Curation Server.
+LE Utils and constants shared across Kolibri, Ricecooker and the Content Curation Server.
