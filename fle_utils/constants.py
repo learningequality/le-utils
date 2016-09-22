@@ -16,7 +16,6 @@ kind_choices = (
     (CK_DOCUMENT, _("Document")),
 )
 
-
 """ File Format Constants """
 # constants for Video format
 FF_MP4 = "mp4"
@@ -57,7 +56,6 @@ format_choices = (
     (FF_PERSEUS, _("perseus")),
 )
 
-
 """ License Constants """
 L_CC_BY = "CC-BY"
 L_CC_BY_SA = "CC BY-SA"
@@ -78,7 +76,6 @@ license_choices = (
     (L_ARRD, _("All Rights Reserved")),
     (L_PD, _("Public Domain")),
 )
-
 
 """ Format Preset Constants"""
 FP_VIDEO_HIGH_RES = "high_res_video"
@@ -113,17 +110,14 @@ preset_choices = (
     (FP_EXERCISE_THUMBNAIL, _("Thumbnail")),
 )
 
-
 """ Format and Content Kind Mapping """
 CK_MAPPING = {
-    FF_MP4 : CK_VIDEO,
-    FF_MP3 : CK_AUDIO,
-    FF_WAV : CK_AUDIO,
-    FF_PDF : CK_DOCUMENT,
-    FF_PERSEUS : CK_EXERCISE,
+    FF_MP4: CK_VIDEO,
+    FF_MP3: CK_AUDIO,
+    FF_WAV: CK_AUDIO,
+    FF_PDF: CK_DOCUMENT,
+    FF_PERSEUS: CK_EXERCISE,
 }
-
-
 
 """ Mastery Models """
 MM_DO_ALL = "do-all"
