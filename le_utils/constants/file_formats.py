@@ -26,7 +26,7 @@ choices = (
     (MP4, _("mp4")),
 
     (VTT, _("vtt")),
-    SRT, _("srt")),
+    (SRT, _("srt")),
 
     (MP3, _("mp3")),
     (WAV, _("wav")),
