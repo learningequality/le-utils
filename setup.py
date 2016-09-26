@@ -8,7 +8,7 @@ with open('README.md') as file:
 setup(
     name="le-utils",
     packages=["le_utils"],
-    version="0.0.3",
+    version="0.0.4",
     description="LE Utils and constants shared across Kolibri, Ricecooker and the Content Curation Server.",
     long_description=long_description,
     license="MIT",
