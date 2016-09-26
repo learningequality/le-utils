@@ -16,9 +16,9 @@ MASTERY_MODELS = (
 )
 
 """ Question Types """
-INPUT = "input_question"
-MULTI_SELECT = "multiple_selection"
-SINGLE_SELECT = "singles_election"
+INPUT_QUESTION = "input_question"
+MULTIPLE_SELECTION = "multiple_selection"
+SINGLE_SELECTION = "singles_election"
 FREE_RESPONSE = "free_response"
 
 question_choices = (
