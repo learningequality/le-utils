@@ -16,7 +16,6 @@ kind_choices = (
     (CK_DOCUMENT, _("Document")),
 )
 
-
 """ File Format Constants """
 # constants for Video format
 FF_MP4 = "mp4"
@@ -57,7 +56,6 @@ format_choices = (
     (FF_PERSEUS, _("perseus")),
 )
 
-
 """ License Constants """
 L_CC_BY = "CC-BY"
 L_CC_BY_SA = "CC BY-SA"
@@ -78,7 +76,6 @@ license_choices = (
     (L_ARRD, _("All Rights Reserved")),
     (L_PD, _("Public Domain")),
 )
-
 
 """ Format Preset Constants"""
 FP_VIDEO_HIGH_RES = "high_res_video"
@@ -116,9 +113,24 @@ preset_choices = (
 
 """ Format and Content Kind Mapping """
 CK_MAPPING = {
-    FF_MP4 : CK_VIDEO,
-    FF_MP3 : CK_AUDIO,
-    FF_WAV : CK_AUDIO,
-    FF_PDF : CK_DOCUMENT,
-    FF_PERSEUS : CK_EXERCISE,
+    FF_MP4: CK_VIDEO,
+    FF_MP3: CK_AUDIO,
+    FF_WAV: CK_AUDIO,
+    FF_PDF: CK_DOCUMENT,
+    FF_PERSEUS: CK_EXERCISE,
 }
+
+""" Mastery Models """
+MM_DO_ALL = "do-all"
+MM_NUM_CORRECT_IN_A_ROW_10 = "num_correct_in_a_row_10"
+MM_NUM_CORRECT_IN_A_ROW_3 = "num_correct_in_a_row_3"
+MM_NUM_CORRECT_IN_A_ROW_5 = "num_correct_in_a_row_5"
+MM_SKILL_CHECK = "skill-check"
+
+MASTERY_MODELS = (
+    (MM_DO_ALL, _("Do all")),
+    (MM_NUM_CORRECT_IN_A_ROW_10, _("10 in a row")),
+    (MM_NUM_CORRECT_IN_A_ROW_3, _("3 in a row")),
+    (MM_NUM_CORRECT_IN_A_ROW_5, _("5 in a row")),
+    (MM_SKILL_CHECK, _("Skill check")),
+)
