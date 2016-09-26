@@ -13,7 +13,7 @@ setup(
     long_description=long_description,
     license="MIT",
     url="https://github.com/learningequality/le-utils",
-    download_url="https://github.com/learningequality/le-utils/tarball/0.0.3",
+    download_url="https://github.com/learningequality/le-utils/tarball/0.0.7",
     keywords="le-utils le_utils le utils kolibri ricecooker content curation",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
