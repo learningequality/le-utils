@@ -1,5 +1,5 @@
 from gettext import gettext as _
-from le_utils import file_formats
+from le_utils.constants import file_formats
 
 """ Content Kind Constants """
 # constants for ContentKind

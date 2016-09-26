@@ -7,10 +7,10 @@ VIDEO_VECTOR = "vector_video"
 VIDEO_THUMBNAIL = "video_thumbnail"
 VIDEO_SUBTITLE = "video_subtitle"
 
-AUDIO = "aud"
+AUDIO = "audio"
 AUDIO_THUMBNAIL = "audio_thumbnail"
 
-DOCUMENT = "doc"
+DOCUMENT = "document"
 DOCUMENT_THUMBNAIL = "document_thumbnail"
 
 EXERCISE = "exercise"

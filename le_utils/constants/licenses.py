@@ -1,7 +1,7 @@
 from gettext import gettext as _
 
 """ License Constants """
-CC_BY = "CC-BY"
+CC_BY = "CC BY"
 CC_BY_SA = "CC BY-SA"
 CC_BY_ND = "CC BY-ND"
 CC_BY_NC = "CC BY-NC"
@@ -11,7 +11,7 @@ ALL_RIGHTS_RESERVED = "All Rights Reserved"
 PUBLIC_DOMAIN = "Public Domain"
 
 choices = (
-    (CC_BY, _("CC-BY")),
+    (CC_BY, _("CC BY")),
     (CC_BY_SA, _("CC BY-SA")),
     (CC_BY_ND, _("CC BY-ND")),
     (CC_BY_NC, _("CC BY-NC")),

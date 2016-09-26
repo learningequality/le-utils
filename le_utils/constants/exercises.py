@@ -1,11 +1,11 @@
 from gettext import gettext as _
 
 """ Mastery Models """
-DO_ALL = "do-all"
+DO_ALL = "do_all"
 NUM_CORRECT_IN_A_ROW_10 = "num_correct_in_a_row_10"
 NUM_CORRECT_IN_A_ROW_3 = "num_correct_in_a_row_3"
 NUM_CORRECT_IN_A_ROW_5 = "num_correct_in_a_row_5"
-SKILL_CHECK = "skill-check"
+SKILL_CHECK = "skill_check"
 
 MASTERY_MODELS = (
     (DO_ALL, _("Do all")),
@@ -16,10 +16,10 @@ MASTERY_MODELS = (
 )
 
 """ Question Types """
-INPUT = "inputquestion"
-MULTI_SELECT = "multipleselection"
-SINGLE_SELECT = "singleselection"
-FREE_RESPONSE = "freeresponse"
+INPUT = "input_question"
+MULTI_SELECT = "multiple_selection"
+SINGLE_SELECT = "singles_election"
+FREE_RESPONSE = "free_response"
 
 question_choices = (
     (INPUT, _("Input Question")),
