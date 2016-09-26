@@ -110,7 +110,6 @@ preset_choices = (
     (FP_EXERCISE_THUMBNAIL, _("Thumbnail")),
 )
 
-
 """ Format and Content Kind Mapping """
 CK_MAPPING = {
     FF_MP4: CK_VIDEO,
