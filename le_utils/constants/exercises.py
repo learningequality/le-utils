@@ -18,12 +18,12 @@ MASTERY_MODELS = (
 """ Question Types """
 INPUT_QUESTION = "input_question"
 MULTIPLE_SELECTION = "multiple_selection"
-SINGLE_SELECTION = "singles_election"
+SINGLE_SELECTION = "single_selection"
 FREE_RESPONSE = "free_response"
 
 question_choices = (
-    (INPUT, _("Input Question")),
-    (MULTI_SELECT, _("Multiple Selection")),
-    (SINGLE_SELECT, _("Single Selection")),
+    (INPUT_QUESTION, _("Input Question")),
+    (MULTIPLE_SELECTION, _("Multiple Selection")),
+    (SINGLE_SELECTION, _("Single Selection")),
     (FREE_RESPONSE, _("Free Response")),
 )
