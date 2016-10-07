@@ -2,33 +2,44 @@ from gettext import gettext as _
 
 """ Format Preset Constants"""
 VIDEO_HIGH_RES = "high_res_video"
+VIDEO_HIGH_RES_READABLE = "High Resolution"
 VIDEO_LOW_RES = "low_res_video"
+VIDEO_LOW_RES_READABLE = "Low Resolution"
 VIDEO_VECTOR = "vector_video"
+VIDEO_VECTOR_READABLE = "Vectorized"
 VIDEO_THUMBNAIL = "video_thumbnail"
+VIDEO_THUMBNAIL_READABLE = "Thumbnail"
 VIDEO_SUBTITLE = "video_subtitle"
+VIDEO_SUBTITLE_READABLE = "Subtitle"
 
 AUDIO = "audio"
+AUDIO_READABLE = "Audio"
 AUDIO_THUMBNAIL = "audio_thumbnail"
+AUDIO_THUMBNAIL_READABLE = "Thumbnail"
 
 DOCUMENT = "document"
+DOCUMENT_READABLE = "Document"
 DOCUMENT_THUMBNAIL = "document_thumbnail"
+DOCUMENT_THUMBNAIL_READABLE = "Thumbnail"
 
 EXERCISE = "exercise"
+EXERCISE_READABLE = "Exercise"
 EXERCISE_THUMBNAIL = "exercise_thumbnail"
+EXERCISE_THUMBNAIL_READABLE = "Thumbnail"
 
 choices = (
-    (VIDEO_HIGH_RES, _("High resolution video")),
-    (VIDEO_LOW_RES, _("Low resolution video")),
-    (VIDEO_VECTOR, _("Vector video")),
-    (VIDEO_THUMBNAIL, _("Thumbnail")),
-    (VIDEO_SUBTITLE, _("Subtitle")),
+    (VIDEO_HIGH_RES, _(VIDEO_HIGH_RES_READABLE)),
+    (VIDEO_LOW_RES, _(VIDEO_LOW_RES_READABLE)),
+    (VIDEO_VECTOR, _(VIDEO_VECTOR_READABLE)),
+    (VIDEO_THUMBNAIL, _(VIDEO_THUMBNAIL_READABLE)),
+    (VIDEO_SUBTITLE, _(VIDEO_SUBTITLE_READABLE)),
 
-    (AUDIO, _("Audio")),
-    (AUDIO_THUMBNAIL, _("Thumbnail")),
+    (AUDIO, _(AUDIO_READABLE)),
+    (AUDIO_THUMBNAIL, _(AUDIO_THUMBNAIL_READABLE)),
 
-    (DOCUMENT, _("Document")),
-    (DOCUMENT_THUMBNAIL, _("Thumbnail")),
+    (DOCUMENT, _(DOCUMENT_READABLE)),
+    (DOCUMENT_THUMBNAIL, _(DOCUMENT_THUMBNAIL_READABLE)),
 
-    (EXERCISE, _("Exercise")),
-    (EXERCISE_THUMBNAIL, _("Thumbnail")),
+    (EXERCISE, _(EXERCISE_READABLE)),
+    (EXERCISE_THUMBNAIL, _(EXERCISE_THUMBNAIL_READABLE)),
 )

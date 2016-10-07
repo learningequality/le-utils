@@ -15,15 +15,19 @@ MASTERY_MODELS = (
     (SKILL_CHECK, _("Skill check")),
 )
 
+IMG_PLACEHOLDER = "(${\\u2623 IMAGEREPLACE}/{0})"
+
 """ Question Types """
 INPUT_QUESTION = "input_question"
 MULTIPLE_SELECTION = "multiple_selection"
 SINGLE_SELECTION = "single_selection"
 FREE_RESPONSE = "free_response"
+PERSEUS_QUESTION = "perseus_question"
 
 question_choices = (
     (INPUT_QUESTION, _("Input Question")),
     (MULTIPLE_SELECTION, _("Multiple Selection")),
     (SINGLE_SELECTION, _("Single Selection")),
     (FREE_RESPONSE, _("Free Response")),
+    (PERSEUS_QUESTION, _("Perseus Question")),
 )
