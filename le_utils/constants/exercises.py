@@ -17,6 +17,7 @@ MASTERY_MODELS = (
 
 IMG_PLACEHOLDER = "{\\u2623 IMAGEREPLACE}"
 IMG_FORMAT = "(${" + IMG_PLACEHOLDER + "}/{0})"
+IMG_REGEX = r'\(\$\{\\u2623\sIMAGEREPLACE\}\/(.+)\)'
 
 """ Question Types """
 INPUT_QUESTION = "input_question"
