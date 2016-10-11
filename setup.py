@@ -7,12 +7,12 @@ with open('README.md') as file:
 setup(
     name="le-utils",
     packages = find_packages(),
-    version="0.0.9c",
+    version="0.0.9d",
     description="LE Utils and constants shared across Kolibri, Ricecooker and the Content Curation Server.",
     long_description=long_description,
     license="MIT",
     url="https://github.com/learningequality/le-utils",
-    download_url="https://github.com/learningequality/le-utils/tarball/0.0.9c",
+    download_url="https://github.com/learningequality/le-utils/tarball/0.0.9d",
     keywords="le-utils le_utils le utils kolibri ricecooker content curation",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
