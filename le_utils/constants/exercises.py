@@ -15,7 +15,8 @@ MASTERY_MODELS = (
     (SKILL_CHECK, _("Skill check")),
 )
 
-IMG_PLACEHOLDER = "(${{\\u2623 IMAGEREPLACE}}/{0})"
+IMG_PLACEHOLDER = "{\\u2623 IMAGEREPLACE}"
+IMG_FORMAT = "(${" + IMG_PLACEHOLDER + "}/{0})"
 
 """ Question Types """
 INPUT_QUESTION = "input_question"
