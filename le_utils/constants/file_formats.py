@@ -28,6 +28,11 @@ JPEG = "jpeg"
 PNG = "png"
 PNG_MIMETYPE = "image/png"
 
+JSON = "json"
+JSON_MIMETYPE = "application/json"
+SVG = "svg"
+SVG_MIMETYPE = "image/svg"
+
 # constants for Exercise format
 PERSEUS = "perseus"
 PERSEUS_MIMETYPE = ".perseus"
@@ -46,6 +51,8 @@ choices = (
     (JPG, _("jpg")),
     (JPEG, _("jpeg")),
     (PNG, _("png")),
+    (JSON, _("json")),
+    (SVG, _("svg")),
 
     (PERSEUS, _("perseus")),
 )
