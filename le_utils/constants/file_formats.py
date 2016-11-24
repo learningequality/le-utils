@@ -32,6 +32,8 @@ JSON = "json"
 JSON_MIMETYPE = "application/json"
 SVG = "svg"
 SVG_MIMETYPE = "image/svg"
+GRAPHIE = "graphie"
+GRAPHIE_MIMETYPE = ".graphie"
 
 # constants for Exercise format
 PERSEUS = "perseus"
