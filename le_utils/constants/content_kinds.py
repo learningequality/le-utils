@@ -8,6 +8,7 @@ VIDEO = "video"
 AUDIO = "audio"
 EXERCISE = "exercise"
 DOCUMENT = "document"
+HTML5 = "html5"
 
 choices = (
     (TOPIC, _("Topic")),
@@ -15,6 +16,7 @@ choices = (
     (AUDIO, _("Audio")),
     (EXERCISE, _("Exercise")),
     (DOCUMENT, _("Document")),
+    (HTML5, _("HTML5 App")),
 )
 
 """ Format and Content Kind Mapping """
@@ -24,4 +26,5 @@ MAPPING = {
     file_formats.WAV: AUDIO,
     file_formats.PDF: DOCUMENT,
     file_formats.PERSEUS: EXERCISE,
+    file_formats.HTML5: HTML5,
 }
