@@ -41,7 +41,7 @@ PERSEUS_MIMETYPE = "application/perseus+zip"
 
 # constants for HTML5 zip format
 HTML5 = "zip"
-HTML5_MIMETYPE = "application/zip"
+HTML5_MIMETYPE = ".zip"
 
 
 choices = (
