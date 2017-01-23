@@ -49,8 +49,8 @@ def _initialize_language_list():
 
 LANGUAGELIST = list(_initialize_language_list())
 
-# LANGUAGELIST = [
-#     Language(native_name=code, primary_code="pt", subcode="PT", standard_name="Portuguese"),
-# ]
+_LANGLOOKUP = {l.code: l for l in LANGUAGELIST}
 
-LANGUAGES = {l.code: l for l in LANGUAGELIST}
+
+def getlang(code, default=None):
+    return _LANGLOOKUP.get(code) or None
