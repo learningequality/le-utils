@@ -1,12 +1,11 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 with open('README.md') as file:
     long_description = file.read()
 
-
 setup(
     name="le-utils",
-    packages = find_packages(),
+    packages=find_packages(),
     version="0.0.9c14",
     description="LE Utils and constants shared across Kolibri, Ricecooker and the Content Curation Server.",
     long_description=long_description,
@@ -14,6 +13,7 @@ setup(
     url="https://github.com/learningequality/le-utils",
     download_url="https://github.com/learningequality/le-utils/tarball/0.0.9c14",
     keywords="le-utils le_utils le utils kolibri ricecooker content curation",
+    package_data={"le_utils": ["resources/*.json"], },
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Programming Language :: Python",
@@ -21,5 +21,4 @@ setup(
         "Topic :: Utilities",
     ],
     author="Jordan Yoshihara",
-    author_email="jordan@learningequality.org",
-)
+    author_email="jordan@learningequality.org", )
