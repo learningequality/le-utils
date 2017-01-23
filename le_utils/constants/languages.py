@@ -1,27 +1,23 @@
-from collections import namedtuple, defaultdict
-import pkgutil
-import os
-import re
 import json
+import os
+import pkgutil
+import re
+from collections import defaultdict, namedtuple
 
 
-class Language(namedtuple("Language", ["native_name",
-                                       "primary_code",
-                                       "subcode",
-                                       "name",
-                                       "ka_name"])):
-
+class Language(
+        namedtuple("Language", [
+            "native_name", "primary_code", "subcode", "name", "ka_name"
+        ])):
     @property
     def code(self):
         return "{primary_code}-{subcode}".format(
-            primary_code=self.primary_code,
-            subcode=self.subcode
-        )
-
+            primary_code=self.primary_code, subcode=self.subcode)
 
     @property
     def id(self):
         return self.code
+
 
 def _parse_out_iso_639_code(code):
     code_regex = r'(?P<primary_code>\w{2,3})(-(?P<subcode>\w{2,3}))?'
@@ -34,7 +30,9 @@ def _parse_out_iso_639_code(code):
 
 
 def _initialize_language_list():
-    langlist = json.loads(pkgutil.get_data('le_utils', 'resources/languagelookup.json').decode('utf-8'))
+    langlist = json.loads(
+        pkgutil.get_data('le_utils', 'resources/languagelookup.json').decode(
+            'utf-8'))
 
     for code, lang in langlist.items():
         values = _parse_out_iso_639_code(code)
