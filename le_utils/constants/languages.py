@@ -11,8 +11,11 @@ class Language(
         ])):
     @property
     def code(self):
-        return "{primary_code}-{subcode}".format(
-            primary_code=self.primary_code, subcode=self.subcode)
+        if self.subcode:
+            return "{primary_code}-{subcode}".format(
+                primary_code=self.primary_code, subcode=self.subcode)
+        else:
+            return self.primary_code
 
     @property
     def id(self):
