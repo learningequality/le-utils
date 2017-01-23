@@ -1,4 +1,5 @@
 from collections import namedtuple, defaultdict
+import pkgutil
 import os
 import re
 import json
@@ -22,7 +23,7 @@ class Language(namedtuple("Language", ["native_name",
     def id(self):
         return self.code
 
-def _parse_out_iso_639_code(code) -> dict:
+def _parse_out_iso_639_code(code):
     code_regex = r'(?P<primary_code>\w{2,3})(-(?P<subcode>\w{2,3}))?'
 
     match = re.match(code_regex, code)
@@ -33,8 +34,7 @@ def _parse_out_iso_639_code(code) -> dict:
 
 
 def _initialize_language_list():
-    with open(os.path.dirname(__file__) + '/languagelookup.json') as f:
-        langlist = json.load(f)
+    langlist = json.loads(pkgutil.get_data('le_utils', 'resources/languagelookup.json').decode('utf-8'))
 
     for code, lang in langlist.items():
         values = _parse_out_iso_639_code(code)
