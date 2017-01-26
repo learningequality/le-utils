@@ -14,8 +14,6 @@ SRT_MIMETYPE = "text/srt"
 # constants for Audio format
 MP3 = "mp3"
 MP3_MIMETYPE = "audio/mp3"
-WAV = "wav"
-WAV_MIMETYPE = "audio/wav"
 
 # constants for Document format
 PDF = "pdf"
