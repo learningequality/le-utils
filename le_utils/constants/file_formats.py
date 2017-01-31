@@ -25,6 +25,9 @@ JPG_MIMETYPE = "image/jpeg"
 JPEG = "jpeg"
 PNG = "png"
 PNG_MIMETYPE = "image/png"
+GIF = "gif"
+GIF_MIMETYPE = "image/gif"
+
 
 JSON = "json"
 JSON_MIMETYPE = "application/json"
