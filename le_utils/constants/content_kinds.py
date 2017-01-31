@@ -23,7 +23,6 @@ choices = (
 MAPPING = {
     file_formats.MP4: VIDEO,
     file_formats.MP3: AUDIO,
-    file_formats.WAV: AUDIO,
     file_formats.PDF: DOCUMENT,
     file_formats.PERSEUS: EXERCISE,
     file_formats.HTML5: HTML5,
