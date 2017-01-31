@@ -52,13 +52,13 @@ choices = (
     (SRT, _("SRT Subtitle")),
 
     (MP3, _("MP3 Audio")),
-    (WAV, _("WAV Audio")),
 
     (PDF, _("PDF Document")),
 
     (JPG, _("JPG Image")),
     (JPEG, _("JPEG Image")),
     (PNG, _("PNG Image")),
+    (GIF, _("GIF Image")),
     (JSON, _("JSON")),
     (SVG, _("SVG Image")),
 
