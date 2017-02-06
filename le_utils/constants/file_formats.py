@@ -14,8 +14,6 @@ SRT_MIMETYPE = "text/srt"
 # constants for Audio format
 MP3 = "mp3"
 MP3_MIMETYPE = "audio/mp3"
-WAV = "wav"
-WAV_MIMETYPE = "audio/wav"
 
 # constants for Document format
 PDF = "pdf"
@@ -27,6 +25,9 @@ JPG_MIMETYPE = "image/jpeg"
 JPEG = "jpeg"
 PNG = "png"
 PNG_MIMETYPE = "image/png"
+GIF = "gif"
+GIF_MIMETYPE = "image/gif"
+
 
 JSON = "json"
 JSON_MIMETYPE = "application/json"
@@ -51,13 +52,13 @@ choices = (
     (SRT, _("SRT Subtitle")),
 
     (MP3, _("MP3 Audio")),
-    (WAV, _("WAV Audio")),
 
     (PDF, _("PDF Document")),
 
     (JPG, _("JPG Image")),
     (JPEG, _("JPEG Image")),
     (PNG, _("PNG Image")),
+    (GIF, _("GIF Image")),
     (JSON, _("JSON")),
     (SVG, _("SVG Image")),
 
