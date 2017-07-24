@@ -7,13 +7,13 @@ MP4_MIMETYPE = "video/mp4"
 
 # constants for Subtitle format
 VTT = "vtt"
-VTT_MIMETYPE = "text/vtt"
+VTT_MIMETYPE = ".vtt"
 SRT = "srt"
 SRT_MIMETYPE = "text/srt"
 
 # constants for Audio format
 MP3 = "mp3"
-MP3_MIMETYPE = "audio/mp3"
+MP3_MIMETYPE = ".mp3"
 
 # constants for Document format
 PDF = "pdf"
