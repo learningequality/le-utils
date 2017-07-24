@@ -9,6 +9,7 @@ CC_BY_NC_SA = "CC BY-NC-SA"
 CC_BY_NC_ND = "CC BY-NC-ND"
 ALL_RIGHTS_RESERVED = "All Rights Reserved"
 PUBLIC_DOMAIN = "Public Domain"
+SPECIAL_PERMISSIONS = "Special Permissions"
 
 choices = (
     (CC_BY, _("CC BY")),
@@ -19,4 +20,5 @@ choices = (
     (CC_BY_NC_ND, _("CC BY-NC-ND")),
     (ALL_RIGHTS_RESERVED, _("All Rights Reserved")),
     (PUBLIC_DOMAIN, _("Public Domain")),
+    (SPECIAL_PERMISSIONS, _("Special Permissions")),
 )
