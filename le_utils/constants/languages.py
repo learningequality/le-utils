@@ -3,6 +3,7 @@ import os
 import pkgutil
 import re
 from collections import defaultdict, namedtuple
+from gettext import gettext as _
 
 
 class Language(
@@ -47,6 +48,11 @@ def _initialize_language_list():
 
         yield Language(**values)
 
+
+LANGUAGE_DIRECTIONS = (
+    ('ltr', _('Left to Right')),
+    ('rtl', _('Right to Left')),
+)
 
 LANGUAGELIST = list(_initialize_language_list())
 
