@@ -6,7 +6,7 @@ with open('README.md') as file:
 setup(
     name="le-utils",
     packages = find_packages(),
-    version="0.0.9c24",
+    version="0.0.12",
     description="LE Utils and constants shared across Kolibri, Ricecooker and the Content Curation Server.",
     long_description=long_description,
     license="MIT",
