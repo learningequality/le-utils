@@ -1,9 +1,20 @@
-import json
-import os
-import pkgutil
-import re
 from collections import defaultdict, namedtuple
 from gettext import gettext as _
+import json
+import logging
+import pkgutil
+import re
+
+import pycountry
+
+
+LANGUAGE_DIRECTIONS = (
+    ('ltr', _('Left to Right')),
+    ('rtl', _('Right to Left')),
+)
+
+logger = logging.getLogger('le_utils')
+logger.setLevel(logging.INFO)
 
 
 class Language(
@@ -48,16 +59,78 @@ def _initialize_language_list():
 
         yield Language(**values)
 
-
-LANGUAGE_DIRECTIONS = (
-    ('ltr', _('Left to Right')),
-    ('rtl', _('Right to Left')),
-)
-
 LANGUAGELIST = list(_initialize_language_list())
 
 _LANGLOOKUP = {l.code: l for l in LANGUAGELIST}
 
-
 def getlang(code, default=None):
+    """
+    Try to lookup a Language object for `code` in internal representation defined
+    in resources/languagelookup.json.
+    Returns None if lookup by internal representation fails.
+    """
     return _LANGLOOKUP.get(code) or None
+    # should this be   return _LANGLOOKUP.get(code) or _LANGLOOKUP[default]  ???
+
+
+_LANGUAGE_NAME_LOOKUP = {l.name: l for l in LANGUAGELIST}
+
+# Enrich _LANGUAGE_NAME_LOOKUP with aliases for list-names, and simplified names
+new_items = {}
+for lang_name, lang_obj in _LANGUAGE_NAME_LOOKUP.items():
+    # Add language names that are separated by semicolons, e.g. "Catalan; Valencian"
+    if ';' in lang_name:
+        new_names = [n.strip() for n in lang_name.split(';')]
+        for new_name in new_names:
+            if new_name in _LANGUAGE_NAME_LOOKUP.keys():
+                logger.debug('Skip ' + new_name + ' because it already exisits')
+            else:
+                new_items[new_name] = lang_obj
+    # Add base names without modifies in brackets or country/region after comma
+    elif '(' in lang_name or ',' in lang_name:
+        simple_name = lang_name.split(',')[0]            # take part before comma
+        simple_name = simple_name.split('(')[0].strip()  # and before any bracket
+        if simple_name in _LANGUAGE_NAME_LOOKUP.keys():
+            logger.debug('Skip ' + simple_name + ' because it already exisits')
+        else:
+            new_items[simple_name] = lang_obj
+_LANGUAGE_NAME_LOOKUP.update(new_items)
+
+
+def getlang_by_name(name):
+    """
+    Try to lookup a Language object by name, e.g. 'English', in internal language list.
+    Returns None if lookup by language name fails in resources/languagelookup.json.
+    """
+    direct_match = _LANGUAGE_NAME_LOOKUP.get(name, None)
+    if direct_match:
+        return direct_match
+    else:
+        simple_name = name.split(',')[0]                 # take part before comma
+        simple_name = simple_name.split('(')[0].strip()  # and before any bracket
+        return _LANGUAGE_NAME_LOOKUP.get(simple_name, None)
+
+
+def getlang_by_alpha2(code):
+    """
+    Try to lookup a Language object for language code `code` using `alpha_2` lookup
+    in `pycountry.languages`, then look for a language with the same `name` in the internal repr.
+    Returns None if lookup by alpha2 language code fails.
+    """
+    # extract prefix only if specified with subcode: e.g. zh-Hans --> zh
+    first_part = code.split('-')[0]
+
+    # See if pycountry can find this language
+    try:
+        pyc_lang = pycountry.languages.get(alpha_2=first_part)
+        if pyc_lang:
+            if hasattr(pyc_lang, 'inverted_name'):
+                lang_name = pyc_lang.inverted_name
+            else:
+                lang_name = pyc_lang.name
+            return getlang_by_name(lang_name)
+        else:
+            return None
+    except KeyError:
+        return None
+
