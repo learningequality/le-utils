@@ -149,7 +149,7 @@
     "native_name":"Dansk"
   },
   "dv":{
-    "name":"Divehi; Dhivehi; Maldivian;",
+    "name":"Divehi; Dhivehi; Maldivian",
     "native_name":"ދިވެހި"
   },
   "nl":{
@@ -320,7 +320,7 @@
     "native_name":"ភាសាខ្មែរ"
   },
   "ki":{
-    "name":"Kikuyu, Gikuyu",
+    "name":"Kikuyu; Gikuyu",
     "native_name":"Gĩkũyũ"
   },
   "rw":{
@@ -328,7 +328,7 @@
     "native_name":"Ikinyarwanda"
   },
   "ky":{
-    "name":"Kirghiz, Kyrgyz",
+    "name":"Kirghiz; Kyrgyz",
     "native_name":"кыргыз тили"
   },
   "kv":{
@@ -348,7 +348,7 @@
     "native_name":"Kurdî, كوردی‎"
   },
   "kj":{
-    "name":"Kwanyama, Kuanyama",
+    "name":"Kwanyama; Kuanyama",
     "native_name":"Kuanyama"
   },
   "la":{
@@ -356,7 +356,7 @@
     "native_name":"latine, lingua latina"
   },
   "lb":{
-    "name":"Luxembourgish, Letzeburgesch",
+    "name":"Luxembourgish; Letzeburgesch",
     "native_name":"Lëtzebuergesch"
   },
   "lg":{
@@ -364,7 +364,7 @@
     "native_name":"Luganda"
   },
   "li":{
-    "name":"Limburgish, Limburgan, Limburger",
+    "name":"Limburgish; Limburgan; Limburger",
     "native_name":"Limburgs"
   },
   "ln":{
@@ -432,7 +432,7 @@
     "native_name":"Ekakairũ Naoero"
   },
   "nv":{
-    "name":"Navajo, Navaho",
+    "name":"Navajo; Navaho",
     "native_name":"Diné bizaad, Dinékʼehǰí"
   },
   "nb":{
@@ -472,11 +472,11 @@
     "native_name":"Occitan"
   },
   "oj":{
-    "name":"Ojibwe, Ojibwa",
+    "name":"Ojibwe; Ojibwa",
     "native_name":"ᐊᓂᔑᓈᐯᒧᐎᓐ"
   },
   "cu":{
-    "name":"Old Church Slavonic, Church Slavic, Church Slavonic, Old Bulgarian, Old Slavonic",
+    "name":"Old Church Slavonic; Church Slavic; Church Slavonic; Old Bulgarian; Old Slavonic",
     "native_name":"ѩзыкъ словѣньскъ"
   },
   "om":{
@@ -488,11 +488,11 @@
     "native_name":"ଓଡ଼ିଆ"
   },
   "os":{
-    "name":"Ossetian, Ossetic",
+    "name":"Ossetian; Ossetic",
     "native_name":"ирон æвзаг"
   },
   "pa":{
-    "name":"Panjabi, Punjabi",
+    "name":"Panjabi; Punjabi",
     "native_name":"ਪੰਜਾਬੀ, پنجابی‎",
     "ka_name":"punjabi"
   },
@@ -510,7 +510,7 @@
     "native_name":"Polski"
   },
   "ps":{
-    "name":"Pashto, Pushto",
+    "name":"Pashto; Pushto",
     "native_name":"پښتو"
   },
   "pt":{
@@ -531,7 +531,7 @@
     "native_name":"kiRundi"
   },
   "ro":{
-    "name":"Romanian, Moldavian, Moldovan",
+    "name":"Romanian; Moldavian; Moldovan",
     "native_name":"română"
   },
   "ru":{
@@ -575,7 +575,7 @@
     "native_name":"chiShona"
   },
   "si":{
-    "name":"Sinhala, Sinhalese",
+    "name":"Sinhala; Sinhalese",
     "native_name":"සිංහල",
     "ka_name":"sinhala"
   },
@@ -637,7 +637,7 @@
     "native_name":"ትግርኛ"
   },
   "bo":{
-    "name":"Tibetan Standard, Tibetan, Central",
+    "name":"Tibetan Standard; Tibetan, Central",
     "native_name":"བོད་ཡིག"
   },
   "tk":{
@@ -677,7 +677,7 @@
     "native_name":"Reo Tahiti"
   },
   "ug":{
-    "name":"Uighur, Uyghur",
+    "name":"Uighur; Uyghur",
     "native_name":"Uyƣurqə, ئۇيغۇرچە‎"
   },
   "uk":{
@@ -695,7 +695,7 @@
   },
   "ve":{
     "name":"Venda",
-    "native_name":"Tshivenḓa"
+    "native_name":"Tshivenḓa, Tshivenda"
   },
   "vi":{
     "name":"Vietnamese",
@@ -734,7 +734,7 @@
     "native_name":"Yorùbá"
   },
   "za":{
-    "name":"Zhuang, Chuang",
+    "name":"Zhuang; Chuang",
     "native_name":"Saɯ cueŋƅ, Saw cuengh"
   },
   "en-PT":{
@@ -819,7 +819,7 @@
     "native_name":"Español, Mexico"
   },
   "es-NI":{
-    "name":"Spanish, Nicaraguan",
+    "name":"Spanish, Nicaragua",
     "native_name":""
   },
   "fr-CA":{
@@ -881,6 +881,10 @@
   "som":{
     "name":"Somali",
     "native_name":"Soomaaliga"
+  },
+  "nso":{
+    "name":"Northern Sotho",
+    "native_name":"Sepedi, Sesotho sa Leboa, Pedi"
   },
   "sot":{
     "name":"Southern Sotho",

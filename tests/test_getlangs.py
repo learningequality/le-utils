@@ -246,7 +246,6 @@ def test_african_languages(african_languages_list):
 def african_languages_list2():
     return ['Sepedi', 'Tshivenda']
 
-@pytest.mark.skip('These languages are not in json data yet')
 def test_african_languages2(african_languages_list2):
     missing_names = []
     for native_name in african_languages_list2:

@@ -82,6 +82,23 @@ def getlang(code, default=None):
     # should this be   return _LANGLOOKUP.get(code) or _LANGLOOKUP[default]  ???
 
 
+# NOTES ON INTERNAL REPRESENTATION FOR LANGUAGE CODES
+################################################################################
+# The language code lookup table in `resources/languagelookup.json` is complex:
+# 1.   "<code>":{
+# 2.     "name":"EnglishName, variant; AlternativeName",
+# 3.     "native_name":"NativeName, AlternativeNativeName",
+#       }
+#
+# 1. <code> can be two letter code, three letter code, or <code>-<locale> string
+# 2. `name` attr. contains ";"-separated list of alternative names for the language,
+#     some names have a ","-separated variant, e.g.,  "Spanish, Spain"
+# 3. `native_name` contains ","-separated list of strings for language name in that language
+#
+# The following lookup tables and lookup functions perform the necessary logic
+# to deal with the ";" and "," separators used in `resources/languagelookup.json`
+################################################################################
+
 _LANGUAGE_NAME_LOOKUP = {l.name: l for l in LANGUAGELIST}
 
 # Enrich _LANGUAGE_NAME_LOOKUP with aliases for list-names, and simplified names
@@ -180,4 +197,3 @@ def getlang_by_alpha2(code):
             return None
     except KeyError:
         return None
-
