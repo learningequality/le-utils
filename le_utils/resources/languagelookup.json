@@ -596,8 +596,8 @@
     "native_name":"Sesotho"
   },
   "es":{
-    "name":"Spanish; Castilian",
-    "native_name":"Español, Castellano",
+    "name":"Spanish",
+    "native_name":"Español",
     "ka_name":"espanol"
   },
   "su":{
@@ -742,8 +742,8 @@
     "native_name":"Argh! Pirates!"
   },
   "es-ES":{
-    "name":"Spanish, Spain",
-    "native_name":"Español"
+    "name":"Spanish, Spain; Castilian",
+    "native_name":"Español (España), Castellano"
   },
   "fil":{
     "name":"Filipino",
@@ -755,11 +755,11 @@
   },
   "pt-BR":{
     "name":"Portuguese, Brazil",
-    "native_name":"Português, Brasil"
+    "native_name":"Português (Brasil)"
   },
   "pt-PT":{
     "name":"Portuguese, Portugal",
-    "native_name":"Português",
+    "native_name":"Português (Portugal)",
     "ka_name":"portugal portugues"
   },
   "sr-CS":{
@@ -808,23 +808,23 @@
   },
   "en-GB":{
     "name":"English, Britain",
-    "native_name":"English, Britain"
+    "native_name":"British English"
   },
   "es-AR":{
     "name":"Spanish, Argentina",
-    "native_name":"Español, Argentina"
+    "native_name":"Español (Argentina)"
   },
   "es-MX":{
     "name":"Spanish, Mexico",
-    "native_name":"Español, Mexico"
+    "native_name":"Español (Mexico)"
   },
   "es-NI":{
     "name":"Spanish, Nicaragua",
-    "native_name":""
+    "native_name":"Español (Nicaragua)"
   },
   "fr-CA":{
     "name":"French, Canada",
-    "native_name":"Français, canada"
+    "native_name":"Français (Canada)"
   },
   "ful":{
     "name":"Fula",
