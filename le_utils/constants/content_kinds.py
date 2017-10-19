@@ -19,7 +19,7 @@ choices = (
     (HTML5, _("HTML5 App")),
 )
 
-""" Format and Content Kind Mapping """
+""" File Format (extension) to Content Kind Mapping """
 MAPPING = {
     file_formats.MP4: VIDEO,
     file_formats.MP3: AUDIO,
