@@ -116,7 +116,7 @@ for lang_name, lang_obj in _LANGUAGE_NAME_LOOKUP.items():
     elif '(' in lang_name or ',' in lang_name:
         simple_name = lang_name.split(',')[0]            # take part before comma
         simple_name = simple_name.split('(')[0].strip()  # and before any bracket
-        if simple_name in _LANGUAGE_NAME_LOOKUP.keys() or new_name in new_items:
+        if simple_name in _LANGUAGE_NAME_LOOKUP.keys() or simple_name in new_items:
             logger.debug('Skip ' + simple_name + ' because it already exisits')
         else:
             new_items[simple_name] = lang_obj
