@@ -1,6 +1,12 @@
 Release History
 ===============
 
+0.1.5 Jan 11, 2018
+------------------
+  - Handle non-standard code `iw` for Hebrew used by YouTube API
+  - Better classification of traditional and simplified Chinese scripts
+  - Added basic README
+
 0.1.4 Nov 22, 2017
 ------------------
   - Define constants for all file types
