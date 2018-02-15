@@ -44,6 +44,10 @@ PERSEUS_MIMETYPE = "application/perseus+zip"
 HTML5 = "zip"
 HTML5_MIMETYPE = ".zip"
 
+# constants for ePub format
+EPUB = "epub"
+EPUB_MIMETYPE = "application/epub+zip"
+
 
 choices = (
     (MP4, _("MP4 Video")),
@@ -63,5 +67,8 @@ choices = (
     (SVG, _("SVG Image")),
 
     (PERSEUS, _("Perseus Exercise")),
+
     (HTML5, _("HTML5 Zip")),
+
+    (EPUB, _("ePub Document")),
 )
