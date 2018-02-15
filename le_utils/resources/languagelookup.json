@@ -570,6 +570,10 @@
     "name":"Scottish Gaelic; Gaelic",
     "native_name":"Gàidhlig"
   },
+  "sco":{
+    "name":"Scots",
+    "native_name":"Scots"
+  },
   "sn":{
     "name":"Shona",
     "native_name":"chiShona"
@@ -684,6 +688,10 @@
     "name":"Ukrainian",
     "native_name":"українська",
     "ka_name":"ukranian"
+  },
+  "rue":{
+    "name":"Rusyn",
+    "native_name":"русиньскый язык"
   },
   "ur":{
     "name":"Urdu",
