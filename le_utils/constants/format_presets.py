@@ -18,7 +18,9 @@ AUDIO_THUMBNAIL = "audio_thumbnail"
 AUDIO_THUMBNAIL_READABLE = "Thumbnail"
 
 DOCUMENT = "document"
-DOCUMENT_READABLE = "Document"
+DOCUMENT_READABLE = "Document"  # TODO(ivan): Change to "PDF Document"  str translations?
+EPUB = "epub"
+EPUB_READABLE = "ePub Document"
 DOCUMENT_THUMBNAIL = "document_thumbnail"
 DOCUMENT_THUMBNAIL_READABLE = "Thumbnail"
 
@@ -41,10 +43,6 @@ HTML5_ZIP_READABLE = "HTML5 Zip"
 HTML5_THUMBNAIL = "html5_thumbnail"
 HTML5_THUMBNAIL_READABLE = "HTML5 Thumbnail"
 
-EPUB = "epub"
-EPUB_READABLE = "ePub"
-EPUB_THUMBNAIL = "epub_thumbnail"
-EPUB_THUMBNAIL_READABLE = "ePub Thumbnail"
 
 choices = (
     (VIDEO_HIGH_RES, _(VIDEO_HIGH_RES_READABLE)),
@@ -57,6 +55,7 @@ choices = (
     (AUDIO_THUMBNAIL, _(AUDIO_THUMBNAIL_READABLE)),
 
     (DOCUMENT, _(DOCUMENT_READABLE)),
+    (EPUB, _(EPUB_READABLE)),
     (DOCUMENT_THUMBNAIL, _(DOCUMENT_THUMBNAIL_READABLE)),
 
     (EXERCISE, _(EXERCISE_READABLE)),
@@ -69,7 +68,4 @@ choices = (
 
     (HTML5_ZIP, _(HTML5_ZIP_READABLE)),
     (HTML5_THUMBNAIL, _(HTML5_THUMBNAIL_READABLE)),
-
-    (EPUB, _(EPUB_READABLE)),
-    (EPUB_THUMBNAIL, _(EPUB_THUMBNAIL_READABLE)),
 )
