@@ -274,3 +274,11 @@ def test_african_languages(african_languages_list):
             missing_names.append(native_name)
     assert missing_names == [], 'Languages with native_names missing: ' + str(missing_names)
 
+
+# check RTL_LANG_CODES contains Arabic, Hebrew, and Urdu
+################################################################################
+def test_rtl_languagess():
+    minimum_list = ['ar', 'he', 'ur']
+    for lang_code in minimum_list:
+        assert lang_code in languages.RTL_LANG_CODES, 'Known RTL missing from RTL_LANG_CODES list'
+
