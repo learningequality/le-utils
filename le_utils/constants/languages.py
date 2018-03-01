@@ -3,9 +3,12 @@ from gettext import gettext as _
 import json
 import logging
 import pkgutil
+import pycountry
 import re
 
-import pycountry
+logger = logging.getLogger('le_utils')
+logger.setLevel(logging.INFO)
+
 
 
 LANGUAGE_DIRECTIONS = (
@@ -13,8 +16,15 @@ LANGUAGE_DIRECTIONS = (
     ('rtl', _('Right to Left')),
 )
 
-logger = logging.getLogger('le_utils')
-logger.setLevel(logging.INFO)
+RTL_LANG_CODES = [
+    "ar",  # Arabic
+    "dv",  # Divehi; Dhivehi; Maldivian
+    "he",  # Hebrew (modern)
+    "fa",  # Persian
+    "ps",  # Pashto; Pushto
+    "ur",  # Urdu
+    "yi",  # Yiddish
+]
 
 
 class Language(
@@ -208,3 +218,6 @@ def getlang_by_alpha2(code):
             return None
     except KeyError:
         return None
+
+
+

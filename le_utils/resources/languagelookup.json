@@ -381,7 +381,11 @@
   },
   "lu":{
     "name":"Luba-Katanga",
-    "native_name":""
+    "native_name":"Luba-Katanga"
+  },
+  "lua":{
+    "name":"Luba-Kasai",
+    "native_name":"Luba-Kasai, Tshiluba"
   },
   "lv":{
     "name":"Latvian",
@@ -836,7 +840,7 @@
   },
   "hau":{
     "name":"Hausa",
-    "native_name":"هَوُسَ"
+    "native_name":"Hausa, هَوُسَ"
   },
   "ibo":{
     "name":"Igbo",
