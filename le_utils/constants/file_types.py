@@ -6,6 +6,7 @@ from le_utils.constants import file_formats
 VIDEO = "video"
 AUDIO = "audio"
 DOCUMENT = "document"
+EPUB = "epub"
 HTML5 = "html5"
 THUMBNAIL = "thumbnail"
 SUBTITLES = "subtitles"
@@ -24,6 +25,7 @@ MAPPING = {
     #
     # DocumentFile formats
     file_formats.PDF: DOCUMENT,
+    file_formats.EPUB: EPUB,
     #
     # formats HTMLZipFile
     file_formats.HTML5: HTML5,
