@@ -71,6 +71,10 @@
     "name":"Belarusian",
     "native_name":"Беларуская"
   },
+  "be-tarask":{
+    "name":"Belarusian, Classical Orthography",
+    "native_name":"Taraškievica, тарашкевіца, Беларуская клясычны правапіс"
+  },
   "bn":{
     "name":"Bengali",
     "native_name":"বাংলা",
@@ -246,6 +250,10 @@
   "hu":{
     "name":"Hungarian",
     "native_name":"Magyar"
+  },
+  "hrx":{
+    "name":"Hunsrik",
+    "native_name":"Hunsrückisch, Hunsrück, Hunsriker"
   },
   "ia":{
     "name":"Interlingua",
@@ -522,6 +530,10 @@
     "native_name":"Português",
     "ka_name":"portugues"
   },
+  "pms":{
+    "name":"Piedmontese",
+    "native_name":"Piemontèis"
+  },
   "qu":{
     "name":"Quechua",
     "native_name":"Runa Simi, Kichwa"
@@ -573,6 +585,10 @@
   "gd":{
     "name":"Scottish Gaelic; Gaelic",
     "native_name":"Gàidhlig"
+  },
+  "sco":{
+    "name":"Scots",
+    "native_name":"Scots"
   },
   "sn":{
     "name":"Shona",
@@ -688,6 +704,10 @@
     "name":"Ukrainian",
     "native_name":"українська",
     "ka_name":"ukranian"
+  },
+  "rue":{
+    "name":"Rusyn",
+    "native_name":"русиньскый язык"
   },
   "ur":{
     "name":"Urdu",
