@@ -1,6 +1,18 @@
 Release History
 ===============
 
+0.1.6 Mar 13, 2018
+------------------
+  - Added file format constants for ePub
+  - Added RTL language lookup table in le_utils.constants.languages.RTL_LANG_CODES
+  - Added the following language codes:
+     - be-tarask = Belarusian
+     - hrx = Hunsrik
+     - lua = Luba-Kasai
+     - pms = Piedmontese
+     - sco = Scots
+     - rue = Rusyn
+
 0.1.5 Jan 11, 2018
 ------------------
   - Handle non-standard code `iw` for Hebrew used by YouTube API
