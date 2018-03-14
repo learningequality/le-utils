@@ -225,4 +225,3 @@ def getlang_direction(code):
         return RTL_LANGUAGE
     else:
         return LTR_LANGUAGE
-
