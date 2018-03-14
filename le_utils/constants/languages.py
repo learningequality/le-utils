@@ -221,7 +221,7 @@ def getlang_by_alpha2(code):
         return None
 
 def getlang_direction(code):
-     if code in RTL_LANG_CODES:
+    if code in RTL_LANG_CODES:
         return RTL_LANGUAGE
     else:
         return LTR_LANGUAGE
