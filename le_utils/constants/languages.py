@@ -3,9 +3,12 @@ from gettext import gettext as _
 import json
 import logging
 import pkgutil
+import pycountry
 import re
 
-import pycountry
+logger = logging.getLogger('le_utils')
+logger.setLevel(logging.INFO)
+
 
 
 LANGUAGE_DIRECTIONS = (
@@ -13,8 +16,15 @@ LANGUAGE_DIRECTIONS = (
     ('rtl', _('Right to Left')),
 )
 
-logger = logging.getLogger('le_utils')
-logger.setLevel(logging.INFO)
+RTL_LANG_CODES = [
+    "ar",  # Arabic
+    "dv",  # Divehi; Dhivehi; Maldivian
+    "he",  # Hebrew (modern)
+    "fa",  # Persian
+    "ps",  # Pashto; Pushto
+    "ur",  # Urdu
+    "yi",  # Yiddish
+]
 
 
 class Language(
@@ -108,7 +118,7 @@ for lang_name, lang_obj in _LANGUAGE_NAME_LOOKUP.items():
     if ';' in lang_name:
         new_names = [n.strip() for n in lang_name.split(';')]
         for new_name in new_names:
-            if new_name in _LANGUAGE_NAME_LOOKUP.keys():
+            if new_name in _LANGUAGE_NAME_LOOKUP.keys() or new_name in new_items:
                 logger.debug('Skip ' + new_name + ' because it already exisits')
             else:
                 new_items[new_name] = lang_obj
@@ -116,7 +126,7 @@ for lang_name, lang_obj in _LANGUAGE_NAME_LOOKUP.items():
     elif '(' in lang_name or ',' in lang_name:
         simple_name = lang_name.split(',')[0]            # take part before comma
         simple_name = simple_name.split('(')[0].strip()  # and before any bracket
-        if simple_name in _LANGUAGE_NAME_LOOKUP.keys():
+        if simple_name in _LANGUAGE_NAME_LOOKUP.keys() or simple_name in new_items:
             logger.debug('Skip ' + simple_name + ' because it already exisits')
         else:
             new_items[simple_name] = lang_obj
@@ -148,17 +158,18 @@ for lang_native_name, lang_obj in _LANGUAGE_NATIVE_NAME_LOOKUP.items():
         new_native_names = [n.strip() for n in lang_native_name.split(',')]
         for new_native_name in new_native_names:
             simple_native_name = new_native_name.split('(')[0].strip()  # text before any bracket
-            if simple_native_name in _LANGUAGE_NATIVE_NAME_LOOKUP.keys():
+            if simple_native_name in _LANGUAGE_NATIVE_NAME_LOOKUP.keys() or new_native_name in new_items:
                 logger.debug('Skip ' + simple_native_name + ' because it already exisits')
             else:
                 new_items[simple_native_name] = lang_obj
     elif '(' in lang_native_name:
         simple_native_name = lang_native_name.split('(')[0].strip()  # text before any bracket
-        if simple_native_name in _LANGUAGE_NATIVE_NAME_LOOKUP.keys():
+        if simple_native_name in _LANGUAGE_NATIVE_NAME_LOOKUP.keys() or simple_native_name in new_items:
             logger.debug('Skip ' + simple_native_name + ' because it already exisits')
         else:
             new_items[simple_native_name] = lang_obj
 _LANGUAGE_NATIVE_NAME_LOOKUP.update(new_items)
+
 
 def getlang_by_native_name(native_name):
     """
@@ -177,10 +188,20 @@ def getlang_by_native_name(native_name):
 
 def getlang_by_alpha2(code):
     """
-    Try to lookup a Language object for language code `code` using `alpha_2` lookup
-    in `pycountry.languages`, then look for a language with the same `name` in the internal repr.
-    Returns None if lookup by alpha2 language code fails.
+    Lookup a Language object for language code `code` based on these strategies:
+      - Special case rules for Hebrew and Chinese Hans/Hant scripts
+      - Using `alpha_2` lookup in `pycountry.languages` followed by lookup for a
+        language with the same `name` in the internal representaion
+    Returns `None` if no matching language is found.
     """
+    # Handle special cases for language codes returned by YouTube API
+    if code == 'iw':   # handle old Hebrew code 'iw' and return modern code 'he'
+        return getlang('he')
+    elif 'zh-Hans' in code:
+        return getlang('zh-CN')   # use code `zh-CN` for all simplified Chinese
+    elif 'zh-Hant' in code or re.match('zh(.*)?-HK', code):
+        return getlang('zh-TW')   # use code `zh-TW` for all traditional Chinese
+
     # extract prefix only if specified with subcode: e.g. zh-Hans --> zh
     first_part = code.split('-')[0]
 
@@ -197,3 +218,6 @@ def getlang_by_alpha2(code):
             return None
     except KeyError:
         return None
+
+
+

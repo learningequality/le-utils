@@ -19,7 +19,7 @@ def test_known_codes():
     lang_obj = languages.getlang('pt-BR')
     assert lang_obj is not None, 'Brazilian Portuguese not found'
     assert lang_obj.name == "Portuguese, Brazil", 'Wrong name'
-    assert lang_obj.native_name == "Português, Brasil", 'Wrong native_name'
+    assert lang_obj.native_name == "Português (Brasil)", 'Wrong native_name'
 
     lang_obj = languages.getlang('zul')
     assert lang_obj is not None, 'Zulu not found'
@@ -55,7 +55,7 @@ def test_known_names():
     assert lang_obj is not None, 'Brazilian Portuguese not found'
     assert lang_obj.code == "pt-BR", 'Wrong internal repr. code'
     assert lang_obj.name == "Portuguese, Brazil", 'Wrong name'
-    assert lang_obj.native_name == "Português, Brasil", 'Wrong native_name'
+    assert lang_obj.native_name == "Português (Brasil)", 'Wrong native_name'
 
     # NOTE: Currently only support full match lookups where multiple language
     #       specified spearated by semicolons, e.g. "Scottish Gaelic; Gaelic"
@@ -110,7 +110,6 @@ def test_list_like_language_names():
 # getlang_by_alpha2 ==> Lookup by two-letter Language code
 ################################################################################
 
-
 def test_known_alpha2_codes():
     lang_obj = languages.getlang_by_alpha2('en')
     assert lang_obj is not None, 'English not found'
@@ -136,6 +135,40 @@ def test_unknown_alpha2_code():
 
 
 
+@pytest.fixture
+def simplified_chinese_codes():
+    return ['zh-Hans', 'zh-Hans-CN', 'zh-Hans-TW']
+
+@pytest.fixture
+def traditional_chinese_codes():
+    return ['zh-Hant', 'zh-Hant-TW', 'zh-Hant-HK', 'zh-HK']
+
+
+def test_youtube_edgecases_alpha2_codes(simplified_chinese_codes, traditional_chinese_codes):
+    # check old language code for Hebrew works `iw`
+    lang_obj = languages.getlang_by_alpha2('iw')
+    assert lang_obj is not None, 'Hebrew not found'
+    assert lang_obj.code == "he", 'Wrong code'
+    assert lang_obj.name == "Hebrew (modern)", 'Wrong name'
+    assert lang_obj.native_name == "עברית", 'Wrong native_name'
+
+    # Check all Simplified Chinese codes are resolved correctly to zh-CN
+    for lang_code in simplified_chinese_codes:
+        lang_obj = languages.getlang_by_alpha2(lang_code)
+        assert lang_obj is not None, 'Simplified Chinese not found'
+        assert lang_obj.code == "zh-CN", 'Wrong internal repr. code'
+        assert lang_obj.name == "Chinese, Simplified", 'Wrong name'
+        assert lang_obj.native_name == "中国大陆", 'Wrong native_name'
+
+    # Check all Traditional Chinese codes are resolved correctly to zh-TW
+    for lang_code in traditional_chinese_codes:
+        lang_obj = languages.getlang_by_alpha2(lang_code)
+        assert lang_obj is not None, 'Traditional Chinese not found'
+        assert lang_obj.code == "zh-TW", 'Wrong internal repr. code'
+        assert lang_obj.name == "Chinese, Traditional", 'Wrong name'
+        assert lang_obj.native_name == "正體字/繁體字", 'Wrong native_name'
+
+
 
 # getlang_by_native_name ==> Lookup by Language object by native_name
 ################################################################################
@@ -156,7 +189,7 @@ def test_known_native_names():
     # NOTE: Currently only support full-name matching so would have to lookup by
     #       "name, country" to get local language version
     lang_obj = languages.getlang_by_native_name('Português')
-    assert lang_obj is not None, 'Brazilian Portuguese not found'
+    assert lang_obj is not None, 'Portuguese not found'
     assert lang_obj.code == "pt", 'Wrong internal repr. code'
     assert lang_obj.name == "Portuguese", 'Wrong name'
     assert lang_obj.native_name == "Português", 'Wrong native_name'
@@ -230,7 +263,8 @@ def test_list_like_language_native_names():
 
 @pytest.fixture
 def african_languages_list():
-    return ['Sesotho', 'isiXhosa', 'isiZulu', 'isiNdebele', 'Setswana', 'Siswati', 'Xitsonga']
+    return ['Sesotho', 'isiXhosa', 'isiZulu', 'isiNdebele', 'Setswana', 'Siswati',
+            'Xitsonga', 'Sepedi', 'Tshivenda']
 
 def test_african_languages(african_languages_list):
     missing_names = []
@@ -241,18 +275,10 @@ def test_african_languages(african_languages_list):
     assert missing_names == [], 'Languages with native_names missing: ' + str(missing_names)
 
 
-
-@pytest.fixture
-def african_languages_list2():
-    return ['Sepedi', 'Tshivenda']
-
-def test_african_languages2(african_languages_list2):
-    missing_names = []
-    for native_name in african_languages_list2:
-        lang_obj = languages.getlang_by_native_name(native_name)
-        if lang_obj is None:
-            missing_names.append(native_name)
-    print('missing_names=', missing_names)
-    assert missing_names == [], 'Languages with native_names missing: ' + str(missing_names)
-
+# check RTL_LANG_CODES contains Arabic, Hebrew, and Urdu
+################################################################################
+def test_rtl_languagess():
+    minimum_list = ['ar', 'he', 'ur']
+    for lang_code in minimum_list:
+        assert lang_code in languages.RTL_LANG_CODES, 'Known RTL missing from RTL_LANG_CODES list'
 
