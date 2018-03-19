@@ -10,10 +10,11 @@ logger = logging.getLogger('le_utils')
 logger.setLevel(logging.INFO)
 
 
-
+LTR_LANGUAGE = 'ltr'
+RTL_LANGUAGE = 'rtl'
 LANGUAGE_DIRECTIONS = (
-    ('ltr', _('Left to Right')),
-    ('rtl', _('Right to Left')),
+    (LTR_LANGUAGE, _('Left to Right')),
+    (RTL_LANGUAGE, _('Right to Left')),
 )
 
 RTL_LANG_CODES = [
@@ -219,5 +220,8 @@ def getlang_by_alpha2(code):
     except KeyError:
         return None
 
-
-
+def getlang_direction(code):
+    if code in RTL_LANG_CODES:
+        return RTL_LANGUAGE
+    else:
+        return LTR_LANGUAGE
