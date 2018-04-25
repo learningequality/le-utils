@@ -19,6 +19,7 @@ LANGUAGE_DIRECTIONS = (
 
 RTL_LANG_CODES = [
     "ar",  # Arabic
+    "arq", # Algerian
     "dv",  # Divehi; Dhivehi; Maldivian
     "he",  # Hebrew (modern)
     "fa",  # Persian

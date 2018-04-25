@@ -1,4 +1,12 @@
 {
+  "und":{
+    "name":"Undetermined",
+    "native_name":"Undetermined"
+  },
+  "mul":{
+    "name":"Multiple languages",
+    "native_name":"Multiple languages"
+  },
   "ab":{
     "name":"Abkhaz",
     "native_name":"аҧсуа"
@@ -26,6 +34,10 @@
   "ar":{
     "name":"Arabic",
     "native_name":"العربية"
+  },
+  "arq":{
+    "name":"Algerian; Darja",
+    "native_name":"دزيرية"
   },
   "an":{
     "name":"Aragonese",
@@ -139,6 +151,10 @@
   "cr":{
     "name":"Cree",
     "native_name":"ᓀᐦᐃᔭᐍᐏᐣ"
+  },
+  "lkt":{
+    "name":"Lakhota; Lakotiyapi; Teton",
+    "native_name":"Lakhota"
   },
   "hr":{
     "name":"Croatian",
@@ -254,6 +270,10 @@
   "hrx":{
     "name":"Hunsrik",
     "native_name":"Hunsrückisch, Hunsrück, Hunsriker"
+  },
+  "hdy":{
+    "name":"Hadiyya; Hadiya; Adea; Adiya; Hadia",
+    "native_name":"Hadiyyisa"
   },
   "ia":{
     "name":"Interlingua",
@@ -581,6 +601,10 @@
   "sr":{
     "name":"Serbian",
     "native_name":"српски језик"
+  },
+  "sid":{
+    "name":"Sidamo; Sidaamu afii; Sidaama; Sidama",
+    "native_name":"Sidaamu Afoo"
   },
   "gd":{
     "name":"Scottish Gaelic; Gaelic",
@@ -933,6 +957,10 @@
   "wol":{
     "name":"Wolof",
     "native_name":"Wollof"
+  },
+  "wal":{
+    "name":"Wolaytta; Borodda; Uba; Ometo",
+    "native_name":"Wolaytta"
   },
   "xho":{
     "name":"Xhosa",
