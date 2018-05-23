@@ -19,6 +19,7 @@ LANGUAGE_DIRECTIONS = (
 
 RTL_LANG_CODES = [
     "ar",  # Arabic
+    "arq", # Algerian
     "dv",  # Divehi; Dhivehi; Maldivian
     "he",  # Hebrew (modern)
     "fa",  # Persian
@@ -43,6 +44,13 @@ class Language(
     @property
     def id(self):
         return self.code
+    
+    @property
+    def first_native_name(self):
+        """
+        Return the first native name in the comma-seprated list of `native_name`.
+        """
+        return self.native_name.split(',')[0]
 
 
 def _parse_out_iso_639_code(code):
