@@ -1,6 +1,12 @@
+import json
+import pkgutil
+from collections import namedtuple
 from gettext import gettext as _
 
 """ File Format Constants """
+
+# IMPORTANT: Keep these constants in sync with formatlookup.json and presetlookup.json
+
 # constants for Video format
 MP4 = "mp4"
 MP4_MIMETYPE = "video/mp4"
@@ -72,3 +78,17 @@ choices = (
 
     (EPUB, _("ePub Document")),
 )
+
+class Format(namedtuple("Format", ["id", "mimetype"])):
+    pass
+
+def generate_list(constantlist):
+    for id, format in constantlist.items():
+        yield Format(id=id, **format)
+
+def _initialize_format_list():
+    constantlist = json.loads(pkgutil.get_data('le_utils', 'resources/formatlookup.json').decode('utf-8'))
+
+    return generate_list(constantlist)
+
+FORMATLIST = list(_initialize_format_list())

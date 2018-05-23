@@ -1,0 +1,20 @@
+{
+	"topic": {
+		"name":"topic"
+	},
+	"video": {
+		"name":"video"
+	},
+	"audio": {
+		"name":"audio"
+	},
+	"exercise": {
+		"name":"exercise"
+	},
+	"document": {
+		"name":"document"
+	},
+	"html5": {
+		"name":"html5"
+	}
+}

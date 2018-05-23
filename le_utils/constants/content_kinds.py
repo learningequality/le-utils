@@ -1,8 +1,13 @@
+import json
+import pkgutil
+from collections import namedtuple
 from gettext import gettext as _
 from le_utils.constants import file_formats
 
 """ Content Kind Constants """
-# constants for ContentKind
+
+# IMPORTANT: Keep these constants in sync with kindlookup.json and presetlookup.json
+
 TOPIC = "topic"
 VIDEO = "video"
 AUDIO = "audio"
@@ -28,3 +33,18 @@ MAPPING = {
     file_formats.PERSEUS: EXERCISE,
     file_formats.HTML5: HTML5,
 }
+
+
+class Kind(namedtuple("Kind", ["id", "name"])):
+    pass
+
+def generate_list(constantlist):
+    for id, kind in constantlist.items():
+        yield Kind(id=id, **kind)
+
+def _initialize_kind_list():
+    constantlist = json.loads(pkgutil.get_data('le_utils', 'resources/kindlookup.json').decode('utf-8'))
+
+    return generate_list(constantlist)
+
+KINDLIST = list(_initialize_kind_list())
