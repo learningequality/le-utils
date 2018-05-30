@@ -1,0 +1,178 @@
+{
+	"high_res_video": {
+		"readable_name": "High Resolution",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": true,
+		"order": 1,
+		"kind": "video",
+		"allowed_formats": ["mp4"]
+	},
+	"low_res_video": {
+		"readable_name": "Low Resolution",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": true,
+		"order": 2,
+		"kind": "video",
+		"allowed_formats": ["mp4"]
+	},
+	"video_thumbnail": {
+		"readable_name": "Thumbnail",
+		"multi_language": false,
+		"supplementary": true,
+		"thumbnail": true,
+		"subtitle": false,
+		"display": true,
+		"order": 3,
+		"kind": "video",
+		"allowed_formats": ["png", "jpg", "jpeg"]
+	},
+	"video_subtitle": {
+		"readable_name": "Subtitle",
+		"multi_language": true,
+		"supplementary": true,
+		"thumbnail": false,
+		"subtitle": true,
+		"display": true,
+		"order": 4,
+		"kind": "video",
+		"allowed_formats": ["vtt"]
+	},
+	"audio": {
+		"readable_name": "Audio",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": true,
+		"order": 1,
+		"kind": "audio",
+		"allowed_formats": ["mp3"]
+	},
+	"audio_thumbnail": {
+		"readable_name": "Thumbnail",
+		"multi_language": false,
+		"supplementary": true,
+		"thumbnail": true,
+		"subtitle": false,
+		"display": true,
+		"order": 2,
+		"kind": "audio",
+		"allowed_formats": ["png", "jpg", "jpeg"]
+	},
+	"document": {
+		"readable_name": "Document",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": true,
+		"order": 1,
+		"kind": "document",
+		"allowed_formats": ["pdf"]
+	},
+	"document_thumbnail": {
+		"readable_name": "Thumbnail",
+		"multi_language": false,
+		"supplementary": true,
+		"thumbnail": true,
+		"subtitle": false,
+		"display": true,
+		"order": 2,
+		"kind": "document",
+		"allowed_formats": ["png", "jpg", "jpeg"]
+	},
+	"exercise": {
+		"readable_name": "Exercise",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": false,
+		"order": 1,
+		"kind": "exercise",
+		"allowed_formats": ["perseus"]
+	},
+	"exercise_thumbnail": {
+		"readable_name": "Thumbnail",
+		"multi_language": false,
+		"supplementary": true,
+		"thumbnail": true,
+		"subtitle": false,
+		"display": true,
+		"order": 2,
+		"kind": "exercise",
+		"allowed_formats": ["png", "jpg", "jpeg"]
+	},
+	"exercise_image": {
+		"readable_name": "Exercise Image",
+		"multi_language": false,
+		"supplementary": true,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": false,
+		"order": 3,
+		"kind": "exercise",
+		"allowed_formats": ["png", "jpg", "jpeg", "gif", "svg"]
+	},
+	"exercise_graphie": {
+		"readable_name": "Exercise Graphie",
+		"multi_language": false,
+		"supplementary": true,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": false,
+		"order": 4,
+		"kind": "exercise",
+		"allowed_formats": ["svg", "json", "graphie"]
+	},
+	"channel_thumbnail": {
+		"readable_name": "Channel Thumbnail",
+		"multi_language": false,
+		"supplementary": true,
+		"thumbnail": true,
+		"subtitle": false,
+		"display": true,
+		"order": 0,
+		"kind": null,
+		"allowed_formats": ["png", "jpg", "jpeg"]
+	},
+	"topic_thumbnail": {
+		"readable_name": "Thumbnail",
+		"multi_language": false,
+		"supplementary": true,
+		"thumbnail": true,
+		"subtitle": false,
+		"display": true,
+		"order": 1,
+		"kind": "topic",
+		"allowed_formats": ["png", "jpg", "jpeg"]
+	},
+	"html5_zip": {
+		"readable_name": "HTML5 Zip",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": true,
+		"order": 1,
+		"kind": "html5",
+		"allowed_formats": ["zip"]
+	},
+	"html5_thumbnail": {
+		"readable_name": "HTML5 Thumbnail",
+		"multi_language": false,
+		"supplementary": true,
+		"thumbnail": true,
+		"subtitle": false,
+		"display": true,
+		"order": 2,
+		"kind": "html5",
+		"allowed_formats": ["png", "jpg", "jpeg"]
+	}
+}

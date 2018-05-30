@@ -1,0 +1,41 @@
+{
+	"mp4": {
+		"mimetype": "video/mp4"
+	},
+	"vtt": {
+		"mimetype": ".vtt"
+	},
+	"pdf": {
+		"mimetype": "application/pdf"
+	},
+	"mp3": {
+		"mimetype": ".mp3"
+	},
+	"jpg": {
+		"mimetype": "image/jpeg"
+	},
+	"jpeg": {
+		"mimetype": "image/jpeg"
+	},
+	"png": {
+		"mimetype": "image/png"
+	},
+	"gif": {
+		"mimetype": "image/gif"
+	},
+	"json": {
+		"mimetype": "application/json"
+	},
+	"svg": {
+		"mimetype": "image/svg"
+	},
+	"graphie": {
+		"mimetype": ".graphie"
+	},
+	"perseus": {
+		"mimetype": "application/perseus+zip"
+	},
+	"zip": {
+		"mimetype": ".zip"
+	}
+}

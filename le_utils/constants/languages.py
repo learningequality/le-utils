@@ -62,13 +62,8 @@ def _parse_out_iso_639_code(code):
     else:
         return None
 
-
-def _initialize_language_list():
-    langlist = json.loads(
-        pkgutil.get_data('le_utils', 'resources/languagelookup.json').decode(
-            'utf-8'))
-
-    for code, lang in langlist.items():
+def generate_list(constantlist):
+    for code, lang in constantlist.items():
         values = _parse_out_iso_639_code(code)
         values.update(lang)
 
@@ -77,6 +72,13 @@ def _initialize_language_list():
             values['ka_name'] = None
 
         yield Language(**values)
+
+def _initialize_language_list():
+    langlist = json.loads(
+        pkgutil.get_data('le_utils', 'resources/languagelookup.json').decode(
+            'utf-8'))
+
+    return generate_list(langlist)
 
 def _iget(key, lookup_dict):
     """

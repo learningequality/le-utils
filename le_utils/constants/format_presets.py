@@ -1,6 +1,12 @@
+import json
+import pkgutil
+from collections import namedtuple
 from gettext import gettext as _
 
 """ Format Preset Constants"""
+
+# IMPORTANT: Keep these constants in sync with presetlookup.json
+
 VIDEO_HIGH_RES = "high_res_video"
 VIDEO_HIGH_RES_READABLE = "High Resolution"
 VIDEO_LOW_RES = "low_res_video"
@@ -69,3 +75,21 @@ choices = (
     (HTML5_ZIP, _(HTML5_ZIP_READABLE)),
     (HTML5_THUMBNAIL, _(HTML5_THUMBNAIL_READABLE)),
 )
+
+
+class Preset(
+    namedtuple("Preset", [
+            "id", "readable_name", "multi_language", "supplementary", "thumbnail", "subtitle", "display", "order", "kind", "allowed_formats"
+        ])):
+    pass
+
+def generate_list(constantlist):
+    for id, preset in constantlist.items():
+        yield Preset(id=id, **preset)
+
+def _initialize_preset_list():
+    constantlist = json.loads(pkgutil.get_data('le_utils', 'resources/presetlookup.json').decode('utf-8'))
+
+    return generate_list(constantlist)
+
+PRESETLIST = list(_initialize_preset_list())
