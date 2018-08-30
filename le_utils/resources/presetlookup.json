@@ -65,6 +65,17 @@
 		"kind": "audio",
 		"allowed_formats": ["png", "jpg", "jpeg"]
 	},
+	"epub": {
+		"readable_name": "ePub Document",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": true,
+		"order": 1,
+		"kind": "document",
+		"allowed_formats": ["epub"]
+	},
 	"document": {
 		"readable_name": "Document",
 		"multi_language": false,
@@ -72,7 +83,7 @@
 		"thumbnail": false,
 		"subtitle": false,
 		"display": true,
-		"order": 1,
+		"order": 2,
 		"kind": "document",
 		"allowed_formats": ["pdf"]
 	},

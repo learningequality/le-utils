@@ -8,6 +8,9 @@
 	"pdf": {
 		"mimetype": "application/pdf"
 	},
+	"epub": {
+		"mimetype": "application/epub+zip"
+	},
 	"mp3": {
 		"mimetype": ".mp3"
 	},
