@@ -14,8 +14,9 @@ MP4_MIMETYPE = "video/mp4"
 # constants for Subtitle format
 VTT = "vtt"
 VTT_MIMETYPE = ".vtt"
-SRT = "srt"
-SRT_MIMETYPE = "text/srt"
+# SRT support is planned but not yet implemented
+# SRT = "srt"
+# SRT_MIMETYPE = "text/srt"
 
 # constants for Audio format
 MP3 = "mp3"
@@ -59,7 +60,7 @@ choices = (
     (MP4, _("MP4 Video")),
 
     (VTT, _("VTT Subtitle")),
-    (SRT, _("SRT Subtitle")),
+    # (SRT, _("SRT Subtitle")),
 
     (MP3, _("MP3 Audio")),
 
@@ -73,6 +74,8 @@ choices = (
     (SVG, _("SVG Image")),
 
     (PERSEUS, _("Perseus Exercise")),
+
+    (GRAPHIE, _("Graphie Exercise")),
 
     (HTML5, _("HTML5 Zip")),
 
