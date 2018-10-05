@@ -35,5 +35,5 @@ MAPPING = {
     #
     # formats SubtitleFile
     file_formats.VTT: SUBTITLES,
-    file_formats.SRT: SUBTITLES,
+    # file_formats.SRT: SUBTITLES,
 }
