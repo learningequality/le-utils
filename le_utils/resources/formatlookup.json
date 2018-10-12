@@ -5,6 +5,9 @@
 	"vtt": {
 		"mimetype": ".vtt"
 	},
+  "srt": {
+		"mimetype": ".srt"
+	},
 	"pdf": {
 		"mimetype": "application/pdf"
 	},
