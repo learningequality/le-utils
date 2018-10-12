@@ -15,8 +15,8 @@ MP4_MIMETYPE = "video/mp4"
 VTT = "vtt"
 VTT_MIMETYPE = ".vtt"
 # SRT support is planned but not yet implemented
-# SRT = "srt"
-# SRT_MIMETYPE = "text/srt"
+SRT = "srt"
+SRT_MIMETYPE = "text/srt"
 
 # constants for Audio format
 MP3 = "mp3"
@@ -60,7 +60,7 @@ choices = (
     (MP4, _("MP4 Video")),
 
     (VTT, _("VTT Subtitle")),
-    # (SRT, _("SRT Subtitle")),
+    (SRT, _("SRT Subtitle")),
 
     (MP3, _("MP3 Audio")),
 
