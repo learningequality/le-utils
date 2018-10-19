@@ -5,6 +5,8 @@ import json
 import pkgutil
 
 from le_utils.constants import file_formats
+
+
 def test_file_format_extensions_are_synced():
     formatlookup = json.loads(pkgutil.get_data('le_utils', 'resources/formatlookup.json').decode('utf-8'))
 
@@ -13,3 +15,6 @@ def test_file_format_extensions_are_synced():
 
     assert exts_formatlookup == exts_file_formats
 
+
+def test_FORMATLIST_exists():
+    assert file_formats.FORMATLIST, 'FORMATLIST did not genereate properly'

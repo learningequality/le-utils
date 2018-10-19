@@ -10,13 +10,20 @@ from gettext import gettext as _
 # constants for Video format
 MP4 = "mp4"
 MP4_MIMETYPE = "video/mp4"
+# constants for video formats converitble to mp4
+AVI = "avi"
+MOV = "mov"
+MPG = "mpg"
+WMV = "wmv"
+WEBM = "webm"
+MKV = "mkv"
+FLV = "flv"
 
 # constants for Subtitle format
 VTT = "vtt"
 VTT_MIMETYPE = ".vtt"
-# SRT support is planned but not yet implemented
+# constants for formats convertible to VTT
 SRT = "srt"
-SRT_MIMETYPE = "text/srt"
 
 # constants for Audio format
 MP3 = "mp3"
@@ -60,7 +67,6 @@ choices = (
     (MP4, _("MP4 Video")),
 
     (VTT, _("VTT Subtitle")),
-    (SRT, _("SRT Subtitle")),
 
     (MP3, _("MP3 Audio")),
 
@@ -82,7 +88,7 @@ choices = (
     (EPUB, _("ePub Document")),
 )
 
-class Format(namedtuple("Format", ["id", "mimetype"])):
+class Format(namedtuple("Format", ["id", "mimetype", "convertible_formats"])):
     pass
 
 def generate_list(constantlist):
