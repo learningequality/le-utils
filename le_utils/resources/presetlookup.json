@@ -52,7 +52,7 @@
 		"display": true,
 		"order": 4,
 		"kind": "video",
-		"allowed_formats": ["vtt" ]
+		"allowed_formats": ["vtt"]
 	},
 	"audio": {
 		"readable_name": "Audio",
