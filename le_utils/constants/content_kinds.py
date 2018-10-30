@@ -35,7 +35,7 @@ MAPPING = {
 }
 
 
-class Kind(namedtuple("Kind", ["id", "name", "convertible_formats"])):
+class Kind(namedtuple("Kind", ["id", "name"])):
     pass
 
 def generate_list(constantlist):
