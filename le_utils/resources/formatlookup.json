@@ -1,58 +1,44 @@
 {
 	"mp4": {
-		"mimetype": "video/mp4",
-		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv"]
+		"mimetype": "video/mp4"
 	},
 	"vtt": {
-		"mimetype": ".vtt",
-		"convertible_formats": ["srt"]
+		"mimetype": "text/vtt"
 	},
 	"pdf": {
-		"mimetype": "application/pdf",
-		"convertible_formats": []
+		"mimetype": "application/pdf"
 	},
 	"epub": {
-		"mimetype": "application/epub+zip",
-		"convertible_formats": []
+		"mimetype": "application/epub+zip"
 	},
 	"mp3": {
-		"mimetype": ".mp3",
-		"convertible_formats": []
+		"mimetype": "audio/mpeg"
 	},
 	"jpg": {
-		"mimetype": "image/jpeg",
-		"convertible_formats": []
+		"mimetype": "image/jpeg"
 	},
 	"jpeg": {
-		"mimetype": "image/jpeg",
-		"convertible_formats": []
+		"mimetype": "image/jpeg"
 	},
 	"png": {
-		"mimetype": "image/png",
-		"convertible_formats": []
+		"mimetype": "image/png"
 	},
 	"gif": {
-		"mimetype": "image/gif",
-		"convertible_formats": []
+		"mimetype": "image/gif"
 	},
 	"json": {
-		"mimetype": "application/json",
-		"convertible_formats": []
+		"mimetype": "application/json"
 	},
 	"svg": {
-		"mimetype": "image/svg",
-		"convertible_formats": []
+		"mimetype": "image/svg"
 	},
 	"graphie": {
-		"mimetype": ".graphie",
-		"convertible_formats": []
+		"mimetype": ".graphie"
 	},
 	"perseus": {
-		"mimetype": "application/perseus+zip",
-		"convertible_formats": []
+		"mimetype": "application/perseus+zip"
 	},
 	"zip": {
-		"mimetype": ".zip",
-		"convertible_formats": []
+		"mimetype": "application/zip"
 	}
 }
