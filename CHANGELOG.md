@@ -1,6 +1,24 @@
 Release History
 ===============
 
+0.1.14 Nov 7, 2018
+------------------
+  - Duplicated python constants/ definitions as json files under resources/ (for easier integration with frontend)
+  - Added tests to make sure python constants are in sync with json constants
+  - Implemented first_native_name helper (used to set channel names in chefs)
+  - Added list-like `convertible_formats` attribute for all presets
+  - Added  `html5_dependency` and `video_dependency` presets
+  - Updated constant mapping with epub -- The EPUB preset is used with document content type
+  - Added the following language codes:
+     - und = Undefined
+     - mul = Multiple languages
+     - arq = Algerian; Darja
+     - lkt = Lakhota; Lakotiyapi; Teton
+     - hdy = Hadiyya; Hadiya; Adea; Adiya; Hadia
+     - sid = Sidamo; Sidaamu afii; Sidaama; Sidama
+     - wal = Wolaytta; Borodda; Uba; Ometo
+
+
 0.1.6 Mar 13, 2018
 ------------------
   - Added file format constants for ePub
