@@ -3,7 +3,7 @@
 		"mimetype": "video/mp4"
 	},
 	"vtt": {
-		"mimetype": ".vtt"
+		"mimetype": "text/vtt"
 	},
 	"pdf": {
 		"mimetype": "application/pdf"
@@ -12,7 +12,7 @@
 		"mimetype": "application/epub+zip"
 	},
 	"mp3": {
-		"mimetype": ".mp3"
+		"mimetype": "audio/mpeg"
 	},
 	"jpg": {
 		"mimetype": "image/jpeg"
@@ -39,6 +39,6 @@
 		"mimetype": "application/perseus+zip"
 	},
 	"zip": {
-		"mimetype": ".zip"
+		"mimetype": "application/zip"
 	}
 }

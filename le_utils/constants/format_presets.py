@@ -58,7 +58,7 @@ HTML5_DEPENDENCY_ZIP_READABLE = "HTML5 Dependency (Zip format)"
 choices = (
     (VIDEO_HIGH_RES, _(VIDEO_HIGH_RES_READABLE)),
     (VIDEO_LOW_RES, _(VIDEO_LOW_RES_READABLE)),
-    (VIDEO_VECTOR, _(VIDEO_VECTOR_READABLE)),
+    # (VIDEO_VECTOR, _(VIDEO_VECTOR_READABLE)),  # doesn't exist yet so took out
     (VIDEO_THUMBNAIL, _(VIDEO_THUMBNAIL_READABLE)),
     (VIDEO_SUBTITLE, _(VIDEO_SUBTITLE_READABLE)),
     (VIDEO_DEPENDENCY, _(VIDEO_DEPENDENCY_READABLE)),
@@ -86,7 +86,17 @@ choices = (
 
 class Preset(
     namedtuple("Preset", [
-            "id", "readable_name", "multi_language", "supplementary", "thumbnail", "subtitle", "display", "order", "kind", "allowed_formats"
+            "id",
+            "readable_name",
+            "multi_language",
+            "supplementary",
+            "thumbnail",
+            "subtitle",
+            "display",
+            "order",
+            "kind",
+            "allowed_formats",
+            "convertible_formats"
         ])):
     pass
 

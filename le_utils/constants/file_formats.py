@@ -10,17 +10,24 @@ from gettext import gettext as _
 # constants for Video format
 MP4 = "mp4"
 MP4_MIMETYPE = "video/mp4"
+# constants for video formats converitble to mp4
+AVI = "avi"
+MOV = "mov"
+MPG = "mpg"
+WMV = "wmv"
+WEBM = "webm"
+MKV = "mkv"
+FLV = "flv"
 
 # constants for Subtitle format
 VTT = "vtt"
-VTT_MIMETYPE = ".vtt"
-# SRT support is planned but not yet implemented
-# SRT = "srt"
-# SRT_MIMETYPE = "text/srt"
+VTT_MIMETYPE = "text/vtt"
+# constants for formats convertible to VTT
+SRT = "srt"
 
 # constants for Audio format
 MP3 = "mp3"
-MP3_MIMETYPE = ".mp3"
+MP3_MIMETYPE = "audio/mpeg"
 
 # constants for Document format
 PDF = "pdf"
@@ -49,7 +56,7 @@ PERSEUS_MIMETYPE = "application/perseus+zip"
 
 # constants for HTML5 zip format
 HTML5 = "zip"
-HTML5_MIMETYPE = ".zip"
+HTML5_MIMETYPE = "application/zip"
 
 # constants for ePub format
 EPUB = "epub"
@@ -60,7 +67,6 @@ choices = (
     (MP4, _("MP4 Video")),
 
     (VTT, _("VTT Subtitle")),
-    # (SRT, _("SRT Subtitle")),
 
     (MP3, _("MP3 Audio")),
 

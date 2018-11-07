@@ -8,7 +8,8 @@
 		"display": true,
 		"order": 1,
 		"kind": "video",
-		"allowed_formats": ["mp4"]
+		"allowed_formats": ["mp4"],
+		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv", "ogv"]
 	},
 	"low_res_video": {
 		"readable_name": "Low Resolution",
@@ -19,7 +20,8 @@
 		"display": true,
 		"order": 2,
 		"kind": "video",
-		"allowed_formats": ["mp4"]
+		"allowed_formats": ["mp4"],
+		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv", "ogv"]
 	},
   "video_dependency": {
 		"readable_name": "Video Dependency",
@@ -30,7 +32,8 @@
 		"display": false,
 		"order": 3,
 		"kind": "video",
-		"allowed_formats": ["mp4"]
+		"allowed_formats": ["mp4"],
+		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv", "ogv"]
 	},
 	"video_thumbnail": {
 		"readable_name": "Thumbnail",
@@ -41,7 +44,8 @@
 		"display": true,
 		"order": 3,
 		"kind": "video",
-		"allowed_formats": ["png", "jpg", "jpeg"]
+		"allowed_formats": ["png", "jpg", "jpeg"],
+		"convertible_formats": []
 	},
 	"video_subtitle": {
 		"readable_name": "Subtitle",
@@ -52,7 +56,8 @@
 		"display": true,
 		"order": 4,
 		"kind": "video",
-		"allowed_formats": ["vtt"]
+		"allowed_formats": ["vtt"],
+		"convertible_formats": ["srt"]
 	},
 	"audio": {
 		"readable_name": "Audio",
@@ -63,7 +68,8 @@
 		"display": true,
 		"order": 1,
 		"kind": "audio",
-		"allowed_formats": ["mp3"]
+		"allowed_formats": ["mp3"],
+		"convertible_formats": ["wav", "m4a", "aac", "ogg"]
 	},
 	"audio_thumbnail": {
 		"readable_name": "Thumbnail",
@@ -74,7 +80,8 @@
 		"display": true,
 		"order": 2,
 		"kind": "audio",
-		"allowed_formats": ["png", "jpg", "jpeg"]
+		"allowed_formats": ["png", "jpg", "jpeg"],
+		"convertible_formats": []
 	},
 	"epub": {
 		"readable_name": "ePub Document",
@@ -85,7 +92,8 @@
 		"display": true,
 		"order": 1,
 		"kind": "document",
-		"allowed_formats": ["epub"]
+		"allowed_formats": ["epub"],
+		"convertible_formats": []
 	},
 	"document": {
 		"readable_name": "Document",
@@ -96,7 +104,8 @@
 		"display": true,
 		"order": 2,
 		"kind": "document",
-		"allowed_formats": ["pdf"]
+		"allowed_formats": ["pdf"],
+		"convertible_formats": []
 	},
 	"document_thumbnail": {
 		"readable_name": "Thumbnail",
@@ -107,7 +116,8 @@
 		"display": true,
 		"order": 2,
 		"kind": "document",
-		"allowed_formats": ["png", "jpg", "jpeg"]
+		"allowed_formats": ["png", "jpg", "jpeg"],
+		"convertible_formats": []
 	},
 	"exercise": {
 		"readable_name": "Exercise",
@@ -118,7 +128,8 @@
 		"display": false,
 		"order": 1,
 		"kind": "exercise",
-		"allowed_formats": ["perseus"]
+		"allowed_formats": ["perseus"],
+		"convertible_formats": []
 	},
 	"exercise_thumbnail": {
 		"readable_name": "Thumbnail",
@@ -129,7 +140,8 @@
 		"display": true,
 		"order": 2,
 		"kind": "exercise",
-		"allowed_formats": ["png", "jpg", "jpeg"]
+		"allowed_formats": ["png", "jpg", "jpeg"],
+		"convertible_formats": []
 	},
 	"exercise_image": {
 		"readable_name": "Exercise Image",
@@ -140,7 +152,8 @@
 		"display": false,
 		"order": 3,
 		"kind": "exercise",
-		"allowed_formats": ["png", "jpg", "jpeg", "gif", "svg"]
+		"allowed_formats": ["png", "jpg", "jpeg", "gif", "svg"],
+		"convertible_formats": []
 	},
 	"exercise_graphie": {
 		"readable_name": "Exercise Graphie",
@@ -151,7 +164,8 @@
 		"display": false,
 		"order": 4,
 		"kind": "exercise",
-		"allowed_formats": ["svg", "json", "graphie"]
+		"allowed_formats": ["svg", "json", "graphie"],
+		"convertible_formats": []
 	},
 	"channel_thumbnail": {
 		"readable_name": "Channel Thumbnail",
@@ -162,7 +176,8 @@
 		"display": true,
 		"order": 0,
 		"kind": null,
-		"allowed_formats": ["png", "jpg", "jpeg"]
+		"allowed_formats": ["png", "jpg", "jpeg"],
+		"convertible_formats": []
 	},
 	"topic_thumbnail": {
 		"readable_name": "Thumbnail",
@@ -173,7 +188,8 @@
 		"display": true,
 		"order": 1,
 		"kind": "topic",
-		"allowed_formats": ["png", "jpg", "jpeg"]
+		"allowed_formats": ["png", "jpg", "jpeg"],
+		"convertible_formats": []
 	},
 	"html5_zip": {
 		"readable_name": "HTML5 Zip",
@@ -184,7 +200,8 @@
 		"display": true,
 		"order": 1,
 		"kind": "html5",
-		"allowed_formats": ["zip"]
+		"allowed_formats": ["zip"],
+		"convertible_formats": []
 	},
   "html5_dependency": {
 		"readable_name": "HTML5 Zip Dependency",
@@ -195,7 +212,8 @@
 		"display": false,
 		"order": 2,
 		"kind": "html5",
-		"allowed_formats": ["zip"]
+		"allowed_formats": ["zip"],
+		"convertible_formats": []
 	},
 	"html5_thumbnail": {
 		"readable_name": "HTML5 Thumbnail",
@@ -206,6 +224,7 @@
 		"display": true,
 		"order": 2,
 		"kind": "html5",
-		"allowed_formats": ["png", "jpg", "jpeg"]
+		"allowed_formats": ["png", "jpg", "jpeg"],
+		"convertible_formats": []
 	}
 }
