@@ -875,7 +875,7 @@
     "native_name":"Français (Canada)"
   },
   "ful":{
-    "name":"Fula",
+    "name":"Fula; Fulah",
     "native_name":"Fulfulde"
   },
   "fy-NL":{
@@ -973,5 +973,33 @@
   "zul":{
     "name":"Zulu",
     "native_name":"isiZulu"
+  },
+  "ach":{
+    "name":"Acholi; Acooli; Akoli",
+    "native_name":"Acholi"
+  },
+  "fuv":{
+    "name":"Fulfulde Mbororo; Fulfulde Mbororoore",
+    "native_name":"Fulfulde"
+  },
+  "xog":{
+    "name":"Soga",
+    "native_name":"Lusoga, Olusoga"
+  },
+  "tuv":{
+    "name":"Turkana; Turkwana; Buma; Bume",
+    "native_name":"Ng’aturkana, Ng'aturkana"
+  },
+  "lwg":{
+    "name":"Oluwanga; Oluhanga; Hanga; Kawanga",
+    "native_name":"Oluwanga"
+  },
+  "nyn":{
+    "name":"Nyankore; Nkole; Nyankole",
+    "native_name":"Runyankore"
+  },
+  "myx":{
+    "name":"Masaaba; Bagisu",
+    "native_name":"Lumasaaba, Masaaba"
   }
 }
