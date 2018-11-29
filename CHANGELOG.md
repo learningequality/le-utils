@@ -2,7 +2,7 @@ Release History
 ===============
 
 
-0.1.15 Nov 28, 2018
+0.1.15 Nov 29, 2018
 -------------------
   - Added the following language codes:
    - ach = Acholi
