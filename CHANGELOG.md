@@ -5,13 +5,13 @@ Release History
 0.1.15 Nov 29, 2018
 -------------------
   - Added the following language codes:
-   - ach = Acholi
-   - fuv = Fulfulde Mbororo 
-   - xog = Soga
-   - tuv = Turkana
-   - lwg = Oluwanga
-   - nyn = Nyankore
-   - myx = Masaaba
+    - ach = Acholi
+    - fuv = Fulfulde Mbororo 
+    - xog = Soga
+    - tuv = Turkana
+    - lwg = Oluwanga
+    - nyn = Nyankore
+    - myx = Masaaba
 
 
 
