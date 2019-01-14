@@ -21,13 +21,13 @@ FLV = "flv"
 
 # constants for Subtitle format
 VTT = "vtt"
-VTT_MIMETYPE = "text/vtt"
+VTT_MIMETYPE = ".vtt"
 # constants for formats convertible to VTT
 SRT = "srt"
 
 # constants for Audio format
 MP3 = "mp3"
-MP3_MIMETYPE = "audio/mpeg"
+MP3_MIMETYPE = ".mp3"
 
 # constants for Document format
 PDF = "pdf"
@@ -56,7 +56,7 @@ PERSEUS_MIMETYPE = "application/perseus+zip"
 
 # constants for HTML5 zip format
 HTML5 = "zip"
-HTML5_MIMETYPE = "application/zip"
+HTML5_MIMETYPE = ".zip"
 
 # constants for ePub format
 EPUB = "epub"
