@@ -62,6 +62,8 @@ HTML5_MIMETYPE = ".zip"
 EPUB = "epub"
 EPUB_MIMETYPE = "application/epub+zip"
 
+# constants for Slideshow format
+SLIDESHOW = "slideshow"
 
 choices = (
     (MP4, _("MP4 Video")),
