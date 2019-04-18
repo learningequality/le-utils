@@ -88,6 +88,8 @@ choices = (
     (HTML5, _("HTML5 Zip")),
 
     (EPUB, _("ePub Document")),
+
+    (SLIDESHOW, _("Slideshow Manifest"))
 )
 
 class Format(namedtuple("Format", ["id", "mimetype"])):

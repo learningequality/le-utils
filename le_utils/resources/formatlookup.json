@@ -40,5 +40,8 @@
 	},
 	"zip": {
 		"mimetype": ".zip"
+	},
+	"slideshow": {
+		"mimetype": "application/json"
 	}
 }
