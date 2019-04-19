@@ -85,27 +85,72 @@ the public domain license for which `copyright_holder` can be None.
 
 
 
-Content Kinds and File Types
-----------------------------
-The files [le_utils/constants/content_kinds.py](./le_utils/constants/content_kinds.py)
-and [le_utils/constants/file_types.py](./le_utils/constants/file_types.py) contain
-identifiers for the different content types supported by Kolibri and Kolibri Studio.
 
-The currently supported content formats are
+Content kinds (ContentNode subclasses)
+--------------------------------------
+Content items throughout the Kolibri ecosystem come in several kinds. The `kind`
+attribute of each object can be one of ("topic", "video", "audio", "exercise"
+"document", or "html5".
+See [constants/content_kinds.py](https://github.com/learningequality/le-utils/blob/master/le_utils/constants/content_kinds.py#L11-L17) for latest list.
+
+The currently supported content kinds are:
   - Topic node (folder)
-  - Video content nodes backed by a video files
+  - Video content nodes backed by a video files and subtitles
   - Audio content nodes backed by an audio files
-  - Document content nodes backed by a document files (PDF)
+  - Document content nodes backed by a document files (PDF or ePub)
   - HTML5 app content nodes backed by a HTML5 zip files
-  - Exercise content nodes, which contain different types of questions
+  - Exercise content nodes
+
+The `kind` attribute identifies a subclass of the base content node class within
+within the data model, which differs on Ricecooker, Studio, and Kolibri:
+  - [ricecooker.classes.nodes.ContentNode](https://github.com/learningequality/ricecooker/blob/master/ricecooker/classes/nodes.py#L428-L506):
+    in-memory content node used to store metadata needed to upload new content to Studio
+  - [contentcuration.contentcuration.models.ContentNode](https://github.com/learningequality/studio/blob/develop/contentcuration/contentcuration/models.py#L775):
+    node within one of the trees associated with a Studio channel.
+  - [kolibri.core.content.models.ContentNode](https://github.com/learningequality/kolibri/blob/develop/kolibri/core/content/models.py#L175):
+    node within tree for a particular version of a channel on Kolibri.
+
+For details description of the common and different model attributes, available
+on content nodes in each part of the platform see [this doc](https://docs.google.com/spreadsheets/d/181hSEwJ7yVmMh7LEwaHENqQetYSsbSDwybHTO_0zZM0/edit#gid=1640972430).
 
 
 
-File Formats and Format Presets
--------------------------------
-The files [le_utils/constants/file_formats.py](./le_utils/constants/file_formats.py)
-and [le_utils/constants/format_presets.py](./le_utils/constants/format_presets.py)
-contain strings used in user interface to identify different file formats.
+
+Format presets (ContentNode-File relation)
+------------------------------------------
+Every `ContentNode` is associated with one or more `File` objects and nature of
+this association is represented though the `format_preset` attribute of the file.
+The `format_preset` is the role the file is playing in the content node,
+e.g., thumbnail, high resolution video, or low resolution video.
+You can think of the different presets on a content node as "slots" to be filled
+in with different files.
+
+Represented redundantly as python string [constants/format_presets.py](https://github.com/learningequality/le-utils/blob/master/le_utils/constants/format_presets.py)
+and as json [resources/presetlookup.json](https://github.com/learningequality/le-utils/blob/master/le_utils/resources/presetlookup.json).
+
+
+
+File formats (extensions)
+-------------------------
+This is the low-level constant that represents what type of file and is essentially
+synonymous with the file extension.
+See [file_formats.py](https://github.com/learningequality/le-utils/blob/master/le_utils/constants/file_formats.py) and [resourcces/formatlookup.json](https://github.com/nucleogenesis/le-utils/blob/master/le_utils/resources/formatlookup.json).
+
+
+The figure below illustrates the structure between content nodes, files, and format presets.
+
+![Illustration of the relationships between content kinds, files, and format presets](docs/img/le-utils_constants_and_mapping.png)
+
+
+
+
+File types (ricecooker.files.File subclasses)
+---------------------------------------------
+Used on Ricecooker to provide a "constants" that represnts what type of file
+you are dealing with.
+
+
+
 
 
 
@@ -121,5 +166,13 @@ Proquint Channel Tokens
 The file [le_utils/proquint.py](./le_utils/proquint.py) contains helper methods
 for generating proquint identifiers for content channels. These are short strings
 that are easy to enter on devices without a full keyboard, e.g. `sutul-hakuh`.
+
+
+
+Roles
+-----
+  - `learner` (default)
+  - `coach` == only visible to teachers
+
 
 
