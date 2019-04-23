@@ -230,7 +230,7 @@
 	"slide_image": {
 		"readable_name": "Slideshow Slide Image",
 		"multi_language": false,
-		"supplementary": true,
+		"supplementary": false,
 		"thumbnail": false,
 		"subtitle": false,
 		"display": false,
