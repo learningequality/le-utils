@@ -239,18 +239,6 @@
 		"allowed_formats": ["png", "jpg", "jpeg"],
 		"convertible_formats": []
 	},
-	"slide_image_thumbnail": {
-		"readable_name": "Slideshow Slide Thumbnail",
-		"multi_language": false,
-		"supplementary": true,
-		"thumbnail": true,
-		"subtitle": false,
-		"display": false,
-		"order": 2,
-		"kind": "slideshow",
-		"allowed_formats": ["png", "jpg", "jpeg"],
-		"convertible_formats": []
-	},
 	"slideshow_thumbnail": {
 		"readable_name": "Slideshow Thumbnail",
 		"multi_language": false,
@@ -272,7 +260,7 @@
 		"display": false,
 		"order": 3,
 		"kind": "slideshow",
-		"allowed_formats": ["json"],
+		"allowed_formats": ["slideshow_manifest"],
 		"convertible_formats": []
 	}
 }

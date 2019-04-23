@@ -63,7 +63,8 @@ EPUB = "epub"
 EPUB_MIMETYPE = "application/epub+zip"
 
 # constants for Slideshow format
-SLIDESHOW = "slideshow"
+SLIDESHOW_MANIFEST = "slideshow_manifest"
+SLIDESHOW_MANIFEST_MIMETYPE = "application/json"
 
 choices = (
     (MP4, _("MP4 Video")),
@@ -89,7 +90,7 @@ choices = (
 
     (EPUB, _("ePub Document")),
 
-    (SLIDESHOW, _("Slideshow Manifest"))
+    (SLIDESHOW_MANIFEST, _("Slideshow Manifest"))
 )
 
 class Format(namedtuple("Format", ["id", "mimetype"])):

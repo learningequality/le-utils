@@ -41,7 +41,7 @@
 	"zip": {
 		"mimetype": ".zip"
 	},
-	"slideshow": {
+	"slideshow_manifest": {
 		"mimetype": "application/json"
 	}
 }

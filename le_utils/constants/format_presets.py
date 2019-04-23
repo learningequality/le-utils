@@ -57,6 +57,9 @@ HTML5_DEPENDENCY_ZIP_READABLE = "HTML5 Dependency (Zip format)"
 SLIDE_IMAGE = "slide_image"
 SLIDE_IMAGE_READABLE = "Slide Image"
 
+SLIDESHOW_THUMBNAIL = "slideshow_thumbnail"
+SLIDESHOW_THUMBNAIL_READABLE = "Slideshow Thumbnail"
+
 SLIDESHOW_MANIFEST = "slideshow_manifest"
 SLIDESHOW_MANIFEST_READABLE = "Slideshow Manifest"
 
