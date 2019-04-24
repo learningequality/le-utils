@@ -62,10 +62,6 @@ HTML5_MIMETYPE = ".zip"
 EPUB = "epub"
 EPUB_MIMETYPE = "application/epub+zip"
 
-# constants for Slideshow format
-SLIDESHOW_MANIFEST = "slideshow_manifest"
-SLIDESHOW_MANIFEST_MIMETYPE = "application/json"
-
 choices = (
     (MP4, _("MP4 Video")),
 
@@ -89,8 +85,6 @@ choices = (
     (HTML5, _("HTML5 Zip")),
 
     (EPUB, _("ePub Document")),
-
-    (SLIDESHOW_MANIFEST, _("Slideshow Manifest"))
 )
 
 class Format(namedtuple("Format", ["id", "mimetype"])):

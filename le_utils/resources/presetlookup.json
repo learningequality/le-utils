@@ -227,7 +227,7 @@
 		"allowed_formats": ["png", "jpg", "jpeg"],
 		"convertible_formats": []
 	},
-	"slide_image": {
+	"slideshow_image": {
 		"readable_name": "Slideshow Slide Image",
 		"multi_language": false,
 		"supplementary": false,
@@ -260,7 +260,7 @@
 		"display": false,
 		"order": 3,
 		"kind": "slideshow",
-		"allowed_formats": ["slideshow_manifest"],
+		"allowed_formats": ["json"],
 		"convertible_formats": []
 	}
 }
