@@ -234,7 +234,7 @@
 		"thumbnail": false,
 		"subtitle": false,
 		"display": false,
-		"order": 1,
+		"order": 3,
 		"kind": "slideshow",
 		"allowed_formats": ["png", "jpg", "jpeg"],
 		"convertible_formats": []
@@ -258,7 +258,7 @@
 		"thumbnail": false,
 		"subtitle": false,
 		"display": false,
-		"order": 3,
+		"order": 1,
 		"kind": "slideshow",
 		"allowed_formats": ["json"],
 		"convertible_formats": []
