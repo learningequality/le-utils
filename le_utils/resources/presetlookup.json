@@ -246,7 +246,7 @@
 		"thumbnail": true,
 		"subtitle": false,
 		"display": false,
-		"order": 3,
+		"order": 2,
 		"kind": "slideshow",
 		"allowed_formats": ["png", "jpg", "jpeg"],
 		"convertible_formats": []
