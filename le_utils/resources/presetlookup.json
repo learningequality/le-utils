@@ -226,5 +226,41 @@
 		"kind": "html5",
 		"allowed_formats": ["png", "jpg", "jpeg"],
 		"convertible_formats": []
+	},
+	"slideshow_image": {
+		"readable_name": "Slideshow Slide Image",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": false,
+		"order": 3,
+		"kind": "slideshow",
+		"allowed_formats": ["png", "jpg", "jpeg"],
+		"convertible_formats": []
+	},
+	"slideshow_thumbnail": {
+		"readable_name": "Slideshow Thumbnail",
+		"multi_language": false,
+		"supplementary": true,
+		"thumbnail": true,
+		"subtitle": false,
+		"display": false,
+		"order": 2,
+		"kind": "slideshow",
+		"allowed_formats": ["png", "jpg", "jpeg"],
+		"convertible_formats": []
+	},
+	"slideshow_manifest": {
+		"readable_name": "Slideshow Manifest",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": false,
+		"order": 1,
+		"kind": "slideshow",
+		"allowed_formats": ["json"],
+		"convertible_formats": []
 	}
 }

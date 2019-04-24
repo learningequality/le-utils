@@ -62,7 +62,6 @@ HTML5_MIMETYPE = ".zip"
 EPUB = "epub"
 EPUB_MIMETYPE = "application/epub+zip"
 
-
 choices = (
     (MP4, _("MP4 Video")),
 

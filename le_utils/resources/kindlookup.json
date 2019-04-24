@@ -16,5 +16,8 @@
 	},
 	"html5": {
 		"name":"html5"
+	},
+	"slideshow": {
+		"name": "slideshow"
 	}
 }

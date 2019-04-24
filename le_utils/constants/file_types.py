@@ -10,6 +10,7 @@ EPUB = "epub"
 HTML5 = "html5"
 THUMBNAIL = "thumbnail"
 SUBTITLES = "subtitles"
+SLIDESHOW_IMAGE = "slideshow_image"
 
 
 """ File Format (extension) to File Type Mapping """
