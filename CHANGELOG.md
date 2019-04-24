@@ -2,6 +2,19 @@ Release History
 ===============
 
 
+0.1.17 Apr 24, 2019
+-------------------
+  - Added necessary constants for Slideshows:
+    - New content kind added: `slideshow`
+    - New format presets added:
+      - `slideshow_image`: represents a node-file association of the individual slideshow images part of the slideshow content node
+      - `slideshow_thumbnail`: the thumbnail for content nodes of kind=slideshow
+      - `slideshow_manifest` (allowed_formats: `.json`) :
+          the json manifest file for the slideshow generated during `exportchannel` for Kolibri consumption.
+          This file will contain json of slideshow data computer from the studio DB
+          (contents=association info `studio.models.ContentNode` --fk-- `studio.models.SlideshowSlide`)
+
+
 0.1.15 Nov 29, 2018
 -------------------
   - Added the following language codes:
