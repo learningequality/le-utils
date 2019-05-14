@@ -114,7 +114,7 @@
 		"thumbnail": true,
 		"subtitle": false,
 		"display": true,
-		"order": 2,
+		"order": 3,
 		"kind": "document",
 		"allowed_formats": ["png", "jpg", "jpeg"],
 		"convertible_formats": []
