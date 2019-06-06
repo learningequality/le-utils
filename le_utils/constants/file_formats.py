@@ -24,6 +24,10 @@ VTT = "vtt"
 VTT_MIMETYPE = ".vtt"
 # constants for formats convertible to VTT
 SRT = "srt"
+TTML = "ttml"
+SAMI = "sami"
+SCC = "scc"
+DFXP = "dfxp"
 
 # constants for Audio format
 MP3 = "mp3"
