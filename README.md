@@ -1,7 +1,18 @@
 LE Utils
 ========
-Utilities and constants shared across Ricecooker, Kolibri, and Kolibri Studio.
+The `le-utils` package contains shared constants used by Ricecooker, Kolibri, and
+Kolibri Studio. This package is not meant to be installed or used directly, but
+plays an important role in all Learning Equality products.
 
+
+Constants
+=========
+The Python files in the [le_utils/constants/](./le_utils/constants) are used to
+define constants (usually in `ALL_CAPS` form) to be used from Python code.
+The same constants and naming conventions are also provided in JSON format in the
+folder [le_utils/resources/](le_utils/resources) for use in frontend code.
+This means, adding a new constant may require editing multiple files: the Python
+constant-defining file, the JSON-file, and any associated tests.
 
 
 Languages
@@ -36,6 +47,7 @@ representation language code from the language object's `code` attribute:
 ```
 The Ricecooker API expects these internal representation language codes will be
 supplied for all `language` attributes (channel language, node language, and files language).
+
 
 
 ### More lookup helper methods
@@ -99,20 +111,30 @@ The currently supported content kinds are:
   - Audio content nodes backed by an audio files
   - Document content nodes backed by a document files (PDF or ePub)
   - HTML5 app content nodes backed by a HTML5 zip files
+  - Slideshow content nodes
   - Exercise content nodes
 
 The `kind` attribute identifies a subclass of the base content node class within
-within the data model, which differs on Ricecooker, Studio, and Kolibri:
+the data model, which differs on Ricecooker, Studio, and Kolibri:
   - [ricecooker.classes.nodes.ContentNode](https://github.com/learningequality/ricecooker/blob/master/ricecooker/classes/nodes.py#L428-L506):
-    in-memory content node used to store metadata needed to upload new content to Studio
+    in-memory content node used to store metadata needed to upload new content to Kolibri  Studio
   - [contentcuration.contentcuration.models.ContentNode](https://github.com/learningequality/studio/blob/develop/contentcuration/contentcuration/models.py#L775):
-    node within one of the trees associated with a Studio channel.
+    node within one of the trees associated with a Kolibri Studio channel.
   - [kolibri.core.content.models.ContentNode](https://github.com/learningequality/kolibri/blob/develop/kolibri/core/content/models.py#L175):
     node within tree for a particular version of a channel on Kolibri.
 
-For details description of the common and different model attributes, available
+For a detailed description of the common and different model attributes available
 on content nodes in each part of the platform see [this doc](https://docs.google.com/spreadsheets/d/181hSEwJ7yVmMh7LEwaHENqQetYSsbSDwybHTO_0zZM0/edit#gid=1640972430).
 
+
+
+File formats (extensions)
+-------------------------
+These are low-level constant that represents what type of file and are essentially
+synonymous with file extensions. The file format `MP4` is simply a convenient 
+proxy for the file extension `mp4`. 
+See [file_formats.py](https://github.com/learningequality/le-utils/blob/master/le_utils/constants/file_formats.py)
+and [resourcces/formatlookup.json](https://github.com/nucleogenesis/le-utils/blob/master/le_utils/resources/formatlookup.json).
 
 
 
@@ -122,35 +144,41 @@ Every `ContentNode` is associated with one or more `File` objects and nature of
 this association is represented though the `format_preset` attribute of the file.
 The `format_preset` is the role the file is playing in the content node,
 e.g., thumbnail, high resolution video, or low resolution video.
-You can think of the different presets on a content node as "slots" to be filled
-in with different files.
-
-Represented redundantly as python string [constants/format_presets.py](https://github.com/learningequality/le-utils/blob/master/le_utils/constants/format_presets.py)
+Note that format presets are represented redundantly as python string in 
+[constants/format_presets.py](https://github.com/learningequality/le-utils/blob/master/le_utils/constants/format_presets.py)
 and as json [resources/presetlookup.json](https://github.com/learningequality/le-utils/blob/master/le_utils/resources/presetlookup.json).
 
-
-
-File formats (extensions)
--------------------------
-This is the low-level constant that represents what type of file and is essentially
-synonymous with the file extension.
-See [file_formats.py](https://github.com/learningequality/le-utils/blob/master/le_utils/constants/file_formats.py) and [resourcces/formatlookup.json](https://github.com/nucleogenesis/le-utils/blob/master/le_utils/resources/formatlookup.json).
+You can think of the different format presets on a content node as different "slots"
+to be filled in by files, with certain slots being required while other optional.
+For examples, for a VideoNode (kind=`video`) to be a valid content node, it must
+have at least one video file associated with it filling either the `high_res_video`
+slot or the `low_res_video` slot. Certain slots can have multiple files in them,
+like the `video_subtitle` preset, since a VideoNode can have multiple subtitles
+associated with it for different languages.
 
 
 The figure below illustrates the structure between content nodes, files, and format presets.
 
-![Illustration of the relationships between content kinds, files, and format presets](docs/img/le-utils_constants_and_mapping.png)
+![Illustration of the relationships between content kinds (nodes), files, and format presets.](docs/img/le-utils_constants_and_mapping.png)
 
+In the Sample shown, the Video Node is of content kind `video` and has three
+files associated with it:
+  - The first file has file format `mp4` and format preset `high_res_video`
+  - The second file is also in `mp4` format but the relation to the content node
+    is that `low_res_video`
+  - A third file with format `vtt` is associated with the content node with a
+    format preset of `video_subtitle`.
 
+Format presets play a crucial role throughout the Kolibri content ecosystem and
+govern such things as content validation rules applied by Ricecooker, Kolibri Studio
+edit rules, and the rendering logic on Kolibri.
 
 
 File types (ricecooker.files.File subclasses)
 ---------------------------------------------
-Used on Ricecooker to provide a "constants" that represnts what type of file
-you are dealing with.
-
-
-
+Used on Ricecooker as identifiers to represents what type of file when serializing
+things to JSON as part of the content import process. Note that file types constants
+are internal to ricecooker operations and are not used in Kolibri Studio or Kolibri.
 
 
 
@@ -168,11 +196,10 @@ for generating proquint identifiers for content channels. These are short string
 that are easy to enter on devices without a full keyboard, e.g. `sutul-hakuh`.
 
 
-
 Roles
 -----
-  - `learner` (default)
-  - `coach` == only visible to teachers
-
-
+The `role` constants are used for Role-based access control (RBAC) within the
+Kolibri platform. Currently, only two levels of visibility are supported:
+  - `learner` (default): content nodes are visible to all Kolibri users
+  - `coach`: content nodes are only visible to Kolibri coaches and administrators
 
