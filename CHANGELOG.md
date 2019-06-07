@@ -2,6 +2,20 @@ Release History
 ===============
 
 
+0.1.19 Jun 10, 2019
+-------------------
+  - Added additional formats for other caption file types that are convertible by `pycaption`:
+    - DFXP
+    - SAMI
+    - SCC
+    - TTML
+
+
+0.1.18 May 14, 2019
+-------------------
+  - Fixed `document_thumbnail.order` so previews default to the document instead of the thumbnail
+
+
 0.1.17 Apr 24, 2019
 -------------------
   - Added necessary constants for Slideshows:

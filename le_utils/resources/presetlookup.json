@@ -23,7 +23,7 @@
 		"allowed_formats": ["mp4"],
 		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv", "ogv"]
 	},
-  "video_dependency": {
+	"video_dependency": {
 		"readable_name": "Video Dependency",
 		"multi_language": false,
 		"supplementary": true,
@@ -57,7 +57,7 @@
 		"order": 4,
 		"kind": "video",
 		"allowed_formats": ["vtt"],
-		"convertible_formats": ["srt"]
+		"convertible_formats": ["srt", "ttml", "sami", "scc", "dfxp"]
 	},
 	"audio": {
 		"readable_name": "Audio",
@@ -203,7 +203,7 @@
 		"allowed_formats": ["zip"],
 		"convertible_formats": []
 	},
-  "html5_dependency": {
+	"html5_dependency": {
 		"readable_name": "HTML5 Zip Dependency",
 		"multi_language": false,
 		"supplementary": true,
