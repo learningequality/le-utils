@@ -24,4 +24,5 @@ test:
 	pytest -s
 
 release: clean
-	python setup.py sdist upload -r pypi
+	python setup.py sdist
+	twine upload -s  dist/*.tar.gz

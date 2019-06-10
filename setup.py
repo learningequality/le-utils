@@ -1,10 +1,6 @@
 from setuptools import find_packages, setup
 
-try:
-    import pypandoc
-    long_description = pypandoc.convert_file('README.md', 'rst')
-except (IOError, ImportError):
-    long_description = open('README.md').read()
+long_description = open('README.md').read()
 
 requirements = [
     "pycountry==17.5.14",
@@ -14,8 +10,9 @@ setup(
     name="le-utils",
     packages = find_packages(),
     version="0.1.19",
-    description="LE Utils and constants shared across Kolibri, Ricecooker, and the Kolibri Studio.",
+    description="LE-Utils contains shared constants used in Kolibri, Ricecooker, and Kolibri Studio.",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     install_requires=requirements,
     license="MIT",
     url="https://github.com/learningequality/le-utils",
