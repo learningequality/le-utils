@@ -30,7 +30,7 @@ In order to make sure you have the correct language code when interfacing with
 the Kolibri ecosystem (e.g. when uploading new content to Kolibri Studio), you
 must lookup the language object using the helper method `getlang`:
 
-```
+```python
 >>> from le_utils.constants.languages import getlang
 >>> language_obj = getlang('en')       # lookup language using language code
 >>> language_obj
@@ -41,7 +41,7 @@ can try lookup by name or lookup by alpha2 code (ISO_639-1) methods defined belo
 
 Once you've successfully looked up the language object, you can obtain the internal
 representation language code from the language object's `code` attribute:
-```
+```python
 >>> language_obj.code
 'en'
 ```
@@ -52,7 +52,7 @@ supplied for all `language` attributes (channel language, node language, and fil
 
 ### More lookup helper methods
 The helper method `getlang_by_name` allows you to lookup a language by name:
-```
+```python
 >>> from le_utils.constants.languages import getlang_by_name
 >>> language_obj = getlang_by_name('English')  # lookup language by name
 >>> language_obj
@@ -86,7 +86,7 @@ to create `Licence` objects.
 
 To initialize a license object, you must specify the license type and the
 `copyright_holder` (str) which identifies a person or an organization. For example:
-```
+```python
 from ricecooker.classes.licenses import get_license
 from le_utils.constants import licenses
 license = get_license(licenses.CC_BY, copyright_holder="Khan Academy")
@@ -134,7 +134,7 @@ These are low-level constant that represents what type of file and are essential
 synonymous with file extensions. The file format `MP4` is simply a convenient 
 proxy for the file extension `mp4`. 
 See [file_formats.py](https://github.com/learningequality/le-utils/blob/master/le_utils/constants/file_formats.py)
-and [resourcces/formatlookup.json](https://github.com/nucleogenesis/le-utils/blob/master/le_utils/resources/formatlookup.json).
+and [resources/formatlookup.json](https://github.com/learningequality/le-utils/blob/master/le_utils/resources/formatlookup.json).
 
 
 
