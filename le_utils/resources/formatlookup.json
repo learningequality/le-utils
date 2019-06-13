@@ -5,6 +5,21 @@
 	"vtt": {
 		"mimetype": ".vtt"
 	},
+	"dfxp": {
+		"mimetype": ".dfxp"
+	},
+	"sami": {
+		"mimetype": ".sami"
+	},
+	"scc": {
+		"mimetype": ".scc"
+	},
+	"srt": {
+		"mimetype": ".srt"
+	},
+	"ttml": {
+		"mimetype": ".ttml"
+	},
 	"pdf": {
 		"mimetype": "application/pdf"
 	},
