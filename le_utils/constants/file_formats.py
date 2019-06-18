@@ -70,11 +70,6 @@ choices = (
     (MP4, _("MP4 Video")),
 
     (VTT, _("VTT Subtitle")),
-    (DFXP, _("DFXP Subtitle")),
-    (SAMI, _("SAMI Subtitle")),
-    (SCC, _("SCC Subtitle")),
-    (SRT, _("SRT Subtitle")),
-    (TTML, _("TTML Subtitle")),
 
     (MP3, _("MP3 Audio")),
 
