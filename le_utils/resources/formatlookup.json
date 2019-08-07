@@ -38,6 +38,9 @@
 	"perseus": {
 		"mimetype": "application/perseus+zip"
 	},
+	"h5p": {
+		"mimetype": "application/h5p+zip"
+	},
 	"zip": {
 		"mimetype": ".zip"
 	}

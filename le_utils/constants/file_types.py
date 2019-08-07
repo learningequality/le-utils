@@ -1,4 +1,3 @@
-from gettext import gettext as _
 from le_utils.constants import file_formats
 
 """ File Type Constants """
@@ -8,6 +7,7 @@ AUDIO = "audio"
 DOCUMENT = "document"
 EPUB = "epub"
 HTML5 = "html5"
+H5P = "h5p"
 THUMBNAIL = "thumbnail"
 SUBTITLES = "subtitles"
 SLIDESHOW_IMAGE = "slideshow_image"
@@ -30,6 +30,8 @@ MAPPING = {
     #
     # formats HTMLZipFile
     file_formats.HTML5: HTML5,
+    # formats H5PFile
+    file_formats.H5P: H5P,
     #
     # formats VideoFile
     file_formats.MP4: VIDEO,
