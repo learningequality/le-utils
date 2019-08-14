@@ -9,7 +9,7 @@
 		"order": 1,
 		"kind": "video",
 		"allowed_formats": ["mp4"],
-		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv", "ogv"]
+		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv", "ogv", "m4v"]
 	},
 	"low_res_video": {
 		"readable_name": "Low Resolution",
@@ -21,7 +21,7 @@
 		"order": 2,
 		"kind": "video",
 		"allowed_formats": ["mp4"],
-		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv", "ogv"]
+		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv", "ogv", "m4v"]
 	},
 	"video_dependency": {
 		"readable_name": "Video Dependency",
@@ -33,7 +33,7 @@
 		"order": 3,
 		"kind": "video",
 		"allowed_formats": ["mp4"],
-		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv", "ogv"]
+		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv", "ogv", "m4v"]
 	},
 	"video_thumbnail": {
 		"readable_name": "Thumbnail",
