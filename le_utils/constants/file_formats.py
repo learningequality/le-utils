@@ -18,6 +18,8 @@ WMV = "wmv"
 WEBM = "webm"
 MKV = "mkv"
 FLV = "flv"
+OGV = "ogv"
+M4V = "m4v"
 
 # constants for Subtitle format
 VTT = "vtt"
