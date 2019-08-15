@@ -54,7 +54,7 @@ HTML5_THUMBNAIL_READABLE = "HTML5 Thumbnail"
 HTML5_DEPENDENCY_ZIP = "html5_dependency"
 HTML5_DEPENDENCY_ZIP_READABLE = "HTML5 Dependency (Zip format)"
 
-H5P_ZIP = "h5p_zip"
+H5P_ZIP = "h5p"
 H5P_ZIP_READABLE = "H5P Zip"
 H5P_THUMBNAIL = "h5p_thumbnail"
 H5P_THUMBNAIL_READABLE = "H5P Thumbnail"
