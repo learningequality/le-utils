@@ -2,6 +2,12 @@ Release History
 ===============
 
 
+0.1.20 Aug 16, 2019
+-------------------
+  - Added `m4v` to the list of convertible video formats
+  - Added constants for `h5p` content type
+
+
 0.1.19 Jun 10, 2019
 -------------------
   - Added additional formats for other caption file types that are convertible by `pycaption`:
