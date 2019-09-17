@@ -54,7 +54,7 @@ class Language(
 
 
 def _parse_out_iso_639_code(code):
-    code_regex = r'(?P<primary_code>\w{2,3})(-(?P<subcode>\w{2,3}))?'
+    code_regex = r'(?P<primary_code>\w{2,3})(-(?P<subcode>\w{2,4}))?'
 
     match = re.match(code_regex, code)
     if match:
@@ -205,13 +205,20 @@ def getlang_by_alpha2(code):
         language with the same `name` in the internal representaion
     Returns `None` if no matching language is found.
     """
+    # First try exact match to a language code in the internal representaion
+    exact_match = getlang(code)
+    if exact_match:
+        return exact_match
+
     # Handle special cases for language codes returned by YouTube API
     if code == 'iw':   # handle old Hebrew code 'iw' and return modern code 'he'
         return getlang('he')
-    elif 'zh-Hans' in code:
-        return getlang('zh-CN')   # use code `zh-CN` for all simplified Chinese
-    elif 'zh-Hant' in code or re.match('zh(.*)?-HK', code):
-        return getlang('zh-TW')   # use code `zh-TW` for all traditional Chinese
+    elif 'zh-Hans' in code:        # use code `zh-CN` for all simplified Chinese
+        return getlang('zh-CN')
+    elif re.match('zh(.*)?-TW', code):        # matches all Taiwan chinese codes
+        return getlang('zh-TW')
+    elif re.match('zh(.*)?-HK', code):        # use code `zh-Hant` for Hong Kong
+        return getlang('zh-Hant')
 
     # extract prefix only if specified with subcode: e.g. zh-Hans --> zh
     first_part = code.split('-')[0]

@@ -137,14 +137,19 @@ def test_unknown_alpha2_code():
 
 @pytest.fixture
 def simplified_chinese_codes():
-    return ['zh-Hans', 'zh-Hans-CN', 'zh-Hans-TW']
+    return ['zh-CN', 'zh-Hans', 'zh-Hans-CN']
 
 @pytest.fixture
 def traditional_chinese_codes():
-    return ['zh-Hant', 'zh-Hant-TW', 'zh-Hant-HK', 'zh-HK']
+    return ['zh-Hant', 'zh-Hant-HK', 'zh-HK']
+
+@pytest.fixture
+def taiwan_chinese_codes():
+    return ['zh-TW', 'zh-Hant-TW']
 
 
-def test_youtube_edgecases_alpha2_codes(simplified_chinese_codes, traditional_chinese_codes):
+def test_youtube_edgecases_alpha2_codes(simplified_chinese_codes,
+        traditional_chinese_codes, taiwan_chinese_codes):
     # check old language code for Hebrew works `iw`
     lang_obj = languages.getlang_by_alpha2('iw')
     assert lang_obj is not None, 'Hebrew not found'
@@ -160,13 +165,21 @@ def test_youtube_edgecases_alpha2_codes(simplified_chinese_codes, traditional_ch
         assert lang_obj.name == "Chinese, Simplified", 'Wrong name'
         assert lang_obj.native_name == "中国大陆", 'Wrong native_name'
 
-    # Check all Traditional Chinese codes are resolved correctly to zh-TW
+    # Check all Traditional Chinese codes are resolved correctly to zh-Hant
     for lang_code in traditional_chinese_codes:
         lang_obj = languages.getlang_by_alpha2(lang_code)
         assert lang_obj is not None, 'Traditional Chinese not found'
-        assert lang_obj.code == "zh-TW", 'Wrong internal repr. code'
+        assert lang_obj.code == "zh-Hant", 'Wrong internal repr. code'
         assert lang_obj.name == "Chinese, Traditional", 'Wrong name'
-        assert lang_obj.native_name == "正體字/繁體字", 'Wrong native_name'
+        assert lang_obj.native_name == "漢語 (繁體字)", 'Wrong native_name'
+
+    # Check all Taiwanese langauge codes are resolved correctly to zh-TW
+    for lang_code in taiwan_chinese_codes:
+        lang_obj = languages.getlang_by_alpha2(lang_code)
+        assert lang_obj is not None, 'Taiwan Chinese not found'
+        assert lang_obj.code == "zh-TW", 'Wrong internal repr. code'
+        assert lang_obj.name == "Chinese, Taiwan", 'Wrong name'
+        assert lang_obj.native_name == "漢語 (臺灣)", 'Wrong native_name'
 
 
 
@@ -209,24 +222,6 @@ def test_unknown_name():
 
 def test_language_names_with_modifier_in_bracket():
     # try to match based on language name (stuff before subcode in brackets)
-    lang_obj = languages.getlang_by_native_name('中文')
-    assert lang_obj is not None, 'Chinese 1 not found'
-    assert lang_obj.code == "zh", 'Wrong internal repr. code'
-    assert lang_obj.name == "Chinese", 'Wrong name'
-    assert lang_obj.native_name == "中文 (Zhōngwén), 汉语, 漢語", 'Wrong native_name'
-    #
-    lang_obj = languages.getlang_by_native_name('汉语')
-    assert lang_obj is not None, 'Chinese 2 not found'
-    assert lang_obj.code == "zh", 'Wrong internal repr. code'
-    assert lang_obj.name == "Chinese", 'Wrong name'
-    assert lang_obj.native_name == "中文 (Zhōngwén), 汉语, 漢語", 'Wrong native_name'
-    #
-    lang_obj = languages.getlang_by_native_name('漢語')
-    assert lang_obj is not None, 'Chinese 3 not found'
-    assert lang_obj.code == "zh", 'Wrong internal repr. code'
-    assert lang_obj.name == "Chinese", 'Wrong name'
-    assert lang_obj.native_name == "中文 (Zhōngwén), 汉语, 漢語", 'Wrong native_name'
-    #
     lang_obj = languages.getlang_by_native_name('日本語')
     assert lang_obj is not None, 'Japanese not found'
     assert lang_obj.code == "ja", 'Wrong internal repr. code'
