@@ -37,5 +37,5 @@ def test_first_native_name():
     lang_obj = languages.getlang('zh')
     assert lang_obj is not None, 'Chinese not found'
     assert lang_obj.name == "Chinese", 'Wrong name'
-    assert lang_obj.native_name == "中文 (Zhōngwén), 汉语, 漢語", 'Wrong native_name'
-    assert lang_obj.first_native_name == "中文 (Zhōngwén)", 'Wrong first_native_name'
+    assert lang_obj.native_name == "中文, 汉语, 漢語", 'Wrong native_name'
+    assert lang_obj.first_native_name == "中文", 'Wrong first_native_name'

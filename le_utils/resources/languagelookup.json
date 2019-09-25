@@ -132,10 +132,6 @@
     "name":"Chichewa; Chewa; Nyanja",
     "native_name":"chiCheŵa, chinyanja"
   },
-  "zh":{
-    "name":"Chinese",
-    "native_name":"中文 (Zhōngwén), 汉语, 漢語"
-  },
   "cv":{
     "name":"Chuvash",
     "native_name":"чӑваш чӗлхи"
@@ -826,13 +822,21 @@
     "name":"Urdu",
     "native_name":"Urdu"
   },
+  "zh":{
+    "name":"Chinese",
+    "native_name":"中文, 汉语, 漢語"
+  },
   "zh-CN":{
     "name":"Chinese, Simplified",
     "native_name":"中国大陆"
   },
-  "zh-TW":{
+  "zh-Hant":{
     "name":"Chinese, Traditional",
-    "native_name":"正體字/繁體字"
+    "native_name":"漢語 (繁體字)"
+  },
+  "zh-TW":{
+    "name":"Chinese, Taiwan",
+    "native_name":"漢語 (臺灣)"
   },
   "aka":{
     "name":"Akan",
