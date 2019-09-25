@@ -25,4 +25,4 @@ test:
 
 release: clean
 	python setup.py sdist
-	twine upload -s  dist/*.tar.gz
+	twine upload dist/*.tar.gz
