@@ -2,6 +2,12 @@ Release History
 ===============
 
 
+0.1.22 Oct 3, 2019
+-------------------
+  - Added `zh-Hant` language code and updated tests
+  - Added Marwari and Bhojpuri langauge codes
+
+
 0.1.20 Aug 16, 2019
 -------------------
   - Added `m4v` to the list of convertible video formats
