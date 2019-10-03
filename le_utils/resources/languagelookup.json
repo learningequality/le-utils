@@ -451,6 +451,10 @@
     "name":"Marshallese",
     "native_name":"Kajin M̧ajeļ"
   },
+  "mwr":{
+    "name":"Marwari; Marwadi",
+    "native_name":"मारवाड़ी, مارواڑی"
+  },
   "mn":{
     "name":"Mongolian",
     "native_name":"монгол"
@@ -841,6 +845,10 @@
   "aka":{
     "name":"Akan",
     "native_name":"Akan"
+  },
+  "bho":{
+    "name":"Bhojpuri; Bajpuri; Bhojapuri",
+    "native_name":"भोजपुरी"
   },
   "bug":{
     "name":"Buginese",
