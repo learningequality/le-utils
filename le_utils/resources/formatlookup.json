@@ -39,7 +39,7 @@
 		"mimetype": "application/perseus+zip"
 	},
 	"h5p": {
-		"mimetype": "application/h5p+zip"
+		"mimetype": ".h5p"
 	},
 	"zip": {
 		"mimetype": ".zip"

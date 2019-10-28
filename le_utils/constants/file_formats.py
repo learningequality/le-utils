@@ -66,7 +66,7 @@ HTML5_MIMETYPE = ".zip"
 
 # constants for H5P format
 H5P = "h5p"
-H5P_MIMETYPE = "application/h5p+zip"
+H5P_MIMETYPE = ".h5p"
 
 # constants for ePub format
 EPUB = "epub"
