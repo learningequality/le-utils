@@ -34,6 +34,7 @@ MAPPING = {
     file_formats.EPUB: DOCUMENT,
     file_formats.PERSEUS: EXERCISE,
     file_formats.HTML5: HTML5,
+    file_formats.H5P: HTML5,
 }
 
 
