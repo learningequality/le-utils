@@ -19,5 +19,8 @@
 	},
 	"slideshow": {
 		"name": "slideshow"
+	},
+	"h5p": {
+		"name": "h5p"
 	}
 }

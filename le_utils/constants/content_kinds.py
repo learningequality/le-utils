@@ -15,6 +15,7 @@ EXERCISE = "exercise"
 DOCUMENT = "document"
 HTML5 = "html5"
 SLIDESHOW = "slideshow"
+H5P = "h5p"
 
 choices = (
     (TOPIC, _("Topic")),
@@ -24,6 +25,7 @@ choices = (
     (DOCUMENT, _("Document")),
     (HTML5, _("HTML5 App")),
     (SLIDESHOW, _("Slideshow")),
+    (H5P, _("H5P")),
 )
 
 """ File Format (extension) to Content Kind Mapping """
@@ -34,7 +36,7 @@ MAPPING = {
     file_formats.EPUB: DOCUMENT,
     file_formats.PERSEUS: EXERCISE,
     file_formats.HTML5: HTML5,
-    file_formats.H5P: HTML5,
+    file_formats.H5P: H5P,
 }
 
 
