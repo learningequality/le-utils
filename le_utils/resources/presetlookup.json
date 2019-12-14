@@ -233,7 +233,7 @@
 		"supplementary": false,
 		"thumbnail": false,
 		"subtitle": false,
-		"display": true,
+		"display": false,
 		"order": 1,
 		"kind": "h5p",
 		"allowed_formats": ["h5p"],
