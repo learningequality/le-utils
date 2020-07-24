@@ -1,6 +1,7 @@
+import io
 from setuptools import find_packages, setup
 
-long_description = open('README.md').read()
+long_description = io.open('README.md', encoding='utf-8').read()
 
 requirements = [
     "pycountry==17.5.14",
