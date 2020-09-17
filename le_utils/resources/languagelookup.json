@@ -1013,5 +1013,86 @@
   "myx":{
     "name":"Masaaba; Bagisu",
     "native_name":"Lumasaaba, Masaaba"
+  },
+  "awa": {
+    "name": "Awadhi",
+    "native_name": "अवधी"
+  },
+  "bcc": {
+    "name": "Southern Balochi",
+    "native_name": "Southern Balochi"
+  },
+  "bma": {
+    "name": "Lame",
+    "native_name": "Lame"
+  },
+  "brh": {
+    "name": "Brahui",
+    "native_name": "Brahui"
+  },
+  "bxk": {
+    "name": "Bukusu",
+    "native_name": "Bukusu"
+  },
+  "dty": {
+    "name": "Dotyali",
+    "native_name": "Dotyali"
+  },
+  "enq": {
+    "name": "Enga",
+    "native_name": "Enga"
+  },
+  "guz": {
+    "name": "Gusii",
+    "native_name": "Ekegusii"
+  },
+  "kak": {
+    "name": "Kalanguya",
+    "native_name": "Kalanguya"
+  },
+  "kam": {
+    "name": "Kamba (Kenya)",
+    "native_name": "Kikamba"
+  },
+  "mai": {
+    "name": "Maithili",
+    "native_name": "थिली, মৈথিলী"
+  },
+  "new": {
+    "name": "Newari",
+    "native_name": "नेपाल भाषा, नेवाः भाय्"
+  },
+  "pbt": {
+    "name": "Southern Pashto",
+    "native_name": "Southern Pashto"
+  },
+  "pbu": {
+    "name": "Northern Pashto",
+    "native_name": "Northern Pashto"
+  },
+  "srr": {
+    "name": "Serer",
+    "native_name": "Seereer"
+  },
+  "taj": {
+    "name": "Eastern Tamang",
+    "native_name": "Eastern Tamang"
+  },
+  "thl": {
+    "name": "Dangaura Tharu",
+    "native_name": "Dangaura Tharu"
+  },
+  "tpi": {
+    "name": "Tok Pisin",
+    "native_name": "Tok Pisin"
+  },
+  "tum": {
+    "name": "Tumbuka",
+    "native_name": "chiTumbuka"
+  },
+  "yao": {
+    "name": "Yao",
+    "native_name": "Yao"
   }
 }
+
