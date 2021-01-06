@@ -2,6 +2,9 @@
 	"mp4": {
 		"mimetype": "video/mp4"
 	},
+	"webm": {
+		"mimetype": "video/webm"
+	},
 	"vtt": {
 		"mimetype": ".vtt"
 	},

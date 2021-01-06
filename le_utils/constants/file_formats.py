@@ -10,12 +10,13 @@ from gettext import gettext as _
 # constants for Video format
 MP4 = "mp4"
 MP4_MIMETYPE = "video/mp4"
+WEBM = "webm"
+WEBM_MIMETYPE = "video/webm"
 # constants for video formats converitble to mp4
 AVI = "avi"
 MOV = "mov"
 MPG = "mpg"
 WMV = "wmv"
-WEBM = "webm"
 MKV = "mkv"
 FLV = "flv"
 OGV = "ogv"
@@ -74,6 +75,7 @@ EPUB_MIMETYPE = "application/epub+zip"
 
 choices = (
     (MP4, _("MP4 Video")),
+    (WEBM, _("WEBM Video")),
 
     (VTT, _("VTT Subtitle")),
 

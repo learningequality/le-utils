@@ -8,8 +8,8 @@
 		"display": true,
 		"order": 1,
 		"kind": "video",
-		"allowed_formats": ["mp4"],
-		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv", "ogv", "m4v"]
+		"allowed_formats": ["mp4", "webm"],
+		"convertible_formats": ["avi", "mov", "mpg", "wmv", "mkv", "flv", "ogv", "m4v"]
 	},
 	"low_res_video": {
 		"readable_name": "Low Resolution",
@@ -20,8 +20,8 @@
 		"display": true,
 		"order": 2,
 		"kind": "video",
-		"allowed_formats": ["mp4"],
-		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv", "ogv", "m4v"]
+		"allowed_formats": ["mp4", "webm"],
+		"convertible_formats": ["avi", "mov", "mpg", "wmv", "mkv", "flv", "ogv", "m4v"]
 	},
 	"video_dependency": {
 		"readable_name": "Video Dependency",
@@ -32,8 +32,8 @@
 		"display": false,
 		"order": 3,
 		"kind": "video",
-		"allowed_formats": ["mp4"],
-		"convertible_formats": ["avi", "mov", "mpg", "wmv", "webm", "mkv", "flv", "ogv", "m4v"]
+		"allowed_formats": ["mp4", "webm"],
+		"convertible_formats": ["avi", "mov", "mpg", "wmv", "mkv", "flv", "ogv", "m4v"]
 	},
 	"video_thumbnail": {
 		"readable_name": "Thumbnail",

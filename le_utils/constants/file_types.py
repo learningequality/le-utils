@@ -35,6 +35,7 @@ MAPPING = {
     #
     # formats VideoFile
     file_formats.MP4: VIDEO,
+    file_formats.WEBM: VIDEO,
     #
     # formats SubtitleFile
     file_formats.VTT: SUBTITLES,
