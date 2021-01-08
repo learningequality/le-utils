@@ -109,8 +109,19 @@ def generate_list(constantlist):
         yield Format(id=id, **format)
 
 def _initialize_format_list():
-    constantlist = json.loads(pkgutil.get_data('le_utils', 'resources/formatlookup.json').decode('utf-8'))
-
+    rs = open('../resources/formatlookup.json','r').read().encode('utf-8')
+    constantlist = json.loads(rs.decode('utf-8'))
+    # print(type(constantlist))
     return generate_list(constantlist)
 
+def getformat(id, default=None):
+    """
+    Try to lookup a file format object for its `id` in internal representation defined
+    in resources/formatlookup.json.
+    Returns None if lookup by internal representation fails.
+    """
+    return _FORMATLOOKUP.get(id) or None
+
 FORMATLIST = list(_initialize_format_list())
+
+_FORMATLOOKUP = {f.id: f for f in FORMATLIST}
