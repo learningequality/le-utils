@@ -109,10 +109,7 @@ def generate_list(constantlist):
         yield Format(id=id, **format)
 
 def _initialize_format_list():
-    # rs = open('../resources/formatlookup.json','r').read().encode('utf-8')
-    # constantlist = json.loads(rs.decode('utf-8'))
     constantlist = json.loads(pkgutil.get_data('le_utils', 'resources/formatlookup.json').decode('utf-8'))
-    # print(type(constantlist))
     return generate_list(constantlist)
 
 FORMATLIST = list(_initialize_format_list())

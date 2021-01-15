@@ -54,3 +54,4 @@ def _initialize_kind_list():
     return generate_list(constantlist)
 
 KINDLIST = list(_initialize_kind_list())
+
