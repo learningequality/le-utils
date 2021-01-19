@@ -10,12 +10,13 @@ from gettext import gettext as _
 # constants for Video format
 MP4 = "mp4"
 MP4_MIMETYPE = "video/mp4"
+WEBM = "webm"
+WEBM_MIMETYPE = "video/webm"
 # constants for video formats converitble to mp4
 AVI = "avi"
 MOV = "mov"
 MPG = "mpg"
 WMV = "wmv"
-WEBM = "webm"
 MKV = "mkv"
 FLV = "flv"
 OGV = "ogv"
@@ -74,6 +75,7 @@ EPUB_MIMETYPE = "application/epub+zip"
 
 choices = (
     (MP4, _("MP4 Video")),
+    (WEBM, _("WEBM Video")),
 
     (VTT, _("VTT Subtitle")),
 
@@ -108,7 +110,16 @@ def generate_list(constantlist):
 
 def _initialize_format_list():
     constantlist = json.loads(pkgutil.get_data('le_utils', 'resources/formatlookup.json').decode('utf-8'))
-
     return generate_list(constantlist)
 
 FORMATLIST = list(_initialize_format_list())
+
+_FORMATLOOKUP = {f.id: f for f in FORMATLIST}
+
+def getformat(id, default=None):
+    """
+    Try to lookup a file format object for its `id` in internal representation defined
+    in resources/formatlookup.json.
+    Returns None if lookup by internal representation fails.
+    """
+    return _FORMATLOOKUP.get(id) or None

@@ -31,6 +31,7 @@ choices = (
 """ File Format (extension) to Content Kind Mapping """
 MAPPING = {
     file_formats.MP4: VIDEO,
+    file_formats.WEBM: VIDEO,
     file_formats.MP3: AUDIO,
     file_formats.PDF: DOCUMENT,
     file_formats.EPUB: DOCUMENT,
@@ -53,3 +54,4 @@ def _initialize_kind_list():
     return generate_list(constantlist)
 
 KINDLIST = list(_initialize_kind_list())
+
