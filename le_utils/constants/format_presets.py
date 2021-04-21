@@ -24,6 +24,8 @@ AUDIO = "audio"
 AUDIO_READABLE = "Audio"
 AUDIO_THUMBNAIL = "audio_thumbnail"
 AUDIO_THUMBNAIL_READABLE = "Thumbnail"
+AUDIO_DEPENDENCY = "audio_dependency"
+AUDIO_DEPENDENCY_READABLE = "audio (dependency)"
 
 DOCUMENT = "document"
 DOCUMENT_READABLE = "Document"  # TODO(ivan): Change to "PDF Document"  str translations?
@@ -79,6 +81,7 @@ choices = (
 
     (AUDIO, _(AUDIO_READABLE)),
     (AUDIO_THUMBNAIL, _(AUDIO_THUMBNAIL_READABLE)),
+    (AUDIO_DEPENDENCY, _(AUDIO_DEPENDENCY_READABLE)),
 
     (DOCUMENT, _(DOCUMENT_READABLE)),
     (EPUB, _(EPUB_READABLE)),
