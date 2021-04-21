@@ -71,6 +71,18 @@
 		"allowed_formats": ["mp3"],
 		"convertible_formats": ["wav", "m4a", "aac", "ogg"]
 	},
+	"audio_dependency": {
+		"readable_name": "Audio",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": false,
+		"order": 3,
+		"kind": "audio",
+		"allowed_formats": ["mp3"],
+		"convertible_formats": ["wav", "m4a", "aac", "ogg"]
+	},
 	"audio_thumbnail": {
 		"readable_name": "Thumbnail",
 		"multi_language": false,
