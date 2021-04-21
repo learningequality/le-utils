@@ -12,7 +12,7 @@ requirements = [
 setup(
     name="le-utils",
     packages=find_packages(),
-    version="0.1.27",
+    version="0.1.28a1",
     description="LE-Utils contains shared constants used in Kolibri, Ricecooker, and Kolibri Studio.",
     long_description=long_description,
     long_description_content_type="text/markdown",
