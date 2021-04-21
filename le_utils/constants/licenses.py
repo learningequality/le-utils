@@ -28,19 +28,35 @@ choices = (
     (SPECIAL_PERMISSIONS, "Special Permissions"),
 )
 
+
 class License(
-        namedtuple("License", [
-            "id", "name", "exists", "url", "description", "custom", "copyright_holder_required"
-        ])):
+    namedtuple(
+        "License",
+        [
+            "id",
+            "name",
+            "exists",
+            "url",
+            "description",
+            "custom",
+            "copyright_holder_required",
+        ],
+    )
+):
     pass
+
 
 def generate_list(constantlist):
     for id, lang in constantlist.items():
         yield License(id=int(id), **lang)
 
+
 def _initialize_license_list():
-    constantlist = json.loads(pkgutil.get_data('le_utils', 'resources/licenselookup.json').decode('utf-8'))
+    constantlist = json.loads(
+        pkgutil.get_data("le_utils", "resources/licenselookup.json").decode("utf-8")
+    )
 
     return generate_list(constantlist)
+
 
 LICENSELIST = list(_initialize_license_list())

@@ -131,8 +131,8 @@ on content nodes in each part of the platform see [this doc](https://docs.google
 File formats (extensions)
 -------------------------
 These are low-level constant that represents what type of file and are essentially
-synonymous with file extensions. The file format `MP4` is simply a convenient 
-proxy for the file extension `mp4`. 
+synonymous with file extensions. The file format `MP4` is simply a convenient
+proxy for the file extension `mp4`.
 See [file_formats.py](https://github.com/learningequality/le-utils/blob/master/le_utils/constants/file_formats.py)
 and [resourcces/formatlookup.json](https://github.com/nucleogenesis/le-utils/blob/master/le_utils/resources/formatlookup.json).
 
@@ -144,7 +144,7 @@ Every `ContentNode` is associated with one or more `File` objects and nature of
 this association is represented though the `format_preset` attribute of the file.
 The `format_preset` is the role the file is playing in the content node,
 e.g., thumbnail, high resolution video, or low resolution video.
-Note that format presets are represented redundantly as python string in 
+Note that format presets are represented redundantly as python string in
 [constants/format_presets.py](https://github.com/learningequality/le-utils/blob/master/le_utils/constants/format_presets.py)
 and as json [resources/presetlookup.json](https://github.com/learningequality/le-utils/blob/master/le_utils/resources/presetlookup.json).
 
@@ -202,4 +202,3 @@ The `role` constants are used for Role-based access control (RBAC) within the
 Kolibri platform. Currently, only two levels of visibility are supported:
   - `learner` (default): content nodes are visible to all Kolibri users
   - `coach`: content nodes are only visible to Kolibri coaches and administrators
-

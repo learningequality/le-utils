@@ -1,5 +1,5 @@
 # Detect RTL languages bases on the first native_name our languagelookup.json
-# Outpus a list of internal language codes: 
+# Outpus a list of internal language codes:
 # INSTALL:
 #   sudo gem install string-direction
 #   sudo gem install json
@@ -18,7 +18,7 @@ langs = JSON.parse(file)
 
 puts 'RTL_LANG_CODES = ['
 langs.each do |code, info|
-  name = info["name"] 
+  name = info["name"]
   native_name = info["native_name"]
   # choose only the first part in cases where native_name is list-like
   first_native_name = native_name.split(',')[0].split('()')[0]
@@ -33,4 +33,3 @@ langs.each do |code, info|
   end
 end
 puts ']'
-    

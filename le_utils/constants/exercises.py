@@ -1,5 +1,4 @@
 # coding=utf-8
-
 """ Mastery Models """
 DO_ALL = "do_all"
 NUM_CORRECT_IN_A_ROW_10 = "num_correct_in_a_row_10"
@@ -21,13 +20,13 @@ MASTERY_MODELS = (
 
 IMG_PLACEHOLDER = "{☣ LOCALPATH}"
 IMG_FORMAT = "${" + IMG_PLACEHOLDER + "}/{0}"
-IMG_REGEX = r'\$\{☣ LOCALPATH\}\/(.+)'
+IMG_REGEX = r"\$\{☣ LOCALPATH\}\/(.+)"
 
 CONTENT_STORAGE_PLACEHOLDER = "{☣ CONTENTSTORAGE}"
 CONTENT_STORAGE_FORMAT = "${" + CONTENT_STORAGE_PLACEHOLDER + "}/{0}"
-CONTENT_STORAGE_REGEX = r'\(\$\{☣ CONTENTSTORAGE\}\/(.+)\)'
+CONTENT_STORAGE_REGEX = r"\(\$\{☣ CONTENTSTORAGE\}\/(.+)\)"
 
-GRAPHIE_DELIMITER = '$$$GRAPHIE_BREAK$$$'
+GRAPHIE_DELIMITER = "$$$GRAPHIE_BREAK$$$"
 
 """ Question Types """
 INPUT_QUESTION = "input_question"
