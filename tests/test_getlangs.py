@@ -75,7 +75,8 @@ def test_language_names_with_modifier_in_bracket():
     # try to match based on language name (stuff before subcode in brackets)
     lang_obj = languages.getlang_by_name("Swahili (macrolanguage)")
     assert lang_obj is not None, "Swahili not found"
-    assert lang_obj.code == "sw", "Wrong internal repr. code"
+    # Not deterministic which Swahili code will be returned
+    assert lang_obj.code == "sw" or lang_obj.code == "swa", "Wrong internal repr. code"
     assert lang_obj.name == "Swahili", "Wrong name"
     assert lang_obj.native_name == "Kiswahili", "Wrong native_name"
     #
