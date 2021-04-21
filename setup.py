@@ -26,6 +26,6 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Topic :: Utilities",
     ],
-    author="Jordan Yoshihara",
-    author_email="jordan@learningequality.org",
+    author="Learning Equality",
+    author_email="info@learningequality.org",
 )
