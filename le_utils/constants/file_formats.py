@@ -75,45 +75,43 @@ EPUB_MIMETYPE = "application/epub+zip"
 choices = (
     (MP4, "MP4 Video"),
     (WEBM, "WEBM Video"),
-
     (VTT, "VTT Subtitle"),
-
     (MP3, "MP3 Audio"),
-
     (PDF, "PDF Document"),
-
     (JPG, "JPG Image"),
     (JPEG, "JPEG Image"),
     (PNG, "PNG Image"),
     (GIF, "GIF Image"),
     (JSON, "JSON"),
     (SVG, "SVG Image"),
-
     (PERSEUS, "Perseus Exercise"),
-
     (GRAPHIE, "Graphie Exercise"),
-
     (HTML5, "HTML5 Zip"),
-
     (H5P, "H5P"),
-
     (EPUB, "ePub Document"),
 )
 
+
 class Format(namedtuple("Format", ["id", "mimetype"])):
     pass
+
 
 def generate_list(constantlist):
     for id, format in constantlist.items():
         yield Format(id=id, **format)
 
+
 def _initialize_format_list():
-    constantlist = json.loads(pkgutil.get_data('le_utils', 'resources/formatlookup.json').decode('utf-8'))
+    constantlist = json.loads(
+        pkgutil.get_data("le_utils", "resources/formatlookup.json").decode("utf-8")
+    )
     return generate_list(constantlist)
+
 
 FORMATLIST = list(_initialize_format_list())
 
 _FORMATLOOKUP = {f.id: f for f in FORMATLIST}
+
 
 def getformat(id, default=None):
     """

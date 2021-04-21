@@ -27,7 +27,9 @@ AUDIO_DEPENDENCY = "audio_dependency"
 AUDIO_DEPENDENCY_READABLE = "audio (dependency)"
 
 DOCUMENT = "document"
-DOCUMENT_READABLE = "Document"  # TODO(ivan): Change to "PDF Document"  str translations?
+DOCUMENT_READABLE = (
+    "Document"  # TODO(ivan): Change to "PDF Document"  str translations?
+)
 EPUB = "epub"
 EPUB_READABLE = "ePub Document"
 DOCUMENT_THUMBNAIL = "document_thumbnail"
@@ -77,30 +79,23 @@ choices = (
     (VIDEO_THUMBNAIL, VIDEO_THUMBNAIL_READABLE),
     (VIDEO_SUBTITLE, VIDEO_SUBTITLE_READABLE),
     (VIDEO_DEPENDENCY, VIDEO_DEPENDENCY_READABLE),
-
     (AUDIO, AUDIO_READABLE),
     (AUDIO_THUMBNAIL, AUDIO_THUMBNAIL_READABLE),
     (AUDIO_DEPENDENCY, AUDIO_DEPENDENCY_READABLE),
-
     (DOCUMENT, DOCUMENT_READABLE),
     (EPUB, EPUB_READABLE),
     (DOCUMENT_THUMBNAIL, DOCUMENT_THUMBNAIL_READABLE),
-
     (EXERCISE, EXERCISE_READABLE),
     (EXERCISE_THUMBNAIL, EXERCISE_THUMBNAIL_READABLE),
     (EXERCISE_IMAGE, EXERCISE_IMAGE_READABLE),
     (EXERCISE_GRAPHIE, EXERCISE_GRAPHIE_READABLE),
-
     (CHANNEL_THUMBNAIL, CHANNEL_THUMBNAIL_READABLE),
     (TOPIC_THUMBNAIL, TOPIC_THUMBNAIL_READABLE),
-
     (HTML5_ZIP, HTML5_ZIP_READABLE),
     (HTML5_DEPENDENCY_ZIP, HTML5_DEPENDENCY_ZIP_READABLE),
     (HTML5_THUMBNAIL, HTML5_THUMBNAIL_READABLE),
-
     (H5P_ZIP, H5P_ZIP_READABLE),
     (H5P_THUMBNAIL, H5P_THUMBNAIL_READABLE),
-
     (SLIDESHOW_IMAGE, SLIDESHOW_IMAGE_READABLE),
     (SLIDESHOW_THUMBNAIL, SLIDESHOW_THUMBNAIL_READABLE),
     (SLIDESHOW_MANIFEST, SLIDESHOW_MANIFEST_READABLE),
@@ -108,7 +103,9 @@ choices = (
 
 
 class Preset(
-    namedtuple("Preset", [
+    namedtuple(
+        "Preset",
+        [
             "id",
             "readable_name",
             "multi_language",
@@ -119,17 +116,24 @@ class Preset(
             "order",
             "kind",
             "allowed_formats",
-            "convertible_formats"
-        ])):
+            "convertible_formats",
+        ],
+    )
+):
     pass
+
 
 def generate_list(constantlist):
     for id, preset in constantlist.items():
         yield Preset(id=id, **preset)
 
+
 def _initialize_preset_list():
-    constantlist = json.loads(pkgutil.get_data('le_utils', 'resources/presetlookup.json').decode('utf-8'))
+    constantlist = json.loads(
+        pkgutil.get_data("le_utils", "resources/presetlookup.json").decode("utf-8")
+    )
 
     return generate_list(constantlist)
+
 
 PRESETLIST = list(_initialize_preset_list())

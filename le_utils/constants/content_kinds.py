@@ -1,6 +1,7 @@
 import json
 import pkgutil
 from collections import namedtuple
+
 from le_utils.constants import file_formats
 
 """ Content Kind Constants """
@@ -43,14 +44,18 @@ MAPPING = {
 class Kind(namedtuple("Kind", ["id", "name"])):
     pass
 
+
 def generate_list(constantlist):
     for id, kind in constantlist.items():
         yield Kind(id=id, **kind)
 
+
 def _initialize_kind_list():
-    constantlist = json.loads(pkgutil.get_data('le_utils', 'resources/kindlookup.json').decode('utf-8'))
+    constantlist = json.loads(
+        pkgutil.get_data("le_utils", "resources/kindlookup.json").decode("utf-8")
+    )
 
     return generate_list(constantlist)
 
-KINDLIST = list(_initialize_kind_list())
 
+KINDLIST = list(_initialize_kind_list())

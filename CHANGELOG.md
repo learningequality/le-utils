@@ -45,7 +45,7 @@ Release History
 -------------------
   - Added the following language codes:
     - ach = Acholi
-    - fuv = Fulfulde Mbororo 
+    - fuv = Fulfulde Mbororo
     - xog = Soga
     - tuv = Turkana
     - lwg = Oluwanga
@@ -120,5 +120,3 @@ Release History
 0.0.9rc24 May 17, 2017
 ------------------
   - changes to a few mimetypes
-
-

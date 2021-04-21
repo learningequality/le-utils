@@ -1,24 +1,26 @@
-from collections import defaultdict, namedtuple
 import json
 import logging
 import pkgutil
-import pycountry
 import re
+from collections import defaultdict
+from collections import namedtuple
 
-logger = logging.getLogger('le_utils')
+import pycountry
+
+logger = logging.getLogger("le_utils")
 logger.setLevel(logging.INFO)
 
 
-LTR_LANGUAGE = 'ltr'
-RTL_LANGUAGE = 'rtl'
+LTR_LANGUAGE = "ltr"
+RTL_LANGUAGE = "rtl"
 LANGUAGE_DIRECTIONS = (
-    (LTR_LANGUAGE, 'Left to Right'),
-    (RTL_LANGUAGE, 'Right to Left'),
+    (LTR_LANGUAGE, "Left to Right"),
+    (RTL_LANGUAGE, "Right to Left"),
 )
 
 RTL_LANG_CODES = [
     "ar",  # Arabic
-    "arq", # Algerian
+    "arq",  # Algerian
     "dv",  # Divehi; Dhivehi; Maldivian
     "he",  # Hebrew (modern)
     "fa",  # Persian
@@ -29,31 +31,33 @@ RTL_LANG_CODES = [
 
 
 class Language(
-        namedtuple("Language", [
-            "native_name", "primary_code", "subcode", "name", "ka_name"
-        ])):
+    namedtuple(
+        "Language", ["native_name", "primary_code", "subcode", "name", "ka_name"]
+    )
+):
     @property
     def code(self):
         if self.subcode:
             return "{primary_code}-{subcode}".format(
-                primary_code=self.primary_code, subcode=self.subcode)
+                primary_code=self.primary_code, subcode=self.subcode
+            )
         else:
             return self.primary_code
 
     @property
     def id(self):
         return self.code
-    
+
     @property
     def first_native_name(self):
         """
         Return the first native name in the comma-seprated list of `native_name`.
         """
-        return self.native_name.split(',')[0]
+        return self.native_name.split(",")[0]
 
 
 def _parse_out_iso_639_code(code):
-    code_regex = r'(?P<primary_code>\w{2,3})(-(?P<subcode>\w{2,4}))?'
+    code_regex = r"(?P<primary_code>\w{2,3})(-(?P<subcode>\w{2,4}))?"
 
     match = re.match(code_regex, code)
     if match:
@@ -61,23 +65,26 @@ def _parse_out_iso_639_code(code):
     else:
         return None
 
+
 def generate_list(constantlist):
     for code, lang in constantlist.items():
         values = _parse_out_iso_639_code(code)
         values.update(lang)
 
         # add a default value to ka_name
-        if 'ka_name' not in values:
-            values['ka_name'] = None
+        if "ka_name" not in values:
+            values["ka_name"] = None
 
         yield Language(**values)
 
+
 def _initialize_language_list():
     langlist = json.loads(
-        pkgutil.get_data('le_utils', 'resources/languagelookup.json').decode(
-            'utf-8'))
+        pkgutil.get_data("le_utils", "resources/languagelookup.json").decode("utf-8")
+    )
 
     return generate_list(langlist)
+
 
 def _iget(key, lookup_dict):
     """
@@ -88,9 +95,11 @@ def _iget(key, lookup_dict):
             return v
     return None
 
+
 LANGUAGELIST = list(_initialize_language_list())
 
 _LANGLOOKUP = {l.code: l for l in LANGUAGELIST}
+
 
 def getlang(code, default=None):
     """
@@ -125,22 +134,23 @@ _LANGUAGE_NAME_LOOKUP = {l.name: l for l in LANGUAGELIST}
 new_items = {}
 for lang_name, lang_obj in _LANGUAGE_NAME_LOOKUP.items():
     # Add language names that are separated by semicolons, e.g. "Catalan; Valencian"
-    if ';' in lang_name:
-        new_names = [n.strip() for n in lang_name.split(';')]
+    if ";" in lang_name:
+        new_names = [n.strip() for n in lang_name.split(";")]
         for new_name in new_names:
             if new_name in _LANGUAGE_NAME_LOOKUP.keys() or new_name in new_items:
-                logger.debug('Skip ' + new_name + ' because it already exisits')
+                logger.debug("Skip " + new_name + " because it already exisits")
             else:
                 new_items[new_name] = lang_obj
     # Add base names without modifies in brackets or country/region after comma
-    elif '(' in lang_name or ',' in lang_name:
-        simple_name = lang_name.split(',')[0]            # take part before comma
-        simple_name = simple_name.split('(')[0].strip()  # and before any bracket
+    elif "(" in lang_name or "," in lang_name:
+        simple_name = lang_name.split(",")[0]  # take part before comma
+        simple_name = simple_name.split("(")[0].strip()  # and before any bracket
         if simple_name in _LANGUAGE_NAME_LOOKUP.keys() or simple_name in new_items:
-            logger.debug('Skip ' + simple_name + ' because it already exisits')
+            logger.debug("Skip " + simple_name + " because it already exisits")
         else:
             new_items[simple_name] = lang_obj
 _LANGUAGE_NAME_LOOKUP.update(new_items)
+
 
 def getlang_by_name(name):
     """
@@ -151,11 +161,9 @@ def getlang_by_name(name):
     if direct_match:
         return direct_match
     else:
-        simple_name = name.split(',')[0]                 # take part before comma
-        simple_name = simple_name.split('(')[0].strip()  # and before any bracket
+        simple_name = name.split(",")[0]  # take part before comma
+        simple_name = simple_name.split("(")[0].strip()  # and before any bracket
         return _LANGUAGE_NAME_LOOKUP.get(simple_name, None)
-
-
 
 
 _LANGUAGE_NATIVE_NAME_LOOKUP = {l.native_name: l for l in LANGUAGELIST}
@@ -164,18 +172,30 @@ _LANGUAGE_NATIVE_NAME_LOOKUP = {l.native_name: l for l in LANGUAGELIST}
 new_items = {}
 for lang_native_name, lang_obj in _LANGUAGE_NATIVE_NAME_LOOKUP.items():
     # Add base native names without modifies in brackets or after comma
-    if ',' in lang_native_name:
-        new_native_names = [n.strip() for n in lang_native_name.split(',')]
+    if "," in lang_native_name:
+        new_native_names = [n.strip() for n in lang_native_name.split(",")]
         for new_native_name in new_native_names:
-            simple_native_name = new_native_name.split('(')[0].strip()  # text before any bracket
-            if simple_native_name in _LANGUAGE_NATIVE_NAME_LOOKUP.keys() or new_native_name in new_items:
-                logger.debug('Skip ' + simple_native_name + ' because it already exisits')
+            simple_native_name = new_native_name.split("(")[
+                0
+            ].strip()  # text before any bracket
+            if (
+                simple_native_name in _LANGUAGE_NATIVE_NAME_LOOKUP.keys()
+                or new_native_name in new_items
+            ):
+                logger.debug(
+                    "Skip " + simple_native_name + " because it already exisits"
+                )
             else:
                 new_items[simple_native_name] = lang_obj
-    elif '(' in lang_native_name:
-        simple_native_name = lang_native_name.split('(')[0].strip()  # text before any bracket
-        if simple_native_name in _LANGUAGE_NATIVE_NAME_LOOKUP.keys() or simple_native_name in new_items:
-            logger.debug('Skip ' + simple_native_name + ' because it already exisits')
+    elif "(" in lang_native_name:
+        simple_native_name = lang_native_name.split("(")[
+            0
+        ].strip()  # text before any bracket
+        if (
+            simple_native_name in _LANGUAGE_NATIVE_NAME_LOOKUP.keys()
+            or simple_native_name in new_items
+        ):
+            logger.debug("Skip " + simple_native_name + " because it already exisits")
         else:
             new_items[simple_native_name] = lang_obj
 _LANGUAGE_NATIVE_NAME_LOOKUP.update(new_items)
@@ -190,10 +210,11 @@ def getlang_by_native_name(native_name):
     if direct_match:
         return direct_match
     else:
-        simple_native_name = native_name.split(',')[0]                 # take part before comma
-        simple_native_name = simple_native_name.split('(')[0].strip()  # and before any bracket
+        simple_native_name = native_name.split(",")[0]  # take part before comma
+        simple_native_name = simple_native_name.split("(")[
+            0
+        ].strip()  # and before any bracket
         return _LANGUAGE_NATIVE_NAME_LOOKUP.get(simple_native_name, None)
-
 
 
 def getlang_by_alpha2(code):
@@ -210,23 +231,23 @@ def getlang_by_alpha2(code):
         return exact_match
 
     # Handle special cases for language codes returned by YouTube API
-    if code == 'iw':   # handle old Hebrew code 'iw' and return modern code 'he'
-        return getlang('he')
-    elif 'zh-Hans' in code:        # use code `zh-CN` for all simplified Chinese
-        return getlang('zh-CN')
-    elif re.match('zh(.*)?-TW', code):        # matches all Taiwan chinese codes
-        return getlang('zh-TW')
-    elif re.match('zh(.*)?-HK', code):        # use code `zh-Hant` for Hong Kong
-        return getlang('zh-Hant')
+    if code == "iw":  # handle old Hebrew code 'iw' and return modern code 'he'
+        return getlang("he")
+    elif "zh-Hans" in code:  # use code `zh-CN` for all simplified Chinese
+        return getlang("zh-CN")
+    elif re.match("zh(.*)?-TW", code):  # matches all Taiwan chinese codes
+        return getlang("zh-TW")
+    elif re.match("zh(.*)?-HK", code):  # use code `zh-Hant` for Hong Kong
+        return getlang("zh-Hant")
 
     # extract prefix only if specified with subcode: e.g. zh-Hans --> zh
-    first_part = code.split('-')[0]
+    first_part = code.split("-")[0]
 
     # See if pycountry can find this language
     try:
         pyc_lang = pycountry.languages.get(alpha_2=first_part)
         if pyc_lang:
-            if hasattr(pyc_lang, 'inverted_name'):
+            if hasattr(pyc_lang, "inverted_name"):
                 lang_name = pyc_lang.inverted_name
             else:
                 lang_name = pyc_lang.name
@@ -235,6 +256,7 @@ def getlang_by_alpha2(code):
             return None
     except KeyError:
         return None
+
 
 def getlang_direction(code):
     if code in RTL_LANG_CODES:
