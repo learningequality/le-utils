@@ -1,5 +1,4 @@
 from collections import defaultdict, namedtuple
-from gettext import gettext as _
 import json
 import logging
 import pkgutil
@@ -13,8 +12,8 @@ logger.setLevel(logging.INFO)
 LTR_LANGUAGE = 'ltr'
 RTL_LANGUAGE = 'rtl'
 LANGUAGE_DIRECTIONS = (
-    (LTR_LANGUAGE, _('Left to Right')),
-    (RTL_LANGUAGE, _('Right to Left')),
+    (LTR_LANGUAGE, 'Left to Right'),
+    (RTL_LANGUAGE, 'Right to Left'),
 )
 
 RTL_LANG_CODES = [

@@ -1,7 +1,6 @@
 import json
 import pkgutil
 from collections import namedtuple
-from gettext import gettext as _
 
 """ File Format Constants """
 
@@ -74,31 +73,31 @@ EPUB = "epub"
 EPUB_MIMETYPE = "application/epub+zip"
 
 choices = (
-    (MP4, _("MP4 Video")),
-    (WEBM, _("WEBM Video")),
+    (MP4, "MP4 Video"),
+    (WEBM, "WEBM Video"),
 
-    (VTT, _("VTT Subtitle")),
+    (VTT, "VTT Subtitle"),
 
-    (MP3, _("MP3 Audio")),
+    (MP3, "MP3 Audio"),
 
-    (PDF, _("PDF Document")),
+    (PDF, "PDF Document"),
 
-    (JPG, _("JPG Image")),
-    (JPEG, _("JPEG Image")),
-    (PNG, _("PNG Image")),
-    (GIF, _("GIF Image")),
-    (JSON, _("JSON")),
-    (SVG, _("SVG Image")),
+    (JPG, "JPG Image"),
+    (JPEG, "JPEG Image"),
+    (PNG, "PNG Image"),
+    (GIF, "GIF Image"),
+    (JSON, "JSON"),
+    (SVG, "SVG Image"),
 
-    (PERSEUS, _("Perseus Exercise")),
+    (PERSEUS, "Perseus Exercise"),
 
-    (GRAPHIE, _("Graphie Exercise")),
+    (GRAPHIE, "Graphie Exercise"),
 
-    (HTML5, _("HTML5 Zip")),
+    (HTML5, "HTML5 Zip"),
 
-    (H5P, _("H5P")),
+    (H5P, "H5P"),
 
-    (EPUB, _("ePub Document")),
+    (EPUB, "ePub Document"),
 )
 
 class Format(namedtuple("Format", ["id", "mimetype"])):
