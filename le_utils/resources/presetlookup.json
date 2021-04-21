@@ -26,7 +26,7 @@
 	"video_dependency": {
 		"readable_name": "Video Dependency",
 		"multi_language": false,
-		"supplementary": true,
+		"supplementary": false,
 		"thumbnail": false,
 		"subtitle": false,
 		"display": false,
@@ -206,7 +206,7 @@
 	"html5_dependency": {
 		"readable_name": "HTML5 Zip Dependency",
 		"multi_language": false,
-		"supplementary": true,
+		"supplementary": false,
 		"thumbnail": false,
 		"subtitle": false,
 		"display": false,
