@@ -48,7 +48,7 @@ class License(
 
 def generate_list(constantlist):
     for id, lang in constantlist.items():
-        yield License(id=int(id), **lang)
+        yield License(id=int(id), description="", **lang)
 
 
 def _initialize_license_list():
