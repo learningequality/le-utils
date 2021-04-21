@@ -1,7 +1,6 @@
 import json
 import pkgutil
 from collections import namedtuple
-from gettext import gettext as _
 from le_utils.constants import file_formats
 
 """ Content Kind Constants """
@@ -18,14 +17,14 @@ SLIDESHOW = "slideshow"
 H5P = "h5p"
 
 choices = (
-    (TOPIC, _("Topic")),
-    (VIDEO, _("Video")),
-    (AUDIO, _("Audio")),
-    (EXERCISE, _("Exercise")),
-    (DOCUMENT, _("Document")),
-    (HTML5, _("HTML5 App")),
-    (SLIDESHOW, _("Slideshow")),
-    (H5P, _("H5P")),
+    (TOPIC, "Topic"),
+    (VIDEO, "Video"),
+    (AUDIO, "Audio"),
+    (EXERCISE, "Exercise"),
+    (DOCUMENT, "Document"),
+    (HTML5, "HTML5 App"),
+    (SLIDESHOW, "Slideshow"),
+    (H5P, "H5P"),
 )
 
 """ File Format (extension) to Content Kind Mapping """
