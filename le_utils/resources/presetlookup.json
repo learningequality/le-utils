@@ -263,6 +263,30 @@
 		"allowed_formats": ["png", "jpg", "jpeg"],
 		"convertible_formats": []
 	},
+	"qti": {
+		"readable_name": "QTI",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": false,
+		"order": 1,
+		"kind": "exercise",
+		"allowed_formats": ["zip"],
+		"convertible_formats": []
+	},
+	"qti_thumbnail": {
+		"readable_name": "QTI Thumbnail",
+		"multi_language": false,
+		"supplementary": true,
+		"thumbnail": true,
+		"subtitle": false,
+		"display": true,
+		"order": 2,
+		"kind": "exercise",
+		"allowed_formats": ["png", "jpg", "jpeg"],
+		"convertible_formats": []
+	},
 	"slideshow_image": {
 		"readable_name": "Slideshow Slide Image",
 		"multi_language": false,
