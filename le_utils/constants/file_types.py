@@ -8,6 +8,7 @@ DOCUMENT = "document"
 EPUB = "epub"
 HTML5 = "html5"
 H5P = "h5p"
+ZIM = "zim"
 THUMBNAIL = "thumbnail"
 SUBTITLES = "subtitles"
 SLIDESHOW_IMAGE = "slideshow_image"
@@ -32,6 +33,9 @@ MAPPING = {
     file_formats.HTML5: HTML5,
     # formats H5PFile
     file_formats.H5P: H5P,
+    #
+    # formats ZimFile
+    file_formats.ZIM: ZIM,
     #
     # formats VideoFile
     file_formats.MP4: VIDEO,

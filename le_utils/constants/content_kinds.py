@@ -16,6 +16,7 @@ DOCUMENT = "document"
 HTML5 = "html5"
 SLIDESHOW = "slideshow"
 H5P = "h5p"
+ZIM = "zim"
 
 choices = (
     (TOPIC, "Topic"),
@@ -26,6 +27,7 @@ choices = (
     (HTML5, "HTML5 App"),
     (SLIDESHOW, "Slideshow"),
     (H5P, "H5P"),
+    (ZIM, "Zim"),
 )
 
 """ File Format (extension) to Content Kind Mapping """
@@ -38,6 +40,7 @@ MAPPING = {
     file_formats.PERSEUS: EXERCISE,
     file_formats.HTML5: HTML5,
     file_formats.H5P: H5P,
+    file_formats.ZIM: ZIM,
 }
 
 
