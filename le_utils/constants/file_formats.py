@@ -68,6 +68,10 @@ HTML5_MIMETYPE = ".zip"
 H5P = "h5p"
 H5P_MIMETYPE = ".h5p"
 
+# constants for Zim format
+ZIM = "zim"
+ZIM_MIMETYPE = ".zim"
+
 # constants for ePub format
 EPUB = "epub"
 EPUB_MIMETYPE = "application/epub+zip"
@@ -88,6 +92,7 @@ choices = (
     (GRAPHIE, "Graphie Exercise"),
     (HTML5, "HTML5 Zip"),
     (H5P, "H5P"),
+    (ZIM, "ZIM"),
     (EPUB, "ePub Document"),
 )
 

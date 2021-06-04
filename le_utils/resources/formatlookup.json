@@ -44,6 +44,9 @@
 	"h5p": {
 		"mimetype": ".h5p"
 	},
+	"zim": {
+		"mimetype": ".zim"
+	},
 	"zip": {
 		"mimetype": ".zip"
 	}
