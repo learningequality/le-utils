@@ -92,7 +92,7 @@ choices = (
     (GRAPHIE, "Graphie Exercise"),
     (HTML5, "HTML5 Zip"),
     (H5P, "H5P"),
-    (ZIM, "ZIM Document"),
+    (ZIM, "ZIM"),
     (EPUB, "ePub Document"),
 )
 
