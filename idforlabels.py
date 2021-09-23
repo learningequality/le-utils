@@ -4,7 +4,6 @@ Builds or rebuilds the labelslooup.json assigning ids to the labels that do not 
 """
 import json
 import os
-
 from uuid import uuid4
 
 try:
