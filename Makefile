@@ -1,4 +1,4 @@
-.PHONY: clean clean-test clean-pyc clean-build test release
+.PHONY: clean clean-test clean-pyc clean-build test release build-labels
 
 clean: clean-build clean-pyc clean-test
 
@@ -23,6 +23,9 @@ clean-test: ## remove test and coverage artifacts
 test:
 	pytest -s
 
-release: clean
+build-labels:
+	python idforlabels.py
+
+release: clean build-labels
 	python setup.py sdist
 	twine upload dist/*.tar.gz
