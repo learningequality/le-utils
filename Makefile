@@ -24,7 +24,7 @@ test:
 	pytest -s
 
 build-labels:
-	python idforlabels.py
+	python scripts/idforlabels.py
 
 release: clean build-labels
 	python setup.py sdist

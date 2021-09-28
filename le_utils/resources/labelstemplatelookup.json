@@ -10,7 +10,7 @@
     "BASIC_SKILLS",
     "WORK_SKILLS"
   ],
-  "ContentNodeResourceType": [
+  "ResourceType": [
     "LESSON",
     "TUTORIAL",
     "ACTIVITY",
@@ -29,11 +29,9 @@
     "PRACTICE",
     "READ",
     "WATCH",
-    "EXPLORE",
-    "TOPIC"
+    "EXPLORE"
   ],
   "AccessibilityCategories": [
-    "ALL",
     "SIGN_LANGUAGE",
     "AUDIO_DESCRIPTION",
     "TAGGED_PDF",
@@ -57,7 +55,7 @@
         "EARTH_SCIENCE",
         "ASTRONOMY"
       ],
-      "LITERATURE": [
+      "READING_AND_WRITING": [
         "LITERATURE",
         "READING_COMPREHENSION",
         "WRITING",

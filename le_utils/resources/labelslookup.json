@@ -1,179 +1,111 @@
 {
   "AccessibilityCategories": {
-    "ALL": "0e205076533a485e98c8a0890447b696",
-    "ALT_TEXT": "6edfe5adebc94c43ae05a670622f6391",
-    "AUDIO_DESCRIPTION": "2ed6fc791b404950abb11a556ea2b7fc",
-    "CAPTIONS_SUBTITLES": "3145e0db927c4f2b91a4ed5fddb3fa3d",
-    "HIGH_CONTRAST": "f6f2d4f922094cad8ceaa55cf4975b3c",
-    "SIGN_LANGUAGE": "7c754e64ff9d4994bf4dbba6aa40af28",
-    "TAGGED_PDF": "9c1e5444318446a5b7596694200e8983"
+    "ALT_TEXT": "cuhrmh",
+    "AUDIO_DESCRIPTION": "cwDcsY",
+    "CAPTIONS_SUBTITLES": "da2iCe",
+    "HIGH_CONTRAST": "br&HYl",
+    "SIGN_LANGUAGE": "b1hGk&",
+    "TAGGED_PDF": "crDF4W"
   },
   "ContentLevels": {
-    "BASIC_SKILLS": "03a8055f751a46239434f34e01a64203",
-    "LOWER_PRIMARY": "8cd5d69b5f2b411dae2f430c359b570b",
-    "LOWER_SECONDARY": "e635f0de294b408bafc42cfda3fafef5",
-    "PRESCHOOL": "319e5689f7f54c9eb6ec17941d3b3fa4",
-    "PROFESSIONAL": "b99ff4ead74f4469b8af02fb312b4cad",
-    "TERTIARY": "1264c0843fd44e8593f0b58f1aca902d",
-    "UPPER_PRIMARY": "54d7e726bf3448e1850a65357a076728",
-    "UPPER_SECONDARY": "45bc24f1ee474781a5d8415ca228da29",
-    "WORK_SKILLS": "da8b1c64676241609f76d2a5e6bd7c0e"
-  },
-  "ContentNodeResourceType": {
-    "ACTIVITY": "63b7413f79ab45e0a48064804defb8c5",
-    "BOOK": "7522e4a7e7b74579ba86d85e71414d09",
-    "EXERCISE": "8614b3c4db2c46bfa32f6d057294fd71",
-    "GAME": "71fe15d91e0b4bf58d0a29e86ae891a5",
-    "GUIDE": "8422054f183a465797ad52bc8b8b053a",
-    "LESSON": "704bb2420a4a4860a96ef6fc4aea51f4",
-    "LESSON_PLAN": "4daad0fce2024f5f8f1a9b9879de32a5",
-    "MEDIA": "8cc1f54835194760ab622e58247f52c0",
-    "TEXTBOOK": "bdafc033e97a4f5784f4363f05971c8b",
-    "TUTORIAL": "46abe613a63143d48a1404827da56c64"
+    "BASIC_SKILLS": "tZV2y",
+    "LOWER_PRIMARY": "b9nfAn",
+    "LOWER_SECONDARY": "cTB&Zu",
+    "PRESCHOOL": "d53IF9",
+    "PROFESSIONAL": "4rj&2",
+    "TERTIARY": "bKBl54",
+    "UPPER_PRIMARY": "brWPPJ",
+    "UPPER_SECONDARY": "cxOxlD",
+    "WORK_SKILLS": "drnG58"
   },
   "LearningActivities": {
-    "CREATE": "17d062f35c4348c987719a6524f89932",
-    "EXPLORE": "c9365aaac4474c8ca2a3da8a13752d4d",
-    "LISTEN": "20447e73ce6e4003af2e7fc22acf3288",
-    "PRACTICE": "66c03d5c3b0947c393c49b2e9496d6cf",
-    "READ": "4693173af6b24873add7fcb9804db217",
-    "REFLECT": "a5501d91983643eea017c7d678e9ba50",
-    "TOPIC": "465ab9f045ea4269a7e0963da80a7ff9",
-    "WATCH": "f8c842150dc8427489a65eb76c3f2031"
+    "CREATE": "c7fP3a",
+    "EXPLORE": "d4NYxq",
+    "LISTEN": "WPRwV",
+    "PRACTICE": "c9ATW4",
+    "READ": "bzRtvr",
+    "REFLECT": "dCoWsm",
+    "WATCH": "c53M6c"
   },
   "Needs": {
-    "MATERIALS": [
-      "c206162250de40e2b5702e3cc04ae53e",
-      {
-        "INTERNET": "c206162250de40e2b5702e3cc04ae53e.8d765fe61abe46b680aa4df1b2b5167f",
-        "OTHER_SUPPLIES": "c206162250de40e2b5702e3cc04ae53e.955c8a0962fb45b5899a6797f7acc926",
-        "PAPER_PENCIL": "c206162250de40e2b5702e3cc04ae53e.0da2a9c4214b4ee08382bfd553cf0900",
-        "SPECIAL_SOFTWARE": "c206162250de40e2b5702e3cc04ae53e.0f32c0054e51477da0c11805eb0e0764"
-      }
-    ],
-    "PEOPLE": [
-      "66fa3d11a59f442d9a257bc1869b7da6",
-      {
-        "PEERS": "66fa3d11a59f442d9a257bc1869b7da6.232bd66f300f4eb0b21b3982de37180e",
-        "TEACHER": "66fa3d11a59f442d9a257bc1869b7da6.6791d250858c463088c14ab1ce99c23f"
-      }
-    ]
+    "INTERNET": "cfjB0R.cdGFA5",
+    "MATERIALS": "cfjB0R",
+    "OTHER_SUPPLIES": "cfjB0R.d4Uvx6",
+    "PAPER_PENCIL": "cfjB0R.cH#ig5",
+    "PEERS": "Ti5WR.cAsjNo",
+    "PEOPLE": "Ti5WR",
+    "SPECIAL_SOFTWARE": "cfjB0R.mhgPB",
+    "TEACHER": "Ti5WR.ch#A9l"
+  },
+  "ResourceType": {
+    "ACTIVITY": "cpJLQx",
+    "BOOK": "dr5pZC",
+    "EXERCISE": "db5560",
+    "GAME": "d0o6Fw",
+    "GUIDE": "dBtI2b",
+    "LESSON": "bCz8L8",
+    "LESSON_PLAN": "cHbILa",
+    "MEDIA": "bgStlE",
+    "TEXTBOOK": "cwRiL",
+    "TUTORIAL": "dboes"
   },
   "Subjects": {
-    "BASIC_SKILLS": [
-      "6d3b7861e638487ba4303cd543dd0581",
-      {
-        "DIGITAL_LITERACY": "6d3b7861e638487ba4303cd543dd0581.43be17ba7e26432aa10a9b2e0cfc530b",
-        "LEARNING_SKILLS": "6d3b7861e638487ba4303cd543dd0581.24b06fe5e683459b88b030969cf51296",
-        "LITERACY": "6d3b7861e638487ba4303cd543dd0581.25e5b0689d0844f9ae801e9c80c283d6",
-        "LOGIC_AND_CRITICAL_THINKING": "6d3b7861e638487ba4303cd543dd0581.4063242f6f67422abc27b2597ae4c77f",
-        "NUMERACY": "6d3b7861e638487ba4303cd543dd0581.e1612982253a4e028a8d835ee9b64b1c"
-      }
-    ],
-    "DAILY_LIFE": [
-      "f1e25b65c9d748c3b6fe2eecad85ab3e",
-      {
-        "CURRENT_EVENTS": "f1e25b65c9d748c3b6fe2eecad85ab3e.be655385ac4b4173be7758f093e1ff73",
-        "DIVERSITY": "f1e25b65c9d748c3b6fe2eecad85ab3e.3e72426fddb6491a81f3b2659a33af04",
-        "ENTREPRENEURSHIP": "f1e25b65c9d748c3b6fe2eecad85ab3e.c0f900b710f547fcb3c9714632ee386a",
-        "ENVIRONMENT": "f1e25b65c9d748c3b6fe2eecad85ab3e.97ef4763e3db4e21bcd762adb7724c2d",
-        "FINANCIAL_LITERACY": "f1e25b65c9d748c3b6fe2eecad85ab3e.a523fd358b334adbb383c694c14ca8c3",
-        "MEDIA_LITERACY": "f1e25b65c9d748c3b6fe2eecad85ab3e.7036a283eb3649889f7ee5393720c69e",
-        "MENTAL_HEALTH": "f1e25b65c9d748c3b6fe2eecad85ab3e.784ec282fd314590b12316d24fbce728",
-        "PUBLIC_HEALTH": "f1e25b65c9d748c3b6fe2eecad85ab3e.3dbcf19c7607498db7dd66713bee3af9"
-      }
-    ],
-    "FOR_TEACHERS": [
-      "589f063c20d14faf8a928d82bfab3eed",
-      {
-        "GUIDES": "589f063c20d14faf8a928d82bfab3eed.e239a6fd85274530ae55b15b295e005c",
-        "LESSON_PLANS": "589f063c20d14faf8a928d82bfab3eed.bc7931965ea64643afd1d46c4c6da5c7"
-      }
-    ],
-    "SCHOOL": [
-      "3ced84a428ab4048958cc7713af5d3fa",
-      {
-        "ARTS": [
-          "3ced84a428ab4048958cc7713af5d3fa.72814a6bb2cd4a7da13c748390a637a7",
-          {
-            "DANCE": "3ced84a428ab4048958cc7713af5d3fa.72814a6bb2cd4a7da13c748390a637a7.95ae416c1f194c01b04f0a03f3449045",
-            "DRAMA": "3ced84a428ab4048958cc7713af5d3fa.72814a6bb2cd4a7da13c748390a637a7.fdea8ee7a8da4282948b4242ed6a7841",
-            "MUSIC": "3ced84a428ab4048958cc7713af5d3fa.72814a6bb2cd4a7da13c748390a637a7.d0938586ee1049f287fdc2ccfd0a2a00",
-            "VISUAL_ART": "3ced84a428ab4048958cc7713af5d3fa.72814a6bb2cd4a7da13c748390a637a7.9e562febd47942dab880e0f8037e5d94"
-          }
-        ],
-        "COMPUTER_SCIENCE": [
-          "3ced84a428ab4048958cc7713af5d3fa.8627bbcf6c9e440387acf662c5d73034",
-          {
-            "MECHANICAL_ENGINEERING": "3ced84a428ab4048958cc7713af5d3fa.8627bbcf6c9e440387acf662c5d73034.28a888a257dc489393d7c4a6e4bde4fc",
-            "PROGRAMMING": "3ced84a428ab4048958cc7713af5d3fa.8627bbcf6c9e440387acf662c5d73034.fd077423606b41cca5317e234b9bfbef",
-            "WEB_DESIGN": "3ced84a428ab4048958cc7713af5d3fa.8627bbcf6c9e440387acf662c5d73034.ae9d6939851e438d8470f684854f00c1"
-          }
-        ],
-        "HISTORY": [
-          "3ced84a428ab4048958cc7713af5d3fa.e37f0959c6854be3a53f731eddc1e971",
-          {}
-        ],
-        "LANGUAGE_LEARNING": [
-          "3ced84a428ab4048958cc7713af5d3fa.86a02dd1ca354db39e7c6c942f3eef22",
-          {}
-        ],
-        "LITERATURE": [
-          "3ced84a428ab4048958cc7713af5d3fa.424e560f3b35495c9c0dabf41e267a8f",
-          {
-            "LITERATURE": "3ced84a428ab4048958cc7713af5d3fa.424e560f3b35495c9c0dabf41e267a8f.2e469d2681334b278828c1131e099a2c",
-            "LOGIC_AND_CRITICAL_THINKING": "3ced84a428ab4048958cc7713af5d3fa.424e560f3b35495c9c0dabf41e267a8f.494d4ed12afb4b79b3fefc952df98df7",
-            "READING_COMPREHENSION": "3ced84a428ab4048958cc7713af5d3fa.424e560f3b35495c9c0dabf41e267a8f.373c0f9b3b12443f8a85507d57c4f21c",
-            "WRITING": "3ced84a428ab4048958cc7713af5d3fa.424e560f3b35495c9c0dabf41e267a8f.cbecb74e31f04ebd84c5a133cac1f18f"
-          }
-        ],
-        "MATHEMATICS": [
-          "3ced84a428ab4048958cc7713af5d3fa.762c6236392f45bfbbfa0752e1f9ff6c",
-          {
-            "ALGEBRA": "3ced84a428ab4048958cc7713af5d3fa.762c6236392f45bfbbfa0752e1f9ff6c.762323bbb9f64fb0b7da658d4fa8475c",
-            "ARITHMETIC": "3ced84a428ab4048958cc7713af5d3fa.762c6236392f45bfbbfa0752e1f9ff6c.e0cb18f633764f96b65ffb779133bc50",
-            "CALCULUS": "3ced84a428ab4048958cc7713af5d3fa.762c6236392f45bfbbfa0752e1f9ff6c.23b6eb16013749a184083167dfadeb1f",
-            "GEOMETRY": "3ced84a428ab4048958cc7713af5d3fa.762c6236392f45bfbbfa0752e1f9ff6c.898ba3a152b447a7ad31afad57868a30",
-            "STATISTICS": "3ced84a428ab4048958cc7713af5d3fa.762c6236392f45bfbbfa0752e1f9ff6c.a2a262da642e4782a501fb74b883f1fb"
-          }
-        ],
-        "SCIENCES": [
-          "3ced84a428ab4048958cc7713af5d3fa.017a100b35324bb9a7d7212a8321331c",
-          {
-            "ASTRONOMY": "3ced84a428ab4048958cc7713af5d3fa.017a100b35324bb9a7d7212a8321331c.67ef21db1c7b487282847573b6d22374",
-            "BIOLOGY": "3ced84a428ab4048958cc7713af5d3fa.017a100b35324bb9a7d7212a8321331c.99619e134bf543338b8deafa9e579f0f",
-            "CHEMISTRY": "3ced84a428ab4048958cc7713af5d3fa.017a100b35324bb9a7d7212a8321331c.950ebf20f59044c0bfcb3d4f73516554",
-            "EARTH_SCIENCE": "3ced84a428ab4048958cc7713af5d3fa.017a100b35324bb9a7d7212a8321331c.11d97cd7532b4890ad7706510bad0b79",
-            "PHYSICS": "3ced84a428ab4048958cc7713af5d3fa.017a100b35324bb9a7d7212a8321331c.2533d6a3ae6448b7a0bc1579fd7e5a1d"
-          }
-        ],
-        "SOCIAL_SCIENCES": [
-          "3ced84a428ab4048958cc7713af5d3fa.0551b4cc59414809b6df451d114aab8d",
-          {
-            "ANTHROPOLOGY": "3ced84a428ab4048958cc7713af5d3fa.0551b4cc59414809b6df451d114aab8d.7681e83023e34782ba84d480447d1326",
-            "CIVIC_EDUCATION": "3ced84a428ab4048958cc7713af5d3fa.0551b4cc59414809b6df451d114aab8d.9978b69b668144759bc28e4f1acab17b",
-            "POLITICAL_SCIENCE": "3ced84a428ab4048958cc7713af5d3fa.0551b4cc59414809b6df451d114aab8d.24d8ff3e3c3a4068a3a33c8aded57350",
-            "SOCIOLOGY": "3ced84a428ab4048958cc7713af5d3fa.0551b4cc59414809b6df451d114aab8d.82e0c3b935384e839f5a6571019dfd8a"
-          }
-        ]
-      }
-    ],
-    "WORK": [
-      "95fbee6f510f43fa9a433c7d3c1a8e82",
-      {
-        "PROFESSIONAL_SKILLS": [
-          "95fbee6f510f43fa9a433c7d3c1a8e82.b79c609ab411484a9e692609f2da31c0",
-          {}
-        ],
-        "TECHNICAL_AND_VOCATIONAL_TRAINING": [
-          "95fbee6f510f43fa9a433c7d3c1a8e82.882cab866f49481a9888b54fdf9e92c9",
-          {
-            "INDUSTRY_AND_SECTOR_SPECIFIC": "95fbee6f510f43fa9a433c7d3c1a8e82.882cab866f49481a9888b54fdf9e92c9.f54a961eaaae474c977d01d483e5d469",
-            "SKILLS_TRAINING": "95fbee6f510f43fa9a433c7d3c1a8e82.882cab866f49481a9888b54fdf9e92c9.64e0129f43fc4495bec2d4ab4f50ad6f",
-            "TOOLS_AND_SOFTWARE_TRAINING": "95fbee6f510f43fa9a433c7d3c1a8e82.882cab866f49481a9888b54fdf9e92c9.3b8e7a6ea7c746ee94307a2cff14aa0a"
-          }
-        ]
-      }
-    ]
+    "ALGEBRA": "p&dep.bblteS.drpKXi",
+    "ANTHROPOLOGY": "p&dep.ctZs6B.c8HSSg",
+    "ARITHMETIC": "p&dep.bblteS.2d3O2",
+    "ARTS": "p&dep.dMPOKy",
+    "ASTRONOMY": "p&dep.Jwimc.WMX&I",
+    "BASIC_SKILLS": "3hB92",
+    "BIOLOGY": "p&dep.Jwimc.br5gFI",
+    "CALCULUS": "p&dep.bblteS.dXgpNS",
+    "CHEMISTRY": "p&dep.Jwimc.d5hK4i",
+    "CIVIC_EDUCATION": "p&dep.ctZs6B.b&ZRDw",
+    "COMPUTER_SCIENCE": "p&dep.t6U3d",
+    "CURRENT_EVENTS": "cKga4t.cpTY7w",
+    "DAILY_LIFE": "cKga4t",
+    "DANCE": "p&dep.dMPOKy.bU6Aon",
+    "DIGITAL_LITERACY": "3hB92.bBpD5O",
+    "DIVERSITY": "cKga4t.b6eieL",
+    "DRAMA": "p&dep.dMPOKy.dflbK2",
+    "EARTH_SCIENCE": "p&dep.Jwimc.bKf1LD",
+    "ENTREPRENEURSHIP": "cKga4t.PHE2D",
+    "ENVIRONMENT": "cKga4t.boZVcq",
+    "FINANCIAL_LITERACY": "cKga4t.cgcil1",
+    "FOR_TEACHERS": "bKIpQL",
+    "GEOMETRY": "p&dep.bblteS.ShT6u",
+    "GUIDES": "bKIpQL.cUuuC&",
+    "HISTORY": "p&dep.bNbmkp",
+    "INDUSTRY_AND_SECTOR_SPECIFIC": "VT1kL.ckX7et.#TwHM",
+    "LANGUAGE_LEARNING": "p&dep.cn24wo",
+    "LEARNING_SKILLS": "3hB92.wNyNV",
+    "LESSON_PLANS": "bKIpQL.UHULh",
+    "LITERACY": "3hB92.cgu720",
+    "LITERATURE": "p&dep.Qgsp#.b2ovSe",
+    "LOGIC_AND_CRITICAL_THINKING": "3hB92.dkzVgX",
+    "MATHEMATICS": "p&dep.bblteS",
+    "MECHANICAL_ENGINEERING": "p&dep.t6U3d.dZm4cL",
+    "MEDIA_LITERACY": "cKga4t.c6I2x6",
+    "MENTAL_HEALTH": "cKga4t.pZ8zW",
+    "MUSIC": "p&dep.dMPOKy.btqcqM",
+    "NUMERACY": "3hB92.c1jGqN",
+    "PHYSICS": "p&dep.Jwimc.bh5yfp",
+    "POLITICAL_SCIENCE": "p&dep.ctZs6B.ctVB8#",
+    "PROFESSIONAL_SKILLS": "VT1kL.d6FA9G",
+    "PROGRAMMING": "p&dep.t6U3d.bWu0U1",
+    "PUBLIC_HEALTH": "cKga4t.OHvRm",
+    "READING_AND_WRITING": "p&dep.Qgsp#",
+    "READING_COMPREHENSION": "p&dep.Qgsp#.bhUTDV",
+    "SCHOOL": "p&dep",
+    "SCIENCES": "p&dep.Jwimc",
+    "SKILLS_TRAINING": "VT1kL.ckX7et.d&xa&j",
+    "SOCIAL_SCIENCES": "p&dep.ctZs6B",
+    "SOCIOLOGY": "p&dep.ctZs6B.dVNbTt",
+    "STATISTICS": "p&dep.bblteS.MCZxM",
+    "TECHNICAL_AND_VOCATIONAL_TRAINING": "VT1kL.ckX7et",
+    "TOOLS_AND_SOFTWARE_TRAINING": "VT1kL.ckX7et.dwmwig",
+    "VISUAL_ART": "p&dep.dMPOKy.dIviQH",
+    "WEB_DESIGN": "p&dep.t6U3d.cNTlX9",
+    "WORK": "VT1kL",
+    "WRITING": "p&dep.Qgsp#.cr#oHX"
   }
 }
