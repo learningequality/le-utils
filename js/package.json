@@ -8,8 +8,8 @@
     "src": "js"
   },
   "files": [
-    "js/*.js",
-    "js/**/*.js"
+    "*.js",
+    "**/*.js"
   ],
   "homepage": "https://github.com/learningequality/le-utils#readme",
   "keywords": [
@@ -18,7 +18,7 @@
     "content"
   ],
   "license": "MIT",
-  "main": "js/index.js",
+  "main": "index.js",
   "name": "kolibri-constants",
   "repository": {
     "type": "git",
@@ -27,5 +27,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.1.32"
+  "version": "0.1.32-beta2"
 }

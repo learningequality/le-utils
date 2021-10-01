@@ -29,3 +29,7 @@ build-labels:
 release: clean build-labels
 	python setup.py sdist
 	twine upload dist/*.tar.gz
+
+release-npm: clean build-labels
+	cd js
+	npm publish

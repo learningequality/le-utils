@@ -27,7 +27,9 @@ root_namespace = UUID(hex=root_label.hexdigest())
 
 pascal_case_pattern = re.compile(r"(?<!^)(?=[A-Z])")
 
-js_labels_output_dir = os.path.join(os.path.dirname(__file__), "..", "js", "labels")
+js_output_dir = os.path.join(os.path.dirname(__file__), "..", "js")
+
+js_labels_output_dir = os.path.join(js_output_dir, "labels")
 
 
 def pascal_to_snake(name):
@@ -150,7 +152,7 @@ def write_labels_src(labels_spec):
 
 
 def create_js_index(labels_spec):
-    js_index_file = os.path.join(os.path.dirname(__file__), "..", "js", "index.js")
+    js_index_file = os.path.join(js_output_dir, "index.js")
 
     with open(js_index_file, "w") as f:
         f.write("// -*- coding: utf-8 -*-\n")
@@ -168,7 +170,7 @@ def create_js_index(labels_spec):
 def set_package_json_version():
     python_version = get_distribution("le-utils").version
 
-    package_json = os.path.join(os.path.dirname(__file__), "..", "package.json")
+    package_json = os.path.join(js_output_dir, "package.json")
 
     with open(package_json, "r") as f:
         package = json.load(f)

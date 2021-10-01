@@ -121,6 +121,9 @@
       "INTERNET",
       "SPECIAL_SOFTWARE",
       "OTHER_SUPPLIES"
+    ],
+    "PRIOR_KNOWLEDGE": [
+      "FOR_BEGINNERS"
     ]
   }
 }
