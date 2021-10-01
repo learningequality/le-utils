@@ -1,7 +1,7 @@
 Release History
 ===============
 
-0.1.23 Sep 23, 2021
+0.1.32 Oct 4, 2021
 -------------------
   - Added new labelslookup.json constants
   - Added labelstemplatelookup.json and idforlabels.py
