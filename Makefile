@@ -24,6 +24,7 @@ test:
 	pytest -s
 
 build-labels:
+	pip install -e .
 	python scripts/generate_labels.py
 
 release: clean build-labels
@@ -31,5 +32,4 @@ release: clean build-labels
 	twine upload dist/*.tar.gz
 
 release-npm: clean build-labels
-	cd js
-	npm publish
+	cd js && npm publish
