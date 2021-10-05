@@ -17,6 +17,7 @@ HTML5 = "html5"
 SLIDESHOW = "slideshow"
 H5P = "h5p"
 ZIM = "zim"
+QUIZ = "quiz"
 
 choices = (
     (TOPIC, "Topic"),
@@ -28,6 +29,7 @@ choices = (
     (SLIDESHOW, "Slideshow"),
     (H5P, "H5P"),
     (ZIM, "Zim"),
+    (QUIZ, "Quiz"),
 )
 
 """ File Format (extension) to Content Kind Mapping """
