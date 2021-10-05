@@ -1,6 +1,12 @@
 Release History
 ===============
 
+0.1.32 Oct 4, 2021
+-------------------
+  - Added new labelslookup.json constants
+  - Added labelstemplatelookup.json and idforlabels.py
+  - Added build-label target for Makefile release
+
 
 0.1.22 Oct 3, 2019
 -------------------

@@ -1,0 +1,129 @@
+{
+  "Levels": [
+    "PRESCHOOL",
+    "LOWER_PRIMARY",
+    "UPPER_PRIMARY",
+    "LOWER_SECONDARY",
+    "UPPER_SECONDARY",
+    "TERTIARY",
+    "PROFESSIONAL",
+    "BASIC_SKILLS",
+    "WORK_SKILLS"
+  ],
+  "ResourceType": [
+    "LESSON",
+    "TUTORIAL",
+    "ACTIVITY",
+    "EXERCISE",
+    "MEDIA",
+    "BOOK",
+    "GAME",
+    "GUIDE",
+    "TEXTBOOK",
+    "LESSON_PLAN"
+  ],
+  "LearningActivities": [
+    "CREATE",
+    "LISTEN",
+    "REFLECT",
+    "PRACTICE",
+    "READ",
+    "WATCH",
+    "EXPLORE"
+  ],
+  "AccessibilityCategories": [
+    "SIGN_LANGUAGE",
+    "AUDIO_DESCRIPTION",
+    "TAGGED_PDF",
+    "ALT_TEXT",
+    "HIGH_CONTRAST",
+    "CAPTIONS_SUBTITLES"
+  ],
+  "Subjects": {
+    "SCHOOL": {
+      "MATHEMATICS": [
+        "ARITHMETIC",
+        "ALGEBRA",
+        "GEOMETRY",
+        "CALCULUS",
+        "STATISTICS"
+      ],
+      "SCIENCES": [
+        "BIOLOGY",
+        "CHEMISTRY",
+        "PHYSICS",
+        "EARTH_SCIENCE",
+        "ASTRONOMY"
+      ],
+      "READING_AND_WRITING": [
+        "LITERATURE",
+        "READING_COMPREHENSION",
+        "WRITING",
+        "LOGIC_AND_CRITICAL_THINKING"
+      ],
+      "SOCIAL_SCIENCES": [
+        "POLITICAL_SCIENCE",
+        "SOCIOLOGY",
+        "ANTHROPOLOGY",
+        "CIVIC_EDUCATION"
+      ],
+      "ARTS": [
+        "VISUAL_ART",
+        "MUSIC",
+        "DANCE",
+        "DRAMA"
+      ],
+      "COMPUTER_SCIENCE": [
+        "PROGRAMMING",
+        "MECHANICAL_ENGINEERING",
+        "WEB_DESIGN"
+      ],
+      "LANGUAGE_LEARNING": [],
+      "HISTORY": []
+    },
+    "BASIC_SKILLS": [
+      "LITERACY",
+      "NUMERACY",
+      "DIGITAL_LITERACY",
+      "LOGIC_AND_CRITICAL_THINKING",
+      "LEARNING_SKILLS"
+    ],
+    "WORK": {
+      "PROFESSIONAL_SKILLS": [],
+      "TECHNICAL_AND_VOCATIONAL_TRAINING": [
+        "TOOLS_AND_SOFTWARE_TRAINING",
+        "SKILLS_TRAINING",
+        "INDUSTRY_AND_SECTOR_SPECIFIC"
+      ]
+    },
+    "DAILY_LIFE": [
+      "PUBLIC_HEALTH",
+      "ENTREPRENEURSHIP",
+      "FINANCIAL_LITERACY",
+      "CURRENT_EVENTS",
+      "ENVIRONMENT",
+      "MEDIA_LITERACY",
+      "DIVERSITY",
+      "MENTAL_HEALTH"
+    ],
+    "FOR_TEACHERS": [
+      "GUIDES",
+      "LESSON_PLANS"
+    ]
+  },
+  "Needs": {
+    "PEOPLE": [
+      "TEACHER",
+      "PEERS"
+    ],
+    "MATERIALS": [
+      "PAPER_PENCIL",
+      "INTERNET",
+      "SPECIAL_SOFTWARE",
+      "OTHER_SUPPLIES"
+    ],
+    "PRIOR_KNOWLEDGE": [
+      "FOR_BEGINNERS"
+    ]
+  }
+}
