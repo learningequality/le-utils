@@ -4,16 +4,16 @@ from __future__ import unicode_literals
 
 # Needs
 
-PRIOR_KNOWLEDGE = "biiiAR"
-MATERIALS = "cfjB0R"
-FOR_BEGINNERS = "biiiAR.bjQPib"
-PAPER_PENCIL = "cfjB0R.cH#ig5"
-OTHER_SUPPLIES = "cfjB0R.d4Uvx6"
-INTERNET = "cfjB0R.cdGFA5"
-SPECIAL_SOFTWARE = "cfjB0R.mhgPB"
-PEOPLE = "Ti5WR"
-PEERS = "Ti5WR.cAsjNo"
-TEACHER = "Ti5WR.ch#A9l"
+PRIOR_KNOWLEDGE = "sccgQZDd"
+MATERIALS = "Hsw9k7Bz"
+FOR_BEGINNERS = "sccgQZDd.sAQsauuo"
+PAPER_PENCIL = "Hsw9k7Bz.OFIbUAK9"
+OTHER_SUPPLIES = "Hsw9k7Bz.#lLv#LB7"
+INTERNET = "Hsw9k7Bz.G4h2UBuK"
+SPECIAL_SOFTWARE = "Hsw9k7Bz.dbXQw755"
+PEOPLE = "lsoCk5Uy"
+PEERS = "lsoCk5Uy.MKIzZKDO"
+TEACHER = "lsoCk5Uy.H&MVs7S#"
 
 choices = (
     (PRIOR_KNOWLEDGE, "Prior Knowledge"),

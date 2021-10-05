@@ -4,13 +4,13 @@ from __future__ import unicode_literals
 
 # LearningActivities
 
-READ = "bzRtvr"
-CREATE = "c7fP3a"
-PRACTICE = "c9ATW4"
-WATCH = "c53M6c"
-REFLECT = "dCoWsm"
-EXPLORE = "d4NYxq"
-LISTEN = "WPRwV"
+READ = "wA01urpi"
+CREATE = "UXADWcXZ"
+PRACTICE = "VwRCom7G"
+WATCH = "UD5UGM0z"
+REFLECT = "3dSeJhqs"
+EXPLORE = "#j8L0eq3"
+LISTEN = "mkA1R3NU"
 
 choices = (
     (READ, "Read"),

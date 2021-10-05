@@ -4,12 +4,12 @@ from __future__ import unicode_literals
 
 # AccessibilityCategories
 
-AUDIO_DESCRIPTION = "cwDcsY"
-ALT_TEXT = "cuhrmh"
-CAPTIONS_SUBTITLES = "da2iCe"
-HIGH_CONTRAST = "br&HYl"
-TAGGED_PDF = "crDF4W"
-SIGN_LANGUAGE = "b1hGk&"
+AUDIO_DESCRIPTION = "LNqKSN9j"
+ALT_TEXT = "Lb0tb9VC"
+CAPTIONS_SUBTITLES = "WnIhbgkY"
+HIGH_CONTRAST = "uF4CI2wP"
+TAGGED_PDF = "Kxx#meDW"
+SIGN_LANGUAGE = "Dr4cVXkc"
 
 choices = (
     (AUDIO_DESCRIPTION, "Audio Description"),

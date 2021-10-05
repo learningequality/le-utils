@@ -44,7 +44,15 @@ def _from_uuid(uuid):
     :params uuid: UUID
     :returns: character string that represents the UUID
     """
-    data = int(uuid.hex[:8], 16)
+    # With a length of 12 for the hex number, we would need approximately
+    # 24000 labels to have a 1 in a million chance of a collision.
+    # Numbers derived using the formula for the generalized birthday problem:
+    # https://en.wikipedia.org/wiki/Birthday_problem#The_generalized_birthday_problem
+    # n=sqrt(2*d*ln(1/(1-p))
+    # where d is the number of combinations of d digits, p is the probability
+    # So for 12 digits, d = 16^12
+    # p = 0.000001 for one in a million
+    data = int(uuid.hex[:12], 16)
     res = []
     while data > 0 or not res:
         res += CHARACTERS[(data & 0x3F)]

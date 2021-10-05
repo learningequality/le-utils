@@ -4,16 +4,16 @@ from __future__ import unicode_literals
 
 # ResourceType
 
-MEDIA = "bgStlE"
-TEXTBOOK = "cwRiL"
-LESSON_PLAN = "cHbILa"
-GAME = "d0o6Fw"
-BOOK = "dr5pZC"
-TUTORIAL = "dboes"
-ACTIVITY = "cpJLQx"
-LESSON = "bCz8L8"
-GUIDE = "dBtI2b"
-EXERCISE = "db5560"
+MEDIA = "rReY3LOO"
+TEXTBOOK = "LQYjqpA"
+LESSON_PLAN = "OqyPqhxW"
+GAME = "9dUN1LWT"
+BOOK = "0Et83gje"
+TUTORIAL = "WtHeUU1"
+ACTIVITY = "J45AL9Nb"
+LESSON = "xgFjFhrA"
+GUIDE = "204TGB4U"
+EXERCISE = "WEEETopZ"
 
 choices = (
     (MEDIA, "Media"),

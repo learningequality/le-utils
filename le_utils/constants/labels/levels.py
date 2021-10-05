@@ -4,15 +4,15 @@ from __future__ import unicode_literals
 
 # Levels
 
-UPPER_SECONDARY = "dn4KHz"
-WORK_SKILLS = "dp73Sn"
-LOWER_PRIMARY = "by0beT"
-LOWER_SECONDARY = "svpsy"
-UPPER_PRIMARY = "bSQdiJ"
-PRESCHOOL = "b#GEd"
-BASIC_SKILLS = "chRJoI"
-PROFESSIONAL = "dnezU7"
-TERTIARY = "b&jDyf"
+UPPER_SECONDARY = "ZEjiwvOb"
+WORK_SKILLS = "Z#97dvst"
+LOWER_PRIMARY = "wnarlxKo"
+LOWER_SECONDARY = "eLt0Mbu4"
+UPPER_PRIMARY = "BkGYi3lD"
+PRESCHOOL = "FOhG0ib"
+BASIC_SKILLS = "H64ZOHfi"
+PROFESSIONAL = "ZrgBU73s"
+TERTIARY = "FYxwbxts"
 
 choices = (
     (UPPER_SECONDARY, "Upper Secondary"),
