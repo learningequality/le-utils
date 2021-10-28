@@ -23,13 +23,13 @@ clean-test: ## remove test and coverage artifacts
 test:
 	pytest -s
 
-build-labels:
+build:
 	pip install -e .
-	python scripts/generate_labels.py
+	python scripts/generate_from_specs.py
 
-release: clean build-labels
+release: clean build
 	python setup.py sdist
 	twine upload dist/*.tar.gz
 
-release-npm: clean build-labels
+release-npm: clean build
 	cd js && npm publish

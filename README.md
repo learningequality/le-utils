@@ -202,3 +202,14 @@ The `role` constants are used for Role-based access control (RBAC) within the
 Kolibri platform. Currently, only two levels of visibility are supported:
   - `learner` (default): content nodes are visible to all Kolibri users
   - `coach`: content nodes are only visible to Kolibri coaches and administrators
+
+
+Metadata labels
+---------------
+
+These are encoded in spec/labels-v*.json. Once a spec has been finalized it will be
+added to finalized_specs.yml to ensure that CI will fail any future modifications
+to this specification. This ensures that the resulting built code has consistent
+ordering so that generated bits for bitmasks are stable across releases.
+We also require that all names in the specs be globally unique to minimize confusion
+and reduce the chance of collisions in translations of these terms for users.
