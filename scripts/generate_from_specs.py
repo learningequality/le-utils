@@ -200,19 +200,6 @@ def write_labels_src_files(label_outputs):
         js_output_file = os.path.join(js_labels_output_dir, "{}.js".format(label_type))
         write_js_file(js_output_file, label_type, ordered_output)
 
-    js_labels_index_file = os.path.join(js_labels_output_dir, "index.js")
-
-    with open(js_labels_index_file, "w") as f:
-        write_js_header(f)
-        f.write("\n")
-        for label_type in label_outputs.keys():
-            f.write('import {0} from "./{0}";\n'.format(label_type))
-        f.write("\n")
-        f.write("export default {\n")
-        for label_type in label_outputs.keys():
-            f.write("    {0}: {0},\n".format(label_type))
-        f.write("};\n")
-
 
 def write_constants_src_files(constants_outputs):
     for constant_type, ordered_output in constants_outputs.items():
@@ -223,29 +210,6 @@ def write_constants_src_files(constants_outputs):
 
         js_output_file = os.path.join(js_output_dir, "{}.js".format(constant_type))
         write_js_file(js_output_file, constant_type, ordered_output)
-
-
-def create_js_index(labels_to_write, constants_to_write):
-    js_index_file = os.path.join(js_output_dir, "index.js")
-
-    label_types = sorted(labels_to_write.keys())
-
-    constant_types = sorted(constants_to_write.keys())
-
-    with open(js_index_file, "w") as f:
-        write_js_header(f)
-        f.write("\n")
-        for label_type in label_types:
-            f.write('import {0} from "./labels/{0}";\n'.format(label_type))
-        for constant_type in constant_types:
-            f.write('import {0} from "./{0}";\n'.format(constant_type))
-        f.write("\n")
-        f.write("export default {\n")
-        for label_type in label_types:
-            f.write("    {0}: {0},\n".format(label_type))
-        for constant_type in constant_types:
-            f.write("    {0}: {0},\n".format(constant_type))
-        f.write("};\n")
 
 
 def set_package_json_version():
@@ -259,7 +223,14 @@ def set_package_json_version():
     package["version"] = python_version
 
     with open(package_json, "w") as f:
-        json.dump(package, f, indent=2, sort_keys=True)
+        output = json.dumps(package, indent=2, sort_keys=True)
+        firstline = True
+        for line in output.split("\n"):
+            if firstline:
+                firstline = False
+            else:
+                f.write("\n")
+            f.write(line.rstrip())
 
 
 if __name__ == "__main__":
@@ -270,7 +241,5 @@ if __name__ == "__main__":
     write_labels_src_files(labels_to_write)
 
     write_constants_src_files(constants_to_write)
-
-    create_js_index(labels_to_write, constants_to_write)
 
     set_package_json_version()
