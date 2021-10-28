@@ -44,7 +44,9 @@ def test_labels_unique():
             handler = handle_object if isinstance(labels, dict) else handle_array
             if label_type not in label_outputs:
                 label_outputs[label_type] = []
-            label_outputs[label_type].extend(handler(labels))
+            spec_labels = handler(labels)
+            assert len(spec_labels) == len(set(spec_labels))
+            label_outputs[label_type].extend(spec_labels)
 
     for label_type, labels in label_outputs.items():
         label_outputs[label_type] = sorted(set(labels))

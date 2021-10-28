@@ -103,7 +103,7 @@ def handle_object(element, namespace, previous=None):
             if k not in output:
                 output[k] = v
             else:
-                output["{}_{}".format(key, k)] = v
+                raise ValueError("Duplicate label {}".format(k))
     return output
 
 
