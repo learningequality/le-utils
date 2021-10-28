@@ -8,6 +8,7 @@ import json
 import os
 import re
 import string
+import sys
 from collections import OrderedDict
 from glob import glob
 from hashlib import md5
@@ -23,7 +24,7 @@ except NameError:
 
 
 root_label = md5()
-root_label.update("Kolibri labels")
+root_label.update("Kolibri labels".encode("utf-8"))
 
 root_namespace = UUID(hex=root_label.hexdigest())
 
@@ -44,7 +45,7 @@ def pascal_to_snake(name):
     return pascal_case_pattern.sub("_", name).lower()
 
 
-CHARACTERS = string.letters + string.digits + "#" + "&"
+CHARACTERS = string.ascii_letters + string.digits + "#" + "&"
 
 
 def _from_uuid(uuid):
@@ -70,7 +71,9 @@ def _from_uuid(uuid):
 
 
 def generate_identifier(namespace, label):
-    return uuid3(namespace, label.encode("utf-8"))
+    if sys.version_info[0] < 3:
+        label = label.encode("utf-8")
+    return uuid3(namespace, label)
 
 
 def generate_key(identifier, previous=None):
@@ -82,7 +85,7 @@ def generate_key(identifier, previous=None):
 
 def handle_array(labels, namespace, previous=None):
     output = {}
-    for label in labels:
+    for label in sorted(labels):
         identifier = generate_identifier(namespace, label)
         output[label] = generate_key(identifier, previous)
     return output
@@ -90,12 +93,17 @@ def handle_array(labels, namespace, previous=None):
 
 def handle_object(element, namespace, previous=None):
     output = {}
-    for key, value in element.items():
+    for key, value in sorted(element.items(), key=lambda t: t[0]):
         handler = handle_object if isinstance(value, dict) else handle_array
         identifier = generate_identifier(namespace, key)
         new_key = generate_key(identifier, previous)
         output[key] = new_key
-        output.update(handler(value, namespace, new_key))
+        new = handler(value, namespace, new_key)
+        for k, v in new.items():
+            if k not in output:
+                output[k] = v
+            else:
+                output["{}_{}".format(key, k)] = v
     return output
 
 
@@ -108,11 +116,11 @@ def read_labels_specs():  # noqa C901
             "labels-*.json",
         )
     )
-    label_outputs = {}
+    label_outputs = OrderedDict()
     for labels_spec_file in labels_spec_files:
         with open(labels_spec_file) as json_labels_spec_file:
             labels_spec = json.load(json_labels_spec_file)
-            for label_type, labels in labels_spec.items():
+            for label_type, labels in sorted(labels_spec.items(), key=lambda t: t[0]):
                 handler = handle_object if isinstance(labels, dict) else handle_array
                 namespace = generate_identifier(root_namespace, label_type)
                 output = handler(labels, namespace)
