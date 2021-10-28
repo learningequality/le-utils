@@ -4,27 +4,27 @@ from __future__ import unicode_literals
 
 # AccessibilityCategories
 
-AUDIO_DESCRIPTION = "LNqKSN9j"
 ALT_TEXT = "Lb0tb9VC"
+AUDIO_DESCRIPTION = "LNqKSN9j"
 CAPTIONS_SUBTITLES = "WnIhbgkY"
 HIGH_CONTRAST = "uF4CI2wP"
-TAGGED_PDF = "Kxx#meDW"
 SIGN_LANGUAGE = "Dr4cVXkc"
+TAGGED_PDF = "Kxx#meDW"
 
 choices = (
-    (AUDIO_DESCRIPTION, "Audio Description"),
     (ALT_TEXT, "Alt Text"),
+    (AUDIO_DESCRIPTION, "Audio Description"),
     (CAPTIONS_SUBTITLES, "Captions Subtitles"),
     (HIGH_CONTRAST, "High Contrast"),
-    (TAGGED_PDF, "Tagged Pdf"),
     (SIGN_LANGUAGE, "Sign Language"),
+    (TAGGED_PDF, "Tagged Pdf"),
 )
 
 ACCESSIBILITYCATEGORIESLIST = [
-    AUDIO_DESCRIPTION,
     ALT_TEXT,
+    AUDIO_DESCRIPTION,
     CAPTIONS_SUBTITLES,
     HIGH_CONTRAST,
-    TAGGED_PDF,
     SIGN_LANGUAGE,
+    TAGGED_PDF,
 ]

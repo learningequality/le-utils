@@ -1,0 +1,25 @@
+name: Finalized specs
+
+on: [push, pull_request]
+
+jobs:
+  change_check:
+    name: Path match check
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      not_modified: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@master
+        with:
+          github_token: ${{ github.token }}
+          paths: '["spec/labels-v1.json"]'
+  unit_test:
+    name: Error if finalized spec modified
+    needs: change_check
+    if: ${{ needs.change_check.outputs.not_modified != 'true' }}
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Fail if specs modified
+      run: exit 1

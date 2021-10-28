@@ -4,39 +4,39 @@ from __future__ import unicode_literals
 
 # Needs
 
-PRIOR_KNOWLEDGE = "sccgQZDd"
-MATERIALS = "Hsw9k7Bz"
 FOR_BEGINNERS = "sccgQZDd.sAQsauuo"
-PAPER_PENCIL = "Hsw9k7Bz.OFIbUAK9"
-OTHER_SUPPLIES = "Hsw9k7Bz.#lLv#LB7"
 INTERNET = "Hsw9k7Bz.G4h2UBuK"
-SPECIAL_SOFTWARE = "Hsw9k7Bz.dbXQw755"
-PEOPLE = "lsoCk5Uy"
+MATERIALS = "Hsw9k7Bz"
+OTHER_SUPPLIES = "Hsw9k7Bz.#lLv#LB7"
+PAPER_PENCIL = "Hsw9k7Bz.OFIbUAK9"
 PEERS = "lsoCk5Uy.MKIzZKDO"
+PEOPLE = "lsoCk5Uy"
+PRIOR_KNOWLEDGE = "sccgQZDd"
+SPECIAL_SOFTWARE = "Hsw9k7Bz.dbXQw755"
 TEACHER = "lsoCk5Uy.H&MVs7S#"
 
 choices = (
-    (PRIOR_KNOWLEDGE, "Prior Knowledge"),
-    (MATERIALS, "Materials"),
     (FOR_BEGINNERS, "For Beginners"),
-    (PAPER_PENCIL, "Paper Pencil"),
-    (OTHER_SUPPLIES, "Other Supplies"),
     (INTERNET, "Internet"),
-    (SPECIAL_SOFTWARE, "Special Software"),
-    (PEOPLE, "People"),
+    (MATERIALS, "Materials"),
+    (OTHER_SUPPLIES, "Other Supplies"),
+    (PAPER_PENCIL, "Paper Pencil"),
     (PEERS, "Peers"),
+    (PEOPLE, "People"),
+    (PRIOR_KNOWLEDGE, "Prior Knowledge"),
+    (SPECIAL_SOFTWARE, "Special Software"),
     (TEACHER, "Teacher"),
 )
 
 NEEDSLIST = [
-    PRIOR_KNOWLEDGE,
-    MATERIALS,
     FOR_BEGINNERS,
-    PAPER_PENCIL,
-    OTHER_SUPPLIES,
     INTERNET,
-    SPECIAL_SOFTWARE,
-    PEOPLE,
+    MATERIALS,
+    OTHER_SUPPLIES,
+    PAPER_PENCIL,
     PEERS,
+    PEOPLE,
+    PRIOR_KNOWLEDGE,
+    SPECIAL_SOFTWARE,
     TEACHER,
 ]

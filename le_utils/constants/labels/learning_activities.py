@@ -4,30 +4,30 @@ from __future__ import unicode_literals
 
 # LearningActivities
 
-READ = "wA01urpi"
 CREATE = "UXADWcXZ"
-PRACTICE = "VwRCom7G"
-WATCH = "UD5UGM0z"
-REFLECT = "3dSeJhqs"
 EXPLORE = "#j8L0eq3"
 LISTEN = "mkA1R3NU"
+PRACTICE = "VwRCom7G"
+READ = "wA01urpi"
+REFLECT = "3dSeJhqs"
+WATCH = "UD5UGM0z"
 
 choices = (
-    (READ, "Read"),
     (CREATE, "Create"),
-    (PRACTICE, "Practice"),
-    (WATCH, "Watch"),
-    (REFLECT, "Reflect"),
     (EXPLORE, "Explore"),
     (LISTEN, "Listen"),
+    (PRACTICE, "Practice"),
+    (READ, "Read"),
+    (REFLECT, "Reflect"),
+    (WATCH, "Watch"),
 )
 
 LEARNINGACTIVITIESLIST = [
-    READ,
     CREATE,
-    PRACTICE,
-    WATCH,
-    REFLECT,
     EXPLORE,
     LISTEN,
+    PRACTICE,
+    READ,
+    REFLECT,
+    WATCH,
 ]
