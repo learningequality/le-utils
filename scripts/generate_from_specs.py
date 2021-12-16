@@ -151,7 +151,7 @@ def read_constants_specs():
             constants_spec = json.load(json_constants_spec_file)
             key = snake_to_pascal(constants_spec_file.split("-")[-1].split(".")[0])
             constants_outputs[key] = OrderedDict(
-                [(a, a) for a in sorted(constants_spec)]
+                [(a.upper(), a) for a in sorted(constants_spec)]
             )
     return constants_outputs
 
