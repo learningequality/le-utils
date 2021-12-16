@@ -4,21 +4,24 @@ on: [push, pull_request]
 
 jobs:
   change_check:
-    name: Path match check
+    name: Check if file changed
     runs-on: ubuntu-latest
     # Map a step output to a job output
     outputs:
-      not_modified: ${{ steps.skip_check.outputs.should_skip }}
+      modified: ${{ steps.changes.outputs.modified }}
     steps:
-      - id: skip_check
-        uses: fkirc/skip-duplicate-actions@master
+      - name: Checkout repository
+        uses: actions/checkout@v2
         with:
-          github_token: ${{ github.token }}
-          paths: '["spec/labels-v1.json"]'
+          fetch-depth: 0
+      - id: changes
+        # Set outputs using the command.
+        run: |
+          echo "::set-output name=modified::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep spec/labels-v1.json$ | xargs)"
   unit_test:
     name: Error if finalized spec modified
     needs: change_check
-    if: ${{ needs.change_check.outputs.not_modified != 'true' }}
+    if: ${{ needs.change_check.outputs.modified }}
     runs-on: ubuntu-18.04
     steps:
     - name: Fail if specs modified
