@@ -45,6 +45,10 @@ def pascal_to_snake(name):
     return pascal_case_pattern.sub("_", name).lower()
 
 
+def snake_to_pascal(name):
+    return "".join(a.title() for a in name.split("_"))
+
+
 CHARACTERS = string.ascii_letters + string.digits + "#" + "&"
 
 
@@ -145,7 +149,7 @@ def read_constants_specs():
     for constants_spec_file in constants_spec_files:
         with open(constants_spec_file) as json_constants_spec_file:
             constants_spec = json.load(json_constants_spec_file)
-            key = constants_spec_file.split("-")[-1].split(".")[0].title()
+            key = snake_to_pascal(constants_spec_file.split("-")[-1].split(".")[0])
             constants_outputs[key] = OrderedDict(
                 [(a, a) for a in sorted(constants_spec)]
             )
