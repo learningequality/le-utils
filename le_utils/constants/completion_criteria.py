@@ -4,24 +4,24 @@ from __future__ import unicode_literals
 
 # CompletionCriteria
 
-approx_time = "approx_time"
-mastery = "mastery"
-pages = "pages"
-reference = "reference"
-time = "time"
+APPROX_TIME = "approx_time"
+MASTERY = "mastery"
+PAGES = "pages"
+REFERENCE = "reference"
+TIME = "time"
 
 choices = (
-    (approx_time, "Approx Time"),
-    (mastery, "Mastery"),
-    (pages, "Pages"),
-    (reference, "Reference"),
-    (time, "Time"),
+    (APPROX_TIME, "Approx Time"),
+    (MASTERY, "Mastery"),
+    (PAGES, "Pages"),
+    (REFERENCE, "Reference"),
+    (TIME, "Time"),
 )
 
 COMPLETIONCRITERIALIST = [
-    approx_time,
-    mastery,
-    pages,
-    reference,
-    time,
+    APPROX_TIME,
+    MASTERY,
+    PAGES,
+    REFERENCE,
+    TIME,
 ]

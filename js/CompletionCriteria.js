@@ -3,9 +3,9 @@
 // CompletionCriteria
 
 export default {
-    approx_time: "approx_time",
-    mastery: "mastery",
-    pages: "pages",
-    reference: "reference",
-    time: "time",
+    APPROX_TIME: "approx_time",
+    MASTERY: "mastery",
+    PAGES: "pages",
+    REFERENCE: "reference",
+    TIME: "time",
 };
