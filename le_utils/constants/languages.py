@@ -5,7 +5,10 @@ import re
 from collections import defaultdict
 from collections import namedtuple
 
-import pycountry
+try:
+    import pycountry
+except ImportError:
+    pycountry = None
 
 logger = logging.getLogger("le_utils")
 logger.setLevel(logging.INFO)
@@ -217,7 +220,7 @@ def getlang_by_native_name(native_name):
         return _LANGUAGE_NATIVE_NAME_LOOKUP.get(simple_native_name, None)
 
 
-def getlang_by_alpha2(code):
+def getlang_by_alpha2(code):  # noqa: C901
     """
     Lookup a Language object for language code `code` based on these strategies:
       - Special case rules for Hebrew and Chinese Hans/Hant scripts
@@ -225,6 +228,10 @@ def getlang_by_alpha2(code):
         language with the same `name` in the internal representaion
     Returns `None` if no matching language is found.
     """
+    if pycountry is None:
+        logger.warn("pycountry is not installed, cannot lookup language by alpha2")
+        return None
+
     # First try exact match to a language code in the internal representaion
     exact_match = getlang(code)
     if exact_match:
