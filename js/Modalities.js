@@ -5,4 +5,5 @@
 export default {
     CUSTOM_NAVIGATION: "CUSTOM_NAVIGATION",
     QUIZ: "QUIZ",
+    SURVEY: "SURVEY",
 };
