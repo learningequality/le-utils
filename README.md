@@ -69,7 +69,7 @@ The module `le_utils.constants.languages` defines two other language lookup meth
 
 #### Useful links
 
-The following websites are usful for researching language codes:
+The following websites are useful for researching language codes:
 
   - https://www.ethnologue.com/
   - https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes
