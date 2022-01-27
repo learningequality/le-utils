@@ -105,3 +105,4 @@ tests/testcontent/
 
 # Pycharm project settings
 .idea/
+*.iml
