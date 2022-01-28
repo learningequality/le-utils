@@ -11,6 +11,7 @@ export default {
 };
 
 export const SCHEMA = {
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "description": "Schema for completion criteria of content nodes",
   "additionalProperties": false,

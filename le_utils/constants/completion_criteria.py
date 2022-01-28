@@ -27,42 +27,57 @@ COMPLETIONCRITERIALIST = [
 ]
 
 SCHEMA = {
-    "type": "object",
     "description": "Schema for completion criteria of content nodes",
+    "anyOf": [
+        {
+            "required": ["threshold"],
+            "properties": {
+                "threshold": {"exclusiveMinimum": 0, "type": "number"},
+                "model": {
+                    "anyOf": [
+                        {"const": "time"},
+                        {"const": "approx_time"},
+                        {"const": "pages"},
+                    ]
+                },
+            },
+        },
+        {
+            "required": ["threshold"],
+            "properties": {
+                "threshold": {"$ref": "#/definitions/mastery_criteria"},
+                "model": {"const": "mastery"},
+            },
+        },
+        {
+            "required": [],
+            "properties": {
+                "threshold": {"type": "null"},
+                "model": {"const": "reference"},
+            },
+        },
+    ],
+    "required": ["model"],
     "additionalProperties": False,
     "definitions": {
         "model": {
-            "type": "string",
             "$exportConstants": "completion_criteria",
             "enum": ["time", "approx_time", "pages", "mastery", "reference"],
+            "type": "string",
         },
         "mastery_criteria": {
             "type": "object",
-            "$comment": "TODO move to separate schema",
-            "additionalProperties": False,
             "required": ["mastery_model"],
-            "properties": {
-                "m": True,
-                "n": True,
-                "mastery_model": {
-                    "type": "string",
-                    "enum": [
-                        "do_all",
-                        "m_of_n",
-                        "num_correct_in_a_row_2",
-                        "num_correct_in_a_row_3",
-                        "num_correct_in_a_row_5",
-                        "num_correct_in_a_row_10",
-                    ],
-                },
-            },
+            "additionalProperties": False,
+            "$comment": "TODO move to separate schema",
             "anyOf": [
                 {
-                    "properties": {"mastery_model": {"const": "m_of_n"}},
                     "required": ["m", "n"],
+                    "properties": {"mastery_model": {"const": "m_of_n"}},
                 },
                 {
                     "properties": {
+                        "m": {"type": "null"},
                         "mastery_model": {
                             "enum": [
                                 "do_all",
@@ -72,46 +87,32 @@ SCHEMA = {
                                 "num_correct_in_a_row_10",
                             ]
                         },
-                        "m": {"type": "null"},
                         "n": {"type": "null"},
                     }
                 },
             ],
+            "properties": {
+                "mastery_model": {
+                    "enum": [
+                        "do_all",
+                        "m_of_n",
+                        "num_correct_in_a_row_2",
+                        "num_correct_in_a_row_3",
+                        "num_correct_in_a_row_5",
+                        "num_correct_in_a_row_10",
+                    ],
+                    "type": "string",
+                },
+                "m": True,
+                "n": True,
+            },
         },
     },
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
     "properties": {
+        "threshold": True,
         "model": {"$ref": "#/definitions/model"},
         "learner_managed": {"type": "boolean"},
-        "threshold": True,
     },
-    "required": ["model"],
-    "anyOf": [
-        {
-            "properties": {
-                "model": {
-                    "anyOf": [
-                        {"const": "time"},
-                        {"const": "approx_time"},
-                        {"const": "pages"},
-                    ]
-                },
-                "threshold": {"type": "number", "exclusiveMinimum": 0},
-            },
-            "required": ["threshold"],
-        },
-        {
-            "properties": {
-                "model": {"const": "mastery"},
-                "threshold": {"$ref": "#/definitions/mastery_criteria"},
-            },
-            "required": ["threshold"],
-        },
-        {
-            "properties": {
-                "model": {"const": "reference"},
-                "threshold": {"type": "null"},
-            },
-            "required": [],
-        },
-    ],
 }
