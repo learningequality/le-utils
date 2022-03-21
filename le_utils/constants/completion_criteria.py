@@ -27,12 +27,28 @@ COMPLETIONCRITERIALIST = [
 ]
 
 SCHEMA = {
+    "$id": "/schemas/completion_criteria",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
     "description": "Schema for completion criteria of content nodes",
+    "additionalProperties": False,
+    "definitions": {
+        "model": {
+            "type": "string",
+            "$exportConstants": "completion_criteria",
+            "enum": ["time", "approx_time", "pages", "mastery", "reference"],
+        },
+        "mastery_criteria": {"$ref": "/schemas/mastery_criteria"},
+    },
+    "properties": {
+        "model": {"$ref": "#/definitions/model"},
+        "learner_managed": {"type": "boolean"},
+        "threshold": True,
+    },
+    "required": ["model"],
     "anyOf": [
         {
-            "required": ["threshold"],
             "properties": {
-                "threshold": {"exclusiveMinimum": 0, "type": "number"},
                 "model": {
                     "anyOf": [
                         {"const": "time"},
@@ -40,79 +56,36 @@ SCHEMA = {
                         {"const": "pages"},
                     ]
                 },
+                "threshold": {"type": "number", "exclusiveMinimum": 0},
             },
-        },
-        {
             "required": ["threshold"],
-            "properties": {
-                "threshold": {"$ref": "#/definitions/mastery_criteria"},
-                "model": {"const": "mastery"},
-            },
         },
         {
-            "required": [],
             "properties": {
-                "threshold": {"type": "null"},
-                "model": {"const": "reference"},
+                "model": {"const": "pages"},
+                "threshold": {
+                    "type": "string",
+                    "pattern": "^(100|[1-9][0-9]?)%$",
+                    "description": "A percentage",
+                    "minLength": 2,
+                    "maxLength": 4,
+                },
             },
+            "required": ["threshold"],
+        },
+        {
+            "properties": {
+                "model": {"const": "mastery"},
+                "threshold": {"$ref": "#/definitions/mastery_criteria"},
+            },
+            "required": ["threshold"],
+        },
+        {
+            "properties": {
+                "model": {"const": "reference"},
+                "threshold": {"type": "null"},
+            },
+            "required": [],
         },
     ],
-    "required": ["model"],
-    "additionalProperties": False,
-    "definitions": {
-        "model": {
-            "$exportConstants": "completion_criteria",
-            "enum": ["time", "approx_time", "pages", "mastery", "reference"],
-            "type": "string",
-        },
-        "mastery_criteria": {
-            "type": "object",
-            "required": ["mastery_model"],
-            "additionalProperties": False,
-            "$comment": "TODO move to separate schema",
-            "anyOf": [
-                {
-                    "required": ["m", "n"],
-                    "properties": {"mastery_model": {"const": "m_of_n"}},
-                },
-                {
-                    "properties": {
-                        "m": {"type": "null"},
-                        "mastery_model": {
-                            "enum": [
-                                "do_all",
-                                "num_correct_in_a_row_2",
-                                "num_correct_in_a_row_3",
-                                "num_correct_in_a_row_5",
-                                "num_correct_in_a_row_10",
-                            ]
-                        },
-                        "n": {"type": "null"},
-                    }
-                },
-            ],
-            "properties": {
-                "mastery_model": {
-                    "enum": [
-                        "do_all",
-                        "m_of_n",
-                        "num_correct_in_a_row_2",
-                        "num_correct_in_a_row_3",
-                        "num_correct_in_a_row_5",
-                        "num_correct_in_a_row_10",
-                    ],
-                    "type": "string",
-                },
-                "m": True,
-                "n": True,
-            },
-        },
-    },
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "properties": {
-        "threshold": True,
-        "model": {"$ref": "#/definitions/model"},
-        "learner_managed": {"type": "boolean"},
-    },
 }

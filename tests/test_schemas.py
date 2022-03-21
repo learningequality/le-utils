@@ -5,7 +5,8 @@ import contextlib
 
 import pytest
 
-from le_utils.constants.completion_criteria import SCHEMA
+from le_utils.constants import completion_criteria
+from le_utils.constants import mastery_criteria
 
 
 try:
@@ -15,12 +16,24 @@ except ImportError:
     jsonschema = None
 
 
+resolver = None
+if jsonschema is not None:
+    # this is an example of how to include the mastery criteria schema, which is referenced by the
+    # completion criteria schema, in the schema resolver so that it validates
+    resolver = jsonschema.RefResolver.from_schema(mastery_criteria.SCHEMA)
+    resolver.store.update(
+        jsonschema.RefResolver.from_schema(completion_criteria.SCHEMA).store
+    )
+
+
 def _validate(data):
     """
     :param data: Dictionary of data to validate
     :raises: jsonschema.ValidationError: When invalid
     """
-    jsonschema.validate(instance=data, schema=SCHEMA)
+    jsonschema.validate(
+        instance=data, schema=completion_criteria.SCHEMA, resolver=resolver
+    )
 
 
 @contextlib.contextmanager
