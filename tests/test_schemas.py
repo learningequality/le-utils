@@ -123,6 +123,23 @@ def test_completion_criteria__pages_model__valid():
 
 
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+def test_completion_criteria__pages_model__percentage__valid():
+    with _assert_not_raises(jsonschema.ValidationError):
+        _validate(
+            {
+                "model": "pages",
+                "threshold": "99%",
+            }
+        )
+        _validate(
+            {
+                "model": "pages",
+                "threshold": "1%",
+            }
+        )
+
+
+@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__pages_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate(
@@ -137,6 +154,25 @@ def test_completion_criteria__pages_model__invalid():
             {
                 "model": "pages",
                 "threshold": -1,
+            }
+        )
+
+
+@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+def test_completion_criteria__pages_model__percentage__invalid():
+    with pytest.raises(jsonschema.ValidationError):
+        _validate(
+            {
+                "model": "pages",
+                "threshold": "0%",
+                "learner_managed": False,
+            }
+        )
+    with pytest.raises(jsonschema.ValidationError):
+        _validate(
+            {
+                "model": "pages",
+                "threshold": "101%",
             }
         )
 
