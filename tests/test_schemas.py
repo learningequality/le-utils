@@ -5,7 +5,8 @@ import contextlib
 
 import pytest
 
-from le_utils.constants.completion_criteria import SCHEMA
+from le_utils.constants import completion_criteria
+from le_utils.constants import mastery_criteria
 
 
 try:
@@ -15,12 +16,24 @@ except ImportError:
     jsonschema = None
 
 
+resolver = None
+if jsonschema is not None:
+    # this is an example of how to include the mastery criteria schema, which is referenced by the
+    # completion criteria schema, in the schema resolver so that it validates
+    resolver = jsonschema.RefResolver.from_schema(mastery_criteria.SCHEMA)
+    resolver.store.update(
+        jsonschema.RefResolver.from_schema(completion_criteria.SCHEMA).store
+    )
+
+
 def _validate(data):
     """
     :param data: Dictionary of data to validate
     :raises: jsonschema.ValidationError: When invalid
     """
-    jsonschema.validate(instance=data, schema=SCHEMA)
+    jsonschema.validate(
+        instance=data, schema=completion_criteria.SCHEMA, resolver=resolver
+    )
 
 
 @contextlib.contextmanager
@@ -110,6 +123,23 @@ def test_completion_criteria__pages_model__valid():
 
 
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+def test_completion_criteria__pages_model__percentage__valid():
+    with _assert_not_raises(jsonschema.ValidationError):
+        _validate(
+            {
+                "model": "pages",
+                "threshold": "99%",
+            }
+        )
+        _validate(
+            {
+                "model": "pages",
+                "threshold": "1%",
+            }
+        )
+
+
+@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__pages_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate(
@@ -124,6 +154,25 @@ def test_completion_criteria__pages_model__invalid():
             {
                 "model": "pages",
                 "threshold": -1,
+            }
+        )
+
+
+@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+def test_completion_criteria__pages_model__percentage__invalid():
+    with pytest.raises(jsonschema.ValidationError):
+        _validate(
+            {
+                "model": "pages",
+                "threshold": "0%",
+                "learner_managed": False,
+            }
+        )
+    with pytest.raises(jsonschema.ValidationError):
+        _validate(
+            {
+                "model": "pages",
+                "threshold": "101%",
             }
         )
 

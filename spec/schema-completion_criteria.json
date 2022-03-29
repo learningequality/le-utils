@@ -1,4 +1,5 @@
 {
+  "$id": "/schemas/completion_criteria",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "description": "Schema for completion criteria of content nodes",
@@ -15,56 +16,7 @@
         "reference"
       ]
     },
-    "mastery_criteria": {
-      "type": "object",
-      "$comment": "TODO move to separate schema",
-      "additionalProperties": false,
-      "required": ["mastery_model"],
-      "properties": {
-        "m": true,
-        "n": true,
-        "mastery_model": {
-          "type": "string",
-          "enum": [
-            "do_all",
-            "m_of_n",
-            "num_correct_in_a_row_2",
-            "num_correct_in_a_row_3",
-            "num_correct_in_a_row_5",
-            "num_correct_in_a_row_10"
-          ]
-        }
-      },
-      "anyOf": [
-        {
-          "properties": {
-            "mastery_model": {
-              "const": "m_of_n"
-            }
-          },
-          "required": ["m", "n"]
-        },
-        {
-          "properties": {
-            "mastery_model": {
-              "enum": [
-                "do_all",
-                "num_correct_in_a_row_2",
-                "num_correct_in_a_row_3",
-                "num_correct_in_a_row_5",
-                "num_correct_in_a_row_10"
-              ]
-            },
-            "m": {
-              "type": "null"
-            },
-            "n": {
-              "type": "null"
-            }
-          }
-        }
-      ]
-    }
+    "mastery_criteria": { "$ref": "/schemas/mastery_criteria" }
   },
   "properties": {
     "model": {
@@ -89,6 +41,21 @@
         "threshold": {
           "type": "number",
           "exclusiveMinimum": 0
+        }
+      },
+      "required": ["threshold"]
+    },
+    {
+      "properties": {
+        "model": {
+          "const": "pages"
+        },
+        "threshold": {
+          "type": "string",
+          "pattern": "^(100|[1-9][0-9]?)%$",
+          "description": "A percentage",
+          "minLength": 2,
+          "maxLength": 4
         }
       },
       "required": ["threshold"]
