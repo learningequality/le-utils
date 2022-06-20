@@ -14,8 +14,7 @@ repos:
     rev: v1.3.3
     hooks:
     -   id: reorder-python-imports
-        language_version: python2.7
 -   repo: https://github.com/python/black
-    rev: 20.8b1
+    rev: 22.3.0
     hooks:
     - id: black
