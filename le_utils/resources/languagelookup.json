@@ -160,6 +160,10 @@
     "name":"Czech",
     "native_name":"česky, čeština"
   },
+  "csx":{
+    "name":"Cambodian Sign Language",
+    "native_name":"Cambodian Sign Language"
+  },
   "da":{
     "name":"Danish",
     "native_name":"Dansk"
@@ -351,6 +355,10 @@
     "name":"Kinyarwanda",
     "native_name":"Ikinyarwanda"
   },
+  "rsn":{
+    "name":"Rwandan Sign Language",
+    "native_name":"Amarenga y'Ikinyarwanda"
+  },
   "ky":{
     "name":"Kirghiz; Kyrgyz",
     "native_name":"кыргыз тили"
@@ -478,6 +486,10 @@
   "ne":{
     "name":"Nepali",
     "native_name":"नेपाली"
+  },
+  "nsp":{
+    "name":"Nepalese Sign Language",
+    "native_name":"नेपाली सांकेतिक भाषा"
   },
   "ng":{
     "name":"Ndonga",
@@ -977,6 +989,10 @@
   "xho":{
     "name":"Xhosa",
     "native_name":"isiXhosa"
+  },
+  "xki":{
+    "name":"Kenyan Sign Language",
+    "native_name":"Swahili Lugha ya ishara"
   },
   "yor":{
     "name":"Yoruba",
