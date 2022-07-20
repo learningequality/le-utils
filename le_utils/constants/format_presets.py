@@ -115,7 +115,7 @@ choices = (
     (SLIDESHOW_THUMBNAIL, SLIDESHOW_THUMBNAIL_READABLE),
     (SLIDESHOW_MANIFEST, SLIDESHOW_MANIFEST_READABLE),
 )
-
+MAX_CHOICE_LENGTH = max([len(choice[0]) for choice in choices])
 
 class Preset(
     namedtuple(
