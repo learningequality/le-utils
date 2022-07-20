@@ -31,6 +31,7 @@ choices = (
     (ZIM, "Zim"),
     (QUIZ, "Quiz"),
 )
+MAX_CHOICE_LENGTH = max([len(choice[0]) for choice in choices])
 
 """ File Format (extension) to Content Kind Mapping """
 MAPPING = {
