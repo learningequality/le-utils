@@ -96,6 +96,8 @@ choices = (
     (EPUB, "ePub Document"),
 )
 
+MAX_CHOICE_LENGTH = max([len(choice[0]) for choice in choices])
+
 
 class Format(namedtuple("Format", ["id", "mimetype"])):
     pass
