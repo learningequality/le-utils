@@ -13,7 +13,8 @@
         "approx_time",
         "pages",
         "mastery",
-        "reference"
+        "reference",
+        "determined_by_resource"
       ]
     },
     "mastery_criteria": { "$ref": "/schemas/mastery_criteria" }
@@ -74,7 +75,10 @@
     {
       "properties": {
         "model": {
-          "const": "reference"
+          "anyOf": [
+            {"const": "reference"},
+            {"const": "determined_by_resource"}
+          ]
         },
         "threshold": {
           "type": "null"

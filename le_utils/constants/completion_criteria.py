@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 # CompletionCriteria
 
 APPROX_TIME = "approx_time"
+DETERMINED_BY_RESOURCE = "determined_by_resource"
 MASTERY = "mastery"
 PAGES = "pages"
 REFERENCE = "reference"
@@ -12,6 +13,7 @@ TIME = "time"
 
 choices = (
     (APPROX_TIME, "Approx Time"),
+    (DETERMINED_BY_RESOURCE, "Determined By Resource"),
     (MASTERY, "Mastery"),
     (PAGES, "Pages"),
     (REFERENCE, "Reference"),
@@ -20,6 +22,7 @@ choices = (
 
 COMPLETIONCRITERIALIST = [
     APPROX_TIME,
+    DETERMINED_BY_RESOURCE,
     MASTERY,
     PAGES,
     REFERENCE,
@@ -36,7 +39,14 @@ SCHEMA = {
         "model": {
             "type": "string",
             "$exportConstants": "completion_criteria",
-            "enum": ["time", "approx_time", "pages", "mastery", "reference"],
+            "enum": [
+                "time",
+                "approx_time",
+                "pages",
+                "mastery",
+                "reference",
+                "determined_by_resource",
+            ],
         },
         "mastery_criteria": {"$ref": "/schemas/mastery_criteria"},
     },
@@ -82,7 +92,12 @@ SCHEMA = {
         },
         {
             "properties": {
-                "model": {"const": "reference"},
+                "model": {
+                    "anyOf": [
+                        {"const": "reference"},
+                        {"const": "determined_by_resource"},
+                    ]
+                },
                 "threshold": {"type": "null"},
             },
             "required": [],
