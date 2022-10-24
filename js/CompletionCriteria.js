@@ -4,6 +4,7 @@
 
 export default {
     APPROX_TIME: "approx_time",
+    DETERMINED_BY_RESOURCE: "determined_by_resource",
     MASTERY: "mastery",
     PAGES: "pages",
     REFERENCE: "reference",
@@ -25,7 +26,8 @@ export const SCHEMA = {
         "approx_time",
         "pages",
         "mastery",
-        "reference"
+        "reference",
+        "determined_by_resource"
       ]
     },
     "mastery_criteria": { "$ref": "/schemas/mastery_criteria" }
@@ -86,7 +88,10 @@ export const SCHEMA = {
     {
       "properties": {
         "model": {
-          "const": "reference"
+          "anyOf": [
+            {"const": "reference"},
+            {"const": "determined_by_resource"}
+          ]
         },
         "threshold": {
           "type": "null"
