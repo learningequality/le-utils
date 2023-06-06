@@ -254,7 +254,7 @@
 	"h5p_thumbnail": {
 		"readable_name": "H5P Thumbnail",
 		"multi_language": false,
-		"supplementary": false,
+		"supplementary": true,
 		"thumbnail": true,
 		"subtitle": false,
 		"display": true,
