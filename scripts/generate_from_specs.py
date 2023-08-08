@@ -148,9 +148,13 @@ def read_constants_specs():
         with open(constants_spec_file) as json_constants_spec_file:
             constants_spec = json.load(json_constants_spec_file)
             key = snake_to_pascal(constants_spec_file.split("-")[-1].split(".")[0])
-            constants_outputs[key] = OrderedDict(
-                [(a.upper(), a) for a in sorted(constants_spec)]
-            )
+            if isinstance(constants_spec, dict):
+                constants_outputs[key] = constants_spec
+            else:
+                # assume it's a list and convert to an OrderedDict
+                constants_outputs[key] = OrderedDict(
+                    [(a.upper(), a) for a in sorted(constants_spec)]
+                )
     return constants_outputs
 
 
