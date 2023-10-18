@@ -1,5 +1,13 @@
 exclude: (\.git/|\.tox/|\.venv/|le_utils\.egg-info)
 repos:
+-   repo: local
+    hooks:
+    -   id: rebuild
+        name: Regenerate files
+        description: Regenerates files when specs or version has changed
+        entry: make build
+        language: system
+        files: (spec/.*\.json|setup\.py)$
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.0.0
     hooks:
