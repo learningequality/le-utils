@@ -239,6 +239,18 @@
 		"allowed_formats": ["png", "jpg", "jpeg"],
 		"convertible_formats": []
 	},
+	"imscp_zip": {
+		"readable_name": "IMSCP Zip",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": true,
+		"order": 1,
+		"kind": "html5",
+		"allowed_formats": ["zip"],
+		"convertible_formats": []
+	},
 	"h5p": {
 		"readable_name": "H5P",
 		"multi_language": false,
