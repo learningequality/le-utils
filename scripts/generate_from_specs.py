@@ -8,6 +8,7 @@ import json
 import os
 import re
 import string
+import subprocess
 import sys
 from collections import OrderedDict
 from glob import glob
@@ -238,26 +239,34 @@ def write_js_file(output_file, name, ordered_output, schema=None):
 
 
 def write_labels_src_files(label_outputs):
+    output_files = []
     for label_type, ordered_output in label_outputs.items():
         py_output_file = os.path.join(
             py_labels_output_dir, "{}.py".format(pascal_to_snake(label_type))
         )
         write_python_file(py_output_file, label_type, ordered_output)
+        output_files.append(py_output_file)
 
         js_output_file = os.path.join(js_labels_output_dir, "{}.js".format(label_type))
         write_js_file(js_output_file, label_type, ordered_output)
+        output_files.append(js_output_file)
+    return output_files
 
 
 def write_constants_src_files(constants_outputs, schemas):
+    output_files = []
     for constant_type, ordered_output in constants_outputs.items():
         py_output_file = os.path.join(
             py_output_dir, "{}.py".format(pascal_to_snake(constant_type))
         )
         schema = schemas.get(constant_type)
         write_python_file(py_output_file, constant_type, ordered_output, schema=schema)
+        output_files.append(py_output_file)
 
         js_output_file = os.path.join(js_output_dir, "{}.js".format(constant_type))
         write_js_file(js_output_file, constant_type, ordered_output, schema=schema)
+        output_files.append(js_output_file)
+    return output_files
 
 
 def set_package_json_version():
@@ -279,6 +288,7 @@ def set_package_json_version():
             else:
                 f.write("\n")
             f.write(line.rstrip())
+    return [package_json]
 
 
 if __name__ == "__main__":
@@ -289,8 +299,12 @@ if __name__ == "__main__":
     schemas_to_write, schema_constants_to_write = read_schema_specs()
     constants_to_write.update(schema_constants_to_write)
 
-    write_labels_src_files(labels_to_write)
+    output_files = []
 
-    write_constants_src_files(constants_to_write, schemas_to_write)
+    output_files += write_labels_src_files(labels_to_write)
 
-    set_package_json_version()
+    output_files += write_constants_src_files(constants_to_write, schemas_to_write)
+
+    output_files += set_package_json_version()
+
+    subprocess.call(["pre-commit", "run", "--files"] + output_files)

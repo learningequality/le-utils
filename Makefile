@@ -26,7 +26,6 @@ test:
 build:
 	pip install -e .
 	python scripts/generate_from_specs.py
-	pre-commit run --all-files || true
 
 release: clean build
 	python setup.py sdist
