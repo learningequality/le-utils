@@ -1,0 +1,80 @@
+{
+  "$id": "/schemas/recommendations_request",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Schema for recommendations API requests received by TorchServe",
+  "additionalProperties": false,
+  "definitions": {
+    "language": {
+      "type": "string",
+      "description": "The language code of the topic",
+      "pattern": "^[a-z]{3}(?:-[A-Z]{2})?$"
+    },
+    "topic": {
+      "type": "object",
+      "description": "A topic in the tree structure for which to generate recommendations",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The ID of the topic content node on Studio"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the topic"
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the topic"
+        },
+        "language": {
+          "$ref": "#/definitions/language"
+        },
+        "subtopics": {
+          "type": "array",
+          "description": "The subtopics of the topic",
+          "items": {
+            "$ref": "#/definitions/topic"
+          }
+        }
+      },
+      "required": ["id", "title", "description", "language", "subtopics"]
+    }
+  },
+  "properties": {
+    "category": {
+      "type": "string",
+      "description": "The category of the model",
+      "enum": ["aligned"]
+    },
+    "channel": {
+      "type": "object",
+      "description": "The channel and topic tree for which to generate recommendations",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The ID of the channel"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the channel"
+        },
+        "language": {
+          "$ref": "#/definitions/language"
+        },
+        "subtopics": {
+          "type": "array",
+          "description": "The subtopics of the channel",
+          "items": {
+            "$ref": "#/definitions/topic"
+          }
+        }
+      },
+      "required": ["id", "title", "language", "subtopics"]
+    }
+  },
+  "required": ["category", "channel"]
+}
