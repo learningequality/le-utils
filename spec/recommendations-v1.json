@@ -17,7 +17,6 @@
       "properties": {
         "id": {
           "type": "string",
-          "format": "uuid",
           "description": "The ID of the topic content node on Studio"
         },
         "title": {
