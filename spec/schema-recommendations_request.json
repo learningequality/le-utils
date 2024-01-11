@@ -1,0 +1,77 @@
+{
+  "$id": "/schemas/recommendations_request",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Schema for recommendations API requests received by RayServe",
+  "additionalProperties": false,
+  "definitions": {
+    "language": {
+      "type": "string",
+      "description": "The language code of the topic or channel",
+      "pattern": "^[a-z]{2,3}(?:-[A-Z]{2})?$"
+    },
+    "topic": {
+      "type": "object",
+      "description": "A topic in the tree structure for which to generate recommendations",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the topic content node on Studio"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the topic"
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the topic"
+        },
+        "language": {
+          "$ref": "#/definitions/language"
+        },
+        "ancestors": {
+          "type": "array",
+          "description": "The ancestors of the channel",
+          "items": {
+            "$ref": "#/definitions/topic"
+          }
+        }
+      },
+      "required": ["id", "title", "description", "language"]
+    }
+  },
+  "properties": {
+    "target": {
+      "type": "string",
+      "description": "The target topic of the channel"
+    },
+    "ancestors": {
+      "type": "array",
+      "description": "The ancestors of the channel's target topic",
+      "items": {
+        "$ref": "#/definitions/topic"
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "The metadata of the channel for which to generate recommendations",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the channel"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the channel"
+        },
+        "language": {
+          "$ref": "#/definitions/language"
+        }
+      },
+      "required": ["id", "title", "language"]
+    }
+  },
+  "required": ["target", "metadata"]
+}

@@ -7,6 +7,9 @@ import pytest
 
 from le_utils.constants import completion_criteria
 from le_utils.constants import mastery_criteria
+from le_utils.validators.recommendations_request import (
+    validate as validate_recommendations_request,
+)
 
 
 try:
@@ -26,7 +29,7 @@ if jsonschema is not None:
     )
 
 
-def _validate(data):
+def _validate_completion_criteria(data):
     """
     :param data: Dictionary of data to validate
     :raises: jsonschema.ValidationError: When invalid
@@ -51,8 +54,10 @@ def _assert_not_raises(not_expected):
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__time_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        _validate({"model": "time", "threshold": 2, "learner_managed": False})
-        _validate(
+        _validate_completion_criteria(
+            {"model": "time", "threshold": 2, "learner_managed": False}
+        )
+        _validate_completion_criteria(
             {
                 "model": "time",
                 "threshold": 1200123,
@@ -63,7 +68,7 @@ def test_completion_criteria__time_model__valid():
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__time_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "time",
                 "threshold": {"mastery_model": "not_real"},
@@ -71,7 +76,7 @@ def test_completion_criteria__time_model__invalid():
             }
         )
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "time",
                 "threshold": -1,
@@ -82,8 +87,10 @@ def test_completion_criteria__time_model__invalid():
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__approx_time_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        _validate({"model": "approx_time", "threshold": 2, "learner_managed": False})
-        _validate(
+        _validate_completion_criteria(
+            {"model": "approx_time", "threshold": 2, "learner_managed": False}
+        )
+        _validate_completion_criteria(
             {
                 "model": "approx_time",
                 "threshold": 1200123,
@@ -94,7 +101,7 @@ def test_completion_criteria__approx_time_model__valid():
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__approx_time_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "approx_time",
                 "threshold": {"mastery_model": "not_real"},
@@ -102,7 +109,7 @@ def test_completion_criteria__approx_time_model__invalid():
             }
         )
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "approx_time",
                 "threshold": -1,
@@ -113,8 +120,10 @@ def test_completion_criteria__approx_time_model__invalid():
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__pages_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        _validate({"model": "pages", "threshold": 2, "learner_managed": False})
-        _validate(
+        _validate_completion_criteria(
+            {"model": "pages", "threshold": 2, "learner_managed": False}
+        )
+        _validate_completion_criteria(
             {
                 "model": "pages",
                 "threshold": 1200123,
@@ -125,13 +134,13 @@ def test_completion_criteria__pages_model__valid():
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__pages_model__percentage__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "pages",
                 "threshold": "99%",
             }
         )
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "pages",
                 "threshold": "1%",
@@ -142,7 +151,7 @@ def test_completion_criteria__pages_model__percentage__valid():
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__pages_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "pages",
                 "threshold": {"mastery_model": "not_real"},
@@ -150,7 +159,7 @@ def test_completion_criteria__pages_model__invalid():
             }
         )
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "pages",
                 "threshold": -1,
@@ -161,7 +170,7 @@ def test_completion_criteria__pages_model__invalid():
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__pages_model__percentage__invalid():
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "pages",
                 "threshold": "0%",
@@ -169,7 +178,7 @@ def test_completion_criteria__pages_model__percentage__invalid():
             }
         )
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "pages",
                 "threshold": "101%",
@@ -180,14 +189,14 @@ def test_completion_criteria__pages_model__percentage__invalid():
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__mastery_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "mastery",
                 "threshold": {"mastery_model": "do_all"},
                 "learner_managed": False,
             }
         )
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "mastery",
                 "threshold": {"mastery_model": "m_of_n", "m": 1, "n": 2},
@@ -198,7 +207,7 @@ def test_completion_criteria__mastery_model__valid():
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__mastery_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "mastery",
                 "threshold": {"mastery_model": "m_of_n"},
@@ -206,7 +215,7 @@ def test_completion_criteria__mastery_model__invalid():
             }
         )
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "mastery",
                 "threshold": {"mastery_model": "do_all", "m": 1},
@@ -214,7 +223,7 @@ def test_completion_criteria__mastery_model__invalid():
             }
         )
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "mastery",
                 "threshold": {"mastery_model": "not_real"},
@@ -222,7 +231,7 @@ def test_completion_criteria__mastery_model__invalid():
             }
         )
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "mastery",
                 "threshold": -1,
@@ -233,8 +242,8 @@ def test_completion_criteria__mastery_model__invalid():
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__reference__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        _validate({"model": "reference", "learner_managed": False})
-        _validate(
+        _validate_completion_criteria({"model": "reference", "learner_managed": False})
+        _validate_completion_criteria(
             {
                 "model": "reference",
             }
@@ -244,7 +253,7 @@ def test_completion_criteria__reference__valid():
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_completion_criteria__reference__invalid():
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "reference",
                 "threshold": 1,
@@ -252,10 +261,38 @@ def test_completion_criteria__reference__invalid():
             }
         )
     with pytest.raises(jsonschema.ValidationError):
-        _validate(
+        _validate_completion_criteria(
             {
                 "model": "reference",
                 "threshold": {"mastery_model": "do_all"},
                 "learner_managed": False,
+            }
+        )
+
+
+@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+def test_recommendations__topic__valid():
+    with _assert_not_raises(jsonschema.ValidationError):
+        validate_recommendations_request(
+            {
+                "target": {
+                    "id": "456",
+                    "title": "Target topic",
+                    "description": "Target description",
+                    "language": "en",
+                },
+                "ancestors": [
+                    {
+                        "id": "123",
+                        "title": "Parent title",
+                        "description": "Parent description",
+                        "language": "en",
+                    },
+                ],
+                "metadata": {
+                    "id": "000",
+                    "title": "Channel title",
+                    "language": "en",
+                },
             }
         )
