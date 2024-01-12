@@ -307,4 +307,7 @@ if __name__ == "__main__":
 
     output_files += set_package_json_version()
 
-    subprocess.call(["pre-commit", "run", "--files"] + output_files)
+    env = os.environ.copy()
+    env["SKIP"] = "rebuild-from-specs"
+
+    subprocess.call(["pre-commit", "run", "--files"] + output_files, env=env)
