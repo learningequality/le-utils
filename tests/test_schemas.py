@@ -280,7 +280,7 @@ def test_recommendations__topic__valid():
                         "id": "456",
                         "title": "Target topic",
                         "description": "Target description",
-                        "language": "en"
+                        "language": "en",
                     }
                 ],
                 "resources": [
@@ -289,13 +289,13 @@ def test_recommendations__topic__valid():
                         "title": "Resource title",
                         "description": "Resource description",
                         "text": "Resource text",
-                        "language": "en"
+                        "language": "en",
                     },
                 ],
                 "metadata": {
                     "channel_id": "000",
                     "channel_title": "Channel title",
-                    "some_additional_field": "some_random_value"
-                }
+                    "some_additional_field": "some_random_value",
+                },
             }
         )
