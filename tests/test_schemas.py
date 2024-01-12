@@ -8,7 +8,7 @@ import pytest
 from le_utils.constants import completion_criteria
 from le_utils.constants import mastery_criteria
 from le_utils.validators.embed_request import (
-    validate as validate_recommendations_request,
+    validate as validate_embed_request,
 )
 
 
@@ -273,7 +273,7 @@ def test_completion_criteria__reference__invalid():
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 def test_recommendations__topic__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        validate_recommendations_request(
+        validate_embed_request(
             {
                 "topics": [
                     {
