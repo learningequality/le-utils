@@ -24,8 +24,8 @@ SCHEMA = {
         "language": {
             "type": "string",
             "description": "Language code from "
-                           "https://github.com/learningequality/le-utils/blob/main/le_utils/resources/languagelookup"
-                           ".json",
+            "https://github.com/learningequality/le-utils/blob/main/le_utils/resources/languagelookup"
+            ".json",
             "pattern": "^[a-z]{2,3}(?:-[a-zA-Z]+)?$",
         },
         "topic": {
@@ -33,11 +33,17 @@ SCHEMA = {
             "description": "A topic in the tree structure",
             "additionalProperties": False,
             "properties": {
-                "id": {"type": "string", "description": "The ID of the topic content node on Studio"},
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the topic content node on Studio",
+                },
                 "title": {"type": "string", "description": "The title of the topic"},
-                "description": {"type": "string", "description": "The description of the topic"},
+                "description": {
+                    "type": "string",
+                    "description": "The description of the topic",
+                },
                 "language": {"$ref": "#/definitions/language"},
-                "ancestors": {"$ref": "#/definitions/ancestors"}
+                "ancestors": {"$ref": "#/definitions/ancestors"},
             },
             "required": ["id", "title", "description"],
         },
@@ -46,39 +52,54 @@ SCHEMA = {
             "description": "The key textual metadata and data for a content resource",
             "additionalProperties": False,
             "properties": {
-                "id": {"type": "string", "description": "The ID of the content resource"},
-                "title": {"type": "string", "description": "The title of the content resource"},
-                "description": {"type": "string", "description": "The description of the content resource"},
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the content resource",
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the content resource",
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the content resource",
+                },
                 "text": {
                     "type": "string",
                     "description": "The cleaned up text extracted from the content resource (in markdown or plaintext "
-                                   "format)"
+                    "format)",
                 },
                 "language": {"$ref": "#/definitions/language"},
             },
-            "required": ["id", "title", "description", "text"]
+            "required": ["id", "title", "description", "text"],
         },
     },
     "properties": {
         "topics": {
             "type": "array",
             "description": "A list of topics to embed",
-            "items": {"$ref": "#/definitions/topic"}
+            "items": {"$ref": "#/definitions/topic"},
         },
         "resources": {
             "type": "array",
             "description": "A list of content resources to embed",
-            "items": {"$ref": "#/definitions/resource"}
+            "items": {"$ref": "#/definitions/resource"},
         },
         "metadata": {
             "type": "object",
             "description": "The metadata of the channel for logging purposes",
             "properties": {
-                "channel_id": {"type": "string", "description": "The ID of the channel"},
-                "channel_title": {"type": "string", "description": "The title of the channel"}
+                "channel_id": {
+                    "type": "string",
+                    "description": "The ID of the channel",
+                },
+                "channel_title": {
+                    "type": "string",
+                    "description": "The title of the channel",
+                },
             },
-            "required": ["channel_id", "channel_title"]
+            "required": ["channel_id", "channel_title"],
         },
     },
-    "required": ["topics", "resources"]
+    "required": ["topics", "resources"],
 }
