@@ -275,24 +275,27 @@ def test_recommendations__topic__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         validate_recommendations_request(
             {
-                "target": {
-                    "id": "456",
-                    "title": "Target topic",
-                    "description": "Target description",
-                    "language": "en",
-                },
-                "ancestors": [
+                "topics": [
+                    {
+                        "id": "456",
+                        "title": "Target topic",
+                        "description": "Target description",
+                        "language": "en"
+                    }
+                ],
+                "resources": [
                     {
                         "id": "123",
-                        "title": "Parent title",
-                        "description": "Parent description",
-                        "language": "en",
+                        "title": "Resource title",
+                        "description": "Resource description",
+                        "text": "Resource text",
+                        "language": "en"
                     },
                 ],
                 "metadata": {
-                    "id": "000",
-                    "title": "Channel title",
-                    "language": "en",
-                },
+                    "channel_id": "000",
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value"
+                }
             }
         )

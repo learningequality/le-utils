@@ -10,59 +10,75 @@ choices = ()
 RECOMMENDATIONSREQUESTLIST = []
 
 SCHEMA = {
-    "$id": "/schemas/recommendations_request",
+    "$id": "/schemas/embed_request",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
-    "description": "Schema for recommendations API requests received by RayServe",
+    "description": "Schema for embed requests received by RayServe",
     "additionalProperties": False,
     "definitions": {
+        "ancestors": {
+            "type": "array",
+            "description": "The ancestors of the topic, in order, from the parent to the root",
+            "items": {"$ref": "#/definitions/topic"},
+        },
         "language": {
             "type": "string",
-            "description": "The language code of the topic or channel",
-            "pattern": "^[a-z]{2,3}(?:-[A-Z]{2})?$",
+            "description": "Language code from "
+                           "https://github.com/learningequality/le-utils/blob/main/le_utils/resources/languagelookup"
+                           ".json",
+            "pattern": "^[a-z]{2,3}(?:-[a-zA-Z]+)?$",
         },
         "topic": {
             "type": "object",
-            "description": "A topic in the tree structure for which to generate recommendations",
+            "description": "A topic in the tree structure",
             "additionalProperties": False,
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "The ID of the topic content node on Studio",
-                },
+                "id": {"type": "string", "description": "The ID of the topic content node on Studio"},
                 "title": {"type": "string", "description": "The title of the topic"},
-                "description": {
+                "description": {"type": "string", "description": "The description of the topic"},
+                "language": {"$ref": "#/definitions/language"},
+                "ancestors": {"$ref": "#/definitions/ancestors"}
+            },
+            "required": ["id", "title", "description"],
+        },
+        "resource": {
+            "type": "object",
+            "description": "The key textual metadata and data for a content resource",
+            "additionalProperties": False,
+            "properties": {
+                "id": {"type": "string", "description": "The ID of the content resource"},
+                "title": {"type": "string", "description": "The title of the content resource"},
+                "description": {"type": "string", "description": "The description of the content resource"},
+                "text": {
                     "type": "string",
-                    "description": "The description of the topic",
+                    "description": "The cleaned up text extracted from the content resource (in markdown or plaintext "
+                                   "format)"
                 },
                 "language": {"$ref": "#/definitions/language"},
-                "ancestors": {
-                    "type": "array",
-                    "description": "The ancestors of the channel",
-                    "items": {"$ref": "#/definitions/topic"},
-                },
             },
-            "required": ["id", "title", "description", "language"],
+            "required": ["id", "title", "description", "text"]
         },
     },
     "properties": {
-        "target": {"type": "string", "description": "The target topic of the channel"},
-        "ancestors": {
+        "topics": {
             "type": "array",
-            "description": "The ancestors of the channel's target topic",
-            "items": {"$ref": "#/definitions/topic"},
+            "description": "A list of topics to embed",
+            "items": {"$ref": "#/definitions/topic"}
+        },
+        "resources": {
+            "type": "array",
+            "description": "A list of content resources to embed",
+            "items": {"$ref": "#/definitions/resource"}
         },
         "metadata": {
             "type": "object",
-            "description": "The metadata of the channel for which to generate recommendations",
-            "additionalProperties": False,
+            "description": "The metadata of the channel for logging purposes",
             "properties": {
-                "id": {"type": "string", "description": "The ID of the channel"},
-                "title": {"type": "string", "description": "The title of the channel"},
-                "language": {"$ref": "#/definitions/language"},
+                "channel_id": {"type": "string", "description": "The ID of the channel"},
+                "channel_title": {"type": "string", "description": "The title of the channel"}
             },
-            "required": ["id", "title", "language"],
+            "required": ["channel_id", "channel_title"]
         },
     },
-    "required": ["target", "metadata"],
+    "required": ["topics", "resources"]
 }
