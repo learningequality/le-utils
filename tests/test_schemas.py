@@ -7,7 +7,7 @@ import pytest
 
 from le_utils.constants import completion_criteria
 from le_utils.constants import mastery_criteria
-from le_utils.validators.recommendations_request import (
+from le_utils.validators.embed_request import (
     validate as validate_recommendations_request,
 )
 
