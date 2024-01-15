@@ -102,21 +102,7 @@ export const SCHEMA = {
     },
     "metadata": {
       "type": "object",
-      "description": "The metadata of the channel for logging purposes",
-      "properties": {
-        "channel_id": {
-          "type": "string",
-          "description": "The ID of the channel"
-        },
-        "channel_title": {
-          "type": "string",
-          "description": "The title of the channel"
-        }
-      },
-      "required": [
-        "channel_id",
-        "channel_title"
-      ]
+      "description": "The metadata of the channel for logging purposes"
     }
   },
   "required": [
