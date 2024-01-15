@@ -23,8 +23,7 @@ SCHEMA = {
         },
         "language": {
             "type": "string",
-            "description": "Language code from https://github.com/learningequality/le-utils/blob/main/le_utils"
-            "/resources/languagelookup.json",
+            "description": "Language code from https://github.com/learningequality/le-utils/blob/main/le_utils/resources/languagelookup.json",
             "pattern": "^[a-z]{2,3}(?:-[a-zA-Z]+)?$",
         },
         "topic": {
@@ -65,8 +64,7 @@ SCHEMA = {
                 },
                 "text": {
                     "type": "string",
-                    "description": "The cleaned up text extracted from the content resource (in markdown or plaintext "
-                    "format)",
+                    "description": "The cleaned up text extracted from the content resource (in markdown or plaintext format)",
                 },
                 "language": {"$ref": "#/definitions/language"},
             },
