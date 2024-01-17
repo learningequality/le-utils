@@ -107,3 +107,6 @@ tests/testcontent/
 # Pycharm project settings
 .idea/
 *.iml
+
+# pytest
+.pytest_cache/

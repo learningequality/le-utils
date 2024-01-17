@@ -229,10 +229,11 @@ def write_js_file(output_file, name, ordered_output, schema=None):
         write_js_header(f)
         f.write("// {}\n".format(name))
         f.write("\n")
-        f.write("export default {\n")
-        for key, value in ordered_output.items():
-            f.write('    {key}: "{value}",\n'.format(key=key, value=value))
-        f.write("};\n")
+        if ordered_output:
+            f.write("export default {\n")
+            for key, value in ordered_output.items():
+                f.write('    {key}: "{value}",\n'.format(key=key, value=value))
+            f.write("};\n")
         if schema:
             f.write("\n")
             f.write("export const SCHEMA = {};\n".format(schema))
@@ -255,16 +256,20 @@ def write_labels_src_files(label_outputs):
 
 def write_constants_src_files(constants_outputs, schemas):
     output_files = []
-    for constant_type, ordered_output in constants_outputs.items():
+    keys = set(list(constants_outputs.keys()) + list(schemas.keys()))
+
+    for key in keys:
+        constant_outputs = constants_outputs.get(key, {})
+        schema = schemas.get(key, None)
+
         py_output_file = os.path.join(
-            py_output_dir, "{}.py".format(pascal_to_snake(constant_type))
+            py_output_dir, "{}.py".format(pascal_to_snake(key))
         )
-        schema = schemas.get(constant_type)
-        write_python_file(py_output_file, constant_type, ordered_output, schema=schema)
+        write_python_file(py_output_file, key, constant_outputs, schema=schema)
         output_files.append(py_output_file)
 
-        js_output_file = os.path.join(js_output_dir, "{}.js".format(constant_type))
-        write_js_file(js_output_file, constant_type, ordered_output, schema=schema)
+        js_output_file = os.path.join(js_output_dir, "{}.js".format(key))
+        write_js_file(js_output_file, key, constant_outputs, schema=schema)
         output_files.append(js_output_file)
     return output_files
 
