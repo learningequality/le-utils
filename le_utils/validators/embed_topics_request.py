@@ -1,6 +1,6 @@
 import jsonschema
 
-from le_utils.constants.embed_request import SCHEMA
+from le_utils.constants.embed_topics_request import SCHEMA
 
 
 def validate(data):
