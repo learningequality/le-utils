@@ -7,17 +7,18 @@ import pytest
 
 from le_utils.constants import completion_criteria
 from le_utils.constants import mastery_criteria
-from le_utils.validators.embed_request import (
-    validate as validate_embed_request,
+from le_utils.validators.embed_content_request import (
+    validate as validate_embed_content_request,
 )
-
+from le_utils.validators.embed_topics_request import (
+    validate as validate_embed_topics_request,
+)
 
 try:
     # the jsonschema package for python 3.4 is too old, so if not present, we'll just skip
     import jsonschema
 except ImportError:
     jsonschema = None
-
 
 resolver = None
 if jsonschema is not None:
@@ -271,9 +272,9 @@ def test_completion_criteria__reference__invalid():
 
 
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
-def test_recommendations__topic__valid():
+def test_embed__topics__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        validate_embed_request(
+        validate_embed_topics_request(
             {
                 "topics": [
                     {
@@ -283,6 +284,20 @@ def test_recommendations__topic__valid():
                         "language": "en",
                     }
                 ],
+                "metadata": {
+                    "channel_id": "000",
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
+
+
+@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+def test_embed__content__valid():
+    with _assert_not_raises(jsonschema.ValidationError):
+        validate_embed_content_request(
+            {
                 "resources": [
                     {
                         "id": "123",
