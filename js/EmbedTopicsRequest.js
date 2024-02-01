@@ -29,7 +29,7 @@ export const SCHEMA = {
     },
     "level": {
       "type": "integer",
-      "description": "The level of the ancestor, where the parent is 1 and the root is the highest level"
+      "description": "The level of the ancestor, where the root is 0 and the parent is the highest level"
     },
     "ancestor": {
       "type": "object",
@@ -61,7 +61,7 @@ export const SCHEMA = {
     },
     "ancestors": {
       "type": "array",
-      "description": "The ancestors of the topic, in order, from the parent to the root",
+      "description": "The ancestors of the topic. Please see 'level' in the ancestor schema for more information",
       "items": {
         "$ref": "#/definitions/ancestor"
       }
