@@ -16,39 +16,50 @@ SCHEMA = {
     "description": "Schema for embed topics requests received by RayServe",
     "additionalProperties": False,
     "definitions": {
-        "ancestors": {
-            "type": "array",
-            "description": "The ancestors of the topic, in order, from the parent to the root",
-            "items": {
-                "$ref": "#/definitions/topic",
-                "properties": {
-                    "level": {
-                        "type": "integer",
-                        "description": "The level of the ancestor, where the parent is 1 and the root is the highest level",
-                    }
-                },
-                "required": ["level"],
-            },
+        "id": {
+            "type": "string",
+            "description": "The ID of the topic content node on Studio",
+        },
+        "title": {"type": "string", "description": "The title of the topic"},
+        "description": {
+            "type": "string",
+            "description": "The description of the topic",
         },
         "language": {
             "type": "string",
             "description": "Language code from https://github.com/learningequality/le-utils/blob/main/le_utils/resources/languagelookup.json",
             "pattern": "^[a-z]{2,3}(?:-[a-zA-Z]+)?$",
         },
+        "level": {
+            "type": "integer",
+            "description": "The level of the ancestor, where the parent is 1 and the root is the highest level",
+        },
+        "ancestor": {
+            "type": "object",
+            "description": "An ancestor in the tree structure",
+            "additionalProperties": False,
+            "properties": {
+                "id": {"$ref": "#/definitions/id"},
+                "title": {"$ref": "#/definitions/title"},
+                "description": {"$ref": "#/definitions/description"},
+                "language": {"$ref": "#/definitions/language"},
+                "level": {"$ref": "#/definitions/level"},
+            },
+            "required": ["id", "title", "description", "level"],
+        },
+        "ancestors": {
+            "type": "array",
+            "description": "The ancestors of the topic, in order, from the parent to the root",
+            "items": {"$ref": "#/definitions/ancestor"},
+        },
         "topic": {
             "type": "object",
             "description": "A topic in the tree structure",
             "additionalProperties": False,
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "The ID of the topic content node on Studio",
-                },
-                "title": {"type": "string", "description": "The title of the topic"},
-                "description": {
-                    "type": "string",
-                    "description": "The description of the topic",
-                },
+                "id": {"$ref": "#/definitions/id"},
+                "title": {"$ref": "#/definitions/title"},
+                "description": {"$ref": "#/definitions/description"},
                 "language": {"$ref": "#/definitions/language"},
                 "ancestors": {"$ref": "#/definitions/ancestors"},
             },
