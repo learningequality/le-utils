@@ -19,7 +19,16 @@ SCHEMA = {
         "ancestors": {
             "type": "array",
             "description": "The ancestors of the topic, in order, from the parent to the root",
-            "items": {"$ref": "#/definitions/topic"},
+            "items": {
+                "$ref": "#/definitions/topic",
+                "properties": {
+                    "level": {
+                        "type": "integer",
+                        "description": "The level of the ancestor, where the parent is 1 and the root is the highest level",
+                    }
+                },
+                "required": ["level"],
+            },
         },
         "language": {
             "type": "string",
