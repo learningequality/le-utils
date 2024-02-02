@@ -272,7 +272,7 @@ def test_completion_criteria__reference__invalid():
 
 
 @pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
-def test_embed__topics__valid():
+def test_embed__topics__without__ancestors__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         validate_embed_topics_request(
             {
@@ -282,6 +282,37 @@ def test_embed__topics__valid():
                         "title": "Target topic",
                         "description": "Target description",
                         "language": "en",
+                    }
+                ],
+                "metadata": {
+                    "channel_id": "000",
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
+
+
+@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+def test_embed__topics__with__ancestors__valid():
+    with _assert_not_raises(jsonschema.ValidationError):
+        validate_embed_topics_request(
+            {
+                "topics": [
+                    {
+                        "id": "456",
+                        "title": "Target topic",
+                        "description": "Target description",
+                        "language": "en",
+                        "ancestors": [
+                            {
+                                "id": "456",
+                                "title": "Parent topic",
+                                "description": "Parent description",
+                                "language": "en",
+                                "level": 1,
+                            }
+                        ],
                     }
                 ],
                 "metadata": {
