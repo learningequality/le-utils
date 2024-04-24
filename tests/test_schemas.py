@@ -346,6 +346,7 @@ def test_embed__content__valid():
             }
         )
 
+
 def test_embed__content__valid_with_files():
     with _assert_not_raises(jsonschema.ValidationError):
         validate_embed_content_request(
@@ -360,19 +361,19 @@ def test_embed__content__valid_with_files():
                         "files": [
                             {
                                 "url": "http://localhost:8000/media/1234.jpg",
-                                "preset": "video_thumbnail"
+                                "preset": "video_thumbnail",
                             },
                             {
                                 "url": "https://storage.cloud.google.com/test.appspot.com/test/test.mp4",
                                 "preset": "high_res_video",
-                                "language": "en"
+                                "language": "en",
                             },
                             {
                                 "url": "http://storage.cloud.google.com/test.appspot.com/test/test.mp4",
                                 "preset": "high_res_video",
-                                "language": "es"
-                            }
-                        ]
+                                "language": "es",
+                            },
+                        ],
                     },
                 ],
                 "metadata": {
@@ -382,6 +383,7 @@ def test_embed__content__valid_with_files():
                 },
             }
         )
+
 
 def test_embed__content__invalid_url_files():
     with pytest.raises(jsonschema.ValidationError):
@@ -397,9 +399,9 @@ def test_embed__content__invalid_url_files():
                         "files": [
                             {
                                 "url": "https://example.com/media/1234.jpg",
-                                "preset": "video_thumbnail"
-                            }
-                        ]
+                                "preset": "video_thumbnail",
+                            },
+                        ],
                     },
                 ],
                 "metadata": {
@@ -409,6 +411,7 @@ def test_embed__content__invalid_url_files():
                 },
             }
         )
+
 
 def test_embed__content__invalid_preset_files():
     with pytest.raises(jsonschema.ValidationError):
@@ -424,9 +427,9 @@ def test_embed__content__invalid_preset_files():
                         "files": [
                             {
                                 "url": "http://localhost:8080/media/1234.jpg",
-                                "preset": "invalid_preset"
-                            }
-                        ]
+                                "preset": "invalid_preset",
+                            },
+                        ],
                     },
                 ],
                 "metadata": {
