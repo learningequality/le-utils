@@ -15,6 +15,65 @@ export const SCHEMA = {
       "description": "Language code from https://github.com/learningequality/le-utils/blob/main/le_utils/resources/languagelookup.json",
       "pattern": "^[a-z]{2,3}(?:-[a-zA-Z]+)?$"
     },
+    "url": {
+      "type": "string",
+      "pattern": "^(https?:\\/\\/(?:storage\\.cloud\\.google\\.com|localhost(?::[0-9]+)?)\\/[a-z0-9-._~!$&'()*+,;=:@%\\/\\?]+)$"
+    },
+    "preset": {
+      "type": "string",
+      "description": "Presets from https://github.com/learningequality/le-utils/blob/main/le_utils/constants/format_presets.py",
+      "enum": [
+        "high_res_video",
+        "low_res_video",
+        "video_thumbnail",
+        "video_subtitle",
+        "video_dependency",
+        "audio",
+        "audio_thumbnail",
+        "audio_dependency",
+        "document",
+        "epub",
+        "document_thumbnail",
+        "exercise",
+        "exercise_thumbnail",
+        "exercise_image",
+        "exercise_graphie",
+        "channel_thumbnail",
+        "topic_thumbnail",
+        "html5_zip",
+        "html5_dependency",
+        "html5_thumbnail",
+        "h5p",
+        "h5p_thumbnail",
+        "zim",
+        "zim_thumbnail",
+        "qti",
+        "qti_thumbnail",
+        "slideshow_image",
+        "slideshow_thumbnail",
+        "slideshow_manifest",
+        "imscp_zip"
+      ]
+    },
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "$ref": "#/definitions/url"
+        },
+        "preset": {
+          "$ref": "#/definitions/preset"
+        },
+        "language": {
+          "$ref": "#/definitions/language"
+        }
+      },
+      "required": [
+        "url",
+        "preset"
+      ]
+    },
     "resource": {
       "type": "object",
       "description": "The key textual metadata and data for a content resource",
@@ -38,6 +97,13 @@ export const SCHEMA = {
         },
         "language": {
           "$ref": "#/definitions/language"
+        },
+        "files": {
+          "type": "array",
+          "description": "A list of files associated with the content resource",
+          "items": {
+            "$ref": "#/definitions/file"
+          }
         }
       },
       "required": [
