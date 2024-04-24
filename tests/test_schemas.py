@@ -345,3 +345,94 @@ def test_embed__content__valid():
                 },
             }
         )
+
+def test_embed__content__valid_with_files():
+    with _assert_not_raises(jsonschema.ValidationError):
+        validate_embed_content_request(
+            {
+                "resources": [
+                    {
+                        "id": "123",
+                        "title": "Resource title",
+                        "description": "Resource description",
+                        "text": "Resource text",
+                        "language": "en",
+                        "files": [
+                            {
+                                "url": "http://localhost:8000/media/1234.jpg",
+                                "preset": "video_thumbnail"
+                            },
+                            {
+                                "url": "https://storage.cloud.google.com/test.appspot.com/test/test.mp4",
+                                "preset": "high_res_video",
+                                "language": "en"
+                            },
+                            {
+                                "url": "http://storage.cloud.google.com/test.appspot.com/test/test.mp4",
+                                "preset": "high_res_video",
+                                "language": "es"
+                            }
+                        ]
+                    },
+                ],
+                "metadata": {
+                    "channel_id": "000",
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
+
+def test_embed__content__invalid_url_files():
+    with pytest.raises(jsonschema.ValidationError):
+        validate_embed_content_request(
+            {
+                "resources": [
+                    {
+                        "id": "123",
+                        "title": "Resource title",
+                        "description": "Resource description",
+                        "text": "Resource text",
+                        "language": "en",
+                        "files": [
+                            {
+                                "url": "https://example.com/media/1234.jpg",
+                                "preset": "video_thumbnail"
+                            }
+                        ]
+                    },
+                ],
+                "metadata": {
+                    "channel_id": "000",
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
+
+def test_embed__content__invalid_preset_files():
+    with pytest.raises(jsonschema.ValidationError):
+        validate_embed_content_request(
+            {
+                "resources": [
+                    {
+                        "id": "123",
+                        "title": "Resource title",
+                        "description": "Resource description",
+                        "text": "Resource text",
+                        "language": "en",
+                        "files": [
+                            {
+                                "url": "http://localhost:8080/media/1234.jpg",
+                                "preset": "invalid_preset"
+                            }
+                        ]
+                    },
+                ],
+                "metadata": {
+                    "channel_id": "000",
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
