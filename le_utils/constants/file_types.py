@@ -12,6 +12,7 @@ ZIM = "zim"
 THUMBNAIL = "thumbnail"
 SUBTITLES = "subtitles"
 SLIDESHOW_IMAGE = "slideshow_image"
+BLOOMPUB = "bloompub"
 
 
 """ File Format (extension) to File Type Mapping """
@@ -28,6 +29,7 @@ MAPPING = {
     # DocumentFile formats
     file_formats.PDF: DOCUMENT,
     file_formats.EPUB: EPUB,
+    file_formats.BLOOMPUB: BLOOMPUB,
     #
     # formats HTMLZipFile
     file_formats.HTML5: HTML5,

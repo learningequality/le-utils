@@ -49,5 +49,8 @@
 	},
 	"zip": {
 		"mimetype": ".zip"
+	},
+	"bloompub": {
+		"mimetype": "application/blommpub+zip"
 	}
 }

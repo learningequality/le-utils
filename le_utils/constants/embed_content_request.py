@@ -59,6 +59,7 @@ SCHEMA = {
                 "slideshow_thumbnail",
                 "slideshow_manifest",
                 "imscp_zip",
+                "bloompub",
             ],
         },
         "file": {
