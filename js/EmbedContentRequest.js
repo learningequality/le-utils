@@ -52,7 +52,8 @@ export const SCHEMA = {
         "slideshow_image",
         "slideshow_thumbnail",
         "slideshow_manifest",
-        "imscp_zip"
+        "imscp_zip",
+        "bloompub"
       ]
     },
     "file": {
