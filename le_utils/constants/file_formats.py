@@ -98,7 +98,7 @@ choices = (
     (H5P, "H5P"),
     (ZIM, "ZIM"),
     (EPUB, "ePub Document"),
-    (BLOOMPUB, "bloom Document"),
+    (BLOOMPUB, "Bloom Document"),
 )
 
 
