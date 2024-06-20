@@ -76,6 +76,10 @@ ZIM_MIMETYPE = ".zim"
 EPUB = "epub"
 EPUB_MIMETYPE = "application/epub+zip"
 
+# constants for bloomPub format
+BLOOMPUB = "bloompub"
+BLOOMPUB_MIMETYPE = "application/bloompub+zip"
+
 choices = (
     (MP4, "MP4 Video"),
     (WEBM, "WEBM Video"),
@@ -94,6 +98,7 @@ choices = (
     (H5P, "H5P"),
     (ZIM, "ZIM"),
     (EPUB, "ePub Document"),
+    (BLOOMPUB, "Bloom Document"),
 )
 
 

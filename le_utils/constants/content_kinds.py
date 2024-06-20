@@ -43,6 +43,7 @@ MAPPING = {
     file_formats.HTML5: HTML5,
     file_formats.H5P: H5P,
     file_formats.ZIM: ZIM,
+    file_formats.BLOOMPUB: DOCUMENT,
 }
 
 

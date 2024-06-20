@@ -358,5 +358,17 @@
 		"kind": "slideshow",
 		"allowed_formats": ["json"],
 		"convertible_formats": []
+	},
+	"bloompub": {
+		"readable_name": "Bloom Document",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": true,
+		"order": 1,
+		"kind": "document",
+		"allowed_formats": ["bloompub"],
+		"convertible_formats": []
 	}
 }
