@@ -1,4 +1,4 @@
 pycountry==17.5.14
 pytest==3.7.1
-attrs==20.3.0
+attrs==23.2.0
 jsonschema==3.2.0;python_version!="3.4"
