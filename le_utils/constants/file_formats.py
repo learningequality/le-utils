@@ -78,6 +78,7 @@ EPUB_MIMETYPE = "application/epub+zip"
 
 # constants for bloomPub format
 BLOOMPUB = "bloompub"
+BLOOMD = "bloomd"
 BLOOMPUB_MIMETYPE = "application/bloompub+zip"
 
 choices = (
@@ -99,6 +100,7 @@ choices = (
     (ZIM, "ZIM"),
     (EPUB, "ePub Document"),
     (BLOOMPUB, "Bloom Document"),
+    (BLOOMD, "Bloom Document"),
 )
 
 
