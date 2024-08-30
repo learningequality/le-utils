@@ -52,5 +52,8 @@
 	},
 	"bloompub": {
 		"mimetype": "application/bloompub+zip"
+	},
+	"bloomd": {
+		"mimetype": "application/bloompub+zip"
 	}
 }

@@ -44,6 +44,7 @@ MAPPING = {
     file_formats.H5P: H5P,
     file_formats.ZIM: ZIM,
     file_formats.BLOOMPUB: DOCUMENT,
+    file_formats.BLOOMD: DOCUMENT,
 }
 
 

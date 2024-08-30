@@ -368,7 +368,7 @@
 		"display": true,
 		"order": 1,
 		"kind": "document",
-		"allowed_formats": ["bloompub"],
+		"allowed_formats": ["bloompub", "bloomd"],
 		"convertible_formats": []
 	}
 }

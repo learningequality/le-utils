@@ -30,6 +30,7 @@ MAPPING = {
     file_formats.PDF: DOCUMENT,
     file_formats.EPUB: EPUB,
     file_formats.BLOOMPUB: BLOOMPUB,
+    file_formats.BLOOMD: BLOOMPUB,
     #
     # formats HTMLZipFile
     file_formats.HTML5: HTML5,
