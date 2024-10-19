@@ -12,7 +12,7 @@ lang_utils_requirements = [
 setup(
     name="le-utils",
     packages=find_packages(),
-    version="0.2.7",
+    version="0.2.8",
     description="LE-Utils contains shared constants used in Kolibri, Ricecooker, and Kolibri Studio.",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -33,5 +33,5 @@ setup(
     ],
     author="Learning Equality",
     author_email="info@learningequality.org",
-    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*,  <3.13",
+    python_requires=">=3.6,  <3.14",
 )
