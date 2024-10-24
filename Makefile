@@ -27,8 +27,10 @@ build:
 	pip install -e .
 	python scripts/generate_from_specs.py
 
-release: clean build
+dist: clean build
 	python setup.py sdist
+
+release: dist
 	twine upload dist/*.tar.gz
 
 release-npm: clean build
