@@ -6,7 +6,7 @@ from setuptools import setup
 long_description = io.open("README.md", encoding="utf-8").read()
 
 lang_utils_requirements = [
-    "pycountry==17.5.14",
+    "pycountry==24.6.1",
 ]
 
 setup(
