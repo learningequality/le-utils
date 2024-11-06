@@ -21,12 +21,12 @@ jobs:
       - id: changes
         # Set outputs using the command.
         run: |
-          echo "::set-output name=modified::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep spec/labels-v1.json$ | xargs)"
+          echo "modified=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep spec/labels-v1.json$ | xargs)" >> $GITHUB_OUTPUT
   unit_test:
     name: Error if finalized spec modified
     needs: change_check
     if: ${{ needs.change_check.outputs.modified }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     - name: Fail if specs modified
       run: exit 1
