@@ -72,6 +72,11 @@ SCHEMA = {
             },
             "required": ["url", "preset"],
         },
+        "content_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            "description": "The content ID of the content resource",
+        },
         "resource": {
             "type": "object",
             "description": "The key textual metadata and data for a content resource",
@@ -99,8 +104,9 @@ SCHEMA = {
                     "description": "A list of files associated with the content resource",
                     "items": {"$ref": "#/definitions/file"},
                 },
+                "content_id": {"$ref": "#/definitions/content_id"},
             },
-            "required": ["id", "title", "description", "text"],
+            "required": ["id", "title", "description", "text", "content_id"],
         },
     },
     "properties": {
