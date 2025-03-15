@@ -336,6 +336,7 @@ def test_embed__content__valid():
                         "description": "Resource description",
                         "text": "Resource text",
                         "language": "en",
+                        "content_id": "123e4567-e89b-42d3-a456-556642440000",
                     },
                 ],
                 "metadata": {
@@ -358,6 +359,7 @@ def test_embed__content__valid_with_files():
                         "description": "Resource description",
                         "text": "Resource text",
                         "language": "en",
+                        "content_id": "123e4567-e89b-42d3-a456-556642440000",
                         "files": [
                             {
                                 "url": "http://localhost:8000/media/1234.jpg",
@@ -374,6 +376,29 @@ def test_embed__content__valid_with_files():
                                 "language": "es",
                             },
                         ],
+                    },
+                ],
+                "metadata": {
+                    "channel_id": "000",
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
+
+
+def test_embed__content__invalid_content_id():
+    with pytest.raises(jsonschema.ValidationError):
+        validate_embed_content_request(
+            {
+                "resources": [
+                    {
+                        "id": "123",
+                        "title": "Resource title",
+                        "description": "Resource description",
+                        "text": "Resource text",
+                        "language": "en",
+                        "content_id": "non-uuid",
                     },
                 ],
                 "metadata": {
