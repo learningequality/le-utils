@@ -331,7 +331,7 @@ def test_embed__content__valid():
             {
                 "resources": [
                     {
-                        "id": "123",
+                        "id": "123e4567-e89b-42d3-a456-556642440000",
                         "title": "Resource title",
                         "description": "Resource description",
                         "text": "Resource text",
@@ -354,7 +354,7 @@ def test_embed__content__valid_with_files():
             {
                 "resources": [
                     {
-                        "id": "123",
+                        "id": "123e4567-e89b-42d3-a456-556642440000",
                         "title": "Resource title",
                         "description": "Resource description",
                         "text": "Resource text",
@@ -387,13 +387,36 @@ def test_embed__content__valid_with_files():
         )
 
 
-def test_embed__content__invalid_content_id():
+def test_embed__content__invalid_id():
     with pytest.raises(jsonschema.ValidationError):
         validate_embed_content_request(
             {
                 "resources": [
                     {
                         "id": "123",
+                        "title": "Resource title",
+                        "description": "Resource description",
+                        "text": "Resource text",
+                        "language": "en",
+                        "content_id": "123e4567-e89b-42d3-a456-556642440000",
+                    },
+                ],
+                "metadata": {
+                    "channel_id": "000",
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
+
+
+def test_embed__content__invalid_content_id():
+    with pytest.raises(jsonschema.ValidationError):
+        validate_embed_content_request(
+            {
+                "resources": [
+                    {
+                        "id": "123e4567-e89b-42d3-a456-556642440000",
                         "title": "Resource title",
                         "description": "Resource description",
                         "text": "Resource text",
@@ -416,11 +439,12 @@ def test_embed__content__invalid_url_files():
             {
                 "resources": [
                     {
-                        "id": "123",
+                        "id": "123e4567-e89b-42d3-a456-556642440000",
                         "title": "Resource title",
                         "description": "Resource description",
                         "text": "Resource text",
                         "language": "en",
+                        "content_id": "123e4567-e89b-42d3-a456-556642440000",
                         "files": [
                             {
                                 "url": "https://example.com/media/1234.jpg",
@@ -444,11 +468,12 @@ def test_embed__content__invalid_preset_files():
             {
                 "resources": [
                     {
-                        "id": "123",
+                        "id": "123e4567-e89b-42d3-a456-556642440000",
                         "title": "Resource title",
                         "description": "Resource description",
                         "text": "Resource text",
                         "language": "en",
+                        "content_id": "123e4567-e89b-42d3-a456-556642440000",
                         "files": [
                             {
                                 "url": "http://localhost:8080/media/1234.jpg",

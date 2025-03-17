@@ -75,19 +75,14 @@ export const SCHEMA = {
         "preset"
       ]
     },
-    "content_id": {
-      "type": "string",
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-      "description": "The content ID of the content resource"
-    },
     "resource": {
       "type": "object",
       "description": "The key textual metadata and data for a content resource",
       "additionalProperties": false,
       "properties": {
         "id": {
-          "type": "string",
-          "description": "The ID of the content resource"
+          "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+          "description": "The UUID of the content resource"
         },
         "title": {
           "type": "string",
@@ -112,7 +107,8 @@ export const SCHEMA = {
           }
         },
         "content_id": {
-          "$ref": "#/definitions/content_id"
+          "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+          "description": "The UUID of the content resource(s)"
         }
       },
       "required": [
