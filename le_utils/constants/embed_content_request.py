@@ -78,8 +78,8 @@ SCHEMA = {
             "additionalProperties": False,
             "properties": {
                 "id": {
-                    "type": "string",
-                    "description": "The ID of the content resource",
+                    "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+                    "description": "The UUID of the content resource",
                 },
                 "title": {
                     "type": "string",
@@ -99,8 +99,12 @@ SCHEMA = {
                     "description": "A list of files associated with the content resource",
                     "items": {"$ref": "#/definitions/file"},
                 },
+                "content_id": {
+                    "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+                    "description": "The UUID of the content resource(s)",
+                },
             },
-            "required": ["id", "title", "description", "text"],
+            "required": ["id", "title", "description", "text", "content_id"],
         },
     },
     "properties": {
