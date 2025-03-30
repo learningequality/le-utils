@@ -2,6 +2,7 @@ from le_utils.constants import file_formats
 
 """ File Type Constants """
 # constants for different File types
+# TODO: Remove these and put them into ricecooker directly where needed.
 VIDEO = "video"
 AUDIO = "audio"
 DOCUMENT = "document"
