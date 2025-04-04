@@ -370,5 +370,17 @@
 		"kind": "document",
 		"allowed_formats": ["bloompub", "bloomd"],
 		"convertible_formats": []
+	},
+	"kpub": {
+		"readable_name": "Kolibri HTML5 Article",
+		"multi_language": false,
+		"supplementary": false,
+		"thumbnail": false,
+		"subtitle": false,
+		"display": true,
+		"order": 1,
+		"kind": "document",
+		"allowed_formats": ["kpub"],
+		"convertible_formats": []
 	}
 }

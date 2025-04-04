@@ -64,6 +64,10 @@ PERSEUS_MIMETYPE = "application/perseus+zip"
 HTML5 = "zip"
 HTML5_MIMETYPE = ".zip"
 
+# constants for Kolibri article zip format
+HTML5_ARTICLE = "kpub"
+HTML5_ARTICLE_MIMETYPE = "application/kpub+zip"
+
 # constants for H5P format
 H5P = "h5p"
 H5P_MIMETYPE = ".h5p"
@@ -101,6 +105,7 @@ choices = (
     (EPUB, "ePub Document"),
     (BLOOMPUB, "Bloom Document"),
     (BLOOMD, "Bloom Document"),
+    (HTML5_ARTICLE, "Kolibri HTML5 Article"),
 )
 
 
