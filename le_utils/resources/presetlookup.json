@@ -126,7 +126,7 @@
 		"thumbnail": true,
 		"subtitle": false,
 		"display": true,
-		"order": 3,
+		"order": 4,
 		"kind": "document",
 		"allowed_formats": ["png", "jpg", "jpeg"],
 		"convertible_formats": []
@@ -366,7 +366,7 @@
 		"thumbnail": false,
 		"subtitle": false,
 		"display": true,
-		"order": 1,
+		"order": 3,
 		"kind": "document",
 		"allowed_formats": ["bloompub", "bloomd"],
 		"convertible_formats": []
