@@ -1101,15 +1101,35 @@
   },
   "zh": {
     "name": "Chinese",
-    "native_name": "中文, 汉语, 漢語"
+    "native_name": "中文"
   },
   "zh-CN": {
-    "name": "Chinese, Simplified",
-    "native_name": "中国大陆"
+    "name": "Chinese (China)",
+    "native_name": "中文（中国）"
+  },
+  "zh-Hans": {
+    "name": "Chinese (Simplified)",
+    "native_name": "中文（简体）"
+  },
+  "zh-Hans-CN": {
+    "name": "Chinese (Simplified, China)",
+    "native_name": "中文（简体，中国）"
+  },
+  "zh-Hans-TW": {
+    "name": "Chinese (Simplified, Taiwan)",
+    "native_name": "中文（简体，台湾）"
   },
   "zh-Hant": {
-    "name": "Chinese, Traditional",
-    "native_name": "漢語 (繁體字)"
+    "name": "Chinese (Traditional)",
+    "native_name": "中文（繁體）"
+  },
+  "zh-Hant-CN": {
+    "name": "Chinese (Traditional, China)",
+    "native_name": "中文（繁體, 中國）"
+  },
+  "zh-Hant-TW": {
+    "name": "Chinese (Traditional, Taiwan)",
+    "native_name": "中文（繁體, 台灣）"
   },
   "zh-TW": {
     "name": "Chinese, Taiwan",
