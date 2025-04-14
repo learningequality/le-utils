@@ -35,3 +35,6 @@ release: dist
 
 release-npm: clean build
 	cd js && npm publish
+
+add-language:
+	python scripts/add_language.py
