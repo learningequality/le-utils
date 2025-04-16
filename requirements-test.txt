@@ -1,3 +1,2 @@
-pycountry==17.5.14
 pytest==6.2.5
 jsonschema==3.2.0
