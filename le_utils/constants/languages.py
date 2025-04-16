@@ -1,14 +1,8 @@
 import json
 import logging
 import pkgutil
-import re
-from collections import defaultdict
 from collections import namedtuple
 
-try:
-    import pycountry
-except ImportError:
-    pycountry = None
 
 logger = logging.getLogger("le_utils")
 logger.setLevel(logging.INFO)
@@ -34,9 +28,7 @@ RTL_LANG_CODES = [
 
 
 class Language(
-    namedtuple(
-        "Language", ["native_name", "primary_code", "subcode", "name", "ka_name"]
-    )
+    namedtuple("Language", ["native_name", "primary_code", "subcode", "name"])
 ):
     @property
     def code(self):
@@ -59,26 +51,13 @@ class Language(
         return self.native_name.split(",")[0]
 
 
-def _parse_out_iso_639_code(code):
-    code_regex = r"(?P<primary_code>\w{2,3})(-(?P<subcode>\w{2,4}))?"
-
-    match = re.match(code_regex, code)
-    if match:
-        return defaultdict(lambda: None, **match.groupdict())
-    else:
-        return None
-
-
 def generate_list(constantlist):
     for code, lang in constantlist.items():
-        values = _parse_out_iso_639_code(code)
-        values.update(lang)
+        parts = code.split("-", maxsplit=1)
+        lang["primary_code"] = parts[0]
+        lang["subcode"] = None if len(parts) == 1 else parts[1]
 
-        # add a default value to ka_name
-        if "ka_name" not in values:
-            values["ka_name"] = None
-
-        yield Language(**values)
+        yield Language(**lang)
 
 
 def _initialize_language_list():
@@ -218,51 +197,6 @@ def getlang_by_native_name(native_name):
             0
         ].strip()  # and before any bracket
         return _LANGUAGE_NATIVE_NAME_LOOKUP.get(simple_native_name, None)
-
-
-def getlang_by_alpha2(code):  # noqa: C901
-    """
-    Lookup a Language object for language code `code` based on these strategies:
-      - Special case rules for Hebrew and Chinese Hans/Hant scripts
-      - Using `alpha_2` lookup in `pycountry.languages` followed by lookup for a
-        language with the same `name` in the internal representaion
-    Returns `None` if no matching language is found.
-    """
-    if pycountry is None:
-        logger.warn("pycountry is not installed, cannot lookup language by alpha2")
-        return None
-
-    # First try exact match to a language code in the internal representaion
-    exact_match = getlang(code)
-    if exact_match:
-        return exact_match
-
-    # Handle special cases for language codes returned by YouTube API
-    if code == "iw":  # handle old Hebrew code 'iw' and return modern code 'he'
-        return getlang("he")
-    elif "zh-Hans" in code:  # use code `zh-CN` for all simplified Chinese
-        return getlang("zh-CN")
-    elif re.match("zh(.*)?-TW", code):  # matches all Taiwan chinese codes
-        return getlang("zh-TW")
-    elif re.match("zh(.*)?-HK", code):  # use code `zh-Hant` for Hong Kong
-        return getlang("zh-Hant")
-
-    # extract prefix only if specified with subcode: e.g. zh-Hans --> zh
-    first_part = code.split("-")[0]
-
-    # See if pycountry can find this language
-    try:
-        pyc_lang = pycountry.languages.get(alpha_2=first_part)
-        if pyc_lang:
-            if hasattr(pyc_lang, "inverted_name"):
-                lang_name = pyc_lang.inverted_name
-            else:
-                lang_name = pyc_lang.name
-            return getlang_by_name(lang_name)
-        else:
-            return None
-    except KeyError:
-        return None
 
 
 def getlang_direction(code):

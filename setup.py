@@ -5,10 +5,6 @@ from setuptools import setup
 
 long_description = io.open("README.md", encoding="utf-8").read()
 
-lang_utils_requirements = [
-    "pycountry==17.5.14",
-]
-
 setup(
     name="le-utils",
     packages=find_packages(),
@@ -17,7 +13,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     install_requires=[],
-    extras_require={"lang_utils": lang_utils_requirements},
+    extras_require={},
     license="MIT",
     url="https://github.com/learningequality/le-utils",
     download_url="https://github.com/learningequality/le-utils/releases",
