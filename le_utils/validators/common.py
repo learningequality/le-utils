@@ -12,7 +12,7 @@ def get_embed_schema_resolver(schema):
     :return: A configured RefResolver
     """
     common_definitions = json.loads(
-        pkgutil.get_data("le_utils", "resources/embedcommondefinitions.json").decode(
+        pkgutil.get_data("le_utils", "resources/definitions-embed_common.json").decode(
             "utf-8"
         )
     )
