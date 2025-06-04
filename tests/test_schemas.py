@@ -287,6 +287,7 @@ def test_embed__topics__without_ancestors__valid():
                 "topics": [
                     {
                         "id": str(uuid.uuid4()),
+                        "channel_id": str(uuid.uuid4()),
                         "title": "Target topic",
                         "description": "Target description",
                         "language": "en",
@@ -308,6 +309,7 @@ def test_embed__topics__with_ancestors__valid():
                 "topics": [
                     {
                         "id": str(uuid.uuid4()),
+                        "channel_id": str(uuid.uuid4()),
                         "title": "Target topic",
                         "description": "Target description",
                         "language": "en",
@@ -316,7 +318,6 @@ def test_embed__topics__with_ancestors__valid():
                                 "id": str(uuid.uuid4()),
                                 "title": "Parent topic",
                                 "description": "Parent description",
-                                "language": "en",
                                 "level": 1,
                             }
                         ],
@@ -338,6 +339,7 @@ def test_embed__topics__invalid_id():
                 "topics": [
                     {
                         "id": "123",
+                        "channel_id": str(uuid.uuid4()),
                         "title": "Target topic",
                         "description": "Target description",
                         "language": "en",
@@ -359,8 +361,52 @@ def test_embed__topics__missing_language():
                 "topics": [
                     {
                         "id": str(uuid.uuid4()),
+                        "channel_id": str(uuid.uuid4()),
                         "title": "Target topic",
                         "description": "Target description",
+                    }
+                ],
+                "metadata": {
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_embed__topics__invalid_channel_id():
+    with pytest.raises(jsonschema.ValidationError):
+        validate_embed_topics_request(
+            {
+                "topics": [
+                    {
+                        "id": str(uuid.uuid4()),
+                        "channel_id": "123",
+                        "title": "Target topic",
+                        "description": "Target description",
+                        "language": "en",
+                    }
+                ],
+                "metadata": {
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_embed__topics__missing_channel_id():
+    with pytest.raises(jsonschema.ValidationError):
+        validate_embed_topics_request(
+            {
+                "topics": [
+                    {
+                        "id": str(uuid.uuid4()),
+                        "title": "Target topic",
+                        "description": "Target description",
+                        "language": "en",
                     }
                 ],
                 "metadata": {
