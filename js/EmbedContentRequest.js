@@ -84,6 +84,10 @@ export const SCHEMA = {
           "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
           "description": "The UUID of the content resource"
         },
+        "channel_id": {
+          "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+          "description": "The UUID of the channel that the content resource belongs to"
+        },
         "title": {
           "type": "string",
           "description": "The title of the content resource"
@@ -94,7 +98,7 @@ export const SCHEMA = {
         },
         "text": {
           "type": "string",
-          "description": "The cleaned up text extracted from the content resource (in markdown or plaintext format)"
+          "description": "Optional textual content to include in the embedding"
         },
         "language": {
           "$ref": "#/definitions/language"
@@ -113,9 +117,9 @@ export const SCHEMA = {
       },
       "required": [
         "id",
+        "channel_id",
         "title",
         "description",
-        "text",
         "content_id"
       ]
     }

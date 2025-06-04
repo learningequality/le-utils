@@ -11,7 +11,7 @@ export const SCHEMA = {
   "additionalProperties": false,
   "definitions": {
      "id": {
-      "type": "string",
+       "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
       "description": "The ID of the topic content node on Studio"
     },
     "title": {
@@ -90,7 +90,8 @@ export const SCHEMA = {
       "required": [
         "id",
         "title",
-        "description"
+        "description",
+        "language"
       ]
     }
   },

@@ -17,7 +17,7 @@ SCHEMA = {
     "additionalProperties": False,
     "definitions": {
         "id": {
-            "type": "string",
+            "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
             "description": "The ID of the topic content node on Studio",
         },
         "title": {"type": "string", "description": "The title of the topic"},
@@ -63,7 +63,7 @@ SCHEMA = {
                 "language": {"$ref": "#/definitions/language"},
                 "ancestors": {"$ref": "#/definitions/ancestors"},
             },
-            "required": ["id", "title", "description"],
+            "required": ["id", "title", "description", "language"],
         },
     },
     "properties": {
