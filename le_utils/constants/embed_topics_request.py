@@ -16,10 +16,6 @@ SCHEMA = {
     "description": "Schema for embed topics requests received by RayServe",
     "additionalProperties": False,
     "definitions": {
-        "id": {
-            "type": "string",
-            "description": "The ID of the topic content node on Studio",
-        },
         "title": {"type": "string", "description": "The title of the topic"},
         "description": {
             "type": "string",
@@ -39,7 +35,10 @@ SCHEMA = {
             "description": "An ancestor in the tree structure",
             "additionalProperties": False,
             "properties": {
-                "id": {"$ref": "#/definitions/id"},
+                "id": {
+                    "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+                    "description": "The ID of the topic content node on Studio",
+                },
                 "title": {"$ref": "#/definitions/title"},
                 "description": {"$ref": "#/definitions/description"},
                 "language": {"$ref": "#/definitions/language"},
@@ -57,13 +56,20 @@ SCHEMA = {
             "description": "A topic in the tree structure",
             "additionalProperties": False,
             "properties": {
-                "id": {"$ref": "#/definitions/id"},
+                "id": {
+                    "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+                    "description": "The ID of the topic content node on Studio",
+                },
+                "channel_id": {
+                    "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+                    "description": "The UUID of the channel that the topic belongs to",
+                },
                 "title": {"$ref": "#/definitions/title"},
                 "description": {"$ref": "#/definitions/description"},
                 "language": {"$ref": "#/definitions/language"},
                 "ancestors": {"$ref": "#/definitions/ancestors"},
             },
-            "required": ["id", "title", "description"],
+            "required": ["id", "channel_id", "title", "description", "language"],
         },
     },
     "properties": {

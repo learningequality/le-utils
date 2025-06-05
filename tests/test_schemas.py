@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import contextlib
+import uuid
 
 import pytest
 
@@ -19,6 +20,13 @@ try:
     import jsonschema
 except ImportError:
     jsonschema = None
+
+
+# create a common decorator to skip tests if jsonschema is not available
+skip_if_jsonschema_unavailable = pytest.mark.skipif(
+    jsonschema is None, reason="jsonschema package is unavailable"
+)
+
 
 resolver = None
 if jsonschema is not None:
@@ -52,7 +60,7 @@ def _assert_not_raises(not_expected):
             raise e
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+@skip_if_jsonschema_unavailable
 def test_completion_criteria__time_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -66,7 +74,7 @@ def test_completion_criteria__time_model__valid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+@skip_if_jsonschema_unavailable
 def test_completion_criteria__time_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -85,7 +93,7 @@ def test_completion_criteria__time_model__invalid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+@skip_if_jsonschema_unavailable
 def test_completion_criteria__approx_time_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -99,7 +107,7 @@ def test_completion_criteria__approx_time_model__valid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+@skip_if_jsonschema_unavailable
 def test_completion_criteria__approx_time_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -118,7 +126,7 @@ def test_completion_criteria__approx_time_model__invalid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+@skip_if_jsonschema_unavailable
 def test_completion_criteria__pages_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -132,7 +140,7 @@ def test_completion_criteria__pages_model__valid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+@skip_if_jsonschema_unavailable
 def test_completion_criteria__pages_model__percentage__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -149,7 +157,7 @@ def test_completion_criteria__pages_model__percentage__valid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+@skip_if_jsonschema_unavailable
 def test_completion_criteria__pages_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -168,7 +176,7 @@ def test_completion_criteria__pages_model__invalid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+@skip_if_jsonschema_unavailable
 def test_completion_criteria__pages_model__percentage__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -187,7 +195,7 @@ def test_completion_criteria__pages_model__percentage__invalid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+@skip_if_jsonschema_unavailable
 def test_completion_criteria__mastery_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -205,7 +213,7 @@ def test_completion_criteria__mastery_model__valid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+@skip_if_jsonschema_unavailable
 def test_completion_criteria__mastery_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -240,7 +248,7 @@ def test_completion_criteria__mastery_model__invalid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+@skip_if_jsonschema_unavailable
 def test_completion_criteria__reference__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_completion_criteria({"model": "reference", "learner_managed": False})
@@ -251,7 +259,7 @@ def test_completion_criteria__reference__valid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+@skip_if_jsonschema_unavailable
 def test_completion_criteria__reference__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -271,21 +279,21 @@ def test_completion_criteria__reference__invalid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
-def test_embed__topics__without__ancestors__valid():
+@skip_if_jsonschema_unavailable
+def test_embed__topics__without_ancestors__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         validate_embed_topics_request(
             {
                 "topics": [
                     {
-                        "id": "456",
+                        "id": str(uuid.uuid4()),
+                        "channel_id": str(uuid.uuid4()),
                         "title": "Target topic",
                         "description": "Target description",
                         "language": "en",
                     }
                 ],
                 "metadata": {
-                    "channel_id": "000",
                     "channel_title": "Channel title",
                     "some_additional_field": "some_random_value",
                 },
@@ -293,30 +301,29 @@ def test_embed__topics__without__ancestors__valid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
-def test_embed__topics__with__ancestors__valid():
+@skip_if_jsonschema_unavailable
+def test_embed__topics__with_ancestors__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         validate_embed_topics_request(
             {
                 "topics": [
                     {
-                        "id": "456",
+                        "id": str(uuid.uuid4()),
+                        "channel_id": str(uuid.uuid4()),
                         "title": "Target topic",
                         "description": "Target description",
                         "language": "en",
                         "ancestors": [
                             {
-                                "id": "456",
+                                "id": str(uuid.uuid4()),
                                 "title": "Parent topic",
                                 "description": "Parent description",
-                                "language": "en",
                                 "level": 1,
                             }
                         ],
                     }
                 ],
                 "metadata": {
-                    "channel_id": "000",
                     "channel_title": "Channel title",
                     "some_additional_field": "some_random_value",
                 },
@@ -324,23 +331,109 @@ def test_embed__topics__with__ancestors__valid():
         )
 
 
-@pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
+@skip_if_jsonschema_unavailable
+def test_embed__topics__invalid_id():
+    with pytest.raises(jsonschema.ValidationError):
+        validate_embed_topics_request(
+            {
+                "topics": [
+                    {
+                        "id": "123",
+                        "channel_id": str(uuid.uuid4()),
+                        "title": "Target topic",
+                        "description": "Target description",
+                        "language": "en",
+                    }
+                ],
+                "metadata": {
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_embed__topics__missing_language():
+    with pytest.raises(jsonschema.ValidationError):
+        validate_embed_topics_request(
+            {
+                "topics": [
+                    {
+                        "id": str(uuid.uuid4()),
+                        "channel_id": str(uuid.uuid4()),
+                        "title": "Target topic",
+                        "description": "Target description",
+                    }
+                ],
+                "metadata": {
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_embed__topics__invalid_channel_id():
+    with pytest.raises(jsonschema.ValidationError):
+        validate_embed_topics_request(
+            {
+                "topics": [
+                    {
+                        "id": str(uuid.uuid4()),
+                        "channel_id": "123",
+                        "title": "Target topic",
+                        "description": "Target description",
+                        "language": "en",
+                    }
+                ],
+                "metadata": {
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_embed__topics__missing_channel_id():
+    with pytest.raises(jsonschema.ValidationError):
+        validate_embed_topics_request(
+            {
+                "topics": [
+                    {
+                        "id": str(uuid.uuid4()),
+                        "title": "Target topic",
+                        "description": "Target description",
+                        "language": "en",
+                    }
+                ],
+                "metadata": {
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
 def test_embed__content__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         validate_embed_content_request(
             {
                 "resources": [
                     {
-                        "id": "123e4567-e89b-42d3-a456-556642440000",
+                        "id": str(uuid.uuid4()),
+                        "channel_id": str(uuid.uuid4()),
                         "title": "Resource title",
                         "description": "Resource description",
                         "text": "Resource text",
                         "language": "en",
-                        "content_id": "123e4567-e89b-42d3-a456-556642440000",
+                        "content_id": str(uuid.uuid4()),
                     },
                 ],
                 "metadata": {
-                    "channel_id": "000",
                     "channel_title": "Channel title",
                     "some_additional_field": "some_random_value",
                 },
@@ -348,18 +441,20 @@ def test_embed__content__valid():
         )
 
 
+@skip_if_jsonschema_unavailable
 def test_embed__content__valid_with_files():
     with _assert_not_raises(jsonschema.ValidationError):
         validate_embed_content_request(
             {
                 "resources": [
                     {
-                        "id": "123e4567-e89b-42d3-a456-556642440000",
+                        "id": str(uuid.uuid4()),
+                        "channel_id": str(uuid.uuid4()),
                         "title": "Resource title",
                         "description": "Resource description",
                         "text": "Resource text",
                         "language": "en",
-                        "content_id": "123e4567-e89b-42d3-a456-556642440000",
+                        "content_id": str(uuid.uuid4()),
                         "files": [
                             {
                                 "url": "http://localhost:8000/media/1234.jpg",
@@ -387,6 +482,7 @@ def test_embed__content__valid_with_files():
         )
 
 
+@skip_if_jsonschema_unavailable
 def test_embed__content__invalid_id():
     with pytest.raises(jsonschema.ValidationError):
         validate_embed_content_request(
@@ -394,15 +490,15 @@ def test_embed__content__invalid_id():
                 "resources": [
                     {
                         "id": "123",
+                        "channel_id": str(uuid.uuid4()),
                         "title": "Resource title",
                         "description": "Resource description",
                         "text": "Resource text",
                         "language": "en",
-                        "content_id": "123e4567-e89b-42d3-a456-556642440000",
+                        "content_id": str(uuid.uuid4()),
                     },
                 ],
                 "metadata": {
-                    "channel_id": "000",
                     "channel_title": "Channel title",
                     "some_additional_field": "some_random_value",
                 },
@@ -410,13 +506,39 @@ def test_embed__content__invalid_id():
         )
 
 
+@skip_if_jsonschema_unavailable
+def test_embed__content__invalid_channel_id():
+    with pytest.raises(jsonschema.ValidationError):
+        validate_embed_content_request(
+            {
+                "resources": [
+                    {
+                        "id": str(uuid.uuid4()),
+                        "channel_id": "123",
+                        "title": "Resource title",
+                        "description": "Resource description",
+                        "text": "Resource text",
+                        "language": "en",
+                        "content_id": str(uuid.uuid4()),
+                    },
+                ],
+                "metadata": {
+                    "channel_title": "Channel title",
+                    "some_additional_field": "some_random_value",
+                },
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
 def test_embed__content__invalid_content_id():
     with pytest.raises(jsonschema.ValidationError):
         validate_embed_content_request(
             {
                 "resources": [
                     {
-                        "id": "123e4567-e89b-42d3-a456-556642440000",
+                        "id": str(uuid.uuid4()),
+                        "channel_id": str(uuid.uuid4()),
                         "title": "Resource title",
                         "description": "Resource description",
                         "text": "Resource text",
@@ -425,7 +547,6 @@ def test_embed__content__invalid_content_id():
                     },
                 ],
                 "metadata": {
-                    "channel_id": "000",
                     "channel_title": "Channel title",
                     "some_additional_field": "some_random_value",
                 },
@@ -433,18 +554,20 @@ def test_embed__content__invalid_content_id():
         )
 
 
+@skip_if_jsonschema_unavailable
 def test_embed__content__invalid_url_files():
     with pytest.raises(jsonschema.ValidationError):
         validate_embed_content_request(
             {
                 "resources": [
                     {
-                        "id": "123e4567-e89b-42d3-a456-556642440000",
+                        "id": str(uuid.uuid4()),
+                        "channel_id": str(uuid.uuid4()),
                         "title": "Resource title",
                         "description": "Resource description",
                         "text": "Resource text",
                         "language": "en",
-                        "content_id": "123e4567-e89b-42d3-a456-556642440000",
+                        "content_id": str(uuid.uuid4()),
                         "files": [
                             {
                                 "url": "https://example.com/media/1234.jpg",
@@ -454,7 +577,6 @@ def test_embed__content__invalid_url_files():
                     },
                 ],
                 "metadata": {
-                    "channel_id": "000",
                     "channel_title": "Channel title",
                     "some_additional_field": "some_random_value",
                 },
@@ -462,18 +584,20 @@ def test_embed__content__invalid_url_files():
         )
 
 
+@skip_if_jsonschema_unavailable
 def test_embed__content__invalid_preset_files():
     with pytest.raises(jsonschema.ValidationError):
         validate_embed_content_request(
             {
                 "resources": [
                     {
-                        "id": "123e4567-e89b-42d3-a456-556642440000",
+                        "id": str(uuid.uuid4()),
+                        "channel_id": str(uuid.uuid4()),
                         "title": "Resource title",
                         "description": "Resource description",
                         "text": "Resource text",
                         "language": "en",
-                        "content_id": "123e4567-e89b-42d3-a456-556642440000",
+                        "content_id": str(uuid.uuid4()),
                         "files": [
                             {
                                 "url": "http://localhost:8080/media/1234.jpg",
@@ -483,7 +607,6 @@ def test_embed__content__invalid_preset_files():
                     },
                 ],
                 "metadata": {
-                    "channel_id": "000",
                     "channel_title": "Channel title",
                     "some_additional_field": "some_random_value",
                 },

@@ -10,10 +10,6 @@ export const SCHEMA = {
   "description": "Schema for embed topics requests received by RayServe",
   "additionalProperties": false,
   "definitions": {
-     "id": {
-      "type": "string",
-      "description": "The ID of the topic content node on Studio"
-    },
     "title": {
       "type": "string",
       "description": "The title of the topic"
@@ -37,7 +33,8 @@ export const SCHEMA = {
       "additionalProperties": false,
       "properties": {
         "id": {
-          "$ref": "#/definitions/id"
+          "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+          "description": "The ID of the topic content node on Studio"
         },
         "title": {
           "$ref": "#/definitions/title"
@@ -72,7 +69,12 @@ export const SCHEMA = {
       "additionalProperties": false,
       "properties": {
         "id": {
-          "$ref": "#/definitions/id"
+          "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+          "description": "The ID of the topic content node on Studio"
+        },
+        "channel_id": {
+          "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+          "description": "The UUID of the channel that the topic belongs to"
         },
         "title": {
           "$ref": "#/definitions/title"
@@ -89,8 +91,10 @@ export const SCHEMA = {
       },
       "required": [
         "id",
+        "channel_id",
         "title",
-        "description"
+        "description",
+        "language"
       ]
     }
   },

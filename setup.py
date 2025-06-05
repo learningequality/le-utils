@@ -8,7 +8,7 @@ long_description = io.open("README.md", encoding="utf-8").read()
 setup(
     name="le-utils",
     packages=find_packages(),
-    version="0.2.10",
+    version="0.2.11",
     description="LE-Utils contains shared constants used in Kolibri, Ricecooker, and Kolibri Studio.",
     long_description=long_description,
     long_description_content_type="text/markdown",
