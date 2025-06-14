@@ -4,6 +4,12 @@ The `le-utils` package contains shared constants used by Ricecooker, Kolibri, an
 Kolibri Studio. This package is not meant to be installed or used directly, but
 plays an important role in all Learning Equality products.
 
+How can I contribute?
+=====================
+
+We welcome contributors!
+
+To find out how to contribute, visit [Contributing to our open code base](https://learningequality.org/contributing-to-our-open-code-base).
 
 Constants
 =========
