@@ -10,6 +10,11 @@ export const SCHEMA = {
   "description": "Schema for embed content requests received by RayServe",
   "additionalProperties": false,
   "definitions": {
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "A unique identifier in the form of a UUID"
+    },
     "language": {
       "type": "string",
       "description": "Language code from https://github.com/learningequality/le-utils/blob/main/le_utils/resources/languagelookup.json",
@@ -81,11 +86,11 @@ export const SCHEMA = {
       "additionalProperties": false,
       "properties": {
         "id": {
-          "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+          "$ref": "#/definitions/uuid",
           "description": "The UUID of the content resource"
         },
         "channel_id": {
-          "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+          "$ref": "#/definitions/uuid",
           "description": "The UUID of the channel that the content resource belongs to"
         },
         "title": {
@@ -111,7 +116,7 @@ export const SCHEMA = {
           }
         },
         "content_id": {
-          "$ref": "/schemas/common_embed_definitions#/definitions/uuid",
+          "$ref": "#/definitions/uuid",
           "description": "The UUID of the content resource(s)"
         }
       },
