@@ -7,13 +7,9 @@ import uuid
 import pytest
 
 from le_utils.constants import completion_criteria
+from le_utils.constants import embed_content_request
+from le_utils.constants import embed_topics_request
 from le_utils.constants import mastery_criteria
-from le_utils.validators.embed_content_request import (
-    validate as validate_embed_content_request,
-)
-from le_utils.validators.embed_topics_request import (
-    validate as validate_embed_topics_request,
-)
 
 try:
     # the jsonschema package for python 3.4 is too old, so if not present, we'll just skip
@@ -36,6 +32,22 @@ if jsonschema is not None:
     resolver.store.update(
         jsonschema.RefResolver.from_schema(completion_criteria.SCHEMA).store
     )
+
+
+def _validate_embed_content_request(data):
+    """
+    :param data: Dictionary of data to validate
+    :raises: jsonschema.ValidationError: When invalid
+    """
+    jsonschema.validate(instance=data, schema=embed_content_request.SCHEMA)
+
+
+def _validate_embed_topics_request(data):
+    """
+    :param data: Dictionary of data to validate
+    :raises: jsonschema.ValidationError: When invalid
+    """
+    jsonschema.validate(instance=data, schema=embed_topics_request.SCHEMA)
 
 
 def _validate_completion_criteria(data):
@@ -282,7 +294,7 @@ def test_completion_criteria__reference__invalid():
 @skip_if_jsonschema_unavailable
 def test_embed__topics__without_ancestors__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        validate_embed_topics_request(
+        _validate_embed_topics_request(
             {
                 "topics": [
                     {
@@ -304,7 +316,7 @@ def test_embed__topics__without_ancestors__valid():
 @skip_if_jsonschema_unavailable
 def test_embed__topics__with_ancestors__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        validate_embed_topics_request(
+        _validate_embed_topics_request(
             {
                 "topics": [
                     {
@@ -334,7 +346,7 @@ def test_embed__topics__with_ancestors__valid():
 @skip_if_jsonschema_unavailable
 def test_embed__topics__invalid_id():
     with pytest.raises(jsonschema.ValidationError):
-        validate_embed_topics_request(
+        _validate_embed_topics_request(
             {
                 "topics": [
                     {
@@ -356,7 +368,7 @@ def test_embed__topics__invalid_id():
 @skip_if_jsonschema_unavailable
 def test_embed__topics__missing_language():
     with pytest.raises(jsonschema.ValidationError):
-        validate_embed_topics_request(
+        _validate_embed_topics_request(
             {
                 "topics": [
                     {
@@ -377,7 +389,7 @@ def test_embed__topics__missing_language():
 @skip_if_jsonschema_unavailable
 def test_embed__topics__invalid_channel_id():
     with pytest.raises(jsonschema.ValidationError):
-        validate_embed_topics_request(
+        _validate_embed_topics_request(
             {
                 "topics": [
                     {
@@ -399,7 +411,7 @@ def test_embed__topics__invalid_channel_id():
 @skip_if_jsonschema_unavailable
 def test_embed__topics__missing_channel_id():
     with pytest.raises(jsonschema.ValidationError):
-        validate_embed_topics_request(
+        _validate_embed_topics_request(
             {
                 "topics": [
                     {
@@ -420,7 +432,7 @@ def test_embed__topics__missing_channel_id():
 @skip_if_jsonschema_unavailable
 def test_embed__content__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        validate_embed_content_request(
+        _validate_embed_content_request(
             {
                 "resources": [
                     {
@@ -444,7 +456,7 @@ def test_embed__content__valid():
 @skip_if_jsonschema_unavailable
 def test_embed__content__valid_with_files():
     with _assert_not_raises(jsonschema.ValidationError):
-        validate_embed_content_request(
+        _validate_embed_content_request(
             {
                 "resources": [
                     {
@@ -485,7 +497,7 @@ def test_embed__content__valid_with_files():
 @skip_if_jsonschema_unavailable
 def test_embed__content__invalid_id():
     with pytest.raises(jsonschema.ValidationError):
-        validate_embed_content_request(
+        _validate_embed_content_request(
             {
                 "resources": [
                     {
@@ -509,7 +521,7 @@ def test_embed__content__invalid_id():
 @skip_if_jsonschema_unavailable
 def test_embed__content__invalid_channel_id():
     with pytest.raises(jsonschema.ValidationError):
-        validate_embed_content_request(
+        _validate_embed_content_request(
             {
                 "resources": [
                     {
@@ -533,7 +545,7 @@ def test_embed__content__invalid_channel_id():
 @skip_if_jsonschema_unavailable
 def test_embed__content__invalid_content_id():
     with pytest.raises(jsonschema.ValidationError):
-        validate_embed_content_request(
+        _validate_embed_content_request(
             {
                 "resources": [
                     {
@@ -557,7 +569,7 @@ def test_embed__content__invalid_content_id():
 @skip_if_jsonschema_unavailable
 def test_embed__content__invalid_url_files():
     with pytest.raises(jsonschema.ValidationError):
-        validate_embed_content_request(
+        _validate_embed_content_request(
             {
                 "resources": [
                     {
@@ -587,7 +599,7 @@ def test_embed__content__invalid_url_files():
 @skip_if_jsonschema_unavailable
 def test_embed__content__invalid_preset_files():
     with pytest.raises(jsonschema.ValidationError):
-        validate_embed_content_request(
+        _validate_embed_content_request(
             {
                 "resources": [
                     {
