@@ -28,7 +28,7 @@ jobs:
       matrix:
         python-version: [3.9, '3.10', '3.11', '3.12', '3.13']
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
       if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
     - name: Set up Python ${{ matrix.python-version }}
       if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
@@ -67,7 +67,7 @@ jobs:
     container:
       image: python:${{ matrix.python-version }}-buster
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
       if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
     - name: Cache pip
       if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
