@@ -9,6 +9,7 @@ export default {
     NUM_CORRECT_IN_A_ROW_2: "num_correct_in_a_row_2",
     NUM_CORRECT_IN_A_ROW_3: "num_correct_in_a_row_3",
     NUM_CORRECT_IN_A_ROW_5: "num_correct_in_a_row_5",
+    PRE_POST_TEST: "pre_post_test",
 };
 
 export const SCHEMA = {
@@ -28,7 +29,41 @@ export const SCHEMA = {
         "num_correct_in_a_row_2",
         "num_correct_in_a_row_3",
         "num_correct_in_a_row_5",
-        "num_correct_in_a_row_10"
+        "num_correct_in_a_row_10",
+        "pre_post_test"
+      ]
+    },
+    "pre_post_test": {
+      "type": "object",
+      "description": "Definition for pre/post test",
+      "additionalProperties": false,
+      "properties": {
+        "assessment_item_ids": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "List of assessment item IDs for version A and B of the pre/post test"
+        },
+        "version_a_item_ids": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "List of assessment item IDs for version A of the pre/post test"
+        },
+        "version_b_item_ids": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "List of assessment item IDs for version B of the pre/post test"
+        }
+      },
+      "required": [
+        "assessment_item_ids",
+        "version_a_item_ids",
+        "version_b_item_ids"
       ]
     }
   },
@@ -37,6 +72,9 @@ export const SCHEMA = {
     "n": true,
     "mastery_model": {
       "$ref": "#/definitions/mastery_model"
+    },
+    "pre_post_test": {
+      "$ref": "#/definitions/pre_post_test"
     }
   },
   "anyOf": [
@@ -66,6 +104,14 @@ export const SCHEMA = {
           "type": "null"
         }
       }
+    },
+    {
+      "properties": {
+        "mastery_model": {
+          "const": "pre_post_test"
+        }
+      },
+      "required": ["pre_post_test"]
     }
   ]
 };

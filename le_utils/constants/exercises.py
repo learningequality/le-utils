@@ -8,6 +8,7 @@ NUM_CORRECT_IN_A_ROW_5 = "num_correct_in_a_row_5"
 SKILL_CHECK = "skill_check"
 M_OF_N = "m_of_n"
 QUIZ = "quiz"
+PRE_POST_TEST = "pre_post_test"
 
 MASTERY_MODELS = (
     (DO_ALL, "Do all"),
@@ -18,6 +19,7 @@ MASTERY_MODELS = (
     (SKILL_CHECK, "Skill check"),
     (M_OF_N, "M out of N"),
     (QUIZ, "Quiz"),
+    (PRE_POST_TEST, "Pre/Post Test"),
 )
 
 IMG_PLACEHOLDER = "{☣ LOCALPATH}"
