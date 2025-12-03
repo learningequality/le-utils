@@ -229,9 +229,11 @@ def test_completion_criteria__mastery_model__valid():
                 "threshold": {
                     "mastery_model": "pre_post_test",
                     "pre_post_test": {
-                        "assessment_item_ids": ["id1", "id2", "id3"],
-                        "version_a_item_ids": ["id1", "id3"],
-                        "version_b_item_ids": ["id2"],
+                        "assessment_item_ids": [str(uuid.uuid4())],  # v4 UUID
+                        "version_a_item_ids": [str(uuid.uuid4())],  # v4 UUID
+                        "version_b_item_ids": [
+                            str(uuid.uuid5(uuid.NAMESPACE_DNS, "test"))
+                        ],  # v5 UUID
                     },
                 },
             }
@@ -279,8 +281,24 @@ def test_completion_criteria__mastery_model__invalid():
                 "threshold": {
                     "mastery_model": "pre_post_test",
                     "pre_post_test": {
-                        "assessment_item_ids": [],
-                        "version_a_item_ids": ["id1", "id3"],
+                        "assessment_item_ids": [str(uuid.uuid4())],  # v4 UUID
+                        "version_a_item_ids": [str(uuid.uuid4())],  # v4 UUID
+                    },
+                },
+                "learner_managed": False,
+            }
+        )
+    # Invalid UUIDs
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_completion_criteria(
+            {
+                "model": "mastery",
+                "threshold": {
+                    "mastery_model": "pre_post_test",
+                    "pre_post_test": {
+                        "assessment_item_ids": ["not-a-uuid"],
+                        "version_a_item_ids": ["not-a-uuid"],
+                        "version_b_item_ids": ["not-a-uuid"],
                     },
                 },
                 "learner_managed": False,

@@ -60,18 +60,27 @@ SCHEMA = {
             "properties": {
                 "assessment_item_ids": {
                     "type": "array",
-                    "items": {"type": "string"},
-                    "description": "List of assessment item IDs for version A and B of the pre/post test",
+                    "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[45][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                    },
+                    "description": "List of assessment item UUIDs for version A and B of the pre/post test",
                 },
                 "version_a_item_ids": {
                     "type": "array",
-                    "items": {"type": "string"},
-                    "description": "List of assessment item IDs for version A of the pre/post test",
+                    "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[45][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                    },
+                    "description": "List of assessment item UUIDs for version A of the pre/post test",
                 },
                 "version_b_item_ids": {
                     "type": "array",
-                    "items": {"type": "string"},
-                    "description": "List of assessment item IDs for version B of the pre/post test",
+                    "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[45][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                    },
+                    "description": "List of assessment item UUIDs for version B of the pre/post test",
                 },
             },
             "required": [
