@@ -1,5 +1,8 @@
 [
     "QUIZ",
     "CUSTOM_NAVIGATION",
-    "SURVEY"
+    "SURVEY",
+    "COURSE",
+    "UNIT",
+    "LESSON"
 ]
