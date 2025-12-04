@@ -1,0 +1,60 @@
+{
+  "$id": "/schemas/learning_objectives",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Schema for Learning Objectives mapping",
+  "additionalProperties": false,
+  "definitions": {
+    "learning_objective_id": {
+      "type": "string",
+      "description": "Unique identifier for the Learning Objective"
+    }
+  },
+  "properties": {
+    "learning_objectives": {
+      "type": "array",
+      "description": "A list of Learning Objectives available in the unit",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/definitions/learning_objective_id"
+          },
+          "text": {
+            "type": "string",
+            "description": "Human-readable text describing the Learning Objective"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Optional metadata associated with the Learning Objective"
+          }
+        },
+        "required": ["id", "text"]
+      }
+    },
+    "assessment_objectives": {
+      "type": "object",
+      "description": "Mapping of assessment question IDs to Learning Objective IDs",
+      "minProperties": 1,
+      "patternProperties": {
+        "^.*$": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/learning_objective_id" }
+        }
+      }
+    },
+    "lesson_objectives": {
+      "type": "object",
+      "description": "Mapping of lesson content node IDs to Learning Objective IDs",
+      "minProperties": 1,
+      "patternProperties": {
+        "^.*$": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/learning_objective_id" }
+        }
+      }
+    }
+  },
+  "required": ["learning_objectives", "assessment_objectives", "lesson_objectives"]
+}
