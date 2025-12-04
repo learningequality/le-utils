@@ -4,18 +4,27 @@ from __future__ import unicode_literals
 
 # Modalities
 
+COURSE = "COURSE"
 CUSTOM_NAVIGATION = "CUSTOM_NAVIGATION"
+LESSON = "LESSON"
 QUIZ = "QUIZ"
 SURVEY = "SURVEY"
+UNIT = "UNIT"
 
 choices = (
+    (COURSE, "Course"),
     (CUSTOM_NAVIGATION, "Custom Navigation"),
+    (LESSON, "Lesson"),
     (QUIZ, "Quiz"),
     (SURVEY, "Survey"),
+    (UNIT, "Unit"),
 )
 
 MODALITIESLIST = [
+    COURSE,
     CUSTOM_NAVIGATION,
+    LESSON,
     QUIZ,
     SURVEY,
+    UNIT,
 ]

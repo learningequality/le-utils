@@ -3,7 +3,10 @@
 // Modalities
 
 export default {
+    COURSE: "COURSE",
     CUSTOM_NAVIGATION: "CUSTOM_NAVIGATION",
+    LESSON: "LESSON",
     QUIZ: "QUIZ",
     SURVEY: "SURVEY",
+    UNIT: "UNIT",
 };
