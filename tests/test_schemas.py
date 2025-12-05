@@ -9,6 +9,7 @@ import pytest
 from le_utils.constants import completion_criteria
 from le_utils.constants import embed_content_request
 from le_utils.constants import embed_topics_request
+from le_utils.constants import learning_objectives
 from le_utils.constants import mastery_criteria
 
 try:
@@ -622,5 +623,143 @@ def test_embed__content__invalid_preset_files():
                     "channel_title": "Channel title",
                     "some_additional_field": "some_random_value",
                 },
+            }
+        )
+
+
+def _validate_learning_objectives(data):
+    """
+    :param data: Dictionary of data to validate
+    :raises: jsonschema.ValidationError: When invalid
+    """
+    jsonschema.validate(instance=data, schema=learning_objectives.SCHEMA)
+
+
+@skip_if_jsonschema_unavailable
+def test_learning_objectives__valid():
+    with _assert_not_raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [
+                    {"id": "lo1", "text": "Learning Objective 1"},
+                    {
+                        "id": "lo2",
+                        "text": "Learning Objective 2",
+                        "metadata": {"key": "value"},
+                    },
+                ],
+                "assessment_objectives": {
+                    "q1": ["lo1"],
+                    "q2": ["lo1", "lo2"],
+                },
+                "lesson_objectives": {
+                    "lesson1": ["lo1"],
+                    "lesson2": ["lo2"],
+                },
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_learning_objectives__invalid_lo_structure():
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [
+                    {"id": "lo1"},  # Missing text
+                ],
+                "assessment_objectives": {"q1": ["lo1"]},
+                "lesson_objectives": {"lesson1": ["lo1"]},
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_learning_objectives__invalid_assessment_mapping():
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [{"id": "lo1", "text": "LO1"}],
+                "assessment_objectives": {
+                    "q1": "lo1",  # Should be an array
+                },
+                "lesson_objectives": {"lesson1": ["lo1"]},
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_learning_objectives__invalid_lesson_mapping():
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [{"id": "lo1", "text": "LO1"}],
+                "assessment_objectives": {"q1": ["lo1"]},
+                "lesson_objectives": {
+                    "lesson1": "lo1",  # Should be an array
+                },
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_learning_objectives__missing_required_fields():
+    # Missing learning_objectives
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "assessment_objectives": {"q1": ["lo1"]},
+                "lesson_objectives": {"lesson1": ["lo1"]},
+            }
+        )
+
+    # Missing assessment_objectives
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [{"id": "lo1", "text": "LO1"}],
+                "lesson_objectives": {"lesson1": ["lo1"]},
+            }
+        )
+
+    # Missing lesson_objectives
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [{"id": "lo1", "text": "LO1"}],
+                "assessment_objectives": {"q1": ["lo1"]},
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_learning_objectives__empty_structures():
+    # Empty learning_objectives
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [],
+                "assessment_objectives": {"q1": ["lo1"]},
+                "lesson_objectives": {"lesson1": ["lo1"]},
+            }
+        )
+
+    # Empty assessment_objectives
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [{"id": "lo1", "text": "LO1"}],
+                "assessment_objectives": {},
+                "lesson_objectives": {"lesson1": ["lo1"]},
+            }
+        )
+
+    # Empty lesson_objectives
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [{"id": "lo1", "text": "LO1"}],
+                "assessment_objectives": {"q1": ["lo1"]},
+                "lesson_objectives": {},
             }
         )
