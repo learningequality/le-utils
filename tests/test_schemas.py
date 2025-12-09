@@ -229,7 +229,10 @@ def test_completion_criteria__mastery_model__valid():
                 "threshold": {
                     "mastery_model": "pre_post_test",
                     "pre_post_test": {
-                        "assessment_item_ids": [str(uuid.uuid4())],  # v4 UUID
+                        "assessment_item_ids": [
+                            str(uuid.uuid4()),
+                            str(uuid.uuid4()),
+                        ],  # v4 UUID
                         "version_a_item_ids": [str(uuid.uuid4())],  # v4 UUID
                         "version_b_item_ids": [
                             str(uuid.uuid5(uuid.NAMESPACE_DNS, "test"))

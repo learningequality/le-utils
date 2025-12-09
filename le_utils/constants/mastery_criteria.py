@@ -60,6 +60,7 @@ SCHEMA = {
             "properties": {
                 "assessment_item_ids": {
                     "type": "array",
+                    "minItems": 2,
                     "items": {
                         "type": "string",
                         "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[45][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
@@ -68,6 +69,7 @@ SCHEMA = {
                 },
                 "version_a_item_ids": {
                     "type": "array",
+                    "minItems": 1,
                     "items": {
                         "type": "string",
                         "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[45][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
@@ -76,6 +78,7 @@ SCHEMA = {
                 },
                 "version_b_item_ids": {
                     "type": "array",
+                    "minItems": 1,
                     "items": {
                         "type": "string",
                         "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[45][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
