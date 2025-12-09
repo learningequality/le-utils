@@ -641,20 +641,63 @@ def test_learning_objectives__valid():
         _validate_learning_objectives(
             {
                 "learning_objectives": [
-                    {"id": "lo1", "text": "Learning Objective 1"},
                     {
-                        "id": "lo2",
+                        "id": str(uuid.uuid4()),
+                        "text": "Learning Objective 1",
+                    },
+                    {
+                        "id": str(uuid.uuid4()),
                         "text": "Learning Objective 2",
                         "metadata": {"key": "value"},
                     },
                 ],
                 "assessment_objectives": {
-                    "q1": ["lo1"],
-                    "q2": ["lo1", "lo2"],
+                    str(uuid.uuid4()): [str(uuid.uuid4())],
+                    str(uuid.uuid4()): [
+                        str(uuid.uuid4()),
+                        str(uuid.uuid4()),
+                    ],
                 },
                 "lesson_objectives": {
-                    "lesson1": ["lo1"],
-                    "lesson2": ["lo2"],
+                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())],
+                    "abcdef1234567890abcdef1234567891": [str(uuid.uuid4())],
+                },
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_learning_objectives__valid_uuid_v5():
+    with _assert_not_raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [
+                    {
+                        "id": str(uuid.uuid5(uuid.NAMESPACE_DNS, "test")),
+                        "text": "Learning Objective 1",
+                    },
+                    {
+                        "id": str(uuid.uuid5(uuid.NAMESPACE_DNS, "test2")),
+                        "text": "Learning Objective 2",
+                        "metadata": {"key": "value"},
+                    },
+                ],
+                "assessment_objectives": {
+                    str(uuid.uuid5(uuid.NAMESPACE_DNS, "test")): [
+                        str(uuid.uuid5(uuid.NAMESPACE_DNS, "test3"))
+                    ],
+                    str(uuid.uuid5(uuid.NAMESPACE_DNS, "test2")): [
+                        str(uuid.uuid5(uuid.NAMESPACE_DNS, "test4")),
+                        str(uuid.uuid5(uuid.NAMESPACE_DNS, "test5")),
+                    ],
+                },
+                "lesson_objectives": {
+                    "abcdef1234567890abcdef1234567890": [
+                        str(uuid.uuid5(uuid.NAMESPACE_DNS, "test6"))
+                    ],
+                    "abcdef1234567890abcdef1234567891": [
+                        str(uuid.uuid5(uuid.NAMESPACE_DNS, "test7"))
+                    ],
                 },
             }
         )
@@ -666,10 +709,12 @@ def test_learning_objectives__invalid_lo_structure():
         _validate_learning_objectives(
             {
                 "learning_objectives": [
-                    {"id": "lo1"},  # Missing text
+                    {"id": str(uuid.uuid4())},  # Missing text
                 ],
-                "assessment_objectives": {"q1": ["lo1"]},
-                "lesson_objectives": {"lesson1": ["lo1"]},
+                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "lesson_objectives": {
+                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                },
             }
         )
 
@@ -679,11 +724,13 @@ def test_learning_objectives__invalid_assessment_mapping():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": "lo1", "text": "LO1"}],
+                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
                 "assessment_objectives": {
-                    "q1": "lo1",  # Should be an array
+                    str(uuid.uuid4()): str(uuid.uuid4()),  # Should be an array
                 },
-                "lesson_objectives": {"lesson1": ["lo1"]},
+                "lesson_objectives": {
+                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                },
             }
         )
 
@@ -693,10 +740,12 @@ def test_learning_objectives__invalid_lesson_mapping():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": "lo1", "text": "LO1"}],
-                "assessment_objectives": {"q1": ["lo1"]},
+                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
+                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
                 "lesson_objectives": {
-                    "lesson1": "lo1",  # Should be an array
+                    "abcdef1234567890abcdef1234567890": str(
+                        uuid.uuid4()
+                    ),  # Should be an array
                 },
             }
         )
@@ -708,17 +757,10 @@ def test_learning_objectives__missing_required_fields():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "assessment_objectives": {"q1": ["lo1"]},
-                "lesson_objectives": {"lesson1": ["lo1"]},
-            }
-        )
-
-    # Missing assessment_objectives
-    with pytest.raises(jsonschema.ValidationError):
-        _validate_learning_objectives(
-            {
-                "learning_objectives": [{"id": "lo1", "text": "LO1"}],
-                "lesson_objectives": {"lesson1": ["lo1"]},
+                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "lesson_objectives": {
+                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                },
             }
         )
 
@@ -726,8 +768,17 @@ def test_learning_objectives__missing_required_fields():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": "lo1", "text": "LO1"}],
-                "assessment_objectives": {"q1": ["lo1"]},
+                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
+                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+            }
+        )
+
+    # Missing lesson_objectives
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
+                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
             }
         )
 
@@ -739,8 +790,10 @@ def test_learning_objectives__empty_structures():
         _validate_learning_objectives(
             {
                 "learning_objectives": [],
-                "assessment_objectives": {"q1": ["lo1"]},
-                "lesson_objectives": {"lesson1": ["lo1"]},
+                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "lesson_objectives": {
+                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                },
             }
         )
 
@@ -748,9 +801,11 @@ def test_learning_objectives__empty_structures():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": "lo1", "text": "LO1"}],
+                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
                 "assessment_objectives": {},
-                "lesson_objectives": {"lesson1": ["lo1"]},
+                "lesson_objectives": {
+                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                },
             }
         )
 
@@ -758,8 +813,101 @@ def test_learning_objectives__empty_structures():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": "lo1", "text": "LO1"}],
-                "assessment_objectives": {"q1": ["lo1"]},
+                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
+                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
                 "lesson_objectives": {},
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_learning_objectives__invalid_uuid_format_in_learning_objectives():
+    # Invalid UUID format for learning objective ID
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [{"id": "invalid-uuid", "text": "LO1"}],
+                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "lesson_objectives": {
+                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                },
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_learning_objectives__invalid_uuid_format_in_references():
+    # Invalid UUID format in assessment and lesson objective references
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
+                "assessment_objectives": {str(uuid.uuid4()): ["invalid-uuid"]},
+                "lesson_objectives": {
+                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                },
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_learning_objectives__invalid_question_id_pattern():
+    # Invalid question ID pattern (not a valid UUID v4)
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
+                "assessment_objectives": {
+                    "invalid-uuid-format": [str(uuid.uuid4())]
+                },  # Invalid UUID format
+                "lesson_objectives": {
+                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                },
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_learning_objectives__invalid_lesson_id_pattern():
+    # Invalid lesson ID pattern (has extra characters)
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
+                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "lesson_objectives": {
+                    "abcdef1234567890abcdef1234567890:extra": [str(uuid.uuid4())]
+                },  # Has extra characters
+            }
+        )
+
+
+@skip_if_jsonschema_unavailable
+def test_learning_objectives__invalid_text_patterns():
+    # Empty text after trimming whitespace
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [
+                    {"id": str(uuid.uuid4()), "text": "   "}
+                ],  # Only whitespace
+                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "lesson_objectives": {
+                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                },
+            }
+        )
+
+    # Empty text
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_learning_objectives(
+            {
+                "learning_objectives": [
+                    {"id": str(uuid.uuid4()), "text": ""}
+                ],  # Empty string
+                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "lesson_objectives": {
+                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                },
             }
         )

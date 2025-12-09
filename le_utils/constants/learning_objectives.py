@@ -16,10 +16,15 @@ SCHEMA = {
     "description": "Schema for Learning Objectives mapping",
     "additionalProperties": False,
     "definitions": {
-        "learning_objective_id": {
+        "uuid": {
             "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[45][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            "description": "A unique identifier in the form of a UUID v4 or v5",
+        },
+        "learning_objective_id": {
+            "$ref": "#/definitions/uuid",
             "description": "Unique identifier for the Learning Objective",
-        }
+        },
     },
     "properties": {
         "learning_objectives": {
@@ -32,6 +37,8 @@ SCHEMA = {
                     "id": {"$ref": "#/definitions/learning_objective_id"},
                     "text": {
                         "type": "string",
+                        "minLength": 1,
+                        "pattern": "^\\s*\\S[\\s\\S]*$",
                         "description": "Human-readable text describing the Learning Objective",
                     },
                     "metadata": {
@@ -46,8 +53,9 @@ SCHEMA = {
             "type": "object",
             "description": "Mapping of assessment question IDs to Learning Objective IDs",
             "minProperties": 1,
+            "additionalProperties": False,
             "patternProperties": {
-                "^.*$": {
+                "^[0-9a-f]{8}-[0-9a-f]{4}-[45][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$": {
                     "type": "array",
                     "items": {"$ref": "#/definitions/learning_objective_id"},
                 }
@@ -55,10 +63,11 @@ SCHEMA = {
         },
         "lesson_objectives": {
             "type": "object",
-            "description": "Mapping of lesson content node IDs to Learning Objective IDs",
+            "description": "Mapping of lesson IDs to Learning Objective IDs",
             "minProperties": 1,
+            "additionalProperties": False,
             "patternProperties": {
-                "^.*$": {
+                "^[0-9a-f]{32}$": {
                     "type": "array",
                     "items": {"$ref": "#/definitions/learning_objective_id"},
                 }
