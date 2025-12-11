@@ -223,6 +223,24 @@ def test_completion_criteria__mastery_model__valid():
                 "threshold": {"mastery_model": "m_of_n", "m": 1, "n": 2},
             }
         )
+        _validate_completion_criteria(
+            {
+                "model": "mastery",
+                "threshold": {
+                    "mastery_model": "pre_post_test",
+                    "pre_post_test": {
+                        "assessment_item_ids": [
+                            str(uuid.uuid4()),
+                            str(uuid.uuid4()),
+                        ],  # v4 UUID
+                        "version_a_item_ids": [str(uuid.uuid4())],  # v4 UUID
+                        "version_b_item_ids": [
+                            str(uuid.uuid5(uuid.NAMESPACE_DNS, "test"))
+                        ],  # v5 UUID
+                    },
+                },
+            }
+        )
 
 
 @skip_if_jsonschema_unavailable
@@ -256,6 +274,37 @@ def test_completion_criteria__mastery_model__invalid():
             {
                 "model": "mastery",
                 "threshold": -1,
+            }
+        )
+    # Missing version_b_item_ids
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_completion_criteria(
+            {
+                "model": "mastery",
+                "threshold": {
+                    "mastery_model": "pre_post_test",
+                    "pre_post_test": {
+                        "assessment_item_ids": [str(uuid.uuid4())],  # v4 UUID
+                        "version_a_item_ids": [str(uuid.uuid4())],  # v4 UUID
+                    },
+                },
+                "learner_managed": False,
+            }
+        )
+    # Invalid UUIDs
+    with pytest.raises(jsonschema.ValidationError):
+        _validate_completion_criteria(
+            {
+                "model": "mastery",
+                "threshold": {
+                    "mastery_model": "pre_post_test",
+                    "pre_post_test": {
+                        "assessment_item_ids": ["not-a-uuid"],
+                        "version_a_item_ids": ["not-a-uuid"],
+                        "version_b_item_ids": ["not-a-uuid"],
+                    },
+                },
+                "learner_managed": False,
             }
         )
 
