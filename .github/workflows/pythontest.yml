@@ -37,7 +37,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Cache pip
       if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-py${{ matrix.python-version }}-${{ hashFiles('setup.py') }}
@@ -48,7 +48,7 @@ jobs:
         pip install tox
     - name: tox env cache
       if: ${{ needs.pre_job.outputs.should_skip != 'true' && !startsWith(runner.os, 'windows') }}
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ${{ github.workspace }}/.tox/py${{ matrix.python-version }}
         key: ${{ runner.os }}-tox-py${{ matrix.python-version }}-${{ hashFiles('setup.py') }}
@@ -71,7 +71,7 @@ jobs:
       if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
     - name: Cache pip
       if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-py${{ matrix.python-version }}-${{ hashFiles('setup.py') }}
@@ -82,7 +82,7 @@ jobs:
         pip install tox
     - name: tox env cache
       if: ${{ needs.pre_job.outputs.should_skip != 'true' && !startsWith(runner.os, 'windows') }}
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ${{ github.workspace }}/.tox/py${{ matrix.python-version }}
         key: ${{ runner.os }}-tox-py${{ matrix.python-version }}-${{ hashFiles('setup.py') }}
