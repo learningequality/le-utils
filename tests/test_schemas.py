@@ -231,12 +231,12 @@ def test_completion_criteria__mastery_model__valid():
                     "mastery_model": "pre_post_test",
                     "pre_post_test": {
                         "assessment_item_ids": [
-                            str(uuid.uuid4()),
-                            str(uuid.uuid4()),
+                            uuid.uuid4().hex,
+                            uuid.uuid4().hex,
                         ],  # v4 UUID
-                        "version_a_item_ids": [str(uuid.uuid4())],  # v4 UUID
+                        "version_a_item_ids": [uuid.uuid4().hex],  # v4 UUID
                         "version_b_item_ids": [
-                            str(uuid.uuid5(uuid.NAMESPACE_DNS, "test"))
+                            uuid.uuid5(uuid.NAMESPACE_DNS, "test").hex
                         ],  # v5 UUID
                     },
                 },
@@ -285,8 +285,8 @@ def test_completion_criteria__mastery_model__invalid():
                 "threshold": {
                     "mastery_model": "pre_post_test",
                     "pre_post_test": {
-                        "assessment_item_ids": [str(uuid.uuid4())],  # v4 UUID
-                        "version_a_item_ids": [str(uuid.uuid4())],  # v4 UUID
+                        "assessment_item_ids": [uuid.uuid4().hex],  # v4 UUID
+                        "version_a_item_ids": [uuid.uuid4().hex],  # v4 UUID
                     },
                 },
                 "learner_managed": False,
@@ -691,25 +691,25 @@ def test_learning_objectives__valid():
             {
                 "learning_objectives": [
                     {
-                        "id": str(uuid.uuid4()),
+                        "id": uuid.uuid4().hex,
                         "text": "Learning Objective 1",
                     },
                     {
-                        "id": str(uuid.uuid4()),
+                        "id": uuid.uuid4().hex,
                         "text": "Learning Objective 2",
                         "metadata": {"key": "value"},
                     },
                 ],
                 "assessment_objectives": {
-                    str(uuid.uuid4()): [str(uuid.uuid4())],
-                    str(uuid.uuid4()): [
-                        str(uuid.uuid4()),
-                        str(uuid.uuid4()),
+                    uuid.uuid4().hex: [uuid.uuid4().hex],
+                    uuid.uuid4().hex: [
+                        uuid.uuid4().hex,
+                        uuid.uuid4().hex,
                     ],
                 },
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())],
-                    "abcdef1234567890abcdef1234567891": [str(uuid.uuid4())],
+                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex],
+                    "abcdef1234567890abcdef1234567891": [uuid.uuid4().hex],
                 },
             }
         )
@@ -722,30 +722,30 @@ def test_learning_objectives__valid_uuid_v5():
             {
                 "learning_objectives": [
                     {
-                        "id": str(uuid.uuid5(uuid.NAMESPACE_DNS, "test")),
+                        "id": uuid.uuid5(uuid.NAMESPACE_DNS, "test").hex,
                         "text": "Learning Objective 1",
                     },
                     {
-                        "id": str(uuid.uuid5(uuid.NAMESPACE_DNS, "test2")),
+                        "id": uuid.uuid5(uuid.NAMESPACE_DNS, "test2").hex,
                         "text": "Learning Objective 2",
                         "metadata": {"key": "value"},
                     },
                 ],
                 "assessment_objectives": {
-                    str(uuid.uuid5(uuid.NAMESPACE_DNS, "test")): [
-                        str(uuid.uuid5(uuid.NAMESPACE_DNS, "test3"))
+                    uuid.uuid5(uuid.NAMESPACE_DNS, "test").hex: [
+                        uuid.uuid5(uuid.NAMESPACE_DNS, "test3").hex
                     ],
-                    str(uuid.uuid5(uuid.NAMESPACE_DNS, "test2")): [
-                        str(uuid.uuid5(uuid.NAMESPACE_DNS, "test4")),
-                        str(uuid.uuid5(uuid.NAMESPACE_DNS, "test5")),
+                    uuid.uuid5(uuid.NAMESPACE_DNS, "test2").hex: [
+                        uuid.uuid5(uuid.NAMESPACE_DNS, "test4").hex,
+                        uuid.uuid5(uuid.NAMESPACE_DNS, "test5").hex,
                     ],
                 },
                 "lesson_objectives": {
                     "abcdef1234567890abcdef1234567890": [
-                        str(uuid.uuid5(uuid.NAMESPACE_DNS, "test6"))
+                        uuid.uuid5(uuid.NAMESPACE_DNS, "test6").hex
                     ],
                     "abcdef1234567890abcdef1234567891": [
-                        str(uuid.uuid5(uuid.NAMESPACE_DNS, "test7"))
+                        uuid.uuid5(uuid.NAMESPACE_DNS, "test7").hex
                     ],
                 },
             }
@@ -758,11 +758,11 @@ def test_learning_objectives__invalid_lo_structure():
         _validate_learning_objectives(
             {
                 "learning_objectives": [
-                    {"id": str(uuid.uuid4())},  # Missing text
+                    {"id": uuid.uuid4().hex},  # Missing text
                 ],
-                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
                 },
             }
         )
@@ -773,12 +773,12 @@ def test_learning_objectives__invalid_assessment_mapping():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
+                "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
                 "assessment_objectives": {
-                    str(uuid.uuid4()): str(uuid.uuid4()),  # Should be an array
+                    uuid.uuid4().hex: uuid.uuid4().hex,  # Should be an array
                 },
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
                 },
             }
         )
@@ -789,8 +789,8 @@ def test_learning_objectives__invalid_lesson_mapping():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
-                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
+                "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
                 "lesson_objectives": {
                     "abcdef1234567890abcdef1234567890": str(
                         uuid.uuid4()
@@ -806,9 +806,9 @@ def test_learning_objectives__missing_required_fields():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
                 },
             }
         )
@@ -817,8 +817,8 @@ def test_learning_objectives__missing_required_fields():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
-                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
+                "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
             }
         )
 
@@ -826,8 +826,8 @@ def test_learning_objectives__missing_required_fields():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
-                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
+                "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
             }
         )
 
@@ -839,9 +839,9 @@ def test_learning_objectives__empty_structures():
         _validate_learning_objectives(
             {
                 "learning_objectives": [],
-                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
                 },
             }
         )
@@ -850,10 +850,10 @@ def test_learning_objectives__empty_structures():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
+                "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
                 "assessment_objectives": {},
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
                 },
             }
         )
@@ -862,8 +862,8 @@ def test_learning_objectives__empty_structures():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
-                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
+                "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
                 "lesson_objectives": {},
             }
         )
@@ -876,9 +876,9 @@ def test_learning_objectives__invalid_uuid_format_in_learning_objectives():
         _validate_learning_objectives(
             {
                 "learning_objectives": [{"id": "invalid-uuid", "text": "LO1"}],
-                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
                 },
             }
         )
@@ -890,10 +890,10 @@ def test_learning_objectives__invalid_uuid_format_in_references():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
-                "assessment_objectives": {str(uuid.uuid4()): ["invalid-uuid"]},
+                "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
+                "assessment_objectives": {uuid.uuid4().hex: ["invalid-uuid"]},
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
                 },
             }
         )
@@ -905,12 +905,12 @@ def test_learning_objectives__invalid_question_id_pattern():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
+                "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
                 "assessment_objectives": {
-                    "invalid-uuid-format": [str(uuid.uuid4())]
+                    "invalid-uuid-format": [uuid.uuid4().hex]
                 },  # Invalid UUID format
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
                 },
             }
         )
@@ -922,10 +922,10 @@ def test_learning_objectives__invalid_lesson_id_pattern():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [{"id": str(uuid.uuid4()), "text": "LO1"}],
-                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
+                "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890:extra": [str(uuid.uuid4())]
+                    "abcdef1234567890abcdef1234567890:extra": [uuid.uuid4().hex]
                 },  # Has extra characters
             }
         )
@@ -938,11 +938,11 @@ def test_learning_objectives__invalid_text_patterns():
         _validate_learning_objectives(
             {
                 "learning_objectives": [
-                    {"id": str(uuid.uuid4()), "text": "   "}
+                    {"id": uuid.uuid4().hex, "text": "   "}
                 ],  # Only whitespace
-                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
                 },
             }
         )
@@ -952,11 +952,11 @@ def test_learning_objectives__invalid_text_patterns():
         _validate_learning_objectives(
             {
                 "learning_objectives": [
-                    {"id": str(uuid.uuid4()), "text": ""}
+                    {"id": uuid.uuid4().hex, "text": ""}
                 ],  # Empty string
-                "assessment_objectives": {str(uuid.uuid4()): [str(uuid.uuid4())]},
+                "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [str(uuid.uuid4())]
+                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
                 },
             }
         )

@@ -16,13 +16,13 @@ SCHEMA = {
     "description": "Schema for Learning Objectives mapping",
     "additionalProperties": False,
     "definitions": {
-        "uuid": {
+        "hex-uuid": {
             "type": "string",
-            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[45][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-            "description": "A unique identifier in the form of a UUID v4 or v5",
+            "pattern": "^[0-9a-f]{32}$",
+            "description": "A unique identifier in the form of the compact hex representations of a UUID v4 or v5",
         },
         "learning_objective_id": {
-            "$ref": "#/definitions/uuid",
+            "$ref": "#/definitions/hex-uuid",
             "description": "Unique identifier for the Learning Objective",
         },
     },
@@ -55,7 +55,7 @@ SCHEMA = {
             "minProperties": 1,
             "additionalProperties": False,
             "patternProperties": {
-                "^[0-9a-f]{8}-[0-9a-f]{4}-[45][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$": {
+                "^[0-9a-f]{32}$": {
                     "type": "array",
                     "items": {"$ref": "#/definitions/learning_objective_id"},
                 }
