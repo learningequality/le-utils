@@ -118,6 +118,10 @@ export const SCHEMA = {
         "content_id": {
           "$ref": "#/definitions/uuid",
           "description": "The UUID of the content resource(s)"
+        },
+        "channel_version": {
+          "type": "integer",
+          "description": "The version number of the channel that the content resource belongs to"
         }
       },
       "required": [
@@ -125,7 +129,8 @@ export const SCHEMA = {
         "channel_id",
         "title",
         "description",
-        "content_id"
+        "content_id",
+        "channel_version"
       ]
     }
   },
