@@ -16,25 +16,24 @@ clean-pyc: ## remove Python file artifacts
 	find . -name '__pycache__' -exec rm -fr {} +
 
 clean-test: ## remove test and coverage artifacts
-	rm -fr .tox/
 	rm -f .coverage
 	rm -fr htmlcov/
 
 test:
-	pytest -s
+	uv run pytest -s
 
 build:
-	pip install -e .
-	python scripts/generate_from_specs.py
+	uv sync --group dev
+	uv run python scripts/generate_from_specs.py
 
 dist: clean build
-	python setup.py sdist
+	uv build
 
 release: dist
-	twine upload dist/*.tar.gz
+	uv publish
 
 release-npm: clean build
 	cd js && npm publish
 
 add-language:
-	python scripts/add_language.py
+	uv run python scripts/add_language.py

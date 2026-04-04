@@ -3,13 +3,11 @@ from __future__ import unicode_literals
 
 from le_utils.constants import languages
 
-
 # first_native_name  -- split native_name and return first part
 ################################################################################
 
 
 def test_first_native_name():
-
     # basic native name
     lang_obj = languages.getlang("en")
     assert lang_obj is not None, "English not found"

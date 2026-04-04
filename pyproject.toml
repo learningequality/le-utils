@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=78", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "le-utils"
+dynamic = ["version"]
+description = "LE-Utils contains shared constants used in Kolibri, Ricecooker, and Kolibri Studio."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.6, <3.15"
+authors = [
+    { name = "Learning Equality", email = "info@learningequality.org" },
+]
+keywords = ["le-utils", "le_utils", "LE", "utils", "kolibri", "studio", "ricecooker", "content", "curation"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://github.com/learningequality/le-utils"
+Download = "https://github.com/learningequality/le-utils/releases"
+
+[tool.setuptools.packages.find]
+include = ["le_utils*"]
+
+[tool.setuptools.package-data]
+le_utils = ["resources/*.json"]
+
+[tool.setuptools_scm]
+
+[dependency-groups]
+test = [
+    "pytest>=6.2.5,<8",
+    "jsonschema==3.2.0",
+]
+dev = [
+    { include-group = "test" },
+    "prek ; python_version >= '3.8'",
+    "ruff ; python_version >= '3.8'",
+]
+
+[tool.uv]
+# Prevents installing packages published less than 7 days ago (supply chain safety).
+exclude-newer = "7 days"
+
+[tool.ruff]
+line-length = 160
+# Project supports >=3.6, but ruff's minimum target is py37.
+target-version = "py37"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "C90", "I"]
+ignore = ["E203", "E501", "E741"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.isort]
+known-first-party = ["le_utils"]
+combine-as-imports = true

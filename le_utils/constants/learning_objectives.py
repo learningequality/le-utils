@@ -21,10 +21,7 @@ SCHEMA = {
             "pattern": "^[0-9a-f]{32}$",
             "description": "A unique identifier in the form of the compact hex representations of a UUID v4 or v5",
         },
-        "learning_objective_id": {
-            "$ref": "#/definitions/hex-uuid",
-            "description": "Unique identifier for the Learning Objective",
-        },
+        "learning_objective_id": {"$ref": "#/definitions/hex-uuid", "description": "Unique identifier for the Learning Objective"},
     },
     "properties": {
         "learning_objectives": {
@@ -41,10 +38,7 @@ SCHEMA = {
                         "pattern": "^\\s*\\S[\\s\\S]*$",
                         "description": "Human-readable text describing the Learning Objective",
                     },
-                    "metadata": {
-                        "type": "object",
-                        "description": "Optional metadata associated with the Learning Objective",
-                    },
+                    "metadata": {"type": "object", "description": "Optional metadata associated with the Learning Objective"},
                 },
                 "required": ["id", "text"],
             },
@@ -54,24 +48,14 @@ SCHEMA = {
             "description": "Mapping of assessment question IDs to Learning Objective IDs",
             "minProperties": 1,
             "additionalProperties": False,
-            "patternProperties": {
-                "^[0-9a-f]{32}$": {
-                    "type": "array",
-                    "items": {"$ref": "#/definitions/learning_objective_id"},
-                }
-            },
+            "patternProperties": {"^[0-9a-f]{32}$": {"type": "array", "items": {"$ref": "#/definitions/learning_objective_id"}}},
         },
         "lesson_objectives": {
             "type": "object",
             "description": "Mapping of lesson IDs to Learning Objective IDs",
             "minProperties": 1,
             "additionalProperties": False,
-            "patternProperties": {
-                "^[0-9a-f]{32}$": {
-                    "type": "array",
-                    "items": {"$ref": "#/definitions/learning_objective_id"},
-                }
-            },
+            "patternProperties": {"^[0-9a-f]{32}$": {"type": "array", "items": {"$ref": "#/definitions/learning_objective_id"}}},
         },
     },
     "required": ["learning_objectives", "assessment_objectives", "lesson_objectives"],

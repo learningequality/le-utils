@@ -77,39 +77,19 @@ SCHEMA = {
                     "description": "List of assessment item UUIDs for version B of the pre/post test",
                 },
             },
-            "required": [
-                "assessment_item_ids",
-                "version_a_item_ids",
-                "version_b_item_ids",
-            ],
+            "required": ["assessment_item_ids", "version_a_item_ids", "version_b_item_ids"],
         },
     },
-    "properties": {
-        "m": True,
-        "n": True,
-        "mastery_model": {"$ref": "#/definitions/mastery_model"},
-        "pre_post_test": {"$ref": "#/definitions/pre_post_test"},
-    },
+    "properties": {"m": True, "n": True, "mastery_model": {"$ref": "#/definitions/mastery_model"}, "pre_post_test": {"$ref": "#/definitions/pre_post_test"}},
     "anyOf": [
         {"properties": {"mastery_model": {"const": "m_of_n"}}, "required": ["m", "n"]},
         {
             "properties": {
-                "mastery_model": {
-                    "enum": [
-                        "do_all",
-                        "num_correct_in_a_row_2",
-                        "num_correct_in_a_row_3",
-                        "num_correct_in_a_row_5",
-                        "num_correct_in_a_row_10",
-                    ]
-                },
+                "mastery_model": {"enum": ["do_all", "num_correct_in_a_row_2", "num_correct_in_a_row_3", "num_correct_in_a_row_5", "num_correct_in_a_row_10"]},
                 "m": {"type": "null"},
                 "n": {"type": "null"},
             }
         },
-        {
-            "properties": {"mastery_model": {"const": "pre_post_test"}},
-            "required": ["pre_post_test"],
-        },
+        {"properties": {"mastery_model": {"const": "pre_post_test"}}, "required": ["pre_post_test"]},
     ],
 }

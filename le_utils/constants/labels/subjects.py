@@ -86,10 +86,7 @@ choices = (
     (FINANCIAL_LITERACY, "Financial Literacy"),
     (FOR_TEACHERS, "For Teachers"),
     (FOUNDATIONS, "Foundations"),
-    (
-        FOUNDATIONS_LOGIC_AND_CRITICAL_THINKING,
-        "Foundations Logic And Critical Thinking",
-    ),
+    (FOUNDATIONS_LOGIC_AND_CRITICAL_THINKING, "Foundations Logic And Critical Thinking"),
     (GEOMETRY, "Geometry"),
     (GUIDES, "Guides"),
     (HISTORY, "History"),

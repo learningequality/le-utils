@@ -5,7 +5,6 @@ import pytest
 
 from le_utils.constants import languages
 
-
 # getlang ==> Internal representation code lookup
 ################################################################################
 
@@ -145,9 +144,7 @@ def test_known_native_names():
 
 def test_unknown_native_language():
     lang_obj = languages.getlang_by_native_name("UnknoenNativeLanguage")
-    assert (
-        lang_obj is None
-    ), "query for natove_name UnknoenNativeLanguage returned non-None"
+    assert lang_obj is None, "query for natove_name UnknoenNativeLanguage returned non-None"
 
 
 def test_language_native_names_with_modifier_in_bracket():
@@ -206,9 +203,7 @@ def test_african_languages(african_languages_list):
         lang_obj = languages.getlang_by_native_name(native_name)
         if lang_obj is None:
             missing_names.append(native_name)
-    assert missing_names == [], "Languages with native_names missing: " + str(
-        missing_names
-    )
+    assert missing_names == [], "Languages with native_names missing: " + str(missing_names)
 
 
 def test_language_text_direction():

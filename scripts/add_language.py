@@ -4,9 +4,7 @@ import json
 import logging
 import os
 import sys
-from typing import Any
-from typing import Dict
-from typing import Optional
+from typing import Any, Dict, Optional
 
 try:
     import langcodes
@@ -15,9 +13,7 @@ except ImportError:
     print("Required libraries not found. Installing them now...")
     import subprocess
 
-    subprocess.check_call(
-        [sys.executable, "-m", "pip", "install", "langcodes[data]", "pycountry"]
-    )
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "langcodes[data]", "pycountry"])
     import langcodes
     import pycountry
 
@@ -40,9 +36,7 @@ def save_json_file(data: Dict[str, Any], file_path: str) -> None:
 
 
 def _get_pycountry_language(code):
-    language = pycountry.languages.get(alpha_2=code) or pycountry.languages.get(
-        alpha_3=code
-    )
+    language = pycountry.languages.get(alpha_2=code) or pycountry.languages.get(alpha_3=code)
     if not language:
         return {}
     data = {
@@ -112,10 +106,7 @@ def add_language(data, query, confirm=False):
     print(f"\nFound language: {code} - {name} ({native_name})")
 
     if code in data:
-        print(
-            f"Warning: '{code}' already exists: "
-            f"{data[code].get('name')} ({data[code].get('native_name')})"
-        )
+        print(f"Warning: '{code}' already exists: {data[code].get('name')} ({data[code].get('native_name')})")
 
     if confirm and input("Add this language? (Y/N): ").lower() != "y":
         print("Language not added.")
@@ -130,9 +121,7 @@ def add_language(data, query, confirm=False):
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Add languages to le_utils languagelookup.json"
-    )
+    parser = argparse.ArgumentParser(description="Add languages to le_utils languagelookup.json")
     parser.add_argument(
         "languages",
         nargs="*",
@@ -141,9 +130,7 @@ def main():
     args = parser.parse_args()
 
     # Get file path
-    file_path = os.path.join(
-        os.path.dirname(__file__), "../le_utils/resources/languagelookup.json"
-    )
+    file_path = os.path.join(os.path.dirname(__file__), "../le_utils/resources/languagelookup.json")
 
     # Load existing data
     data = load_json_file(file_path)
@@ -161,9 +148,7 @@ def main():
                 added += 1
     else:
         while True:
-            query = input(
-                "\nEnter language name or code to add (or press Enter to finish): "
-            )
+            query = input("\nEnter language name or code to add (or press Enter to finish): ")
             if not query:
                 break
             if add_language(data, query, confirm=True):

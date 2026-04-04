@@ -22,28 +22,19 @@ SCHEMA = {
             "description": "A unique identifier in the form of a UUID",
         },
         "title": {"type": "string", "description": "The title of the topic"},
-        "description": {
-            "type": "string",
-            "description": "The description of the topic",
-        },
+        "description": {"type": "string", "description": "The description of the topic"},
         "language": {
             "type": "string",
             "description": "Language code from https://github.com/learningequality/le-utils/blob/main/le_utils/resources/languagelookup.json",
             "pattern": "^[a-z]{2,3}(?:-[a-zA-Z]+)*$",
         },
-        "level": {
-            "type": "integer",
-            "description": "The level of the ancestor, where the root is 0 and the parent is the highest level",
-        },
+        "level": {"type": "integer", "description": "The level of the ancestor, where the root is 0 and the parent is the highest level"},
         "ancestor": {
             "type": "object",
             "description": "An ancestor in the tree structure",
             "additionalProperties": False,
             "properties": {
-                "id": {
-                    "$ref": "#/definitions/uuid",
-                    "description": "The ID of the topic content node on Studio",
-                },
+                "id": {"$ref": "#/definitions/uuid", "description": "The ID of the topic content node on Studio"},
                 "title": {"$ref": "#/definitions/title"},
                 "description": {"$ref": "#/definitions/description"},
                 "language": {"$ref": "#/definitions/language"},
@@ -61,14 +52,8 @@ SCHEMA = {
             "description": "A topic in the tree structure",
             "additionalProperties": False,
             "properties": {
-                "id": {
-                    "$ref": "#/definitions/uuid",
-                    "description": "The ID of the topic content node on Studio",
-                },
-                "channel_id": {
-                    "$ref": "#/definitions/uuid",
-                    "description": "The UUID of the channel that the topic belongs to",
-                },
+                "id": {"$ref": "#/definitions/uuid", "description": "The ID of the topic content node on Studio"},
+                "channel_id": {"$ref": "#/definitions/uuid", "description": "The UUID of the channel that the topic belongs to"},
                 "title": {"$ref": "#/definitions/title"},
                 "description": {"$ref": "#/definitions/description"},
                 "language": {"$ref": "#/definitions/language"},
@@ -78,15 +63,8 @@ SCHEMA = {
         },
     },
     "properties": {
-        "topics": {
-            "type": "array",
-            "description": "A list of topics to embed",
-            "items": {"$ref": "#/definitions/topic"},
-        },
-        "metadata": {
-            "type": "object",
-            "description": "The metadata of the channel for logging purposes",
-        },
+        "topics": {"type": "array", "description": "A list of topics to embed", "items": {"$ref": "#/definitions/topic"}},
+        "metadata": {"type": "object", "description": "The metadata of the channel for logging purposes"},
     },
     "required": ["topics"],
 }

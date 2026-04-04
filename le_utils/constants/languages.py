@@ -3,7 +3,6 @@ import logging
 import pkgutil
 from collections import namedtuple
 
-
 logger = logging.getLogger("le_utils")
 logger.setLevel(logging.INFO)
 
@@ -16,17 +15,11 @@ LANGUAGE_DIRECTIONS = (
 )
 
 
-class Language(
-    namedtuple(
-        "Language", ["native_name", "primary_code", "subcode", "name", "text_direction"]
-    )
-):
+class Language(namedtuple("Language", ["native_name", "primary_code", "subcode", "name", "text_direction"])):
     @property
     def code(self):
         if self.subcode:
-            return "{primary_code}-{subcode}".format(
-                primary_code=self.primary_code, subcode=self.subcode
-            )
+            return "{primary_code}-{subcode}".format(primary_code=self.primary_code, subcode=self.subcode)
         else:
             return self.primary_code
 
@@ -47,17 +40,13 @@ def generate_list(constantlist):
         parts = code.split("-", maxsplit=1)
         lang["primary_code"] = parts[0]
         lang["subcode"] = None if len(parts) == 1 else parts[1]
-        lang["text_direction"] = (
-            RTL_LANGUAGE if lang.pop("rtl", False) else LTR_LANGUAGE
-        )
+        lang["text_direction"] = RTL_LANGUAGE if lang.pop("rtl", False) else LTR_LANGUAGE
 
         yield Language(**lang)
 
 
 def _initialize_language_list():
-    langlist = json.loads(
-        pkgutil.get_data("le_utils", "resources/languagelookup.json").decode("utf-8")
-    )
+    langlist = json.loads(pkgutil.get_data("le_utils", "resources/languagelookup.json").decode("utf-8"))
 
     return generate_list(langlist)
 
@@ -151,26 +140,14 @@ for lang_native_name, lang_obj in _LANGUAGE_NATIVE_NAME_LOOKUP.items():
     if "," in lang_native_name:
         new_native_names = [n.strip() for n in lang_native_name.split(",")]
         for new_native_name in new_native_names:
-            simple_native_name = new_native_name.split("(")[
-                0
-            ].strip()  # text before any bracket
-            if (
-                simple_native_name in _LANGUAGE_NATIVE_NAME_LOOKUP.keys()
-                or new_native_name in new_items
-            ):
-                logger.debug(
-                    "Skip " + simple_native_name + " because it already exisits"
-                )
+            simple_native_name = new_native_name.split("(")[0].strip()  # text before any bracket
+            if simple_native_name in _LANGUAGE_NATIVE_NAME_LOOKUP.keys() or new_native_name in new_items:
+                logger.debug("Skip " + simple_native_name + " because it already exisits")
             else:
                 new_items[simple_native_name] = lang_obj
     elif "(" in lang_native_name:
-        simple_native_name = lang_native_name.split("(")[
-            0
-        ].strip()  # text before any bracket
-        if (
-            simple_native_name in _LANGUAGE_NATIVE_NAME_LOOKUP.keys()
-            or simple_native_name in new_items
-        ):
+        simple_native_name = lang_native_name.split("(")[0].strip()  # text before any bracket
+        if simple_native_name in _LANGUAGE_NATIVE_NAME_LOOKUP.keys() or simple_native_name in new_items:
             logger.debug("Skip " + simple_native_name + " because it already exisits")
         else:
             new_items[simple_native_name] = lang_obj
@@ -187,9 +164,7 @@ def getlang_by_native_name(native_name):
         return direct_match
     else:
         simple_native_name = native_name.split(",")[0]  # take part before comma
-        simple_native_name = simple_native_name.split("(")[
-            0
-        ].strip()  # and before any bracket
+        simple_native_name = simple_native_name.split("(")[0].strip()  # and before any bracket
         return _LANGUAGE_NATIVE_NAME_LOOKUP.get(simple_native_name, None)
 
 

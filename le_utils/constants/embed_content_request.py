@@ -26,10 +26,7 @@ SCHEMA = {
             "description": "Language code from https://github.com/learningequality/le-utils/blob/main/le_utils/resources/languagelookup.json",
             "pattern": "^[a-z]{2,3}(?:-[a-zA-Z]+)*$",
         },
-        "url": {
-            "type": "string",
-            "pattern": "^(https?:\\/\\/(?:storage\\.cloud\\.google\\.com|localhost(?::[0-9]+)?)\\/[a-z0-9-._~!$&'()*+,;=:@%\\/\\?]+)$",
-        },
+        "url": {"type": "string", "pattern": "^(https?:\\/\\/(?:storage\\.cloud\\.google\\.com|localhost(?::[0-9]+)?)\\/[a-z0-9-._~!$&'()*+,;=:@%\\/\\?]+)$"},
         "preset": {
             "type": "string",
             "description": "Presets from https://github.com/learningequality/le-utils/blob/main/le_utils/constants/format_presets.py",
@@ -70,11 +67,7 @@ SCHEMA = {
         "file": {
             "type": "object",
             "additionalProperties": False,
-            "properties": {
-                "url": {"$ref": "#/definitions/url"},
-                "preset": {"$ref": "#/definitions/preset"},
-                "language": {"$ref": "#/definitions/language"},
-            },
+            "properties": {"url": {"$ref": "#/definitions/url"}, "preset": {"$ref": "#/definitions/preset"}, "language": {"$ref": "#/definitions/language"}},
             "required": ["url", "preset"],
         },
         "resource": {
@@ -82,61 +75,22 @@ SCHEMA = {
             "description": "The key textual metadata and data for a content resource",
             "additionalProperties": False,
             "properties": {
-                "id": {
-                    "$ref": "#/definitions/uuid",
-                    "description": "The UUID of the content resource",
-                },
-                "channel_id": {
-                    "$ref": "#/definitions/uuid",
-                    "description": "The UUID of the channel that the content resource belongs to",
-                },
-                "title": {
-                    "type": "string",
-                    "description": "The title of the content resource",
-                },
-                "description": {
-                    "type": "string",
-                    "description": "The description of the content resource",
-                },
-                "text": {
-                    "type": "string",
-                    "description": "Optional textual content to include in the embedding",
-                },
+                "id": {"$ref": "#/definitions/uuid", "description": "The UUID of the content resource"},
+                "channel_id": {"$ref": "#/definitions/uuid", "description": "The UUID of the channel that the content resource belongs to"},
+                "title": {"type": "string", "description": "The title of the content resource"},
+                "description": {"type": "string", "description": "The description of the content resource"},
+                "text": {"type": "string", "description": "Optional textual content to include in the embedding"},
                 "language": {"$ref": "#/definitions/language"},
-                "files": {
-                    "type": "array",
-                    "description": "A list of files associated with the content resource",
-                    "items": {"$ref": "#/definitions/file"},
-                },
-                "content_id": {
-                    "$ref": "#/definitions/uuid",
-                    "description": "The UUID of the content resource(s)",
-                },
-                "channel_version": {
-                    "type": "integer",
-                    "description": "The version number of the channel that the content resource belongs to",
-                },
+                "files": {"type": "array", "description": "A list of files associated with the content resource", "items": {"$ref": "#/definitions/file"}},
+                "content_id": {"$ref": "#/definitions/uuid", "description": "The UUID of the content resource(s)"},
+                "channel_version": {"type": "integer", "description": "The version number of the channel that the content resource belongs to"},
             },
-            "required": [
-                "id",
-                "channel_id",
-                "title",
-                "description",
-                "content_id",
-                "channel_version",
-            ],
+            "required": ["id", "channel_id", "title", "description", "content_id", "channel_version"],
         },
     },
     "properties": {
-        "resources": {
-            "type": "array",
-            "description": "A list of content resources to embed",
-            "items": {"$ref": "#/definitions/resource"},
-        },
-        "metadata": {
-            "type": "object",
-            "description": "The metadata of the channel for logging purposes",
-        },
+        "resources": {"type": "array", "description": "A list of content resources to embed", "items": {"$ref": "#/definitions/resource"}},
+        "metadata": {"type": "object", "description": "The metadata of the channel for logging purposes"},
     },
     "required": ["resources"],
 }

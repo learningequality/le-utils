@@ -27,9 +27,7 @@ AUDIO_DEPENDENCY = "audio_dependency"
 AUDIO_DEPENDENCY_READABLE = "audio (dependency)"
 
 DOCUMENT = "document"
-DOCUMENT_READABLE = (
-    "Document"  # TODO(ivan): Change to "PDF Document"  str translations?
-)
+DOCUMENT_READABLE = "Document"  # TODO(ivan): Change to "PDF Document"  str translations?
 EPUB = "epub"
 EPUB_READABLE = "ePub Document"
 DOCUMENT_THUMBNAIL = "document_thumbnail"
@@ -155,9 +153,7 @@ def generate_list(constantlist):
 
 
 def _initialize_preset_list():
-    constantlist = json.loads(
-        pkgutil.get_data("le_utils", "resources/presetlookup.json").decode("utf-8")
-    )
+    constantlist = json.loads(pkgutil.get_data("le_utils", "resources/presetlookup.json").decode("utf-8"))
 
     return generate_list(constantlist)
 

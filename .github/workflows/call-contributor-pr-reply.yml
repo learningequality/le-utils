@@ -2,7 +2,6 @@ name: Send reply on a new contributor pull request
 on:
   pull_request_target:
     types: [opened]
-
 jobs:
   call-workflow:
     name: Call shared workflow

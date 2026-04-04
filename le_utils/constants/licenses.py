@@ -52,9 +52,7 @@ def generate_list(constantlist):
 
 
 def _initialize_license_list():
-    constantlist = json.loads(
-        pkgutil.get_data("le_utils", "resources/licenselookup.json").decode("utf-8")
-    )
+    constantlist = json.loads(pkgutil.get_data("le_utils", "resources/licenselookup.json").decode("utf-8"))
 
     return generate_list(constantlist)
 

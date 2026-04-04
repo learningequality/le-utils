@@ -1,5 +1,6 @@
 # coding=utf-8
-""" Mastery Models """
+"""Mastery Models"""
+
 DO_ALL = "do_all"
 NUM_CORRECT_IN_A_ROW_10 = "num_correct_in_a_row_10"
 NUM_CORRECT_IN_A_ROW_2 = "num_correct_in_a_row_2"

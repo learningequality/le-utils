@@ -4,11 +4,11 @@ humanhash: Human-readable representations of digests.
 The simplest ways to use this module are the :func:`humanize` and :func:`uuid`
 functions. For tighter control over the output, see :class:`HumanHasher`.
 """
+
 import operator
 import uuid as uuidlib
 from argparse import ArgumentError
 from functools import reduce
-
 
 DEFAULT_WORDLIST = (
     "ack",
@@ -271,7 +271,6 @@ DEFAULT_WORDLIST = (
 
 
 class HumanHasher(object):
-
     """
     Transforms hex digests to human-readable strings.
 
@@ -291,7 +290,6 @@ class HumanHasher(object):
         self.wordlist = wordlist
 
     def humanize(self, hexdigest, words=4, separator="-"):
-
         """
         Humanize a given hexadecimal digest.
 
@@ -304,10 +302,7 @@ class HumanHasher(object):
         """
 
         # Gets a list of byte values between 0-255.
-        bytes = [
-            int(x, 16)
-            for x in list(map("".join, list(zip(hexdigest[::2], hexdigest[1::2]))))
-        ]
+        bytes = [int(x, 16) for x in list(map("".join, list(zip(hexdigest[::2], hexdigest[1::2]))))]
         # Compress an arbitrary number of bytes to `words`.
         compressed = self.compress(bytes, words)
         # Map the compressed byte values through the word list.
@@ -315,7 +310,6 @@ class HumanHasher(object):
 
     @staticmethod
     def compress(bytes, target):
-
         """
         Compress a list of byte values to a fixed target length.
 
@@ -350,7 +344,6 @@ class HumanHasher(object):
         return checksums
 
     def uuid(self, **params):
-
         """
         Generate a UUID with a human-readable representation.
 

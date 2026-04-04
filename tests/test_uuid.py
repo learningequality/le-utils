@@ -9,6 +9,4 @@ def test_namespace_does_not_change():
 
 
 def test_generate_ecosystem_namespaced_uuid():
-    assert generate_ecosystem_namespaced_uuid(
-        "https://studio.learningequality.org"
-    ) == uuid.UUID("2d04ed86-aa8c-519f-ae78-a250e03d8482")
+    assert generate_ecosystem_namespaced_uuid("https://studio.learningequality.org") == uuid.UUID("2d04ed86-aa8c-519f-ae78-a250e03d8482")

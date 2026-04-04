@@ -1,28 +1,38 @@
-exclude: (\.git/|\.tox/|\.venv/|le_utils\.egg-info)
+exclude: (\.git/|\.venv/|le_utils\.egg-info)
 repos:
--   repo: local
+  - repo: local
     hooks:
-    -   id: rebuild-from-specs
+      - id: rebuild-from-specs
         name: Regenerate files
         description: Regenerates files when specs or version has changed
         entry: make build
         language: system
-        files: (spec/.*\.json|setup\.py)$
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.0.0
+        pass_filenames: false
+        files: (spec/.*\.json)$
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
     hooks:
-    -   id: trailing-whitespace
-    -   id: flake8
-    -   id: check-yaml
-    -   id: check-added-large-files
-    -   id: debug-statements
-    -   id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: debug-statements
+      - id: end-of-file-fixer
         exclude: '^.+?(\.json|\.po)$'
--   repo: https://github.com/asottile/reorder_python_imports
-    rev: v1.3.3
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.7
     hooks:
-    -   id: reorder-python-imports
--   repo: https://github.com/python/black
-    rev: 22.3.0
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.11.2
     hooks:
-    - id: black
+      - id: uv-lock
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.16.0
+    hooks:
+      - id: yamlfmt
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.7
+    hooks:
+      - id: actionlint

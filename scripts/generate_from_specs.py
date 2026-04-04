@@ -2,6 +2,7 @@
 generate_from_specs
 Builds or rebuilds the labels py files assigning ids to the labels
 """
+
 from __future__ import unicode_literals
 
 import json
@@ -13,10 +14,8 @@ import sys
 from collections import OrderedDict
 from glob import glob
 from hashlib import md5
-from uuid import UUID
-from uuid import uuid3
-
-from pkg_resources import get_distribution
+from importlib.metadata import version as get_version
+from uuid import UUID, uuid3
 
 try:
     FileNotFoundError
@@ -153,9 +152,7 @@ def read_constants_specs():
                 constants_outputs[key] = constants_spec
             else:
                 # assume it's a list and convert to an OrderedDict
-                constants_outputs[key] = OrderedDict(
-                    [(a.upper(), a) for a in sorted(constants_spec)]
-                )
+                constants_outputs[key] = OrderedDict([(a.upper(), a) for a in sorted(constants_spec)])
     return constants_outputs
 
 
@@ -180,16 +177,7 @@ def read_schema_specs():
         for json_schema_def in json_schema.get("definitions", {}).values():
             export_name = json_schema_def.get("$exportConstants")
             if export_name is not None and "enum" in json_schema_def:
-                constants_outputs.update(
-                    {
-                        snake_to_pascal(export_name): OrderedDict(
-                            [
-                                (a.upper(), a)
-                                for a in sorted(json_schema_def.get("enum"))
-                            ]
-                        )
-                    }
-                )
+                constants_outputs.update({snake_to_pascal(export_name): OrderedDict([(a.upper(), a) for a in sorted(json_schema_def.get("enum"))])})
 
     return schema_outputs, constants_outputs
 
@@ -242,9 +230,7 @@ def write_js_file(output_file, name, ordered_output, schema=None):
 def write_labels_src_files(label_outputs):
     output_files = []
     for label_type, ordered_output in label_outputs.items():
-        py_output_file = os.path.join(
-            py_labels_output_dir, "{}.py".format(pascal_to_snake(label_type))
-        )
+        py_output_file = os.path.join(py_labels_output_dir, "{}.py".format(pascal_to_snake(label_type)))
         write_python_file(py_output_file, label_type, ordered_output)
         output_files.append(py_output_file)
 
@@ -262,9 +248,7 @@ def write_constants_src_files(constants_outputs, schemas):
         constant_outputs = constants_outputs.get(key, {})
         schema = schemas.get(key, None)
 
-        py_output_file = os.path.join(
-            py_output_dir, "{}.py".format(pascal_to_snake(key))
-        )
+        py_output_file = os.path.join(py_output_dir, "{}.py".format(pascal_to_snake(key)))
         write_python_file(py_output_file, key, constant_outputs, schema=schema)
         output_files.append(py_output_file)
 
@@ -274,15 +258,29 @@ def write_constants_src_files(constants_outputs, schemas):
     return output_files
 
 
+def pep440_to_npm_semver(version):
+    """Convert a PEP 440 version to npm-compatible semver.
+
+    Extracts just the base version (X.Y.Z) to ensure the version is
+    stable across commits and valid npm semver. Dev/local suffixes from
+    setuptools-scm change with every commit, which would cause the
+    rebuild-from-specs pre-commit hook to perpetually modify this file.
+    On tagged releases, setuptools-scm returns the clean version directly.
+    """
+    match = re.match(r"(\d+\.\d+\.\d+)", version)
+    return match.group(1) if match else version
+
+
 def set_package_json_version():
-    python_version = get_distribution("le-utils").version
+    python_version = get_version("le-utils")
+    npm_version = pep440_to_npm_semver(python_version)
 
     package_json = os.path.join(js_output_dir, "package.json")
 
     with open(package_json, "r") as f:
         package = json.load(f)
 
-    package["version"] = python_version
+    package["version"] = npm_version
 
     with open(package_json, "w") as f:
         output = json.dumps(package, indent=2, sort_keys=True)
@@ -312,7 +310,6 @@ if __name__ == "__main__":
 
     output_files += set_package_json_version()
 
-    env = os.environ.copy()
-    env["SKIP"] = "rebuild-from-specs"
-
-    subprocess.call(["pre-commit", "run", "--files"] + output_files, env=env)
+    py_files = [f for f in output_files if f.endswith(".py")]
+    subprocess.call(["ruff", "check", "--fix"] + py_files)
+    subprocess.call(["ruff", "format"] + py_files)

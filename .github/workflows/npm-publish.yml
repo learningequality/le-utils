@@ -1,33 +1,25 @@
 name: Publish npmjs Package
-
 on:
   release:
     types: [published]
-
 permissions:
   id-token: write # Required for npm trusted publishing (OIDC)
   contents: read
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
           registry-url: https://registry.npmjs.org/
-      - name: Set up Python
-        uses: actions/setup-python@v6
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
         with:
-          python-version: 3.9
-      - name: Cache pip
-        uses: actions/cache@v5
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-py3.9-${{ hashFiles('.github/workflows/npm-publish.yml') }}
-      - name: Install Python dependencies
-        run: |
-            python -m pip install --upgrade pip
-            pip install pre-commit
-      - run: make release-npm
+          enable-cache: true
+          cache-python: true
+      - name: Build and publish
+        run: make release-npm

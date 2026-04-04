@@ -8,11 +8,7 @@ import uuid
 
 import pytest
 
-from le_utils.constants import completion_criteria
-from le_utils.constants import embed_content_request
-from le_utils.constants import embed_topics_request
-from le_utils.constants import learning_objectives
-from le_utils.constants import mastery_criteria
+from le_utils.constants import completion_criteria, embed_content_request, embed_topics_request, learning_objectives, mastery_criteria
 
 try:
     # the jsonschema package for python 3.4 is too old, so if not present, we'll just skip
@@ -22,9 +18,7 @@ except ImportError:
 
 
 # create a common decorator to skip tests if jsonschema is not available
-skip_if_jsonschema_unavailable = pytest.mark.skipif(
-    jsonschema is None, reason="jsonschema package is unavailable"
-)
+skip_if_jsonschema_unavailable = pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
 
 
 resolver = None
@@ -32,9 +26,7 @@ if jsonschema is not None:
     # this is an example of how to include the mastery criteria schema, which is referenced by the
     # completion criteria schema, in the schema resolver so that it validates
     resolver = jsonschema.RefResolver.from_schema(mastery_criteria.SCHEMA)
-    resolver.store.update(
-        jsonschema.RefResolver.from_schema(completion_criteria.SCHEMA).store
-    )
+    resolver.store.update(jsonschema.RefResolver.from_schema(completion_criteria.SCHEMA).store)
 
 
 def _validate_embed_content_request(data):
@@ -58,9 +50,7 @@ def _validate_completion_criteria(data):
     :param data: Dictionary of data to validate
     :raises: jsonschema.ValidationError: When invalid
     """
-    jsonschema.validate(
-        instance=data, schema=completion_criteria.SCHEMA, resolver=resolver
-    )
+    jsonschema.validate(instance=data, schema=completion_criteria.SCHEMA, resolver=resolver)
 
 
 def _load_language_codes():
@@ -86,9 +76,7 @@ def _assert_not_raises(not_expected):
 @skip_if_jsonschema_unavailable
 def test_completion_criteria__time_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        _validate_completion_criteria(
-            {"model": "time", "threshold": 2, "learner_managed": False}
-        )
+        _validate_completion_criteria({"model": "time", "threshold": 2, "learner_managed": False})
         _validate_completion_criteria(
             {
                 "model": "time",
@@ -119,9 +107,7 @@ def test_completion_criteria__time_model__invalid():
 @skip_if_jsonschema_unavailable
 def test_completion_criteria__approx_time_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        _validate_completion_criteria(
-            {"model": "approx_time", "threshold": 2, "learner_managed": False}
-        )
+        _validate_completion_criteria({"model": "approx_time", "threshold": 2, "learner_managed": False})
         _validate_completion_criteria(
             {
                 "model": "approx_time",
@@ -152,9 +138,7 @@ def test_completion_criteria__approx_time_model__invalid():
 @skip_if_jsonschema_unavailable
 def test_completion_criteria__pages_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
-        _validate_completion_criteria(
-            {"model": "pages", "threshold": 2, "learner_managed": False}
-        )
+        _validate_completion_criteria({"model": "pages", "threshold": 2, "learner_managed": False})
         _validate_completion_criteria(
             {
                 "model": "pages",
@@ -245,9 +229,7 @@ def test_completion_criteria__mastery_model__valid():
                             uuid.uuid4().hex,
                         ],  # v4 UUID
                         "version_a_item_ids": [uuid.uuid4().hex],  # v4 UUID
-                        "version_b_item_ids": [
-                            uuid.uuid5(uuid.NAMESPACE_DNS, "test").hex
-                        ],  # v5 UUID
+                        "version_b_item_ids": [uuid.uuid5(uuid.NAMESPACE_DNS, "test").hex],  # v5 UUID
                     },
                 },
             }
@@ -822,21 +804,15 @@ def test_learning_objectives__valid_uuid_v5():
                     },
                 ],
                 "assessment_objectives": {
-                    uuid.uuid5(uuid.NAMESPACE_DNS, "test").hex: [
-                        uuid.uuid5(uuid.NAMESPACE_DNS, "test3").hex
-                    ],
+                    uuid.uuid5(uuid.NAMESPACE_DNS, "test").hex: [uuid.uuid5(uuid.NAMESPACE_DNS, "test3").hex],
                     uuid.uuid5(uuid.NAMESPACE_DNS, "test2").hex: [
                         uuid.uuid5(uuid.NAMESPACE_DNS, "test4").hex,
                         uuid.uuid5(uuid.NAMESPACE_DNS, "test5").hex,
                     ],
                 },
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [
-                        uuid.uuid5(uuid.NAMESPACE_DNS, "test6").hex
-                    ],
-                    "abcdef1234567890abcdef1234567891": [
-                        uuid.uuid5(uuid.NAMESPACE_DNS, "test7").hex
-                    ],
+                    "abcdef1234567890abcdef1234567890": [uuid.uuid5(uuid.NAMESPACE_DNS, "test6").hex],
+                    "abcdef1234567890abcdef1234567891": [uuid.uuid5(uuid.NAMESPACE_DNS, "test7").hex],
                 },
             }
         )
@@ -851,9 +827,7 @@ def test_learning_objectives__invalid_lo_structure():
                     {"id": uuid.uuid4().hex},  # Missing text
                 ],
                 "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
-                "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
-                },
+                "lesson_objectives": {"abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]},
             }
         )
 
@@ -867,9 +841,7 @@ def test_learning_objectives__invalid_assessment_mapping():
                 "assessment_objectives": {
                     uuid.uuid4().hex: uuid.uuid4().hex,  # Should be an array
                 },
-                "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
-                },
+                "lesson_objectives": {"abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]},
             }
         )
 
@@ -882,9 +854,7 @@ def test_learning_objectives__invalid_lesson_mapping():
                 "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
                 "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
                 "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": str(
-                        uuid.uuid4()
-                    ),  # Should be an array
+                    "abcdef1234567890abcdef1234567890": str(uuid.uuid4()),  # Should be an array
                 },
             }
         )
@@ -897,9 +867,7 @@ def test_learning_objectives__missing_required_fields():
         _validate_learning_objectives(
             {
                 "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
-                "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
-                },
+                "lesson_objectives": {"abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]},
             }
         )
 
@@ -930,9 +898,7 @@ def test_learning_objectives__empty_structures():
             {
                 "learning_objectives": [],
                 "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
-                "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
-                },
+                "lesson_objectives": {"abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]},
             }
         )
 
@@ -942,9 +908,7 @@ def test_learning_objectives__empty_structures():
             {
                 "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
                 "assessment_objectives": {},
-                "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
-                },
+                "lesson_objectives": {"abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]},
             }
         )
 
@@ -967,9 +931,7 @@ def test_learning_objectives__invalid_uuid_format_in_learning_objectives():
             {
                 "learning_objectives": [{"id": "invalid-uuid", "text": "LO1"}],
                 "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
-                "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
-                },
+                "lesson_objectives": {"abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]},
             }
         )
 
@@ -982,9 +944,7 @@ def test_learning_objectives__invalid_uuid_format_in_references():
             {
                 "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
                 "assessment_objectives": {uuid.uuid4().hex: ["invalid-uuid"]},
-                "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
-                },
+                "lesson_objectives": {"abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]},
             }
         )
 
@@ -996,12 +956,8 @@ def test_learning_objectives__invalid_question_id_pattern():
         _validate_learning_objectives(
             {
                 "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
-                "assessment_objectives": {
-                    "invalid-uuid-format": [uuid.uuid4().hex]
-                },  # Invalid UUID format
-                "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
-                },
+                "assessment_objectives": {"invalid-uuid-format": [uuid.uuid4().hex]},  # Invalid UUID format
+                "lesson_objectives": {"abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]},
             }
         )
 
@@ -1014,9 +970,7 @@ def test_learning_objectives__invalid_lesson_id_pattern():
             {
                 "learning_objectives": [{"id": uuid.uuid4().hex, "text": "LO1"}],
                 "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
-                "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890:extra": [uuid.uuid4().hex]
-                },  # Has extra characters
+                "lesson_objectives": {"abcdef1234567890abcdef1234567890:extra": [uuid.uuid4().hex]},  # Has extra characters
             }
         )
 
@@ -1027,13 +981,9 @@ def test_learning_objectives__invalid_text_patterns():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [
-                    {"id": uuid.uuid4().hex, "text": "   "}
-                ],  # Only whitespace
+                "learning_objectives": [{"id": uuid.uuid4().hex, "text": "   "}],  # Only whitespace
                 "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
-                "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
-                },
+                "lesson_objectives": {"abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]},
             }
         )
 
@@ -1041,12 +991,8 @@ def test_learning_objectives__invalid_text_patterns():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
             {
-                "learning_objectives": [
-                    {"id": uuid.uuid4().hex, "text": ""}
-                ],  # Empty string
+                "learning_objectives": [{"id": uuid.uuid4().hex, "text": ""}],  # Empty string
                 "assessment_objectives": {uuid.uuid4().hex: [uuid.uuid4().hex]},
-                "lesson_objectives": {
-                    "abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]
-                },
+                "lesson_objectives": {"abcdef1234567890abcdef1234567890": [uuid.uuid4().hex]},
             }
         )
