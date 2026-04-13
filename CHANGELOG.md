@@ -1,6 +1,11 @@
 Release History
 ===============
 
+0.2.17 Apr 13, 2026
+-------------------
+  - Added library enum constants (KOLIBRI, COMMUNITY) for identifying channel library membership
+
+
 0.1.33 Oct 5, 2021
 -------------------
   - Added new labelslookup.json constants
