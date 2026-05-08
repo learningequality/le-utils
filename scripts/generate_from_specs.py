@@ -291,6 +291,7 @@ def set_package_json_version():
             else:
                 f.write("\n")
             f.write(line.rstrip())
+        f.write("\n")
     return [package_json]
 
 
