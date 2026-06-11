@@ -60,4 +60,7 @@ max-complexity = 10
 
 [tool.ruff.lint.isort]
 known-first-party = ["le_utils"]
-combine-as-imports = true
+# Match the prior reorder-python-imports style: one import per line,
+# sorted case-insensitively rather than grouped by type.
+force-single-line = true
+order-by-type = false
