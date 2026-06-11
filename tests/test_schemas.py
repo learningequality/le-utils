@@ -8,7 +8,11 @@ import uuid
 
 import pytest
 
-from le_utils.constants import completion_criteria, embed_content_request, embed_topics_request, learning_objectives, mastery_criteria
+from le_utils.constants import completion_criteria
+from le_utils.constants import embed_content_request
+from le_utils.constants import embed_topics_request
+from le_utils.constants import learning_objectives
+from le_utils.constants import mastery_criteria
 
 try:
     # the jsonschema package for python 3.4 is too old, so if not present, we'll just skip

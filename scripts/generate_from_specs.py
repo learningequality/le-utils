@@ -15,7 +15,8 @@ from collections import OrderedDict
 from glob import glob
 from hashlib import md5
 from importlib.metadata import version as get_version
-from uuid import UUID, uuid3
+from uuid import UUID
+from uuid import uuid3
 
 try:
     FileNotFoundError
