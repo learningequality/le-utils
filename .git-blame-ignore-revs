@@ -1,2 +1,5 @@
 # Migrate to ruff formatter (replaces black)
 fdf3066e3346c925faaf8fdc3746698588d77dad
+
+# Reformatted imports after switching ruff isort to one-per-line
+1e54be6ea46787429cd7a060bfa17187dbb6510a
