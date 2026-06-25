@@ -6,6 +6,7 @@ import json
 import pkgutil
 import uuid
 
+import jsonschema
 import pytest
 
 from le_utils.constants import completion_criteria
@@ -14,23 +15,11 @@ from le_utils.constants import embed_topics_request
 from le_utils.constants import learning_objectives
 from le_utils.constants import mastery_criteria
 
-try:
-    # the jsonschema package for python 3.4 is too old, so if not present, we'll just skip
-    import jsonschema
-except ImportError:
-    jsonschema = None
 
-
-# create a common decorator to skip tests if jsonschema is not available
-skip_if_jsonschema_unavailable = pytest.mark.skipif(jsonschema is None, reason="jsonschema package is unavailable")
-
-
-resolver = None
-if jsonschema is not None:
-    # this is an example of how to include the mastery criteria schema, which is referenced by the
-    # completion criteria schema, in the schema resolver so that it validates
-    resolver = jsonschema.RefResolver.from_schema(mastery_criteria.SCHEMA)
-    resolver.store.update(jsonschema.RefResolver.from_schema(completion_criteria.SCHEMA).store)
+# this is an example of how to include the mastery criteria schema, which is referenced by the
+# completion criteria schema, in the schema resolver so that it validates
+resolver = jsonschema.RefResolver.from_schema(mastery_criteria.SCHEMA)
+resolver.store.update(jsonschema.RefResolver.from_schema(completion_criteria.SCHEMA).store)
 
 
 def _validate_embed_content_request(data):
@@ -77,7 +66,6 @@ def _assert_not_raises(not_expected):
             raise e
 
 
-@skip_if_jsonschema_unavailable
 def test_completion_criteria__time_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_completion_criteria({"model": "time", "threshold": 2, "learner_managed": False})
@@ -89,7 +77,6 @@ def test_completion_criteria__time_model__valid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_completion_criteria__time_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -108,7 +95,6 @@ def test_completion_criteria__time_model__invalid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_completion_criteria__approx_time_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_completion_criteria({"model": "approx_time", "threshold": 2, "learner_managed": False})
@@ -120,7 +106,6 @@ def test_completion_criteria__approx_time_model__valid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_completion_criteria__approx_time_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -139,7 +124,6 @@ def test_completion_criteria__approx_time_model__invalid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_completion_criteria__pages_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_completion_criteria({"model": "pages", "threshold": 2, "learner_managed": False})
@@ -151,7 +135,6 @@ def test_completion_criteria__pages_model__valid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_completion_criteria__pages_model__percentage__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -168,7 +151,6 @@ def test_completion_criteria__pages_model__percentage__valid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_completion_criteria__pages_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -187,7 +169,6 @@ def test_completion_criteria__pages_model__invalid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_completion_criteria__pages_model__percentage__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -206,7 +187,6 @@ def test_completion_criteria__pages_model__percentage__invalid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_completion_criteria__mastery_model__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -240,7 +220,6 @@ def test_completion_criteria__mastery_model__valid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_completion_criteria__mastery_model__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -306,7 +285,6 @@ def test_completion_criteria__mastery_model__invalid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_completion_criteria__reference__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_completion_criteria({"model": "reference", "learner_managed": False})
@@ -317,7 +295,6 @@ def test_completion_criteria__reference__valid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_completion_criteria__reference__invalid():
     with pytest.raises(jsonschema.ValidationError):
         _validate_completion_criteria(
@@ -337,7 +314,6 @@ def test_completion_criteria__reference__invalid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__topics__without_ancestors__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_embed_topics_request(
@@ -359,7 +335,6 @@ def test_embed__topics__without_ancestors__valid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__topics__with_ancestors__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_embed_topics_request(
@@ -389,7 +364,6 @@ def test_embed__topics__with_ancestors__valid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__topics__invalid_id():
     with pytest.raises(jsonschema.ValidationError):
         _validate_embed_topics_request(
@@ -411,7 +385,6 @@ def test_embed__topics__invalid_id():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__topics__missing_language():
     with pytest.raises(jsonschema.ValidationError):
         _validate_embed_topics_request(
@@ -432,7 +405,6 @@ def test_embed__topics__missing_language():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__topics__invalid_channel_id():
     with pytest.raises(jsonschema.ValidationError):
         _validate_embed_topics_request(
@@ -454,7 +426,6 @@ def test_embed__topics__invalid_channel_id():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__topics__missing_channel_id():
     with pytest.raises(jsonschema.ValidationError):
         _validate_embed_topics_request(
@@ -475,7 +446,6 @@ def test_embed__topics__missing_channel_id():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__topics__all_languagelookup_codes_valid():
     """Every language code in languagelookup.json must be accepted by the topics schema.
 
@@ -500,7 +470,6 @@ def test_embed__topics__all_languagelookup_codes_valid():
             )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__content__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_embed_content_request(
@@ -525,7 +494,6 @@ def test_embed__content__valid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__content__valid_with_files():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_embed_content_request(
@@ -567,7 +535,6 @@ def test_embed__content__valid_with_files():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__content__invalid_id():
     with pytest.raises(jsonschema.ValidationError):
         _validate_embed_content_request(
@@ -591,7 +558,6 @@ def test_embed__content__invalid_id():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__content__invalid_channel_id():
     with pytest.raises(jsonschema.ValidationError):
         _validate_embed_content_request(
@@ -615,7 +581,6 @@ def test_embed__content__invalid_channel_id():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__content__invalid_content_id():
     with pytest.raises(jsonschema.ValidationError):
         _validate_embed_content_request(
@@ -639,7 +604,6 @@ def test_embed__content__invalid_content_id():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__content__invalid_channel_version():
     with pytest.raises(jsonschema.ValidationError):
         _validate_embed_content_request(
@@ -664,7 +628,6 @@ def test_embed__content__invalid_channel_version():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__content__invalid_url_files():
     with pytest.raises(jsonschema.ValidationError):
         _validate_embed_content_request(
@@ -694,7 +657,6 @@ def test_embed__content__invalid_url_files():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__content__invalid_preset_files():
     with pytest.raises(jsonschema.ValidationError):
         _validate_embed_content_request(
@@ -724,7 +686,6 @@ def test_embed__content__invalid_preset_files():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_embed__content__all_languagelookup_codes_valid():
     """Every language code in languagelookup.json must be accepted by the content schema.
 
@@ -760,7 +721,6 @@ def _validate_learning_objectives(data):
     jsonschema.validate(instance=data, schema=learning_objectives.SCHEMA)
 
 
-@skip_if_jsonschema_unavailable
 def test_learning_objectives__valid():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_learning_objectives(
@@ -791,7 +751,6 @@ def test_learning_objectives__valid():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_learning_objectives__valid_uuid_v5():
     with _assert_not_raises(jsonschema.ValidationError):
         _validate_learning_objectives(
@@ -822,7 +781,6 @@ def test_learning_objectives__valid_uuid_v5():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_learning_objectives__invalid_lo_structure():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
@@ -836,7 +794,6 @@ def test_learning_objectives__invalid_lo_structure():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_learning_objectives__invalid_assessment_mapping():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
@@ -850,7 +807,6 @@ def test_learning_objectives__invalid_assessment_mapping():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_learning_objectives__invalid_lesson_mapping():
     with pytest.raises(jsonschema.ValidationError):
         _validate_learning_objectives(
@@ -864,7 +820,6 @@ def test_learning_objectives__invalid_lesson_mapping():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_learning_objectives__missing_required_fields():
     # Missing learning_objectives
     with pytest.raises(jsonschema.ValidationError):
@@ -894,7 +849,6 @@ def test_learning_objectives__missing_required_fields():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_learning_objectives__empty_structures():
     # Empty learning_objectives
     with pytest.raises(jsonschema.ValidationError):
@@ -927,7 +881,6 @@ def test_learning_objectives__empty_structures():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_learning_objectives__invalid_uuid_format_in_learning_objectives():
     # Invalid UUID format for learning objective ID
     with pytest.raises(jsonschema.ValidationError):
@@ -940,7 +893,6 @@ def test_learning_objectives__invalid_uuid_format_in_learning_objectives():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_learning_objectives__invalid_uuid_format_in_references():
     # Invalid UUID format in assessment and lesson objective references
     with pytest.raises(jsonschema.ValidationError):
@@ -953,7 +905,6 @@ def test_learning_objectives__invalid_uuid_format_in_references():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_learning_objectives__invalid_question_id_pattern():
     # Invalid question ID pattern (not a valid UUID v4)
     with pytest.raises(jsonschema.ValidationError):
@@ -966,7 +917,6 @@ def test_learning_objectives__invalid_question_id_pattern():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_learning_objectives__invalid_lesson_id_pattern():
     # Invalid lesson ID pattern (has extra characters)
     with pytest.raises(jsonschema.ValidationError):
@@ -979,7 +929,6 @@ def test_learning_objectives__invalid_lesson_id_pattern():
         )
 
 
-@skip_if_jsonschema_unavailable
 def test_learning_objectives__invalid_text_patterns():
     # Empty text after trimming whitespace
     with pytest.raises(jsonschema.ValidationError):
