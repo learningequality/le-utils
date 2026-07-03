@@ -159,3 +159,10 @@ def _initialize_preset_list():
 
 
 PRESETLIST = list(_initialize_preset_list())
+
+# Bit order for the File.included_presets renderable bitmask.
+# Consumers compute the bit value as 2 ** RENDERABLE_PRESETS_ORDER.index(preset_id).
+# APPEND-ONLY: never reorder or remove an existing entry — that would
+# silently change the bit value of every preset after it and corrupt
+# already-persisted bitmasks. Only append new preset ids at the end.
+RENDERABLE_PRESETS_ORDER = [preset.id for preset in PRESETLIST if not preset.supplementary]
