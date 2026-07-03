@@ -39,6 +39,7 @@ MULTIPLE_SELECTION = "multiple_selection"
 SINGLE_SELECTION = "single_selection"
 FREE_RESPONSE = "free_response"
 PERSEUS_QUESTION = "perseus_question"
+QTI = "QTI"
 
 question_choices = (
     (INPUT_QUESTION, "Input Question"),
@@ -46,4 +47,5 @@ question_choices = (
     (SINGLE_SELECTION, "Single Selection"),
     (FREE_RESPONSE, "Free Response"),
     (PERSEUS_QUESTION, "Perseus Question"),
+    (QTI, "QTI"),
 )
