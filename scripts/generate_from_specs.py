@@ -14,7 +14,6 @@ import sys
 from collections import OrderedDict
 from glob import glob
 from hashlib import md5
-from importlib.metadata import version as get_version
 from uuid import UUID
 from uuid import uuid3
 
@@ -259,43 +258,6 @@ def write_constants_src_files(constants_outputs, schemas):
     return output_files
 
 
-def pep440_to_npm_semver(version):
-    """Convert a PEP 440 version to npm-compatible semver.
-
-    Extracts just the base version (X.Y.Z) to ensure the version is
-    stable across commits and valid npm semver. Dev/local suffixes from
-    setuptools-scm change with every commit, which would cause the
-    rebuild-from-specs pre-commit hook to perpetually modify this file.
-    On tagged releases, setuptools-scm returns the clean version directly.
-    """
-    match = re.match(r"(\d+\.\d+\.\d+)", version)
-    return match.group(1) if match else version
-
-
-def set_package_json_version():
-    python_version = get_version("le-utils")
-    npm_version = pep440_to_npm_semver(python_version)
-
-    package_json = os.path.join(js_output_dir, "package.json")
-
-    with open(package_json, "r") as f:
-        package = json.load(f)
-
-    package["version"] = npm_version
-
-    with open(package_json, "w") as f:
-        output = json.dumps(package, indent=2, sort_keys=True)
-        firstline = True
-        for line in output.split("\n"):
-            if firstline:
-                firstline = False
-            else:
-                f.write("\n")
-            f.write(line.rstrip())
-        f.write("\n")
-    return [package_json]
-
-
 if __name__ == "__main__":
     labels_to_write = read_labels_specs()
 
@@ -309,8 +271,6 @@ if __name__ == "__main__":
     output_files += write_labels_src_files(labels_to_write)
 
     output_files += write_constants_src_files(constants_to_write, schemas_to_write)
-
-    output_files += set_package_json_version()
 
     py_files = [f for f in output_files if f.endswith(".py")]
     subprocess.call(["ruff", "check", "--fix"] + py_files)
