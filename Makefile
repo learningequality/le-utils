@@ -33,6 +33,7 @@ release: dist
 	uv publish
 
 release-npm: clean build
+	uv run python scripts/set_npm_version.py
 	cd js && npm publish
 
 add-language:
