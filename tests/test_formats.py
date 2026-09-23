@@ -18,3 +18,7 @@ def test_file_format_extensions_are_synced():
 
 def test_FORMATLIST_exists():
     assert file_formats.FORMATLIST, "FORMATLIST did not genereate properly"
+
+
+def test_ARCHIVE_FORMATS_does_not_change():
+    assert set(file_formats.ARCHIVE_FORMATS) == {"zip", "h5p", "epub", "kpub", "bloompub", "bloomd"}

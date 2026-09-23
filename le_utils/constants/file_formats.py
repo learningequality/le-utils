@@ -85,6 +85,10 @@ BLOOMPUB = "bloompub"
 BLOOMD = "bloomd"
 BLOOMPUB_MIMETYPE = "application/bloompub+zip"
 
+# Zip-based formats identified by le_utils.archive.contents_sha256.
+# FROZEN: ricecooker and Studio's upload Cloud Function pin this; removing a format orphans its index entries.
+ARCHIVE_FORMATS = (HTML5, H5P, EPUB, HTML5_ARTICLE, BLOOMPUB, BLOOMD)
+
 choices = (
     (MP4, "MP4 Video"),
     (WEBM, "WEBM Video"),
