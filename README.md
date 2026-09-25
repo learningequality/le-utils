@@ -202,6 +202,13 @@ for generating proquint identifiers for content channels. These are short string
 that are easy to enter on devices without a full keyboard, e.g. `sutul-hakuh`.
 
 
+Archive contents hash
+---------------------
+[le_utils/archive.py](./le_utils/archive.py) provides `contents_sha256`, a hash of a zip
+archive's member paths and bytes that ignores compression and metadata. It identifies files
+in `file_formats.ARCHIVE_FORMATS`. Its definition is frozen: ricecooker and Studio index archives by it.
+
+
 Roles
 -----
 The `role` constants are used for Role-based access control (RBAC) within the
