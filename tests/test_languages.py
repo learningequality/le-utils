@@ -3,6 +3,18 @@ from __future__ import unicode_literals
 
 from le_utils.constants import languages
 
+
+def test_nko_language():
+    lang_obj = languages.getlang("nqo")
+    assert lang_obj is not None, "N'Ko not found"
+    assert lang_obj.code == "nqo"
+    assert lang_obj.name == "N'Ko"
+    assert lang_obj.native_name == "ߒߞߏ"
+    assert lang_obj.text_direction == languages.RTL_LANGUAGE
+    assert languages.getlang_by_name("N'Ko") == lang_obj
+    assert languages.getlang_by_native_name("ߒߞߏ") == lang_obj
+
+
 # first_native_name  -- split native_name and return first part
 ################################################################################
 
