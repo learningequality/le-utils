@@ -314,7 +314,7 @@ def write_python_getter(f, spec):
     f.write("\n")
     f.write("\n")
     f.write("def {}(id, default=None):\n".format(spec["namedtuple"]["getter"]))
-    f.write("    return _{}LOOKUP.get(id) or None\n".format(upper))
+    f.write("    return _{}LOOKUP.get(id, default)\n".format(upper))
 
 
 def write_namedtuple_python_file(output_file, name, spec):

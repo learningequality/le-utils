@@ -301,7 +301,7 @@
             ],
             [
               "mimetype",
-              ".vtt"
+              "text/vtt"
             ]
           ],
           "namedtuple": "Format",
@@ -343,7 +343,7 @@
             ],
             [
               "mimetype",
-              ".mp3"
+              "audio/mpeg"
             ]
           ],
           "namedtuple": "Format",
@@ -427,7 +427,7 @@
             ],
             [
               "mimetype",
-              "image/svg"
+              "image/svg+xml"
             ]
           ],
           "namedtuple": "Format",
@@ -441,7 +441,7 @@
             ],
             [
               "mimetype",
-              ".graphie"
+              "application/x-graphie"
             ]
           ],
           "namedtuple": "Format",
@@ -469,7 +469,7 @@
             ],
             [
               "mimetype",
-              ".h5p"
+              "application/h5p+zip"
             ]
           ],
           "namedtuple": "Format",
@@ -483,7 +483,7 @@
             ],
             [
               "mimetype",
-              ".zim"
+              "application/x-openzim"
             ]
           ],
           "namedtuple": "Format",
@@ -497,7 +497,7 @@
             ],
             [
               "mimetype",
-              ".zip"
+              "application/zip"
             ]
           ],
           "namedtuple": "Format",
@@ -557,13 +557,13 @@
     "GIF": "gif",
     "GIF_MIMETYPE": "image/gif",
     "GRAPHIE": "graphie",
-    "GRAPHIE_MIMETYPE": ".graphie",
+    "GRAPHIE_MIMETYPE": "application/x-graphie",
     "H5P": "h5p",
-    "H5P_MIMETYPE": ".h5p",
+    "H5P_MIMETYPE": "application/h5p+zip",
     "HTML5": "zip",
     "HTML5_ARTICLE": "kpub",
     "HTML5_ARTICLE_MIMETYPE": "application/kpub+zip",
-    "HTML5_MIMETYPE": ".zip",
+    "HTML5_MIMETYPE": "application/zip",
     "JPEG": "jpeg",
     "JPG": "jpg",
     "JPG_MIMETYPE": "image/jpeg",
@@ -573,7 +573,7 @@
     "MKV": "mkv",
     "MOV": "mov",
     "MP3": "mp3",
-    "MP3_MIMETYPE": ".mp3",
+    "MP3_MIMETYPE": "audio/mpeg",
     "MP4": "mp4",
     "MP4_MIMETYPE": "video/mp4",
     "MPG": "mpg",
@@ -588,15 +588,15 @@
     "SCC": "scc",
     "SRT": "srt",
     "SVG": "svg",
-    "SVG_MIMETYPE": "image/svg",
+    "SVG_MIMETYPE": "image/svg+xml",
     "TTML": "ttml",
     "VTT": "vtt",
-    "VTT_MIMETYPE": ".vtt",
+    "VTT_MIMETYPE": "text/vtt",
     "WEBM": "webm",
     "WEBM_MIMETYPE": "video/webm",
     "WMV": "wmv",
     "ZIM": "zim",
-    "ZIM_MIMETYPE": ".zim",
+    "ZIM_MIMETYPE": "application/x-openzim",
     "choices": {
       "tuple": [
         {

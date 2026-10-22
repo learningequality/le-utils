@@ -24,7 +24,7 @@
             "label": "VTT Subtitle",
             "field_constants": ["mimetype"],
             "id": "vtt",
-            "mimetype": ".vtt"
+            "mimetype": "text/vtt"
         },
         {
             "constant": "PDF",
@@ -45,7 +45,7 @@
             "label": "MP3 Audio",
             "field_constants": ["mimetype"],
             "id": "mp3",
-            "mimetype": ".mp3"
+            "mimetype": "audio/mpeg"
         },
         {
             "constant": "JPG",
@@ -86,14 +86,14 @@
             "label": "SVG Image",
             "field_constants": ["mimetype"],
             "id": "svg",
-            "mimetype": "image/svg"
+            "mimetype": "image/svg+xml"
         },
         {
             "constant": "GRAPHIE",
             "label": "Graphie Exercise",
             "field_constants": ["mimetype"],
             "id": "graphie",
-            "mimetype": ".graphie"
+            "mimetype": "application/x-graphie"
         },
         {
             "constant": "PERSEUS",
@@ -107,21 +107,21 @@
             "label": "H5P",
             "field_constants": ["mimetype"],
             "id": "h5p",
-            "mimetype": ".h5p"
+            "mimetype": "application/h5p+zip"
         },
         {
             "constant": "ZIM",
             "label": "ZIM",
             "field_constants": ["mimetype"],
             "id": "zim",
-            "mimetype": ".zim"
+            "mimetype": "application/x-openzim"
         },
         {
             "constant": "HTML5",
             "label": "HTML5 Zip",
             "field_constants": ["mimetype"],
             "id": "zip",
-            "mimetype": ".zip"
+            "mimetype": "application/zip"
         },
         {
             "constant": "BLOOMPUB",

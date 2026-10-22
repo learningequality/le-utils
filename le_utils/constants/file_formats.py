@@ -11,13 +11,13 @@ MP4_MIMETYPE = "video/mp4"
 WEBM = "webm"
 WEBM_MIMETYPE = "video/webm"
 VTT = "vtt"
-VTT_MIMETYPE = ".vtt"
+VTT_MIMETYPE = "text/vtt"
 PDF = "pdf"
 PDF_MIMETYPE = "application/pdf"
 EPUB = "epub"
 EPUB_MIMETYPE = "application/epub+zip"
 MP3 = "mp3"
-MP3_MIMETYPE = ".mp3"
+MP3_MIMETYPE = "audio/mpeg"
 JPG = "jpg"
 JPG_MIMETYPE = "image/jpeg"
 JPEG = "jpeg"
@@ -28,17 +28,17 @@ GIF_MIMETYPE = "image/gif"
 JSON = "json"
 JSON_MIMETYPE = "application/json"
 SVG = "svg"
-SVG_MIMETYPE = "image/svg"
+SVG_MIMETYPE = "image/svg+xml"
 GRAPHIE = "graphie"
-GRAPHIE_MIMETYPE = ".graphie"
+GRAPHIE_MIMETYPE = "application/x-graphie"
 PERSEUS = "perseus"
 PERSEUS_MIMETYPE = "application/perseus+zip"
 H5P = "h5p"
-H5P_MIMETYPE = ".h5p"
+H5P_MIMETYPE = "application/h5p+zip"
 ZIM = "zim"
-ZIM_MIMETYPE = ".zim"
+ZIM_MIMETYPE = "application/x-openzim"
 HTML5 = "zip"
-HTML5_MIMETYPE = ".zip"
+HTML5_MIMETYPE = "application/zip"
 BLOOMPUB = "bloompub"
 BLOOMPUB_MIMETYPE = "application/bloompub+zip"
 BLOOMD = "bloomd"
@@ -103,21 +103,21 @@ def generate_list(constantlist):
 FORMATLIST = [
     Format(id="mp4", mimetype="video/mp4"),
     Format(id="webm", mimetype="video/webm"),
-    Format(id="vtt", mimetype=".vtt"),
+    Format(id="vtt", mimetype="text/vtt"),
     Format(id="pdf", mimetype="application/pdf"),
     Format(id="epub", mimetype="application/epub+zip"),
-    Format(id="mp3", mimetype=".mp3"),
+    Format(id="mp3", mimetype="audio/mpeg"),
     Format(id="jpg", mimetype="image/jpeg"),
     Format(id="jpeg", mimetype="image/jpeg"),
     Format(id="png", mimetype="image/png"),
     Format(id="gif", mimetype="image/gif"),
     Format(id="json", mimetype="application/json"),
-    Format(id="svg", mimetype="image/svg"),
-    Format(id="graphie", mimetype=".graphie"),
+    Format(id="svg", mimetype="image/svg+xml"),
+    Format(id="graphie", mimetype="application/x-graphie"),
     Format(id="perseus", mimetype="application/perseus+zip"),
-    Format(id="h5p", mimetype=".h5p"),
-    Format(id="zim", mimetype=".zim"),
-    Format(id="zip", mimetype=".zip"),
+    Format(id="h5p", mimetype="application/h5p+zip"),
+    Format(id="zim", mimetype="application/x-openzim"),
+    Format(id="zip", mimetype="application/zip"),
     Format(id="bloompub", mimetype="application/bloompub+zip"),
     Format(id="bloomd", mimetype="application/bloompub+zip"),
     Format(id="kpub", mimetype="application/kpub+zip"),
@@ -127,4 +127,4 @@ _FORMATLOOKUP = {r.id: r for r in FORMATLIST}
 
 
 def getformat(id, default=None):
-    return _FORMATLOOKUP.get(id) or None
+    return _FORMATLOOKUP.get(id, default)
