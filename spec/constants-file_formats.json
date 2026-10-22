@@ -1,0 +1,195 @@
+{
+    "namedtuple": {
+        "name": "Format",
+        "fields": ["id", "mimetype"],
+        "getter": "getformat"
+    },
+    "records": [
+        {
+            "constant": "MP4",
+            "label": "MP4 Video",
+            "field_constants": ["mimetype"],
+            "id": "mp4",
+            "mimetype": "video/mp4"
+        },
+        {
+            "constant": "WEBM",
+            "label": "WEBM Video",
+            "field_constants": ["mimetype"],
+            "id": "webm",
+            "mimetype": "video/webm"
+        },
+        {
+            "constant": "VTT",
+            "label": "VTT Subtitle",
+            "field_constants": ["mimetype"],
+            "id": "vtt",
+            "mimetype": ".vtt"
+        },
+        {
+            "constant": "PDF",
+            "label": "PDF Document",
+            "field_constants": ["mimetype"],
+            "id": "pdf",
+            "mimetype": "application/pdf"
+        },
+        {
+            "constant": "EPUB",
+            "label": "ePub Document",
+            "field_constants": ["mimetype"],
+            "id": "epub",
+            "mimetype": "application/epub+zip"
+        },
+        {
+            "constant": "MP3",
+            "label": "MP3 Audio",
+            "field_constants": ["mimetype"],
+            "id": "mp3",
+            "mimetype": ".mp3"
+        },
+        {
+            "constant": "JPG",
+            "label": "JPG Image",
+            "field_constants": ["mimetype"],
+            "id": "jpg",
+            "mimetype": "image/jpeg"
+        },
+        {
+            "constant": "JPEG",
+            "label": "JPEG Image",
+            "id": "jpeg",
+            "mimetype": "image/jpeg"
+        },
+        {
+            "constant": "PNG",
+            "label": "PNG Image",
+            "field_constants": ["mimetype"],
+            "id": "png",
+            "mimetype": "image/png"
+        },
+        {
+            "constant": "GIF",
+            "label": "GIF Image",
+            "field_constants": ["mimetype"],
+            "id": "gif",
+            "mimetype": "image/gif"
+        },
+        {
+            "constant": "JSON",
+            "label": "JSON",
+            "field_constants": ["mimetype"],
+            "id": "json",
+            "mimetype": "application/json"
+        },
+        {
+            "constant": "SVG",
+            "label": "SVG Image",
+            "field_constants": ["mimetype"],
+            "id": "svg",
+            "mimetype": "image/svg"
+        },
+        {
+            "constant": "GRAPHIE",
+            "label": "Graphie Exercise",
+            "field_constants": ["mimetype"],
+            "id": "graphie",
+            "mimetype": ".graphie"
+        },
+        {
+            "constant": "PERSEUS",
+            "label": "Perseus Exercise",
+            "field_constants": ["mimetype"],
+            "id": "perseus",
+            "mimetype": "application/perseus+zip"
+        },
+        {
+            "constant": "H5P",
+            "label": "H5P",
+            "field_constants": ["mimetype"],
+            "id": "h5p",
+            "mimetype": ".h5p"
+        },
+        {
+            "constant": "ZIM",
+            "label": "ZIM",
+            "field_constants": ["mimetype"],
+            "id": "zim",
+            "mimetype": ".zim"
+        },
+        {
+            "constant": "HTML5",
+            "label": "HTML5 Zip",
+            "field_constants": ["mimetype"],
+            "id": "zip",
+            "mimetype": ".zip"
+        },
+        {
+            "constant": "BLOOMPUB",
+            "label": "Bloom Document",
+            "field_constants": ["mimetype"],
+            "id": "bloompub",
+            "mimetype": "application/bloompub+zip"
+        },
+        {
+            "constant": "BLOOMD",
+            "label": "Bloom Document",
+            "id": "bloomd",
+            "mimetype": "application/bloompub+zip"
+        },
+        {
+            "constant": "HTML5_ARTICLE",
+            "label": "Kolibri HTML5 Article",
+            "field_constants": ["mimetype"],
+            "id": "kpub",
+            "mimetype": "application/kpub+zip"
+        }
+    ],
+    "choices_order": [
+        "MP4",
+        "WEBM",
+        "VTT",
+        "MP3",
+        "PDF",
+        "JPG",
+        "JPEG",
+        "PNG",
+        "GIF",
+        "JSON",
+        "SVG",
+        "PERSEUS",
+        "GRAPHIE",
+        "HTML5",
+        "H5P",
+        "ZIM",
+        "EPUB",
+        "BLOOMPUB",
+        "BLOOMD",
+        "HTML5_ARTICLE"
+    ],
+    "constants": {
+        "AVI": "avi",
+        "MOV": "mov",
+        "MPG": "mpg",
+        "WMV": "wmv",
+        "MKV": "mkv",
+        "FLV": "flv",
+        "OGV": "ogv",
+        "M4V": "m4v",
+        "SRT": "srt",
+        "TTML": "ttml",
+        "SAMI": "sami",
+        "SCC": "scc",
+        "DFXP": "dfxp"
+    },
+    "tuples": {
+        "ARCHIVE_FORMATS": [
+            "HTML5",
+            "H5P",
+            "EPUB",
+            "HTML5_ARTICLE",
+            "BLOOMPUB",
+            "BLOOMD"
+        ]
+    }
+}
+

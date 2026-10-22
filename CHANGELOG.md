@@ -1,6 +1,12 @@
 Release History
 ===============
 
+Unreleased
+----------
+  - Removed `resources/formatlookup.json`; use `file_formats.FORMATLIST`
+  - Added `kolibri-constants/FileFormats`
+
+
 0.2.17 Apr 13, 2026
 -------------------
   - Added library enum constants (KOLIBRI, COMMUNITY) for identifying channel library membership
