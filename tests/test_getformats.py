@@ -15,7 +15,7 @@ def test_known_formats():
     format_obj = file_formats.getformat("graphie")
     assert format_obj is not None, "graphie not found"
     assert format_obj.id == "graphie", "Wrong id"
-    assert format_obj.mimetype == ".graphie", "Wrong mimetype"
+    assert format_obj.mimetype == "application/x-graphie", "Wrong mimetype"
 
     format_obj = file_formats.getformat("gif")
     assert format_obj is not None, "gif not found"
@@ -26,3 +26,8 @@ def test_known_formats():
 def test_unknown_formats():
     format_obj = file_formats.getformat("unknown-id")
     assert format_obj is None, "Unknown format code returned non-None"
+
+
+def test_unknown_format_returns_default():
+    default = object()
+    assert file_formats.getformat("unknown-id", default) is default

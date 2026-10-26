@@ -1,6 +1,20 @@
 Release History
 ===============
 
+Unreleased
+----------
+  - `file_formats` mimetype `vtt`: `.vtt` → `text/vtt`
+  - `file_formats` mimetype `mp3`: `.mp3` → `audio/mpeg`
+  - `file_formats` mimetype `zip`: `.zip` → `application/zip`
+  - `file_formats` mimetype `svg`: `image/svg` → `image/svg+xml`
+  - `file_formats` mimetype `h5p`: `.h5p` → `application/h5p+zip`
+  - `file_formats` mimetype `zim`: `.zim` → `application/x-openzim`
+  - `file_formats` mimetype `graphie`: `.graphie` → `application/x-graphie`
+  - `file_formats.getformat(id, default)` returns `default` for an unknown `id`
+  - Removed `resources/formatlookup.json`; use `file_formats.FORMATLIST`
+  - Added `kolibri-constants/FileFormats`
+
+
 0.2.17 Apr 13, 2026
 -------------------
   - Added library enum constants (KOLIBRI, COMMUNITY) for identifying channel library membership
