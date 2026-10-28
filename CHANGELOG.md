@@ -13,6 +13,9 @@ Unreleased
   - `file_formats.getformat(id, default)` returns `default` for an unknown `id`
   - Removed `resources/formatlookup.json`; use `file_formats.FORMATLIST`
   - Added `kolibri-constants/FileFormats`
+  - Removed `resources/licenselookup.json`; use `licenses.LICENSELIST`
+  - Added `kolibri-constants/Licenses`
+  - `licenses.generate_list` no longer casts ids to `int` or fills `description`
 
 
 0.2.17 Apr 13, 2026

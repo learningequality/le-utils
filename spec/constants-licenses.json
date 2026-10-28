@@ -1,0 +1,119 @@
+{
+    "namedtuple": {
+        "name": "License",
+        "fields": ["id", "name", "exists", "url", "description", "custom", "copyright_holder_required"],
+        "constant_field": "name"
+    },
+    "records": [
+        {
+            "constant": "CC_BY",
+            "label": "CC BY",
+            "id": 1,
+            "name": "CC BY",
+            "exists": true,
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "description": "",
+            "custom": false,
+            "copyright_holder_required": true
+        },
+        {
+            "constant": "CC_BY_SA",
+            "label": "CC BY-SA",
+            "id": 2,
+            "name": "CC BY-SA",
+            "exists": true,
+            "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+            "description": "",
+            "custom": false,
+            "copyright_holder_required": true
+        },
+        {
+            "constant": "CC_BY_ND",
+            "label": "CC BY-ND",
+            "id": 3,
+            "name": "CC BY-ND",
+            "exists": true,
+            "url": "https://creativecommons.org/licenses/by-nd/4.0/",
+            "description": "",
+            "custom": false,
+            "copyright_holder_required": true
+        },
+        {
+            "constant": "CC_BY_NC",
+            "label": "CC BY-NC",
+            "id": 4,
+            "name": "CC BY-NC",
+            "exists": true,
+            "url": "https://creativecommons.org/licenses/by-nc/4.0/",
+            "description": "",
+            "custom": false,
+            "copyright_holder_required": true
+        },
+        {
+            "constant": "CC_BY_NC_SA",
+            "label": "CC BY-NC-SA",
+            "id": 5,
+            "name": "CC BY-NC-SA",
+            "exists": true,
+            "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+            "description": "",
+            "custom": false,
+            "copyright_holder_required": true
+        },
+        {
+            "constant": "CC_BY_NC_ND",
+            "label": "CC BY-NC-ND",
+            "id": 6,
+            "name": "CC BY-NC-ND",
+            "exists": true,
+            "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+            "description": "",
+            "custom": false,
+            "copyright_holder_required": true
+        },
+        {
+            "constant": "ALL_RIGHTS_RESERVED",
+            "label": "All Rights Reserved",
+            "id": 7,
+            "name": "All Rights Reserved",
+            "exists": true,
+            "url": "http://www.allrights-reserved.com/",
+            "description": "",
+            "custom": false,
+            "copyright_holder_required": true
+        },
+        {
+            "constant": "PUBLIC_DOMAIN",
+            "label": "Public Domain",
+            "id": 8,
+            "name": "Public Domain",
+            "exists": true,
+            "url": "https://creativecommons.org/publicdomain/mark/1.0/",
+            "description": "",
+            "custom": false,
+            "copyright_holder_required": false
+        },
+        {
+            "constant": "SPECIAL_PERMISSIONS",
+            "label": "Special Permissions",
+            "id": 9,
+            "name": "Special Permissions",
+            "exists": false,
+            "url": "",
+            "description": "",
+            "custom": true,
+            "copyright_holder_required": true
+        }
+    ],
+    "choices_order": [
+        "CC_BY",
+        "CC_BY_SA",
+        "CC_BY_ND",
+        "CC_BY_NC",
+        "CC_BY_NC_SA",
+        "CC_BY_NC_ND",
+        "ALL_RIGHTS_RESERVED",
+        "PUBLIC_DOMAIN",
+        "SPECIAL_PERMISSIONS"
+    ]
+}
