@@ -16,6 +16,7 @@ Unreleased
   - Removed `resources/licenselookup.json`; use `licenses.LICENSELIST`
   - Added `kolibri-constants/Licenses`
   - `licenses.generate_list` no longer casts ids to `int` or fills `description`
+  - `archive.contents_sha256` reads members in stored order
 
 
 0.2.17 Apr 13, 2026
