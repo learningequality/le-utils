@@ -240,14 +240,22 @@ def define_constant(constants, constant, value):
 def namedtuple_constants(spec):
     constants = OrderedDict()
     ids = set()
+    values = set()
+    fields = spec["namedtuple"]["fields"]
+    constant_field = spec["namedtuple"].get("constant_field", "id")
+    if constant_field not in fields:
+        raise ValueError("constant_field {} is not a field".format(constant_field))
     for record in spec["records"]:
-        for field in spec["namedtuple"]["fields"]:
+        for field in fields:
             if field not in record:
                 raise ValueError("Record {} has no field {}".format(record["constant"], field))
         if record["id"] in ids:
             raise ValueError("Record id {} is defined twice".format(record["id"]))
         ids.add(record["id"])
-        define_constant(constants, record["constant"], record["id"])
+        if record[constant_field] in values:
+            raise ValueError("Record {} {} is defined twice".format(constant_field, record[constant_field]))
+        values.add(record[constant_field])
+        define_constant(constants, record["constant"], record[constant_field])
         for field in record.get("field_constants", []):
             define_constant(constants, "{}_{}".format(record["constant"], field.upper()), record[field])
     for constant, value in spec.get("constants", {}).items():

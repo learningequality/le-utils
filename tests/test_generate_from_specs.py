@@ -96,6 +96,22 @@ def test_record_missing_field_raises(tmp_path):
     assert_spec_raises(tmp_path, spec(records=[record]))
 
 
+def test_constant_field_not_in_fields_raises(tmp_path):
+    assert_spec_raises(tmp_path, spec(namedtuple=dict(spec()["namedtuple"], constant_field="label")))
+
+
+def test_constant_field_repeated_value_raises(tmp_path):
+    records = [mp4_record(field_constants=[]), mp4_record(constant="M4V", id="m4v", field_constants=[])]
+    assert_spec_raises(
+        tmp_path,
+        spec(
+            namedtuple=dict(spec()["namedtuple"], constant_field="mimetype"),
+            records=records,
+            choices_order=["MP4", "M4V"],
+        ),
+    )
+
+
 def write_and_exec(tmp_path, valid_spec):
     output_file = str(tmp_path / "formats.py")
     generate_from_specs.write_namedtuple_python_file(output_file, "FileFormats", valid_spec)
@@ -129,6 +145,11 @@ def test_spec_without_getter_omits_getter(tmp_path):
     namespace = write_and_exec(tmp_path, valid_spec)
     assert "getformat" not in namespace
     assert namespace["FORMATLIST"] == [namespace["Format"](id="mp4", mimetype="video/mp4")]
+
+
+def test_constant_field_sets_record_constant_value(tmp_path):
+    namespace = write_and_exec(tmp_path, spec(namedtuple=dict(spec()["namedtuple"], constant_field="mimetype")))
+    assert namespace["MP4"] == "video/mp4"
 
 
 @pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed")
