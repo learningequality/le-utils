@@ -90,6 +90,27 @@ def test_tuple_repeating_constant_raises(tmp_path):
     assert_spec_raises(tmp_path, spec(tuples={"VIDEO": ["MP4", "MP4"]}))
 
 
+def test_mapping_with_undefined_constant_raises(tmp_path):
+    assert_spec_raises(tmp_path, spec(mappings={"MAPPING": {"AVI": ["avi"]}}))
+
+
+def test_mapping_key_under_two_constants_raises(tmp_path):
+    mappings = {"MAPPING": {"MP4": ["a"], "AVI": ["a"]}}
+    assert_spec_raises(tmp_path, spec(constants={"AVI": "avi"}, mappings=mappings))
+
+
+@pytest.mark.parametrize(
+    "mapping_name",
+    ["MP4", "MP4_MIMETYPE", "VIDEO", "FORMATLIST", "Format", "getformat", "choices", "generate_list", "default", "namedtuple"],
+)
+def test_mapping_name_already_defined_raises(tmp_path, mapping_name):
+    assert_spec_raises(tmp_path, spec(tuples={"VIDEO": ["MP4"]}, mappings={mapping_name: {"MP4": ["a"]}}))
+
+
+def test_mapping_keys_not_a_list_raises(tmp_path):
+    assert_spec_raises(tmp_path, spec(mappings={"MAPPING": {"MP4": "mp4"}}))
+
+
 def test_record_missing_field_raises(tmp_path):
     record = mp4_record()
     del record["mimetype"]
@@ -126,6 +147,11 @@ def test_tuple_with_defined_constants_is_written(tmp_path):
     assert namespace["VIDEO"] == ("mp4", "avi")
 
 
+def test_mapping_maps_keys_to_constant_values(tmp_path):
+    namespace = write_and_exec(tmp_path, spec(constants={"AVI": "avi"}, mappings={"MAPPING": {"MP4": ["a", "b"], "AVI": ["c"]}}))
+    assert namespace["MAPPING"] == {"a": "mp4", "b": "mp4", "c": "avi"}
+
+
 def test_generate_list_yields_records(tmp_path):
     namespace = write_and_exec(tmp_path, spec())
     records = list(namespace["generate_list"]({"webm": {"mimetype": "video/webm"}}))
@@ -152,12 +178,22 @@ def test_constant_field_sets_record_constant_value(tmp_path):
     assert namespace["MP4"] == "video/mp4"
 
 
+def import_js(tmp_path, valid_spec, imports, value):
+    output_file = tmp_path / "Formats.mjs"
+    generate_from_specs.write_namedtuple_js_file(str(output_file), "FileFormats", valid_spec)
+    script = "import {} from {!r}; console.log(JSON.stringify({}));".format(imports, output_file.as_uri(), value)
+    output = subprocess.check_output(["node", "--input-type=module", "-e", script])
+    return json.loads(output.decode("utf-8"), object_pairs_hook=OrderedDict)
+
+
 @pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed")
 def test_js_exports_constants_and_records(tmp_path):
-    output_file = tmp_path / "Formats.mjs"
-    generate_from_specs.write_namedtuple_js_file(str(output_file), "FileFormats", spec(constants={"AVI": "avi"}))
-    script = "import constants, {{ FORMATLIST }} from {!r}; console.log(JSON.stringify([constants, FORMATLIST]));".format(output_file.as_uri())
-    output = subprocess.check_output(["node", "--input-type=module", "-e", script])
-    constants, records = json.loads(output.decode("utf-8"), object_pairs_hook=OrderedDict)
+    constants, records = import_js(tmp_path, spec(constants={"AVI": "avi"}), "constants, { FORMATLIST }", "[constants, FORMATLIST]")
     assert list(constants.items()) == [("MP4", "mp4"), ("MP4_MIMETYPE", "video/mp4"), ("AVI", "avi")]
     assert records == [{"id": "mp4", "mimetype": "video/mp4"}]
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed")
+def test_js_exports_mappings(tmp_path):
+    valid_spec = spec(constants={"AVI": "avi"}, mappings={"MAPPING": {"MP4": ["a", "b"], "AVI": ["c-d"]}})
+    assert import_js(tmp_path, valid_spec, "{ MAPPING }", "MAPPING") == {"a": "mp4", "b": "mp4", "c-d": "avi"}
