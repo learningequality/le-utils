@@ -109,7 +109,7 @@ Content kinds (ContentNode subclasses)
 Content items throughout the Kolibri ecosystem come in several kinds. The `kind`
 attribute of each object can be one of ("topic", "video", "audio", "exercise"
 "document", or "html5".
-See [constants/content_kinds.py](https://github.com/learningequality/le-utils/blob/master/le_utils/constants/content_kinds.py#L11-L17) for latest list.
+See [constants/content_kinds.py](https://github.com/learningequality/le-utils/blob/master/le_utils/constants/content_kinds.py#L9-L18) for latest list.
 
 The currently supported content kinds are:
   - Topic node (folder)

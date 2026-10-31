@@ -17,6 +17,8 @@ Unreleased
   - Added `kolibri-constants/Licenses`
   - `licenses.generate_list` no longer casts ids to `int` or fills `description`
   - `archive.contents_sha256` reads members in stored order
+  - Removed `resources/kindlookup.json`; use `content_kinds.KINDLIST`
+  - Added `kolibri-constants/ContentKinds`
 
 
 0.2.17 Apr 13, 2026
