@@ -274,6 +274,27 @@ def namedtuple_tuples(spec, constants):
     return tuples
 
 
+def namedtuple_mappings(spec, constants):
+    mappings = OrderedDict()
+    name = spec["namedtuple"]["name"]
+    defined_names = set(constants) | set(spec.get("tuples", {}))
+    defined_names |= {name, "{}LIST".format(name.upper()), spec["namedtuple"].get("getter"), "choices", "generate_list", "default", "namedtuple"}
+    for mapping_name, entries in spec.get("mappings", {}).items():
+        if mapping_name in defined_names:
+            raise ValueError("Mapping {} is already defined".format(mapping_name))
+        mapping = mappings[mapping_name] = OrderedDict()
+        for constant, keys in entries.items():
+            if constant not in constants:
+                raise ValueError("Mapping {} references undefined constant {}".format(mapping_name, constant))
+            if not isinstance(keys, list):
+                raise ValueError("Mapping {} keys for {} are not a list".format(mapping_name, constant))
+            for key in keys:
+                if key in mapping:
+                    raise ValueError("Mapping {} maps {} twice".format(mapping_name, key))
+                mapping[key] = constant
+    return mappings
+
+
 def namedtuple_choices(spec):
     if "choices_order" not in spec:
         return None
@@ -315,6 +336,15 @@ def write_python_records(f, spec):
     f.write("]\n")
 
 
+def write_python_mappings(f, mappings):
+    for mapping_name, mapping in mappings.items():
+        f.write("\n")
+        f.write("{} = {{\n".format(mapping_name))
+        for key, constant in mapping.items():
+            f.write("    {!r}: {},\n".format(key, constant))
+        f.write("}\n")
+
+
 def write_python_getter(f, spec):
     upper = spec["namedtuple"]["name"].upper()
     f.write("\n")
@@ -328,6 +358,7 @@ def write_python_getter(f, spec):
 def write_namedtuple_python_file(output_file, name, spec):
     constants = namedtuple_constants(spec)
     tuples = namedtuple_tuples(spec, constants)
+    mappings = namedtuple_mappings(spec, constants)
     choices = namedtuple_choices(spec)
     with open(output_file, "w") as f:
         write_python_header(f)
@@ -340,6 +371,7 @@ def write_namedtuple_python_file(output_file, name, spec):
         for tuple_name, members in tuples.items():
             f.write("\n")
             f.write("{} = ({},)\n".format(tuple_name, ", ".join(members)))
+        write_python_mappings(f, mappings)
         f.write("\n")
         if choices is not None:
             write_python_choices(f, choices)
@@ -356,12 +388,14 @@ def js_object(pairs):
 
 def write_namedtuple_js_file(output_file, name, spec):
     fields = spec["namedtuple"]["fields"]
+    constants = namedtuple_constants(spec)
+    mappings = namedtuple_mappings(spec, constants)
     with open(output_file, "w") as f:
         write_js_header(f)
         f.write("// {}\n".format(name))
         f.write("\n")
         f.write("export default {\n")
-        for constant, value in namedtuple_constants(spec).items():
+        for constant, value in constants.items():
             f.write("    {}: {},\n".format(constant, json.dumps(value)))
         f.write("};\n")
         f.write("\n")
@@ -369,6 +403,12 @@ def write_namedtuple_js_file(output_file, name, spec):
         for record in spec["records"]:
             f.write("    {},\n".format(js_object((field, record[field]) for field in fields)))
         f.write("];\n")
+        for mapping_name, mapping in mappings.items():
+            f.write("\n")
+            f.write("export const {} = {{\n".format(mapping_name))
+            for key, constant in mapping.items():
+                f.write("    {}: {},\n".format(json.dumps(key), json.dumps(constants[constant])))
+            f.write("};\n")
 
 
 def write_labels_src_files(label_outputs):
