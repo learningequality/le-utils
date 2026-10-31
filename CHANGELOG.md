@@ -16,6 +16,8 @@ Unreleased
   - Removed `resources/licenselookup.json`; use `licenses.LICENSELIST`
   - Added `kolibri-constants/Licenses`
   - `licenses.generate_list` no longer casts ids to `int` or fills `description`
+  - Removed `resources/kindlookup.json`; use `content_kinds.KINDLIST`
+  - Added `kolibri-constants/ContentKinds`
 
 
 0.2.17 Apr 13, 2026

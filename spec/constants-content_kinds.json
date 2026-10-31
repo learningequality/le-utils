@@ -1,0 +1,91 @@
+{
+    "namedtuple": {
+        "name": "Kind",
+        "fields": ["id", "name"]
+    },
+    "records": [
+        {
+            "constant": "TOPIC",
+            "label": "Topic",
+            "id": "topic",
+            "name": "topic"
+        },
+        {
+            "constant": "VIDEO",
+            "label": "Video",
+            "id": "video",
+            "name": "video"
+        },
+        {
+            "constant": "AUDIO",
+            "label": "Audio",
+            "id": "audio",
+            "name": "audio"
+        },
+        {
+            "constant": "EXERCISE",
+            "label": "Exercise",
+            "id": "exercise",
+            "name": "exercise"
+        },
+        {
+            "constant": "DOCUMENT",
+            "label": "Document",
+            "id": "document",
+            "name": "document"
+        },
+        {
+            "constant": "HTML5",
+            "label": "HTML5 App",
+            "id": "html5",
+            "name": "html5"
+        },
+        {
+            "constant": "SLIDESHOW",
+            "label": "Slideshow",
+            "id": "slideshow",
+            "name": "slideshow"
+        },
+        {
+            "constant": "H5P",
+            "label": "H5P",
+            "id": "h5p",
+            "name": "h5p"
+        },
+        {
+            "constant": "ZIM",
+            "label": "Zim",
+            "id": "zim",
+            "name": "zim"
+        },
+        {
+            "constant": "QUIZ",
+            "label": "Quiz",
+            "id": "quiz",
+            "name": "quiz"
+        }
+    ],
+    "choices_order": [
+        "TOPIC",
+        "VIDEO",
+        "AUDIO",
+        "EXERCISE",
+        "DOCUMENT",
+        "HTML5",
+        "SLIDESHOW",
+        "H5P",
+        "ZIM",
+        "QUIZ"
+    ],
+    "mappings": {
+        "MAPPING": {
+            "VIDEO": ["mp4", "webm"],
+            "AUDIO": ["mp3"],
+            "EXERCISE": ["perseus"],
+            "DOCUMENT": ["pdf", "epub", "bloompub", "bloomd"],
+            "HTML5": ["zip"],
+            "H5P": ["h5p"],
+            "ZIM": ["zim"]
+        }
+    }
+}
