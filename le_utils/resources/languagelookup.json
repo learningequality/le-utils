@@ -679,6 +679,11 @@
     "name": "Norwegian",
     "native_name": "Norsk"
   },
+  "nqo": {
+    "name": "N'Ko",
+    "native_name": "ߒߞߏ",
+    "rtl": true
+  },
   "nr": {
     "name": "South Ndebele",
     "native_name": "isiNdebele"
