@@ -1,4 +1,5 @@
 import io
+import itertools
 import struct
 import zipfile
 import zlib
@@ -34,6 +35,32 @@ def test_contents_sha256_is_pinned(compression):
 
 def test_contents_sha256_ignores_member_order():
     assert contents_sha256(_zip(reversed(MEMBERS))) == EXPECTED_DIGEST
+
+
+class _SeekRecorder(io.BytesIO):
+    def __init__(self):
+        super().__init__()
+        self.positions = []
+
+    def seek(self, *args):
+        position = super().seek(*args)
+        self.positions.append(position)
+        return position
+
+
+def test_contents_sha256_reads_members_in_stored_order():
+    archive = _SeekRecorder()
+    with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as zf:
+        for name, data in sorted(MEMBERS, reverse=True):
+            zf.writestr(name, data)
+        zf.filelist.append(zf.filelist.pop(0))
+    offsets = [info.header_offset for info in zipfile.ZipFile(archive).infolist()]
+    assert offsets != sorted(offsets)
+    start_dir = zipfile.ZipFile(archive).start_dir
+    archive.positions.clear()
+    assert contents_sha256(archive) == EXPECTED_DIGEST
+    member_seeks = list(itertools.dropwhile(lambda position: position >= start_dir, archive.positions))
+    assert member_seeks == sorted(member_seeks)
 
 
 def test_contents_sha256_ignores_directory_entries():

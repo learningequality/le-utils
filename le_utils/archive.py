@@ -32,7 +32,8 @@ def contents_sha256(fileobj):
             if path in members:
                 raise ValueError(f"Duplicate member path {path!r}")
             members[path] = info
+        member_digests = {path: _member_sha256(zf, info) for path, info in sorted(members.items(), key=lambda item: item[1].header_offset)}
         digest = hashlib.sha256()
-        for path in sorted(members):
-            digest.update(f"{path}\0{_member_sha256(zf, members[path])}\n".encode("utf-8"))
+        for path, member_digest in sorted(member_digests.items()):
+            digest.update(f"{path}\0{member_digest}\n".encode("utf-8"))
     return digest.hexdigest()
