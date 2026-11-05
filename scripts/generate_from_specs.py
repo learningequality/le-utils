@@ -237,18 +237,23 @@ def define_constant(constants, constant, value):
     constants[constant] = value
 
 
+def check_record_fields(record, fields):
+    for field in fields:
+        if field not in record:
+            raise ValueError("Record {} has no field {}".format(record["constant"], field))
+
+
 def namedtuple_constants(spec):
     constants = OrderedDict()
     ids = set()
     values = set()
     fields = spec["namedtuple"]["fields"]
     constant_field = spec["namedtuple"].get("constant_field", "id")
+    label_constant_suffix = spec["namedtuple"].get("label_constant_suffix")
     if constant_field not in fields:
         raise ValueError("constant_field {} is not a field".format(constant_field))
     for record in spec["records"]:
-        for field in fields:
-            if field not in record:
-                raise ValueError("Record {} has no field {}".format(record["constant"], field))
+        check_record_fields(record, fields)
         if record["id"] in ids:
             raise ValueError("Record id {} is defined twice".format(record["id"]))
         ids.add(record["id"])
@@ -256,6 +261,9 @@ def namedtuple_constants(spec):
             raise ValueError("Record {} {} is defined twice".format(constant_field, record[constant_field]))
         values.add(record[constant_field])
         define_constant(constants, record["constant"], record[constant_field])
+        if label_constant_suffix:
+            check_record_fields(record, ["label"])
+            define_constant(constants, "{}_{}".format(record["constant"], label_constant_suffix), record["label"])
         for field in record.get("field_constants", []):
             define_constant(constants, "{}_{}".format(record["constant"], field.upper()), record[field])
     for constant, value in spec.get("constants", {}).items():
@@ -263,24 +271,39 @@ def namedtuple_constants(spec):
     return constants
 
 
-def namedtuple_tuples(spec, constants):
-    tuples = spec.get("tuples", {})
-    for tuple_name, members in tuples.items():
-        if len(set(members)) != len(members):
-            raise ValueError("Tuple {} repeats a constant".format(tuple_name))
-        for member in members:
-            if member not in constants:
-                raise ValueError("Tuple {} references undefined constant {}".format(tuple_name, member))
-    return tuples
+SEQUENCE_TEMPLATES = OrderedDict((("tuples", "{} = ({},)\n"), ("lists", "{} = [{}]\n")))
 
 
-def namedtuple_mappings(spec, constants):
-    mappings = OrderedDict()
+def module_names(spec, constants):
     name = spec["namedtuple"]["name"]
-    defined_names = set(constants) | set(spec.get("tuples", {}))
-    defined_names |= {name, "{}LIST".format(name.upper()), "choices", "default", "generate_list", "namedtuple", "unicode_literals"}
+    names = set(constants)
+    names |= {name, "{}LIST".format(name.upper()), "choices", "default", "generate_list", "namedtuple", "unicode_literals"}
     if "getter" in spec["namedtuple"]:
-        defined_names |= {spec["namedtuple"]["getter"], "_{}LOOKUP".format(name.upper())}
+        names |= {spec["namedtuple"]["getter"], "_{}LOOKUP".format(name.upper())}
+    return names
+
+
+def namedtuple_sequences(spec, constants):
+    sequences = []
+    defined_names = module_names(spec, constants)
+    for key in SEQUENCE_TEMPLATES:
+        for sequence_name, members in spec.get(key, {}).items():
+            if sequence_name in defined_names:
+                raise ValueError("{} {} is already defined".format(key, sequence_name))
+            defined_names.add(sequence_name)
+            if not members:
+                raise ValueError("{} {} is empty".format(key, sequence_name))
+            if len(set(members)) != len(members):
+                raise ValueError("{} {} repeats a constant".format(key, sequence_name))
+            for member in members:
+                if member not in constants:
+                    raise ValueError("{} {} references undefined constant {}".format(key, sequence_name, member))
+            sequences.append((key, sequence_name, members))
+    return sequences, defined_names
+
+
+def namedtuple_mappings(spec, constants, defined_names):
+    mappings = OrderedDict()
     for mapping_name, entries in spec.get("mappings", {}).items():
         if mapping_name in defined_names:
             raise ValueError("Mapping {} is already defined".format(mapping_name))
@@ -359,8 +382,8 @@ def write_python_getter(f, spec):
 
 def write_namedtuple_python_file(output_file, name, spec):
     constants = namedtuple_constants(spec)
-    tuples = namedtuple_tuples(spec, constants)
-    mappings = namedtuple_mappings(spec, constants)
+    sequences, defined_names = namedtuple_sequences(spec, constants)
+    mappings = namedtuple_mappings(spec, constants, defined_names)
     choices = namedtuple_choices(spec)
     with open(output_file, "w") as f:
         write_python_header(f)
@@ -370,9 +393,9 @@ def write_namedtuple_python_file(output_file, name, spec):
         f.write("\n")
         for constant, value in constants.items():
             f.write("{} = {!r}\n".format(constant, value))
-        for tuple_name, members in tuples.items():
+        for key, sequence_name, members in sequences:
             f.write("\n")
-            f.write("{} = ({},)\n".format(tuple_name, ", ".join(members)))
+            f.write(SEQUENCE_TEMPLATES[key].format(sequence_name, ", ".join(members)))
         write_python_mappings(f, mappings)
         f.write("\n")
         if choices is not None:
@@ -400,7 +423,8 @@ def write_js_mappings(f, mappings, constants):
 def write_namedtuple_js_file(output_file, name, spec):
     fields = spec["namedtuple"]["fields"]
     constants = namedtuple_constants(spec)
-    mappings = namedtuple_mappings(spec, constants)
+    _, defined_names = namedtuple_sequences(spec, constants)
+    mappings = namedtuple_mappings(spec, constants, defined_names)
     with open(output_file, "w") as f:
         write_js_header(f)
         f.write("// {}\n".format(name))
