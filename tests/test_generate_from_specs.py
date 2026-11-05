@@ -82,12 +82,19 @@ def test_choices_order_repeating_record_raises(tmp_path):
     assert_spec_raises(tmp_path, spec(choices_order=["MP4", "MP4"]))
 
 
-def test_tuple_with_undefined_constant_raises(tmp_path):
-    assert_spec_raises(tmp_path, spec(tuples={"VIDEO": ["MP4", "AVI"]}))
+@pytest.mark.parametrize("key", ["tuples", "lists"])
+def test_sequence_with_undefined_constant_raises(tmp_path, key):
+    assert_spec_raises(tmp_path, spec(**{key: {"VIDEO": ["MP4", "AVI"]}}))
 
 
-def test_tuple_repeating_constant_raises(tmp_path):
-    assert_spec_raises(tmp_path, spec(tuples={"VIDEO": ["MP4", "MP4"]}))
+@pytest.mark.parametrize("key", ["tuples", "lists"])
+def test_sequence_repeating_constant_raises(tmp_path, key):
+    assert_spec_raises(tmp_path, spec(**{key: {"VIDEO": ["MP4", "MP4"]}}))
+
+
+@pytest.mark.parametrize("key", ["tuples", "lists"])
+def test_empty_sequence_raises(tmp_path, key):
+    assert_spec_raises(tmp_path, spec(**{key: {"VIDEO": []}}))
 
 
 def test_mapping_with_undefined_constant_raises(tmp_path):
@@ -101,9 +108,10 @@ def test_mapping_key_under_two_constants_raises(tmp_path):
 
 def test_mapping_name_already_defined_raises(tmp_path):
     (tmp_path / "valid").mkdir()
-    names = set(write_and_exec(tmp_path / "valid", spec(tuples={"VIDEO": ["MP4"]}))) - {"__builtins__"}
+    sequences = {"tuples": {"VIDEO": ["MP4"]}, "lists": {"ORDER": ["MP4"]}}
+    names = set(write_and_exec(tmp_path / "valid", spec(**sequences))) - {"__builtins__"}
     for mapping_name in names | {"default"}:
-        assert_spec_raises(tmp_path, spec(tuples={"VIDEO": ["MP4"]}, mappings={mapping_name: {"MP4": ["a"]}}))
+        assert_spec_raises(tmp_path, spec(mappings={mapping_name: {"MP4": ["a"]}}, **sequences))
 
 
 def test_mapping_keys_not_a_list_raises(tmp_path):
@@ -132,6 +140,31 @@ def test_constant_field_repeated_value_raises(tmp_path):
     )
 
 
+def test_label_constant_suffix_without_label_raises(tmp_path):
+    record = mp4_record()
+    del record["label"]
+    namedtuple = dict(spec()["namedtuple"], label_constant_suffix="READABLE")
+    assert_spec_raises(tmp_path, spec(namedtuple=namedtuple, records=[record], choices_order=[]))
+
+
+def test_record_constant_shadowing_label_constant_raises(tmp_path):
+    namedtuple = dict(spec()["namedtuple"], label_constant_suffix="READABLE")
+    records = [mp4_record(constant="MP4_READABLE", id="a", field_constants=[]), mp4_record()]
+    assert_spec_raises(tmp_path, spec(namedtuple=namedtuple, records=records, choices_order=["MP4_READABLE", "MP4"]))
+
+
+def test_sequence_name_already_defined_raises(tmp_path):
+    (tmp_path / "valid").mkdir()
+    names = set(write_and_exec(tmp_path / "valid", spec())) - {"__builtins__"}
+    for sequence_name in names | {"default"}:
+        for key in ("tuples", "lists"):
+            assert_spec_raises(tmp_path, spec(**{key: {sequence_name: ["MP4"]}}))
+
+
+def test_tuple_and_list_with_same_name_raises(tmp_path):
+    assert_spec_raises(tmp_path, spec(tuples={"VIDEO": ["MP4"]}, lists={"VIDEO": ["MP4"]}))
+
+
 def write_and_exec(tmp_path, valid_spec):
     output_file = str(tmp_path / "formats.py")
     generate_from_specs.write_namedtuple_python_file(output_file, "FileFormats", valid_spec)
@@ -144,6 +177,11 @@ def write_and_exec(tmp_path, valid_spec):
 def test_tuple_with_defined_constants_is_written(tmp_path):
     namespace = write_and_exec(tmp_path, spec(constants={"AVI": "avi"}, tuples={"VIDEO": ["MP4", "AVI"]}))
     assert namespace["VIDEO"] == ("mp4", "avi")
+
+
+def test_list_with_defined_constants_is_written(tmp_path):
+    namespace = write_and_exec(tmp_path, spec(constants={"AVI": "avi"}, lists={"ORDER": ["MP4", "AVI"]}))
+    assert namespace["ORDER"] == ["mp4", "avi"]
 
 
 def test_mapping_maps_keys_to_constant_values(tmp_path):
@@ -175,6 +213,11 @@ def test_spec_without_getter_omits_getter(tmp_path):
 def test_constant_field_sets_record_constant_value(tmp_path):
     namespace = write_and_exec(tmp_path, spec(namedtuple=dict(spec()["namedtuple"], constant_field="mimetype")))
     assert namespace["MP4"] == "video/mp4"
+
+
+def test_label_constant_suffix_sets_label_constant(tmp_path):
+    namespace = write_and_exec(tmp_path, spec(namedtuple=dict(spec()["namedtuple"], label_constant_suffix="READABLE")))
+    assert namespace["MP4_READABLE"] == "MP4 Video"
 
 
 def import_js(tmp_path, valid_spec, imports, value):
