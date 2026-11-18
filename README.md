@@ -150,9 +150,10 @@ Every `ContentNode` is associated with one or more `File` objects and nature of
 this association is represented though the `format_preset` attribute of the file.
 The `format_preset` is the role the file is playing in the content node,
 e.g., thumbnail, high resolution video, or low resolution video.
-Note that format presets are represented redundantly as python string in
-[constants/format_presets.py](https://github.com/learningequality/le-utils/blob/master/le_utils/constants/format_presets.py)
-and as json [resources/presetlookup.json](https://github.com/learningequality/le-utils/blob/master/le_utils/resources/presetlookup.json).
+Format presets are defined in
+[spec/constants-format_presets.json](https://github.com/learningequality/le-utils/blob/main/spec/constants-format_presets.json),
+from which [constants/format_presets.py](https://github.com/learningequality/le-utils/blob/main/le_utils/constants/format_presets.py)
+and [js/FormatPresets.js](https://github.com/learningequality/le-utils/blob/main/js/FormatPresets.js) are generated.
 
 You can think of the different format presets on a content node as different "slots"
 to be filled in by files, with certain slots being required while other optional.
